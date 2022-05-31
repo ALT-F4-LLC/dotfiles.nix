@@ -1,0 +1,242 @@
+{ config, pkgs, lib, ... }:
+
+let
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
+in
+{
+  imports =
+    [
+      (import "${home-manager}/nixos")
+      ./hardware-configuration.nix
+    ];
+
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  environment = {
+    etc = {
+      "sway/config".source = ./dotfiles/sway/config;
+      "xdg/waybar/config".source = ./dotfiles/waybar/config;
+      "xdg/waybar/style.css".source = ./dotfiles/waybar/style.css;
+    };
+
+    loginShellInit = ''
+      if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
+        WLR_NO_HARDWARE_CURSORS=1 exec sway
+      fi
+    '';
+
+    pathsToLink = [
+      "/libexec"
+    ];
+
+    sessionVariables = {
+      MOZ_ENABLE_WAYLAND = "1";
+      XDG_CURRENT_DESKTOP = "sway";
+    };
+
+    systemPackages = with pkgs; [
+      gtk-engine-murrine
+      gtk_engines
+      gsettings-desktop-schemas
+      lxappearance
+      polkit_gnome
+      vim
+      xclip
+      xsel
+      playerctl
+      wget
+    ];
+  };
+
+  fonts = {
+    fontconfig = {
+      defaultFonts = {
+        monospace = [ "Meslo LG M Regular Nerd Font Complete Mono" ];
+      };
+
+      enable = true;
+    };
+
+    fonts = with pkgs; [
+      (nerdfonts.override { fonts = [ "Meslo" ]; })
+    ];
+  };
+
+  hardware.opengl.enable = true;
+  hardware.pulseaudio.enable = true;
+
+  home-manager.users.erikreinert = {
+    programs.alacritty = {
+      enable = true;
+
+      settings = {
+        background_opacity = 0.80;
+
+        colors = {
+          primary = {
+            background = "0x1a1b26";
+            foreground = "0xa9b1d6";
+          };
+
+          normal = {
+            black =   "0x32344a";
+            red =     "0xf7768e";
+            green =   "0x9ece6a";
+            yellow =  "0xe0af68";
+            blue =    "0x7aa2f7";
+            magenta = "0xad8ee6";
+            cyan =    "0x449dab";
+            white =   "0x787c99";
+          };
+
+          bright = {
+            black =   "0x444b6a";
+            red =     "0xff7a93";
+            green =   "0xb9f27c";
+            yellow =  "0xff9e64";
+            blue =    "0x7da6ff";
+            magenta = "0xbb9af7";
+            cyan =    "0x0db9d7";
+            white =   "0xacb0d0";
+          };
+        };
+
+        env = {
+          "TERM" = "xterm-256color";
+        };
+      };
+    };
+
+    programs.firefox = {
+      enable = true;
+    };
+  };
+
+  networking.hostName = "nixos-erikreinert";
+  networking.useDHCP = false;
+  networking.interfaces.ens33.useDHCP = true;
+
+  nix = {
+    package = pkgs.nixUnstable;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+  };
+
+  nixpkgs.config.allowUnfree = true;
+
+  nixpkgs.overlays = [
+    (self: super: {
+      wl-clipboard-x11 = super.stdenv.mkDerivation rec {
+        pname = "wl-clipboard-x11";
+        version = "5";
+
+        src = super.fetchFromGitHub {
+          owner = "brunelli";
+          repo = "wl-clipboard-x11";
+          rev = "v${version}";
+          sha256 = "1y7jv7rps0sdzmm859wn2l8q4pg2x35smcrm7mbfxn5vrga0bslb";
+        };
+
+        dontBuild = true;
+        dontConfigure = true;
+        propagatedBuildInputs = [ super.wl-clipboard ];
+        makeFlags = [ "PREFIX=$(out)" ];
+      };
+
+      xsel = self.wl-clipboard-x11;
+      xclip = self.wl-clipboard-x11;
+    })
+  ];
+
+  programs.dconf.enable = true;
+
+  programs.qt5ct.enable = true;
+
+  programs.sway = {
+    enable = true;
+
+    extraPackages = with pkgs; [
+      kanshi
+      mako
+      swayidle
+      swaylock
+      waybar
+      wofi
+      wl-clipboard
+      xwayland
+    ];
+
+    extraSessionCommands = ''
+      export SDL_VIDEODRIVER=wayland
+      export QT_QPA_PLATFORM=wayland
+      export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+      export _JAVA_AWT_WM_NONREPARENTING=1
+      export MOZ_ENABLE_WAYLAND=1
+    '';
+
+    wrapperFeatures.gtk = true;
+  };
+
+  programs.waybar.enable = true;
+
+  security.sudo.wheelNeedsPassword = false;
+
+  services.getty = {
+    autologinUser = "erikreinert";
+  };
+
+  services.mpd = {
+    enable = true;
+    extraConfig = ''
+      audio_output {
+        type "pulse"
+        name "PulseAudio"
+      }
+    '';
+  };
+
+  sound.enable = true;
+
+  systemd.user.services.kanshi = {
+    description = "Kanshi output autoconfig ";
+    wantedBy = [ "graphical-session.target" ];
+    partOf = [ "graphical-session.target" ];
+    serviceConfig = {
+      # kanshi doesn't have an option to specifiy config file yet, so it looks
+      # at .config/kanshi/config
+      ExecStart = ''
+        ${pkgs.kanshi}/bin/kanshi
+      '';
+      RestartSec = 5;
+      Restart = "always";
+    };
+  };
+
+  systemd.user.targets.sway-session = {
+    description = "Sway compositor session";
+    documentation = [ "man:systemd.special(7)" ];
+    bindsTo = [ "graphical-session.target" ];
+    wants = [ "graphical-session-pre.target" ];
+    after = [ "graphical-session-pre.target" ];
+  };
+
+  time.timeZone = "America/Los_Angeles";
+
+  users = {
+    mutableUsers = false;
+
+    users = {
+      erikreinert = {
+        hashedPassword = "";
+        isNormalUser = true;
+        extraGroups = [ "wheel" ];
+      };
+    };
+  };
+
+  virtualisation.vmware.guest.enable = true;
+
+  system.stateVersion = "21.11";
+}
