@@ -49,6 +49,7 @@ in
     home.packages = with pkgs; [
       firefox-bin
       lazygit
+      vscode
     ];
 
     programs.alacritty = {
