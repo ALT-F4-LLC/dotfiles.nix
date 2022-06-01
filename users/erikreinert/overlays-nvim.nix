@@ -48,10 +48,6 @@ let sources = import ../../nix/sources.nix; in rec {
       name = "lsp_extensions.nvim";
       src = sources."lsp_extensions.nvim";
     };
-    lspcontainers-nvim = vimUtils.buildVimPlugin {
-      name = "lspcontainers.nvim";
-      src = sources."lspcontainers.nvim";
-    };
     lspkind-nvim = vimUtils.buildVimPlugin {
       name = "lspkind-nvim";
       src = sources."lspkind-nvim";

@@ -119,18 +119,6 @@
       "url": "https://github.com/nvim-lua/lsp_extensions.nvim/archive/4011f4aec61ba59c734f5dbf52e91f258b99d985.tar.gz",
       "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
   },
-  "lspcontainers.nvim": {
-      "branch": "main",
-      "description": "Neovim plugin for lspcontainers.",
-      "homepage": "",
-      "owner": "lspcontainers",
-      "repo": "lspcontainers.nvim",
-      "rev": "3c9d2156a447eb111ec60f4358768eb7510c5d0d",
-      "sha256": "043ylgpzl1ahcf62s6m0y65ddwlxcw79qksqr2304c4vhzv5sv8w",
-      "type": "tarball",
-      "url": "https://github.com/lspcontainers/lspcontainers.nvim/archive/3c9d2156a447eb111ec60f4358768eb7510c5d0d.tar.gz",
-      "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-  },
   "lspkind-nvim": {
       "branch": "master",
       "description": "vscode-like pictograms for neovim lsp completion items",
