@@ -98,6 +98,13 @@ in {
     enable = true;
     userName  = "Erik Reinert";
     userEmail = "erik@altf4.email";
+    extraConfig = {
+      branch.autosetuprebase = "always";
+      color.ui = true;
+      github.user = "erikreinert";
+      init.defaultBranch = "main";
+      push.default = "tracking";
+    };
   };
 
   programs.i3status = {
