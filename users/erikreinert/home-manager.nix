@@ -52,45 +52,40 @@ in {
 
       colors = {
         primary = {
-          background = "0x1a1b26";
-          foreground = "0xa9b1d6";
+          background = "0x24283b";
+          foreground = "0xc0caf5";
         };
-
+        # Normal colors
         normal = {
-          black =   "0x32344a";
-          red =     "0xf7768e";
-          green =   "0x9ece6a";
-          yellow =  "0xe0af68";
-          blue =    "0x7aa2f7";
-          magenta = "0xad8ee6";
-          cyan =    "0x449dab";
-          white =   "0x787c99";
+          black = "0x1D202F";
+          red = "0xf7768e";
+          green = "0x9ece6a";
+          yellow = "0xe0af68";
+          blue = "0x7aa2f7";
+          magenta = "0xbb9af7";
+          cyan = "0x7dcfff";
+          white = "0xa9b1d6";
         };
 
+        # Bright colors
         bright = {
-          black =   "0x444b6a";
-          red =     "0xff7a93";
-          green =   "0xb9f27c";
-          yellow =  "0xff9e64";
-          blue =    "0x7da6ff";
+          black = "0x414868";
+          red = "0xf7768e";
+          green = "0x9ece6a";
+          yellow = "0xe0af68";
+          blue = "0x7aa2f7";
           magenta = "0xbb9af7";
-          cyan =    "0x0db9d7";
-          white =   "0xacb0d0";
+          cyan = "0x7dcfff";
+          white = "0xc0caf5";
         };
+
+        indexed_colors = [
+          { index = 16; color = "0xff9e64"; }
+          { index = 17; color = "0xdb4b4b"; }
+        ];
       };
 
       cursor.style = "Block";
-
-      env = {
-        "TERM" = "xterm-256color";
-      };
-
-      window = {
-        decorations = "Full";
-        padding = {
-          y = 0;
-        };
-      };
     };
   };
 
@@ -112,9 +107,9 @@ in {
 
     general = {
       colors = true;
-      color_good = "#8C9440";
-      color_bad = "#A54242";
-      color_degraded = "#DE935F";
+      color_good = "#c0caf5";
+      color_bad = "#f7768e";
+      color_degraded = "#ff9e64";
     };
 
     modules = {
@@ -257,13 +252,13 @@ in {
           position = "bottom";
           statusCommand = "${pkgs.i3status}/bin/i3status";
           colors = {
-            background = "#222D31";
-            statusline = "#F9FAF9";
-            separator = "#454947";
+            background = "#1a1b26";
+            statusline = "#c0caf5";
+            separator = "#3b4261";
             focusedWorkspace = {
-              background = "#16a085";
-              border = "#F9FAF9";
-              text = "#292F34";
+              background = "#c0caf5";
+              border = "#3b4261";
+              text = "#565f89";
             };
             activeWorkspace = {
               background = "#353836";
