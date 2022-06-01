@@ -21,14 +21,14 @@ rsync -av -e "ssh ${SSH_OPTIONS} -p ${NIXPORT}" \
   "$(pwd)/" "${NIXUSER}@${NIXADDR}:/nix-config"
 
 # run the nixos-rebuild test command.
-#ssh ${SSH_OPTIONS} -p ${NIXPORT} ${NIXUSER}@${NIXADDR} " \
-#  sudo NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1 nixos-rebuild test \
-#"
+ssh ${SSH_OPTIONS} -p ${NIXPORT} ${NIXUSER}@${NIXADDR} " \
+  sudo nixos-rebuild test --flake "/nix-config#vm-intel"  \
+"
 
 # run the nixos-rebuild switch command.
-#ssh ${SSH_OPTIONS} -p ${NIXPORT} ${NIXUSER}@${NIXADDR} " \
-#  sudo NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1 nixos-rebuild switch \
-#"
+ssh ${SSH_OPTIONS} -p ${NIXPORT} ${NIXUSER}@${NIXADDR} " \
+  sudo nixos-rebuild switch --flake "/nix-config#vm-intel"  \
+"
 
 # make changes take effect
 #ssh ${SSH_OPTIONS} -p ${NIXPORT} ${NIXUSER}@${NIXADDR} " \

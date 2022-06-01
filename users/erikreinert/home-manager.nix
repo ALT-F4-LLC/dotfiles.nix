@@ -71,8 +71,17 @@ in {
         };
       };
 
+      cursor.style = "Block";
+
       env = {
         "TERM" = "xterm-256color";
+      };
+
+      window = {
+        decorations = "Full";
+        padding = {
+          y = 0;
+        };
       };
     };
   };
@@ -101,6 +110,36 @@ in {
         {
           position = "bottom";
           statusCommand = "${pkgs.i3status}/bin/i3status";
+          colors = {
+            background = "#222D31";
+            statusline = "#F9FAF9";
+            separator = "#454947";
+            focusedWorkspace = {
+              background = "#16a085";
+              border = "#F9FAF9";
+              text = "#292F34";
+            };
+            activeWorkspace = {
+              background = "#353836";
+              border = "#595B5B";
+              text = "#FDF6E3";
+            };
+            inactiveWorkspace = {
+              background = "#222D31";
+              border = "#595B5B";
+              text = "#EEE8D5";
+            };
+            bindingMode = {
+              background = "#2C2C2C";
+              border = "#16a085";
+              text = "#F9FAF9";
+            };
+            urgentWorkspace = {
+              background = "#FDF6E3";
+              border = "#16a085";
+              text = "#E5201D";
+            };
+          };
         }
       ];
 
@@ -109,8 +148,8 @@ in {
       };
 
       gaps = {
-        inner = 14;
-        outer = -2;
+        inner = 0;
+        outer = 0;
       };
 
       keybindings = {
@@ -183,10 +222,29 @@ in {
     };
 
     extraConfig = ''
-      default_border pixel 1
-      default_floating_border normal
+      default_border none
+      default_floating_border none
       smart_borders on
       smart_gaps on
+
+      set_from_resource $term_background background
+      set_from_resource $term_foreground foreground
+      set_from_resource $term_color0     color0
+      set_from_resource $term_color1     color1
+      set_from_resource $term_color2     color2
+      set_from_resource $term_color3     color3
+      set_from_resource $term_color4     color4
+      set_from_resource $term_color5     color5
+      set_from_resource $term_color6     color6
+      set_from_resource $term_color7     color7
+      set_from_resource $term_color8     color8
+      set_from_resource $term_color9     color9
+      set_from_resource $term_color10    color10
+      set_from_resource $term_color11    color11
+      set_from_resource $term_color12    color12
+      set_from_resource $term_color13    color13
+      set_from_resource $term_color14    color14
+      set_from_resource $term_color15    color15
     '';
   };
 }
