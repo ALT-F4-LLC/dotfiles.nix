@@ -92,10 +92,52 @@ in {
     userEmail = "erik@altf4.email";
   };
 
+  programs.i3status = {
+    enable = true;
+
+    general = {
+      colors = true;
+      color_good = "#8C9440";
+      color_bad = "#A54242";
+      color_degraded = "#DE935F";
+    };
+
+    modules = {
+      ipv6.enable = false;
+      "wireless _first_".enable = false;
+      "battery all".enable = false;
+    };
+  };
+
   programs.neovim = {
     enable = true;
     package = pkgs.neovim-nightly;
     extraConfig = (import ./nvim.nix) {};
+  };
+
+  programs.zsh = {
+    enable = true;
+
+    oh-my-zsh = {
+      enable = true;
+      plugins = [ "git" ];
+      theme = "robbyrussell";
+    };
+
+    shellAliases = {
+      nixos_switch = "sudo nixos-rebuild switch --flake '/nix-config#vm-intel'";
+      nixos_test = "sudo nixos-rebuild test --flake '/nix-config#vm-intel'";
+    };
+
+    plugins = map (n: {
+      name = n;
+      src  = sources.${n};
+    }) [
+        "zsh-autosuggestions"
+        "zsh-completions"
+        "zsh-syntax-highlighting"
+        "zsh-z"
+    ];
   };
 
   #---------------------------------------------------------------------
@@ -226,25 +268,6 @@ in {
       default_floating_border none
       smart_borders on
       smart_gaps on
-
-      set_from_resource $term_background background
-      set_from_resource $term_foreground foreground
-      set_from_resource $term_color0     color0
-      set_from_resource $term_color1     color1
-      set_from_resource $term_color2     color2
-      set_from_resource $term_color3     color3
-      set_from_resource $term_color4     color4
-      set_from_resource $term_color5     color5
-      set_from_resource $term_color6     color6
-      set_from_resource $term_color7     color7
-      set_from_resource $term_color8     color8
-      set_from_resource $term_color9     color9
-      set_from_resource $term_color10    color10
-      set_from_resource $term_color11    color11
-      set_from_resource $term_color12    color12
-      set_from_resource $term_color13    color13
-      set_from_resource $term_color14    color14
-      set_from_resource $term_color15    color15
     '';
   };
 }
