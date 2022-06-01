@@ -3,6 +3,7 @@
     ./vm-shared.nix
   ];
 
+  virtualisation.docker.enable = true;
   virtualisation.vmware.guest.enable = true;
 
   # Interface is this on Intel Fusion

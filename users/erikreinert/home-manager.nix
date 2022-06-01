@@ -18,7 +18,11 @@ in {
   # per-project flakes sourced with direnv and nix-shell, so this is
   # not a huge list.
   home.packages = [
+    pkgs.bat
     pkgs.firefox-bin
+    pkgs.k9s
+    pkgs.kind
+    pkgs.nnn
   ];
 
   #---------------------------------------------------------------------
@@ -125,6 +129,11 @@ in {
     };
 
     shellAliases = {
+      cat = "bat --paging=never --theme='base16'";
+      ll = "n -Hde";
+      ssh = "TERM='xterm-256color' ssh";
+      rebase = "git fetch --all --prune --prune-tags && git rebase";
+      woof = "k9s";
       nixos_switch = "sudo nixos-rebuild switch --flake '/nix-config#vm-intel'";
       nixos_test = "sudo nixos-rebuild test --flake '/nix-config#vm-intel'";
     };
@@ -138,6 +147,45 @@ in {
         "zsh-syntax-highlighting"
         "zsh-z"
     ];
+
+    profileExtra = ''
+      kindc () {
+        cat <<EOF | kind create cluster --config=-
+      kind: Cluster
+      apiVersion: kind.x-k8s.io/v1alpha4
+      nodes:
+      - role: control-plane
+        kubeadmConfigPatches:
+        - |
+          kind: InitConfiguration
+          nodeRegistration:
+            kubeletExtraArgs:
+              node-labels: "ingress-ready=true"
+        extraPortMappings:
+        - containerPort: 80
+          hostPort: 80
+          protocol: TCP
+        - containerPort: 443
+          hostPort: 443
+          protocol: TCP
+      EOF
+      }
+      n () {
+        if [ -n $NNNLVL ] && [ "$NNNLVL" -ge 1 ]; then
+          echo "nnn is already running"
+          return
+        fi
+
+        export NNN_TMPFILE="$HOME/.config/nnn/.lastd"
+
+        nnn "$@"
+
+        if [ -f "$NNN_TMPFILE" ]; then
+          . "$NNN_TMPFILE"
+          rm -f "$NNN_TMPFILE" > /dev/null
+        fi
+      }
+    '';
   };
 
   #---------------------------------------------------------------------
