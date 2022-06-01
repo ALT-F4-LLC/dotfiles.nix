@@ -55,7 +55,7 @@ in {
           background = "0x24283b";
           foreground = "0xc0caf5";
         };
-        # Normal colors
+
         normal = {
           black = "0x1D202F";
           red = "0xf7768e";
@@ -67,7 +67,6 @@ in {
           white = "0xa9b1d6";
         };
 
-        # Bright colors
         bright = {
           black = "0x414868";
           red = "0xf7768e";
