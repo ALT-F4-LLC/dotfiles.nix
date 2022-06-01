@@ -204,7 +204,7 @@ in {
       "zsh-z"
     ];
 
-    profileExtra = ''
+    initExtra = ''
       kindc () {
         cat <<EOF | kind create cluster --config=-
       kind: Cluster
