@@ -4,7 +4,11 @@ let
   sources = import ../../nix/sources.nix;
   i3_mod = "Mod4";
 in {
-  xdg.enable = true;
+  #---------------------------------------------------------------------
+  # Files
+  #---------------------------------------------------------------------
+
+  home.file.".background-image".source = ./background-image;
 
   #---------------------------------------------------------------------
   # Packages
@@ -36,6 +40,8 @@ in {
     enable = true;
 
     settings = {
+      background_opacity = 0.80;
+
       colors = {
         primary = {
           background = "0x1a1b26";
@@ -67,10 +73,6 @@ in {
 
       env = {
         "TERM" = "xterm-256color";
-      };
-
-      window = {
-        opacity = 0.80;
       };
     };
   };
