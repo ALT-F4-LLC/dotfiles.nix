@@ -19,9 +19,13 @@ in {
   # not a huge list.
   home.packages = [
     pkgs.bat
+    pkgs.bottom
     pkgs.firefox-bin
+    pkgs.gcc
     pkgs.k9s
     pkgs.kind
+    pkgs.lazydocker
+    pkgs.lazygit
     pkgs.nnn
   ];
 
@@ -116,7 +120,52 @@ in {
   programs.neovim = {
     enable = true;
     package = pkgs.neovim-nightly;
-    extraConfig = (import ./nvim.nix) {};
+    plugins = with pkgs; [
+      # languages
+      customVim.nvim-lspconfig
+      customVim.lsp_extensions-nvim
+      customVim.lspcontainers-nvim
+      customVim.vim-prisma
+      customVim.vim-terraform
+
+      # treesitter
+      customVim.nvim-treesitter
+
+      # completion
+      customVim.nvim-cmp
+      customVim.lspkind-nvim
+      customVim.cmp-buffer
+      customVim.cmp-cmdline
+      customVim.cmp-nvim-lsp
+      customVim.cmp-path
+      vimPlugins.cmp-tabnine
+      customVim.cmp-treesitter
+      customVim.cmp-vsnip
+      customVim.vim-vsnip
+
+      # telescope
+      customVim.plenary-nvim
+      customVim.popup-nvim
+      customVim.telescope-nvim
+
+      # theme
+      customVim.tokyonight-nvim
+
+      # floaterm
+      customVim.vim-floaterm
+
+      # extras
+      customVim.gitsigns-nvim
+      customVim.indent-blankline-nvim
+      customVim.lualine-nvim
+      customVim.nerdcommenter
+      customVim.nvim-treesitter-context
+      customVim.nvim-web-devicons
+      customVim.trouble-nvim
+      customVim.lsp-colors-nvim
+      customVim.vim-hardtime
+    ];
+    extraConfig = (import ./nvim) { inherit lib; };
   };
 
   programs.zsh = {
@@ -142,10 +191,10 @@ in {
       name = n;
       src  = sources.${n};
     }) [
-        "zsh-autosuggestions"
-        "zsh-completions"
-        "zsh-syntax-highlighting"
-        "zsh-z"
+      "zsh-autosuggestions"
+      "zsh-completions"
+      "zsh-syntax-highlighting"
+      "zsh-z"
     ];
 
     profileExtra = ''
