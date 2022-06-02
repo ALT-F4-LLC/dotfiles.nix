@@ -32,6 +32,7 @@ in {
     pkgs.nodejs-16_x
     pkgs.python3Minimal
     pkgs.rustup
+    pkgs.nodePackages."yarn"
 
     # language servers
     pkgs.nodePackages."bash-language-server"

@@ -17,9 +17,7 @@ local function setup_languages()
 
   local lspcontainer_servers = {
     "graphql",
-    "jsonnet_ls",
     "prismals",
-    "sqlls",
   }
 
   local lua_settings = {
