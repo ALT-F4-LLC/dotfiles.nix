@@ -151,6 +151,7 @@ in {
       customVim.nvim-lspconfig
       customVim.lsp_extensions-nvim
       customVim.lspcontainers-nvim
+      customVim.vim-nix
       customVim.vim-prisma
       customVim.vim-terraform
 

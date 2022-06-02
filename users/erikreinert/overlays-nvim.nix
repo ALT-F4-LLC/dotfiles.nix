@@ -122,6 +122,10 @@ let sources = import ../../nix/sources.nix; in rec {
       name = "vim-hardtime";
       src = sources."vim-hardtime";
     };
+    vim-nix = vimUtils.buildVimPlugin {
+      name = "vim-nix";
+      src = sources."vim-nix";
+    };
     vim-vsnip = vimUtils.buildVimPlugin {
       name = "vim-vsnip";
       src = sources."vim-vsnip";
