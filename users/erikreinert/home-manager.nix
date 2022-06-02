@@ -19,6 +19,7 @@ in {
   # not a huge list.
   home.packages = [
     # programs
+    pkgs.ansible
     pkgs.bat
     pkgs.bottom
     pkgs.firefox-bin
