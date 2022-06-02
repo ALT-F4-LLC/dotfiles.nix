@@ -33,6 +33,8 @@ in {
     pkgs.python3Minimal
     pkgs.rustup
     pkgs.nodePackages."yarn"
+    pkgs.jetbrains.jdk
+    pkgs.jetbrains.datagrip
 
     # language servers
     pkgs.nodePackages."bash-language-server"
