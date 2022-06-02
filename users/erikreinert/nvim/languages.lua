@@ -5,18 +5,21 @@ local function setup_languages()
     "dockerls",
     "elixirls",
     "gopls",
-    "graphql",
     "html",
     "jsonls",
-    "jsonnet_ls",
-    "prismals",
     "pylsp",
     "rust_analyzer",
-    "sqlls",
     "sumneko_lua",
     "terraformls",
     "tsserver",
-    "yamlls",
+    "yamlls"
+  }
+
+  local lspcontainer_servers = {
+    "graphql",
+    "jsonnet_ls",
+    "prismals",
+    "sqlls",
   }
 
   local lua_settings = {
@@ -106,8 +109,67 @@ local function setup_languages()
     }
   end
 
+  local function setup_lspcontainer(config, server)
+    local lspcontainers = require'lspcontainers'
+    local util = require 'lspconfig/util'
+
+    if server == "graphql" then
+      config.before_init = function(params)
+        params.processId = vim.NIL
+      end
+
+      config.cmd = lspcontainers.command(server)
+      config.root_dir = util.root_pattern(".git", vim.fn.getcwd())
+    end
+
+    if server == "jsonnet_ls" then
+      config.cmd = lspcontainers.command(server)
+    end
+
+    if server == "prismals" then
+      config.before_init = function(params)
+        params.processId = vim.NIL
+      end
+
+      config.cmd = lspcontainers.command(server)
+      config.root_dir = util.root_pattern(".git", vim.fn.getcwd())
+    end
+
+    if server == "sqlls" then
+      config.before_init = function(params)
+        params.processId = vim.NIL
+      end
+
+      config.cmd = lspcontainers.command(server)
+      config.root_dir = util.root_pattern(".git", vim.fn.getcwd())
+    end
+  end
+
+  require'lspcontainers'.setup({
+    ensure_installed = {
+      "bashls",
+      "dockerls",
+      "gopls",
+      "html",
+      "pylsp",
+      "rust_analyzer",
+      "sumneko_lua",
+      "terraformls",
+      "tsserver",
+      "yamlls"
+    }
+  })
+
   for _, server in pairs(lspconfig_servers) do
     local config = make_config()
+
+    require'lspconfig'[server].setup(config)
+  end
+
+  for _, server in pairs(lspcontainer_servers) do
+    local config = make_config()
+
+    setup_lspcontainer(config, server)
 
     require'lspconfig'[server].setup(config)
   end

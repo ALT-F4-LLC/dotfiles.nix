@@ -18,6 +18,7 @@ in {
   # per-project flakes sourced with direnv and nix-shell, so this is
   # not a huge list.
   home.packages = [
+    # programs
     pkgs.bat
     pkgs.bottom
     pkgs.firefox-bin
@@ -27,6 +28,24 @@ in {
     pkgs.lazydocker
     pkgs.lazygit
     pkgs.nnn
+    pkgs.go
+    pkgs.nodejs-16_x
+    pkgs.python3Minimal
+    pkgs.rustup
+
+    # language servers
+    pkgs.nodePackages."bash-language-server"
+    pkgs.nodePackages."vscode-langservers-extracted"
+    pkgs.nodePackages."dockerfile-language-server-nodejs"
+    pkgs.elixir_ls
+    pkgs.gopls
+    pkgs.python3Packages."python-lsp-server"
+    pkgs.rust-analyzer
+    pkgs.sumneko-lua-language-server
+    pkgs.terraform-lsp
+    pkgs.nodePackages."typescript"
+    pkgs.nodePackages."typescript-language-server"
+    pkgs.nodePackages."yaml-language-server"
   ];
 
   #---------------------------------------------------------------------
@@ -88,6 +107,11 @@ in {
     };
   };
 
+  programs.go = {
+    enable = true;
+    goPath = "Development/language/go";
+  };
+
   programs.git = {
     enable = true;
     userName  = "Erik Reinert";
@@ -125,6 +149,7 @@ in {
       # languages
       customVim.nvim-lspconfig
       customVim.lsp_extensions-nvim
+      customVim.lspcontainers-nvim
       customVim.vim-prisma
       customVim.vim-terraform
 
