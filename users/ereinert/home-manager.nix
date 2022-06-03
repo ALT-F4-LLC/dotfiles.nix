@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 
-let 
+let
   sources = import ../../nix/sources.nix;
   i3_mod = "Mod4";
 in {
@@ -10,7 +10,7 @@ in {
 
   home.file.".aws/config".source = ./config-aws;
   home.file.".config/pip/pip.conf".source = ./config-pip;
-  home.file.".background-image".source = ./background-image;
+  home.file.".background-image".source = ../shared/background-image;
 
   #---------------------------------------------------------------------
   # Packages
@@ -24,6 +24,7 @@ in {
     pkgs.bottom
     pkgs.firefox-bin
     pkgs.gcc
+    pkgs.git-secret
     pkgs.k9s
     pkgs.kind
     pkgs.lazydocker
@@ -130,6 +131,8 @@ in {
     };
   };
 
+  programs.gpg.enable = true;
+
   programs.i3status = {
     enable = true;
 
@@ -196,7 +199,7 @@ in {
       customVim.lsp-colors-nvim
       customVim.vim-hardtime
     ];
-    extraConfig = (import ./nvim) { inherit lib; };
+    extraConfig = (import ../shared/nvim) { inherit lib; };
   };
 
   programs.zsh = {
@@ -266,6 +269,19 @@ in {
         fi
       }
     '';
+  };
+
+  #---------------------------------------------------------------------
+  # services
+  #---------------------------------------------------------------------
+
+  services.gpg-agent = {
+    enable = true;
+    pinentryFlavor = "tty";
+
+    # cache the keys forever so we don't get asked for a password
+    defaultCacheTtl = 31536000;
+    maxCacheTtl = 31536000;
   };
 
   #---------------------------------------------------------------------

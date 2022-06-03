@@ -1,1 +1,5 @@
 result
+.gitsecret/keys/random_seed
+!*.secret
+users/ereinert/config-aws
+users/ereinert/config-pip

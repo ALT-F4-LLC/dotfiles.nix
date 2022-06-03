@@ -22,12 +22,12 @@ rsync -av -e "ssh ${SSH_OPTIONS} -p ${NIXPORT}" \
 
 # run the nixos-rebuild test command.
 ssh ${SSH_OPTIONS} -p ${NIXPORT} ${NIXUSER}@${NIXADDR} " \
-  sudo nixos-rebuild test --flake "/nix-config#vm-intel"  \
+  sudo nixos-rebuild test --flake "/nix-config#hippo"  \
 "
 
 # run the nixos-rebuild switch command.
 ssh ${SSH_OPTIONS} -p ${NIXPORT} ${NIXUSER}@${NIXADDR} " \
-  sudo nixos-rebuild switch --flake "/nix-config#vm-intel"  \
+  sudo nixos-rebuild switch --flake "/nix-config#hippo"  \
 "
 
 # make changes take effect

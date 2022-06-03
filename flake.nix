@@ -19,7 +19,12 @@
       inputs.neovim-nightly-overlay.overlay
     ];
   in {
-    nixosConfigurations.vm-intel = mkVM "vm-intel" rec {
+    nixosConfigurations.hippo = mkVM "vm-intel" rec {
+      inherit nixpkgs home-manager overlays;
+      system = "x86_64-linux";
+      user   = "ereinert";
+    };
+    nixosConfigurations.personal = mkVM "vm-intel" rec {
       inherit nixpkgs home-manager overlays;
       system = "x86_64-linux";
       user   = "erikreinert";

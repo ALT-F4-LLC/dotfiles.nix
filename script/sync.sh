@@ -14,6 +14,6 @@ sudo rsync -av \
   --rsync-path="sudo rsync" \
   "$(pwd)/" "/nix-config"
 
-sudo nixos-rebuild test --flake "/nix-config/#vm-intel"
+sudo nixos-rebuild test --flake "/nix-config/#hippo"
 
-sudo nixos-rebuild switch --flake "/nix-config/#vm-intel"
+sudo nixos-rebuild switch --flake "/nix-config/#hippo"

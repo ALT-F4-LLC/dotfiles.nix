@@ -3,6 +3,7 @@
 {
   # use unstable nix so we can access flakes
   nix = {
+    autoOptimiseStore = true;
     package = pkgs.nixUnstable;
     extraOptions = ''
       experimental-features = nix-command flakes
@@ -47,7 +48,7 @@
     displayManager = {
       autoLogin = {
         enable = true;
-        user = "erikreinert";
+        user = "ereinert";
       };
 
       defaultSession = "none+i3";
@@ -99,10 +100,13 @@
 
   # enable hardware features
   hardware.opengl.enable = true;
-  hardware.pulseaudio.enable = true;
 
   # enable sound
   sound.enable = true;
+
+  services.logind.extraConfig = ''
+    RuntimeDirectorySize=20G
+  '';
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
