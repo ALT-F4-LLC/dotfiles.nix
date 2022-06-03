@@ -4,7 +4,7 @@
   users.users.ereinert = {
     isNormalUser = true;
     home = "/home/ereinert";
-    extraGroups = [ "docker" "wheel" ];
+    extraGroups = [ "audio" "docker" "wheel" ];
     hashedPassword = "";
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [

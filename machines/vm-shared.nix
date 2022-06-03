@@ -1,7 +1,8 @@
 { config, pkgs, lib, currentSystem, currentSystemName,... }:
 
 {
-  # use unstable nix so we can access flakes
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   nix = {
     autoOptimiseStore = true;
     package = pkgs.nixUnstable;
@@ -13,6 +14,7 @@
    };
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.pulseaudio = true;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -87,6 +89,7 @@
     libnotify
     lxappearance
     niv
+    pavucontrol
     vim
     wget
   ];
@@ -95,10 +98,11 @@
 
   # enable hardware features
   hardware.opengl.enable = true;
+  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.support32Bit = true;
+  hardware.pulseaudio.extraConfig = "unload-module module-suspend-on-idle";
 
-  # enable sound
-  sound.enable = true;
-
+  # runtime directory size
   services.logind.extraConfig = ''
     RuntimeDirectorySize=20G
   '';
@@ -117,6 +121,9 @@
 
   # enable dconf
   programs.dconf.enable = true;
+
+  # sound
+  sound.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

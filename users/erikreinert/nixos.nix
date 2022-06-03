@@ -4,7 +4,7 @@
   users.users.erikreinert = {
     isNormalUser = true;
     home = "/home/erikreinert";
-    extraGroups = [ "docker" "wheel" ];
+    extraGroups = [ "audio" "docker" "wheel" ];
     hashedPassword = "";
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [];
