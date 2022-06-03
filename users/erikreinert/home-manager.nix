@@ -6,6 +6,7 @@ in {
   imports = [
     ../shared/home-manager.nix
   ];
+
   #---------------------------------------------------------------------
   # Packages
   #---------------------------------------------------------------------
@@ -25,7 +26,6 @@ in {
     pkgs.nnn
     pkgs.jetbrains.jdk
     pkgs.jetbrains.datagrip
-    pkgs.slack
 
     # language servers
     pkgs.nodePackages."bash-language-server"

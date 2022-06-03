@@ -1,5 +1,5 @@
 #!/bin/bash
-set -eu pipefail
+set -e
 
 sudo rm -rf "/nix-config"
 
@@ -14,6 +14,6 @@ sudo rsync -av \
   --rsync-path="sudo rsync" \
   "$(pwd)/" "/nix-config"
 
-sudo nixos-rebuild test --flake "/nix-config/#hippo"
+sudo nixos-rebuild test --flake "/nix-config#$1"
 
-sudo nixos-rebuild switch --flake "/nix-config/#hippo"
+sudo nixos-rebuild switch --flake "/nix-config#$1"

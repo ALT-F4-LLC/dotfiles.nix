@@ -46,11 +46,6 @@
     };
 
     displayManager = {
-      autoLogin = {
-        enable = true;
-        user = "ereinert";
-      };
-
       defaultSession = "none+i3";
     };
 
