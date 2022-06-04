@@ -95,18 +95,6 @@
         "url": "https://github.com/lukas-reineke/indent-blankline.nvim/archive/6177a59552e35dfb69e1493fd68194e673dc3ee2.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "jsonnet-language-server": {
-        "branch": "main",
-        "description": "A Language Server Protocol (LSP) server for Jsonnet (https://jsonnet.org)",
-        "homepage": null,
-        "owner": "grafana",
-        "repo": "jsonnet-language-server",
-        "rev": "62d3cfdba3d1f78d4080c39e0949c32ad89e9472",
-        "sha256": "0zczxg0nxcbz2yvxl9zzh3v6a5q7bah869kjvawmdvn2y4cix3w4",
-        "type": "tarball",
-        "url": "https://github.com/grafana/jsonnet-language-server/archive/62d3cfdba3d1f78d4080c39e0949c32ad89e9472.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "lsp-colors.nvim": {
         "branch": "main",
         "description": "🌈  Plugin that creates missing LSP diagnostics highlight groups for color schemes that don't yet support the Neovim 0.5 builtin LSP client.",
