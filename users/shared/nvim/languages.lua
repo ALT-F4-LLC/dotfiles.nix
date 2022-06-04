@@ -7,6 +7,7 @@ local function setup_languages()
     "gopls",
     "html",
     "jsonls",
+    "jsonnet_ls",
     "pylsp",
     "rust_analyzer",
     "sumneko_lua",
