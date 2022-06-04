@@ -5,6 +5,7 @@
   pkgs.awscli2
   pkgs.bat
   pkgs.bottom
+  pkgs.doppler
   pkgs.firefox-bin
   pkgs.gcc
   pkgs.git-secret
@@ -14,9 +15,12 @@
   pkgs.kind
   pkgs.lazydocker
   pkgs.lazygit
+  pkgs.newman
   pkgs.nnn
   pkgs.nodejs-16_x
+  pkgs.postman
   pkgs.python3Full
+  pkgs.ripgrep
 
   # language servers
   pkgs.elixir_ls
