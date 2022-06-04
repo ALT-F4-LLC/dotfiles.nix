@@ -35,4 +35,5 @@
   pkgs.rust-analyzer
   pkgs.sumneko-lua-language-server
   pkgs.terraform-lsp
+  pkgs.customVim.jsonnet-language-server
 ] ++ extras
