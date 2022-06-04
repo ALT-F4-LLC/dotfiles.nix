@@ -40,6 +40,17 @@ let sources = import ../../nix/sources.nix; in rec {
       name = "indent-blankline.nvim";
       src = sources."indent-blankline.nvim";
     };
+    jsonnet-language-server = buildGoModule rec {
+      pname = "jsonnet-language-server";
+      version = "0.7.2";
+      src = fetchFromGitHub {
+        owner = "grafana";
+        repo = pname;
+        rev = "v${version}";
+        sha256 = "sha256-hI8eGfHC7la52nImg6BaBxdl9oD/J9q3F3+xbsHrn30=";
+      };
+      vendorSha256 = "sha256-sR5xouBiBlJNwmqQCZdYQbUYrAl7onHMjQcdFIvrzXg=";
+    };
     lsp-colors-nvim = vimUtils.buildVimPlugin {
       name = "lsp-colors.nvim";
       src = sources."lsp-colors.nvim";
