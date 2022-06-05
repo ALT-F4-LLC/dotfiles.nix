@@ -8,6 +8,7 @@ local function setup_languages()
     "html",
     "jsonls",
     "jsonnet_ls",
+    "prismals",
     "pylsp",
     "rust_analyzer",
     "sumneko_lua",
@@ -18,7 +19,6 @@ local function setup_languages()
 
   local lspcontainer_servers = {
     "graphql",
-    "prismals",
   }
 
   local lua_settings = {
