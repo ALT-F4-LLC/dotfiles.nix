@@ -13,6 +13,8 @@
     inherit pkgs;
     extras = [
       pkgs.discord
+      pkgs.pulumi
+      pkgs.spotify
     ];
   };
 }

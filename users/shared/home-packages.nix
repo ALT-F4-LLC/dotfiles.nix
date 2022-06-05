@@ -3,24 +3,28 @@
   # programs
   pkgs.ansible
   pkgs.awscli2
+  pkgs.azure-cli
   pkgs.bat
   pkgs.bottom
   pkgs.doppler
   pkgs.firefox-bin
   pkgs.gcc
   pkgs.git-secret
+  pkgs.httpie
   pkgs.jetbrains.datagrip
   pkgs.jetbrains.jdk
   pkgs.k9s
   pkgs.kind
+  pkgs.kn
+  pkgs.kubectrl
   pkgs.lazydocker
   pkgs.lazygit
-  pkgs.newman
   pkgs.nnn
   pkgs.nodejs-16_x
   pkgs.postman
   pkgs.python3Full
   pkgs.ripgrep
+  pkgs.terraform
 
   # language servers
   pkgs.elixir_ls
@@ -35,6 +39,6 @@
   pkgs.python3Packages."python-lsp-server"
   pkgs.rust-analyzer
   pkgs.sumneko-lua-language-server
-  pkgs.terraform-lsp
+  pkgs.terraform-ls
   pkgs.customVim.jsonnet-language-server
 ] ++ extras

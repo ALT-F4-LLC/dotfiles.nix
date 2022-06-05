@@ -83,9 +83,13 @@ in {
     extraConfig = {
       branch.autosetuprebase = "always";
       color.ui = true;
+      diff.colorMoved = "zebra";
+      fetch.prune = true;
       github.user = "erikreinert";
       init.defaultBranch = "main";
+      pull.rebase = true;
       push.default = "tracking";
+      rebase.autoStash = true;
     };
   };
 
