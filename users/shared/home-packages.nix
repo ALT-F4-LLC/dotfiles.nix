@@ -16,7 +16,7 @@
   pkgs.k9s
   pkgs.kind
   pkgs.kn
-  pkgs.kubectrl
+  pkgs.kubectl
   pkgs.lazydocker
   pkgs.lazygit
   pkgs.nnn
