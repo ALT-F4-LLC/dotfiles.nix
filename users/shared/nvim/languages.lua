@@ -121,10 +121,6 @@ local function setup_languages()
       config.root_dir = util.root_pattern(".git", vim.fn.getcwd())
     end
 
-    if server == "jsonnet_ls" then
-      config.cmd = lspcontainers.command(server)
-    end
-
     if server == "prismals" then
       config.before_init = function(params)
         params.processId = vim.NIL
@@ -144,20 +140,7 @@ local function setup_languages()
     end
   end
 
-  require'lspcontainers'.setup({
-    ensure_installed = {
-      "bashls",
-      "dockerls",
-      "gopls",
-      "html",
-      "pylsp",
-      "rust_analyzer",
-      "sumneko_lua",
-      "terraformls",
-      "tsserver",
-      "yamlls"
-    }
-  })
+  require'lspcontainers'.setup({})
 
   for _, server in pairs(lspconfig_servers) do
     local config = make_config()

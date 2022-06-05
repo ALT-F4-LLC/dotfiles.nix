@@ -2,32 +2,32 @@
   description = "NixOS configs and tools by TheAltF4Stream";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/release-21.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:nix-community/home-manager/release-21.11";
+      url = "github:nix-community/home-manager";
     };
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: let
-    mkVM = import ./lib/mkvm.nix;
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+    let
+      mkVM = import ./lib/mkvm.nix;
 
-    overlays = [
-      inputs.neovim-nightly-overlay.overlay
-    ];
-  in {
-    nixosConfigurations.hippo = mkVM "vm-intel" rec {
-      inherit nixpkgs home-manager overlays;
-      system = "x86_64-linux";
-      user   = "ereinert";
+      overlays = [ inputs.neovim-nightly-overlay.overlay ];
+    in {
+      nixosConfigurations.hippo = mkVM "vm-intel" rec {
+        inherit nixpkgs home-manager overlays;
+        system = "x86_64-linux";
+        user = "ereinert";
+      };
+
+      nixosConfigurations.personal = mkVM "vm-intel" rec {
+        inherit nixpkgs home-manager overlays;
+        system = "x86_64-linux";
+        user = "erikreinert";
+      };
     };
-    nixosConfigurations.personal = mkVM "vm-intel" rec {
-      inherit nixpkgs home-manager overlays;
-      system = "x86_64-linux";
-      user   = "erikreinert";
-    };
-  };
 }

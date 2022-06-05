@@ -1,7 +1,5 @@
 { config, pkgs, ... }: {
-  imports = [
-    ./vm-shared.nix
-  ];
+  imports = [ ./vm-shared.nix ];
 
   virtualisation.docker.enable = true;
   virtualisation.vmware.guest.enable = true;

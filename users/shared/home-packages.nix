@@ -25,6 +25,7 @@
   # language servers
   pkgs.elixir_ls
   pkgs.gopls
+  pkgs.nodePackages."@prisma/language-server"
   pkgs.nodePackages."bash-language-server"
   pkgs.nodePackages."dockerfile-language-server-nodejs"
   pkgs.nodePackages."typescript"

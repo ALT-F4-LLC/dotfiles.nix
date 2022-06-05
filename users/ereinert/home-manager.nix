@@ -1,8 +1,5 @@
 { config, lib, pkgs, ... }:
-
-let
-  sources = import ../../nix/sources.nix;
-in {
+{
   imports = [
     ../shared/home-manager.nix
   ];

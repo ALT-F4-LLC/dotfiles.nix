@@ -1,4 +1,4 @@
-{ config, pkgs, lib, currentSystem, currentSystemName,... }:
+{ config, pkgs, lib, currentSystem, currentSystemName, ... }:
 
 {
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -11,7 +11,7 @@
       keep-outputs = true
       keep-derivations = true
     '';
-   };
+  };
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.pulseaudio = true;
@@ -47,19 +47,12 @@
       wallpaper.mode = "fill";
     };
 
-    displayManager = {
-      defaultSession = "none+i3";
-    };
+    displayManager = { defaultSession = "none+i3"; };
 
     windowManager.i3 = {
       enable = true;
       package = pkgs.i3-gaps;
-      extraPackages = [
-        pkgs.i3status
-        pkgs.i3lock
-        pkgs.i3blocks
-        pkgs.rofi
-      ];
+      extraPackages = [ pkgs.i3status pkgs.i3lock pkgs.i3blocks pkgs.rofi ];
     };
   };
 
@@ -77,9 +70,7 @@
       enable = true;
     };
 
-    fonts = with pkgs; [
-      (nerdfonts.override { fonts = [ "Meslo" ]; })
-    ];
+    fonts = with pkgs; [ (nerdfonts.override { fonts = [ "Meslo" ]; }) ];
   };
 
   # List packages installed in system profile. To search, run:
