@@ -29,8 +29,6 @@ in {
     enable = true;
 
     settings = {
-      background_opacity = 0.80;
-
       colors = {
         primary = {
           background = "0x24283b";
@@ -66,6 +64,10 @@ in {
       };
 
       cursor.style = "Block";
+
+      window = {
+        opacity = 0.80;
+      };
     };
   };
 

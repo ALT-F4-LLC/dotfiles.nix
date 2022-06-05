@@ -41,6 +41,7 @@
   services.xserver = {
     enable = true;
     layout = "us";
+    videoDrivers = [ "vmware" ]; # Fixes https://github.com/NixOS/nixpkgs/commit/5157246aa4fdcbef7796ef9914c3a7e630c838ef
 
     desktopManager = {
       xterm.enable = false;
