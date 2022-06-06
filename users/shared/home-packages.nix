@@ -23,6 +23,7 @@
   pkgs.nodejs-16_x
   pkgs.postman
   pkgs.python3Full
+  pkgs.redli
   pkgs.ripgrep
   pkgs.terraform
 

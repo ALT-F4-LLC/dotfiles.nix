@@ -117,49 +117,49 @@ in {
     package = pkgs.neovim-nightly;
     plugins = with pkgs; [
       # languages
-      customVim.nvim-lspconfig
-      customVim.lsp_extensions-nvim
+      vimPlugins.nvim-lspconfig
+      vimPlugins.lsp_extensions-nvim
       customVim.lspcontainers-nvim
-      customVim.vim-nix
-      customVim.vim-prisma
-      customVim.vim-terraform
+      vimPlugins.vim-nix
+      vimPlugins.vim-prisma
+      vimPlugins.vim-terraform
 
       # treesitter
-      customVim.nvim-treesitter
+      vimPlugins.nvim-treesitter
 
       # completion
-      customVim.nvim-cmp
-      customVim.lspkind-nvim
-      customVim.cmp-buffer
-      customVim.cmp-cmdline
-      customVim.cmp-nvim-lsp
-      customVim.cmp-path
+      vimPlugins.nvim-cmp
+      vimPlugins.lspkind-nvim
+      vimPlugins.cmp-buffer
+      vimPlugins.cmp-cmdline
+      vimPlugins.cmp-nvim-lsp
+      vimPlugins.cmp-path
       vimPlugins.cmp-tabnine
-      customVim.cmp-treesitter
-      customVim.cmp-vsnip
-      customVim.vim-vsnip
+      vimPlugins.cmp-treesitter
+      vimPlugins.cmp-vsnip
+      vimPlugins.vim-vsnip
 
       # telescope
-      customVim.plenary-nvim
-      customVim.popup-nvim
-      customVim.telescope-nvim
+      vimPlugins.plenary-nvim
+      vimPlugins.popup-nvim
+      vimPlugins.telescope-nvim
 
       # theme
-      customVim.tokyonight-nvim
+      vimPlugins.tokyonight-nvim
 
       # floaterm
-      customVim.vim-floaterm
+      vimPlugins.vim-floaterm
 
       # extras
-      customVim.gitsigns-nvim
-      customVim.indent-blankline-nvim
-      customVim.lualine-nvim
-      customVim.nerdcommenter
-      customVim.nvim-treesitter-context
-      customVim.nvim-web-devicons
-      customVim.trouble-nvim
-      customVim.lsp-colors-nvim
-      customVim.vim-hardtime
+      vimPlugins.gitsigns-nvim
+      vimPlugins.indent-blankline-nvim
+      vimPlugins.lualine-nvim
+      vimPlugins.nerdcommenter
+      vimPlugins.nvim-treesitter-context
+      vimPlugins.nvim-web-devicons
+      vimPlugins.trouble-nvim
+      vimPlugins.lsp-colors-nvim
+      vimPlugins.vim-hardtime
     ];
     extraConfig = (import ../shared/nvim) { inherit lib; };
   };
@@ -185,10 +185,10 @@ in {
 
     plugins = map (n: {
       name = n;
-      src  = sources.${n};
+      src  = pkgs.${n};
     }) [
+      "zsh-autocomplete"
       "zsh-autosuggestions"
-      "zsh-completions"
       "zsh-syntax-highlighting"
       "zsh-z"
     ];
