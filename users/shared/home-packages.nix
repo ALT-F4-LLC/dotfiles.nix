@@ -26,6 +26,7 @@
   pkgs.redli
   pkgs.ripgrep
   pkgs.terraform
+  pkgs.vscode
 
   # language servers
   pkgs.elixir_ls
