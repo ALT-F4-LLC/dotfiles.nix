@@ -185,10 +185,10 @@ in {
 
     plugins = map (n: {
       name = n;
-      src  = pkgs.${n};
+      src  = sources.${n};
     }) [
-      "zsh-autocomplete"
       "zsh-autosuggestions"
+      "zsh-completions"
       "zsh-syntax-highlighting"
       "zsh-z"
     ];

@@ -10,5 +10,53 @@
         "type": "tarball",
         "url": "https://github.com/lspcontainers/lspcontainers.nvim/archive/3c9d2156a447eb111ec60f4358768eb7510c5d0d.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "zsh-autosuggestions": {
+        "branch": "master",
+        "description": "Fish-like autosuggestions for zsh",
+        "homepage": null,
+        "owner": "zsh-users",
+        "repo": "zsh-autosuggestions",
+        "rev": "a411ef3e0992d4839f0732ebeb9823024afaaaa8",
+        "sha256": "1g3pij5qn2j7v7jjac2a63lxd97mcsgw6xq6k5p7835q9fjiid98",
+        "type": "tarball",
+        "url": "https://github.com/zsh-users/zsh-autosuggestions/archive/a411ef3e0992d4839f0732ebeb9823024afaaaa8.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "zsh-completions": {
+        "branch": "master",
+        "description": "Additional completion definitions for Zsh.",
+        "homepage": "",
+        "owner": "zsh-users",
+        "repo": "zsh-completions",
+        "rev": "2e3c3f6cf06bfdf0adf96a5b67f1eff2d67d85de",
+        "sha256": "10fnsjgwrsipncgrnn2anx945pz6dkk1yhrila8imc8cbnx8m5rx",
+        "type": "tarball",
+        "url": "https://github.com/zsh-users/zsh-completions/archive/2e3c3f6cf06bfdf0adf96a5b67f1eff2d67d85de.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "zsh-syntax-highlighting": {
+        "branch": "master",
+        "description": "Fish shell like syntax highlighting for Zsh.",
+        "homepage": "github.com/zsh-users/zsh-syntax-highlighting",
+        "owner": "zsh-users",
+        "repo": "zsh-syntax-highlighting",
+        "rev": "caa749d030d22168445c4cb97befd406d2828db0",
+        "sha256": "17ck9lm8j6bv9fhag827kxrbwdwbhhss0sw7p1yz7nhpknj6apv1",
+        "type": "tarball",
+        "url": "https://github.com/zsh-users/zsh-syntax-highlighting/archive/caa749d030d22168445c4cb97befd406d2828db0.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "zsh-z": {
+        "branch": "master",
+        "description": "Jump quickly to directories that you have visited \"frecently.\" A native Zsh port of z.sh with added features.",
+        "homepage": "",
+        "owner": "agkozak",
+        "repo": "zsh-z",
+        "rev": "b5e61d03a42a84e9690de12915a006b6745c2a5f",
+        "sha256": "1gsgmsvl1sl9m3yfapx6bp0y15py8610kywh56bgsjf9wxkrc3nl",
+        "type": "tarball",
+        "url": "https://github.com/agkozak/zsh-z/archive/b5e61d03a42a84e9690de12915a006b6745c2a5f.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
