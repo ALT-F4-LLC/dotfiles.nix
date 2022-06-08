@@ -9,6 +9,7 @@ in {
   #---------------------------------------------------------------------
 
   home.file.".background-image".source = ./background-image;
+  home.file.".config/k9s/skin.yml".source = ./k9s-skin.yml;
 
   #---------------------------------------------------------------------
   # Env vars and dotfiles
@@ -306,17 +307,17 @@ in {
 
         "${i3_mod}+d" = "exec --no-startup-id ${pkgs.rofi}/bin/rofi -modi drun -show drun";
 
-        "${i3_mod}+Left" = "focus left";
-        "${i3_mod}+Down" = "focus down";
-        "${i3_mod}+Up" = "focus up";
-        "${i3_mod}+Right" = "focus right";
+        "${i3_mod}+h" = "focus left";
+        "${i3_mod}+j" = "focus down";
+        "${i3_mod}+k" = "focus up";
+        "${i3_mod}+l" = "focus right";
 
-        "${i3_mod}+Shift+Left" = "move left";
-        "${i3_mod}+Shift+Down" = "move down";
-        "${i3_mod}+Shift+Up" = "move up";
-        "${i3_mod}+Shift+Right" = "move right";
+        "${i3_mod}+Shift+h" = "move left";
+        "${i3_mod}+Shift+j" = "move down";
+        "${i3_mod}+Shift+k" = "move up";
+        "${i3_mod}+Shift+l" = "move right";
 
-        "${i3_mod}+h" = "split h; exec notify-send 'Tile Horizontally'";
+        "${i3_mod}+b" = "split h; exec notify-send 'Tile Horizontally'";
         "${i3_mod}+v" = "split v; exec notify-send 'Tile Vertically'";
         "${i3_mod}+f" = "fullscreen toggle";
 
