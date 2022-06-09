@@ -12,7 +12,7 @@
   home.packages = (import ../shared/home-packages.nix) {
     inherit pkgs;
     extras = [
-      pkgs.discord
+      pkgs.discord-canary
       pkgs.pulumi-bin
       pkgs.spotify
     ];
