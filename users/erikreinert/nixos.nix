@@ -1,6 +1,16 @@
 { pkgs, ... }:
 
 {
+  fileSystems."/mnt/nfs/production" = {
+    device = "192.168.3.7:/mnt/data";
+    fsType = "nfs";
+    options = [ "nfsvers=4.2" "noauto" "x-systemd.automount" ];
+  };
+
+  nixpkgs.overlays = import ../../lib/overlays.nix ++ [
+    (import ../shared/overlays-nvim.nix)
+  ];
+
   users.users.erikreinert = {
     isNormalUser = true;
     home = "/home/erikreinert";
@@ -11,8 +21,4 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJs7Z5a/QPZPaly3N79Ns4qL73k9XMACmqH8H03gHMXf Erik-Reinert-iPad"
     ];
   };
-
-  nixpkgs.overlays = import ../../lib/overlays.nix ++ [
-    (import ../shared/overlays-nvim.nix)
-  ];
 }

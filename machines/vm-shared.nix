@@ -117,13 +117,6 @@
   # sound
   sound.enable = true;
 
-  # nfs
-  fileSystems."/mnt/nfs/production" = {
-    device = "192.168.3.7:/mnt/data";
-    fsType = "nfs";
-    options = [ "nfsvers=4.2" "noauto" "x-systemd.automount" ];
-  };
-
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
