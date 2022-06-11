@@ -1,6 +1,10 @@
 { config, pkgs, lib, currentSystem, currentSystemName, ... }:
 
 {
+  imports = [
+    "${(import ../nix/sources.nix).agenix}/modules/age.nix"
+  ];
+
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   nix = {
@@ -77,6 +81,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    (pkgs.callPackage "${(import ../nix/sources.nix).agenix}/pkgs/agenix.nix" {})
     dunst
     libnotify
     lxappearance
