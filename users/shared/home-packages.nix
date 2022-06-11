@@ -6,6 +6,7 @@
   pkgs.azure-cli
   pkgs.bat
   pkgs.bottom
+  pkgs.delta
   pkgs.doppler
   pkgs.firefox-bin
   pkgs.gcc

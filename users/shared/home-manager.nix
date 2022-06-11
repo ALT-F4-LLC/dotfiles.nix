@@ -8,8 +8,10 @@ in {
   # Files
   #---------------------------------------------------------------------
 
+  home.file.".config/k9s/skin.yml".source = ./.config/k9s/skin.yml;
+  home.file.".config/lazygit/config.yml".source = ./.config/lazygit/config.yml;
   home.file.".background-image".source = ./background-image;
-  home.file.".config/k9s/skin.yml".source = ./k9s-skin.yml;
+  home.file.".gitconfig".source = ./gitconfig;
 
   #---------------------------------------------------------------------
   # Env vars and dotfiles
@@ -166,7 +168,7 @@ in {
       vimPlugins.lsp-colors-nvim
       vimPlugins.vim-hardtime
     ];
-    extraConfig = (import ../shared/nvim) { inherit lib; };
+    extraConfig = (import ../shared/.config/nvim) { inherit lib; };
   };
 
   programs.zsh = {
