@@ -12,7 +12,7 @@
     192.168.1.32 cluster-endpoint
   '';
 
-  nixpkgs.overlays = import ../../lib/overlays.nix ++ [
+  nixpkgs.overlays = [
     (import ../shared/overlays-nvim.nix)
   ];
 

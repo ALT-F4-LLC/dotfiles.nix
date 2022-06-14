@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  nixpkgs.overlays = import ../../lib/overlays.nix ++ [
+  nixpkgs.overlays = [
     (import ../shared/overlays-nvim.nix)
   ];
 
