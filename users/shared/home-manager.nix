@@ -1,7 +1,6 @@
 { config, lib, pkgs, ... }:
 
 let
-  sources = import ../../nix/sources.nix;
   i3_mod = "Mod4";
 in {
   #---------------------------------------------------------------------
@@ -22,6 +21,7 @@ in {
     LC_CTYPE = "en_US.UTF-8";
     LC_ALL = "en_US.UTF-8";
     EDITOR = "nvim";
+    PULUMI_K8S_SUPPRESS_HELM_HOOK_WARNINGS = "true";
   };
 
   #---------------------------------------------------------------------
@@ -141,7 +141,7 @@ in {
       vimPlugins.cmp-cmdline
       vimPlugins.cmp-nvim-lsp
       vimPlugins.cmp-path
-      vimPlugins.cmp-tabnine
+      customVim.cmp-tabnine
       vimPlugins.cmp-treesitter
       vimPlugins.cmp-vsnip
       vimPlugins.vim-vsnip
@@ -173,6 +173,9 @@ in {
 
   programs.zsh = {
     enable = true;
+    enableAutosuggestions = true;
+    enableCompletion = true;
+    enableSyntaxHighlighting = true;
 
     oh-my-zsh = {
       enable = true;
@@ -190,14 +193,16 @@ in {
       nixos_test = "sudo nixos-rebuild test --flake '/nix-config#vm-intel'";
     };
 
-    plugins = map (n: {
-      name = n;
-      src  = sources.${n};
-    }) [
-      "zsh-autosuggestions"
-      "zsh-completions"
-      "zsh-syntax-highlighting"
-      "zsh-z"
+    plugins = [
+      {
+        name = "zsh-z";
+        src = pkgs.fetchFromGitHub {
+          owner = "agkozak";
+          repo = "zsh-z";
+          rev = "b5e61d03a42a84e9690de12915a006b6745c2a5f";
+          sha256 = "1gsgmsvl1sl9m3yfapx6bp0y15py8610kywh56bgsjf9wxkrc3nl";
+        };
+      }
     ];
 
     initExtra = ''

@@ -7,9 +7,18 @@
     options = [ "nfsvers=4.2" "noauto" "x-systemd.automount" ];
   };
 
+  networking.extraHosts =
+  ''
+    192.168.1.32 cluster-endpoint
+  '';
+
   nixpkgs.overlays = import ../../lib/overlays.nix ++ [
     (import ../shared/overlays-nvim.nix)
   ];
+
+  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.displayManager.autoLogin.enable = true;
+  services.xserver.displayManager.autoLogin.user = "erikreinert";
 
   users.users.erikreinert = {
     isNormalUser = true;

@@ -3,3 +3,4 @@ result
 !*.secret
 users/ereinert/config-aws
 users/ereinert/config-pip
+users/erikreinert/kubeconfig
