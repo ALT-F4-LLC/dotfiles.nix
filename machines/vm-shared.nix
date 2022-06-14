@@ -80,7 +80,6 @@
     dunst
     libnotify
     lxappearance
-    niv
     pavucontrol
     vim
     wget
