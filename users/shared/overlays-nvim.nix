@@ -26,15 +26,6 @@ rec {
       };
       vendorSha256 = "sha256-UEQogVVlTVnSRSHH2koyYaR9l50Rn3075opieK5Fu7I=";
     }; 
-    lspcontainers-nvim = vimUtils.buildVimPlugin {
-      name = "lspcontainers.nvim";
-      src = fetchFromGitHub {
-        owner = "lspcontainers";
-        repo = "lspcontainers.nvim";
-        rev = "3c9d2156a447eb111ec60f4358768eb7510c5d0d";
-        sha256 = "sha256-HG1d9oebMAKGyFhPnA5nnfLWivGgGi2MY1AF+u+jfhA=";
-      };
-    };
     tabnine = pkgs.tabnine.overrideAttrs (oldAttrs: { 
       version = "4.4.36";
       src = fetchurl {

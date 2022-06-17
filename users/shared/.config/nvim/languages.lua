@@ -5,6 +5,7 @@ local function setup_languages()
     "dockerls",
     "elixirls",
     "gopls",
+    "graphql",
     "html",
     "jsonls",
     "jsonnet_ls",
@@ -17,28 +18,19 @@ local function setup_languages()
     "yamlls"
   }
 
-  local lspcontainer_servers = {
-    "graphql",
-  }
-
   local lua_settings = {
     Lua = {
       runtime = {
         -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
         version = 'LuaJIT',
-        -- Setup your lua path
-        path = vim.split(package.path, ';'),
       },
       diagnostics = {
         -- Get the language server to recognize the `vim` global
-        globals = { 'vim' },
+        globals = {'vim'},
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
-        library = {
-          [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-          [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-        },
+        library = vim.api.nvim_get_runtime_file("", true),
       },
       -- Do not send telemetry data containing a randomized but unique identifier
       telemetry = {
@@ -108,50 +100,12 @@ local function setup_languages()
     }
   end
 
-  local function setup_lspcontainer(config, server)
-    local lspcontainers = require'lspcontainers'
-    local util = require 'lspconfig/util'
-
-    if server == "graphql" then
-      config.before_init = function(params)
-        params.processId = vim.NIL
-      end
-
-      config.cmd = lspcontainers.command(server)
-      config.root_dir = util.root_pattern(".git", vim.fn.getcwd())
-    end
-
-    if server == "prismals" then
-      config.before_init = function(params)
-        params.processId = vim.NIL
-      end
-
-      config.cmd = lspcontainers.command(server)
-      config.root_dir = util.root_pattern(".git", vim.fn.getcwd())
-    end
-
-    if server == "sqlls" then
-      config.before_init = function(params)
-        params.processId = vim.NIL
-      end
-
-      config.cmd = lspcontainers.command(server)
-      config.root_dir = util.root_pattern(".git", vim.fn.getcwd())
-    end
-  end
-
-  require'lspcontainers'.setup({})
-
   for _, server in pairs(lspconfig_servers) do
     local config = make_config()
 
-    require'lspconfig'[server].setup(config)
-  end
-
-  for _, server in pairs(lspcontainer_servers) do
-    local config = make_config()
-
-    setup_lspcontainer(config, server)
+    if server == "sumneko_lua" then
+      config.settings = lua_settings;
+    end
 
     require'lspconfig'[server].setup(config)
   end

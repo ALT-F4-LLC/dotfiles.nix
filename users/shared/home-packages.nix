@@ -35,6 +35,7 @@
   pkgs.nodePackages."@prisma/language-server"
   pkgs.nodePackages."bash-language-server"
   pkgs.nodePackages."dockerfile-language-server-nodejs"
+  pkgs.nodePackages."graphql-language-service-cli"
   pkgs.nodePackages."typescript"
   pkgs.nodePackages."typescript-language-server"
   pkgs.nodePackages."vscode-langservers-extracted"

@@ -126,7 +126,6 @@ in {
       # languages
       vimPlugins.nvim-lspconfig
       vimPlugins.lsp_extensions-nvim
-      customVim.lspcontainers-nvim
       vimPlugins.vim-nix
       vimPlugins.vim-prisma
       vimPlugins.vim-terraform
