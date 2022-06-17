@@ -4,11 +4,7 @@
   pkgs.ansible
   pkgs.awscli2
   pkgs.azure-cli
-  pkgs.bat
-  pkgs.bottom
-  pkgs.delta
   pkgs.doppler
-  pkgs.firefox-bin
   pkgs.gcc
   pkgs.git-secret
   pkgs.httpie
@@ -19,15 +15,11 @@
   pkgs.kn
   pkgs.kubectl
   pkgs.lazydocker
-  pkgs.lazygit
-  pkgs.nnn
   pkgs.nodejs-16_x
   pkgs.postman
   pkgs.python3Full
-  pkgs.redli
   pkgs.ripgrep
   pkgs.terraform
-  pkgs.vscode
 
   # language servers
   pkgs.elixir_ls

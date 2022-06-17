@@ -8,7 +8,6 @@ in {
   #---------------------------------------------------------------------
 
   home.file.".config/k9s/skin.yml".source = ./.config/k9s/skin.yml;
-  home.file.".config/lazygit/config.yml".source = ./.config/lazygit/config.yml;
   home.file.".background-image".source = ./background-image;
   home.file.".gitconfig".source = ./gitconfig;
 
@@ -78,15 +77,24 @@ in {
     };
   };
 
+  programs.bat.enable = true;
+  programs.bottom.enable = true;
+
+  programs.firefox = {
+    enable = true;
+  };
+
   programs.go = {
     enable = true;
     goPath = "Development/language/go";
   };
 
   programs.git = {
+    delta = {
+      enable = true;
+    };
+
     enable = true;
-    userName  = "Erik Reinert";
-    userEmail = "erik@altf4.email";
     extraConfig = {
       branch.autosetuprebase = "always";
       color.ui = true;
@@ -98,6 +106,9 @@ in {
       push.default = "tracking";
       rebase.autoStash = true;
     };
+
+    userEmail = "erik@altf4.email";
+    userName  = "Erik Reinert";
   };
 
   programs.gpg.enable = true;
@@ -116,6 +127,19 @@ in {
       ipv6.enable = false;
       "wireless _first_".enable = false;
       "battery all".enable = false;
+    };
+  };
+
+  programs.lazygit = {
+    enable = true;
+    settings = {
+      git = {
+        paging = {
+          colorArg = "always";
+          pager = "delta --color-only --dark --paging=never";
+          useConfig = false;
+        };
+      };
     };
   };
 
@@ -169,6 +193,10 @@ in {
     ];
     extraConfig = (import ../shared/.config/nvim) { inherit lib; };
   };
+
+  programs.nnn.enable = true;
+
+  programs.vscode.enable = true;
 
   programs.zsh = {
     enable = true;
