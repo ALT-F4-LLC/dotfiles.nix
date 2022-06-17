@@ -35,9 +35,6 @@ local function setup_treesitter()
       enable = true
     }
   }
-
-  --vim.cmd[[set foldmethod=expr]]
-  --vim.cmd[[set foldexpr=nvim_treesitter#foldexpr()]]
 end
 
 setup_treesitter()
