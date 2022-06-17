@@ -79,10 +79,7 @@ in {
 
   programs.bat.enable = true;
   programs.bottom.enable = true;
-
-  programs.firefox = {
-    enable = true;
-  };
+  programs.firefox.enable = true;
 
   programs.go = {
     enable = true;
@@ -95,6 +92,9 @@ in {
     };
 
     enable = true;
+    userEmail = "erik@altf4.email";
+    userName  = "Erik Reinert";
+
     extraConfig = {
       branch.autosetuprebase = "always";
       color.ui = true;
@@ -106,9 +106,6 @@ in {
       push.default = "tracking";
       rebase.autoStash = true;
     };
-
-    userEmail = "erik@altf4.email";
-    userName  = "Erik Reinert";
   };
 
   programs.gpg.enable = true;
@@ -195,7 +192,10 @@ in {
   };
 
   programs.nnn.enable = true;
-
+  programs.tmux = {
+    enable = true;
+    terminal = "screen-256color";
+  };
   programs.vscode.enable = true;
 
   programs.zsh = {
