@@ -1,6 +1,10 @@
 { config, pkgs, lib, currentSystem, currentSystemName, ... }:
 
 {
+  imports = [
+    ../nixos/services/networking/twingate.nix
+  ];
+
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   nix = {
@@ -35,6 +39,7 @@
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
   networking.useDHCP = false;
+  networking.networkmanager.enable = true;
 
   # Don't require password for sudo
   security.sudo.wheelNeedsPassword = false;
@@ -109,6 +114,9 @@
 
   # enable picom
   services.picom.enable = true;
+
+  # enable twingate
+  services.twingate.enable = true;
 
   # Disable the firewall since we're in a VM and we want to make it
   # easy to visit stuff in here. We only use NAT networking anyways.

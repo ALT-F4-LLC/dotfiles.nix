@@ -2,7 +2,7 @@
 
 {
   nixpkgs.overlays = [
-    (import ../shared/overlays-nvim.nix)
+    (import ../shared/overlays.nix)
   ];
 
   services.xserver.displayManager.lightdm.enable = true;
