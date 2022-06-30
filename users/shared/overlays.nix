@@ -24,8 +24,8 @@ rec {
       src = fetchFromGitHub {
         owner = "tzachar";
         repo = "cmp-tabnine";
-        rev = "e23d32a76304496aade4e4b285751a6a8b505491";
-        sha256 = "sha256-ymqNPqm1pyIGLYPvJzSumiPkjQ27A/yqhl/zMwg0OTY=";
+        rev = "a5081776185e3c7f406e7fc3dd5f0a0ae0288e59";
+        sha256 = "sha256-4pbwy+fEIaRrEvfie7LphD5oY4EVQaPZKRb5p9vujGk=";
       };
     } );
     jsonnet-language-server = buildGo117Module rec {
@@ -40,10 +40,10 @@ rec {
       vendorSha256 = "sha256-UEQogVVlTVnSRSHH2koyYaR9l50Rn3075opieK5Fu7I=";
     }; 
     tabnine = pkgs.tabnine.overrideAttrs (oldAttrs: { 
-      version = "4.4.36";
+      version = "4.4.54";
       src = fetchurl {
-        sha256 = "sha256-3/Pn/3k4zFYORJN4AZ8sD9bTW5o86M0BS7IiiosQ3NI=";
-        url = "https://update.tabnine.com/bundles/4.4.36/x86_64-unknown-linux-musl/TabNine.zip";
+        sha256 = "sha256-nCugWm/aI505RYvhSuyAfm7/Avhv3hlhp/o+tcVCZzc=";
+        url = "https://update.tabnine.com/bundles/4.4.54/x86_64-unknown-linux-musl/TabNine.zip";
       };
     } );
   };
