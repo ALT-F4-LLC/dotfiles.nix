@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eu pipefail
 
-NIXADDR="192.168.20.132"
+NIXADDR="192.168.6.9"
 NIXPORT="22"
 
 # The block device prefix to use.

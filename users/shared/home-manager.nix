@@ -72,7 +72,7 @@ in {
       };
 
       window = {
-        opacity = 0.80;
+        opacity = 0.85;
       };
     };
   };
@@ -192,10 +192,14 @@ in {
   };
 
   programs.nnn.enable = true;
+
   programs.tmux = {
     enable = true;
-    terminal = "screen-256color";
+    plugins = with pkgs; [
+      customTmux.tokyonight
+    ]; 
   };
+
   programs.vscode.enable = true;
 
   programs.zsh = {

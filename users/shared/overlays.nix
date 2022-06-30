@@ -1,6 +1,19 @@
 self: super:
 
 rec {
+  customTmux = with self; {
+    tokyonight = pkgs.tmuxPlugins.mkTmuxPlugin rec {
+      name = "tokyo-night-tmux";
+      pluginName = "tokyo-night-tmux";
+      rtpFilePath = "tokyo-night.tmux";
+      src = fetchFromGitHub {
+        owner = "janoamaral";
+        repo = "tokyo-night-tmux";
+        rev = "16469dfad86846138f594ceec780db27039c06cd";
+        sha256 = "sha256-EKCgYan0WayXnkSb2fDJxookdBLW0XBKi2hf/YISwJE=";
+      };
+    };
+  };
   customVim = with self; {
     cmp-tabnine = pkgs.vimPlugins.cmp-tabnine.overrideAttrs (oldAttrs: { 
       buildInputs = [ customVim.tabnine ];
