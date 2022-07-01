@@ -4,6 +4,10 @@
   # Virtualization tools
   virtualisation = {
     docker.enable = true;
+    podman = {
+      enable = true;
+      extraPackages = [ pkgs.zfs ];
+    };
     vmware.guest.enable = true;
   };
 
