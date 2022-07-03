@@ -15,7 +15,6 @@
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       mkVM = import ./lib/mkvm.nix;
-
       overlays = [ inputs.neovim-nightly-overlay.overlay ];
     in {
       nixosConfigurations.hippo = mkVM "vm-intel" rec {
