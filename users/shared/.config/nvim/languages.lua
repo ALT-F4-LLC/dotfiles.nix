@@ -85,10 +85,10 @@ local function setup_languages()
     if server == "sumneko_lua" then
       config.settings = {
         Lua = {
-          runtime = { version = 'LuaJIT' },
           diagnostics = { globals = { 'vim' } },
-          workspace = { library = vim.api.nvim_get_runtime_file("", true) },
+          runtime = { version = 'LuaJIT' },
           telemetry = { enable = false },
+          workspace = { library = vim.api.nvim_get_runtime_file("", true) },
         }
       }
     end

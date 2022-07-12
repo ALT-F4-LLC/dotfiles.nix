@@ -14,6 +14,7 @@ rec {
       };
     };
   };
+
   customVim = with self; {
     cmp-tabnine = pkgs.vimPlugins.cmp-tabnine.overrideAttrs (oldAttrs: { 
       buildInputs = [ customVim.tabnine ];
@@ -27,7 +28,8 @@ rec {
         rev = "a5081776185e3c7f406e7fc3dd5f0a0ae0288e59";
         sha256 = "sha256-4pbwy+fEIaRrEvfie7LphD5oY4EVQaPZKRb5p9vujGk=";
       };
-    } );
+    });
+
     jsonnet-language-server = buildGo117Module rec {
       pname = "jsonnet-language-server";
       version = "0.7.2";
@@ -39,12 +41,13 @@ rec {
       };
       vendorSha256 = "sha256-UEQogVVlTVnSRSHH2koyYaR9l50Rn3075opieK5Fu7I=";
     }; 
+
     tabnine = pkgs.tabnine.overrideAttrs (oldAttrs: { 
       version = "4.4.54";
       src = fetchurl {
         sha256 = "sha256-nCugWm/aI505RYvhSuyAfm7/Avhv3hlhp/o+tcVCZzc=";
         url = "https://update.tabnine.com/bundles/4.4.54/x86_64-unknown-linux-musl/TabNine.zip";
       };
-    } );
+    });
   };
 }

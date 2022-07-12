@@ -8,7 +8,6 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   nix = {
-    autoOptimiseStore = true;
     extraOptions = ''
       experimental-features = nix-command flakes
       keep-outputs = true
@@ -20,6 +19,9 @@
       options = "--delete-older-than 30d";
     };
     package = pkgs.nixUnstable;
+    settings = {
+      auto-optimise-store = true;
+    };
   };
 
   nixpkgs.config.allowUnfree = true;

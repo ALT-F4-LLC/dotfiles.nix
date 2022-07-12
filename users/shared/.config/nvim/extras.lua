@@ -1,26 +1,20 @@
 local function setup_extras()
-  require('gitsigns').setup()
-
-  require('lualine').setup {
-    options = {
-      extensions = { 'fzf', 'quickfix' },
-      theme = 'tokyonight'
-    }
-  }
-
-  require"trouble".setup()
-
-  vim.api.nvim_set_keymap("n", "<leader>hh", "<cmd>Trouble<cr>",
-    {
-      silent = true,
-      noremap = true
-    }
-  )
+  require("gitsigns").setup()
 
   require("lsp-colors").setup()
 
-  vim.g.hardtime_default_on = 1
-  vim.g.hardtime_showmsg = 1
+  require("lsp_lines").register_lsp_virtual_lines()
+
+  require("lualine").setup({
+    options = {
+      extensions = { "fzf", "quickfix" },
+      theme = "tokyonight"
+    }
+  })
+
+  vim.diagnostic.config({
+    virtual_text = false,
+  })
 end
 
 setup_extras()

@@ -182,13 +182,12 @@ in {
       # extras
       vimPlugins.gitsigns-nvim
       vimPlugins.indent-blankline-nvim
+      vimPlugins.lsp-colors-nvim
+      vimPlugins.lsp_lines-nvim
       vimPlugins.lualine-nvim
       vimPlugins.nerdcommenter
       vimPlugins.nvim-treesitter-context
       vimPlugins.nvim-web-devicons
-      vimPlugins.trouble-nvim
-      vimPlugins.lsp-colors-nvim
-      vimPlugins.vim-hardtime
     ];
     extraConfig = (import ../shared/.config/nvim) { inherit lib; };
   };
