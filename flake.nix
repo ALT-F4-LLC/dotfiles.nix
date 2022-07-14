@@ -17,16 +17,16 @@
       mkVM = import ./lib/mkvm.nix;
       overlays = [ inputs.neovim-nightly-overlay.overlay ];
     in {
-      nixosConfigurations.hippo = mkVM "vm-intel" rec {
-        inherit nixpkgs home-manager overlays;
-        system = "x86_64-linux";
-        user = "ereinert";
-      };
-
       nixosConfigurations.personal = mkVM "vm-intel" rec {
         inherit nixpkgs home-manager overlays;
         system = "x86_64-linux";
         user = "erikreinert";
+      };
+
+      nixosConfigurations.work = mkVM "vm-intel" rec {
+        inherit nixpkgs home-manager overlays;
+        system = "x86_64-linux";
+        user = "ereinert";
       };
     };
 }

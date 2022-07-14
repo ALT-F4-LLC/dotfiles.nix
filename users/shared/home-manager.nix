@@ -420,5 +420,4 @@ in {
       smart_gaps on
     '';
   };
-
 }

@@ -1,20 +1,7 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
   imports = [ ./vm-shared.nix ];
 
-  # Virtualization tools
-  virtualisation = {
-    docker.enable = true;
-    podman = {
-      enable = true;
-      extraPackages = [ pkgs.zfs ];
-    };
-    vmware.guest.enable = true;
-  };
-
-  # Interface is this on Intel Fusion
-  networking.interfaces.ens33.useDHCP = true;
-
-  # Shared folder to host works on Intel
   fileSystems."/host" = {
     fsType = "fuse./run/current-system/sw/bin/vmhgfs-fuse";
     device = ".host:/";
@@ -26,5 +13,21 @@
       "auto_unmount"
       "defaults"
     ];
+  };
+
+  networking.interfaces.ens33.useDHCP = true;
+
+  services.xserver.displayManager.autoLogin.enable = true;
+  services.xserver.displayManager.lightdm.enable = true;
+
+  virtualisation = {
+    docker.enable = true;
+
+    podman = {
+      enable = true;
+      extraPackages = [ pkgs.zfs ];
+    };
+
+    vmware.guest.enable = true;
   };
 }
