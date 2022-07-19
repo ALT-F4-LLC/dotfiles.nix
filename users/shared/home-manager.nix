@@ -218,12 +218,13 @@ in {
 
     shellAliases = {
       cat = "bat --paging=never --theme='base16'";
+      fetch = "git fetch --all --jobs=4 --progress --prune";
       ll = "n -Hde";
+      pull = "git pull --autostash --ff --no-rebase --squash --summary origin";
+      rebase = "git rebase --autostash --merge --stat";
       ssh = "TERM='xterm-256color' ssh";
-      rebase = "git fetch --all --prune --prune-tags && git rebase";
+      update = "fetch && rebase";
       woof = "k9s";
-      nixos_switch = "sudo nixos-rebuild switch --flake '/nix-config#vm-intel'";
-      nixos_test = "sudo nixos-rebuild test --flake '/nix-config#vm-intel'";
     };
 
     plugins = [
