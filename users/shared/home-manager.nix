@@ -232,8 +232,8 @@ in {
         src = pkgs.fetchFromGitHub {
           owner = "agkozak";
           repo = "zsh-z";
-          rev = "b5e61d03a42a84e9690de12915a006b6745c2a5f";
-          sha256 = "1gsgmsvl1sl9m3yfapx6bp0y15py8610kywh56bgsjf9wxkrc3nl";
+          rev = "aaafebcd97424c570ee247e2aeb3da30444299cd";
+          sha256 = "sha256-9Wr4uZLk2CvINJilg4o72x0NEAl043lP30D3YnHk+ZA=";
         };
       }
     ];
