@@ -49,5 +49,15 @@ rec {
         url = "https://update.tabnine.com/bundles/4.4.54/x86_64-unknown-linux-musl/TabNine.zip";
       };
     });
+
+    vim-just = pkgs.vimUtils.buildVimPlugin {
+      name = "vim-just";
+      src = pkgs.fetchFromGitHub {
+        owner = "NoahTheDuke";
+        repo = "vim-just";
+        rev = "312615d5b4c4aa2595d697faca5af345ba8fe102";
+        sha256 = "sha256-8qGFYRoVIiGB240wdM0o9hCMt65Gg4qIh7pvmW3DghU=";
+      };
+    };
   };
 }

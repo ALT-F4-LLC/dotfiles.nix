@@ -83,13 +83,13 @@
     fonts = with pkgs; [ (nerdfonts.override { fonts = [ "Meslo" ]; }) ];
   };
 
-  # $ nix search wget
+  # nix search <package>
   environment.systemPackages = with pkgs; [
+    curl
     dunst
     libnotify
     lxappearance
     pavucontrol
-    vim
     wget
   ];
 

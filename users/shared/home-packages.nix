@@ -8,17 +8,17 @@ with pkgs; [
   dogdns
   doppler
   gcc
-  git-secret
   httpie
   jetbrains.datagrip
   jetbrains.jdk
+  jq
+  just
   k9s
   kind
   kn
   kubectl
   lazydocker
   nodejs-16_x
-  podman-compose
   postman
   python3Full
   ripgrep

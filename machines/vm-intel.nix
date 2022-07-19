@@ -25,7 +25,7 @@
 
     podman = {
       enable = true;
-      extraPackages = [ pkgs.zfs ];
+      extraPackages = with pkgs; [ zfs ];
     };
 
     vmware.guest.enable = true;
