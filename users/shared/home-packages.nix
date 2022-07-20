@@ -19,6 +19,7 @@ with pkgs; [
   kubectl
   lazydocker
   nodejs-16_x
+  poetry
   postman
   python3Full
   ripgrep
