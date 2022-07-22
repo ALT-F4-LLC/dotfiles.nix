@@ -1,6 +1,4 @@
 {
-  description = "NixOS configs and tools by TheAltF4Stream";
-
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 

@@ -12,7 +12,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-
     networking.firewall.checkReversePath = lib.mkDefault false;
 
     environment.systemPackages = [ twingate ]; # for the CLI
