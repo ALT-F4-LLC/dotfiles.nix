@@ -10,7 +10,6 @@ with pkgs; [
   gcc
   httpie
   jetbrains.datagrip
-  jetbrains.jdk
   jq
   just
   k9s

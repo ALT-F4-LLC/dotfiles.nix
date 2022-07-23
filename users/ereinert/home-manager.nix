@@ -10,8 +10,6 @@
 
   home.packages = (import ../shared/home-packages.nix) {
     inherit pkgs;
-    extras = [
-      pkgs.slack
-    ];
+    extras = [];
   };
 }
