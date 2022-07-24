@@ -26,14 +26,14 @@
         user = "erikreinert";
       };
 
-      darwinConfigurations.work = darwin.lib.darwinSystem {
+      darwinConfigurations."erikreinert-macbookpro" = darwin.lib.darwinSystem {
         modules = [
           ./darwin-configuration.nix
           { nixpkgs.overlays = overlays; }
           home-manager.darwinModules.home-manager {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.blackglasses = import ./users/ereinert/home-manager.nix;
+            home-manager.users.erikreinert = import ./users/erikreinert/home-manager.nix;
           }
         ];
         system = "x86_64-darwin";

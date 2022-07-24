@@ -14,7 +14,6 @@
     extras = [
       pkgs.discord
       pkgs.pulumi-bin
-      pkgs.spotify
     ];
   };
 }
