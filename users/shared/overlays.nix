@@ -45,8 +45,8 @@ rec {
     tabnine = pkgs.tabnine.overrideAttrs (oldAttrs: { 
       version = "4.4.54";
       src = fetchurl {
-        sha256 = "sha256-nCugWm/aI505RYvhSuyAfm7/Avhv3hlhp/o+tcVCZzc=";
-        url = "https://update.tabnine.com/bundles/4.4.54/x86_64-unknown-linux-musl/TabNine.zip";
+        sha256 = "sha256-wBHjrcCmt6n7nQC/BuUrVJ3oqPG6WGMoaxrfjB3aA+k=";
+        url = "https://update.tabnine.com/bundles/4.4.54/x86_64-apple-darwin/TabNine.zip";
       };
     });
 
