@@ -1,19 +1,11 @@
 { config, lib, pkgs, ... }:
-
-let i3_mod = "Mod4";
-in {
-  home.stateVersion = "21.11";
-
+{
   #---------------------------------------------------------------------
-  # Files
+  # home
   #---------------------------------------------------------------------
 
   home.file.".config/k9s/skin.yml".source = ./.config/k9s/skin.yml;
   home.file.".gitconfig".source = ./gitconfig;
-
-  #---------------------------------------------------------------------
-  # Env vars and dotfiles
-  #---------------------------------------------------------------------
 
   home.sessionVariables = {
     EDITOR = "nvim";
@@ -23,8 +15,10 @@ in {
     PULUMI_K8S_SUPPRESS_HELM_HOOK_WARNINGS = "true";
   };
 
+  home.stateVersion = "21.11";
+
   #---------------------------------------------------------------------
-  # Programs
+  # programs
   #---------------------------------------------------------------------
 
   programs.alacritty = {

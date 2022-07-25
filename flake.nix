@@ -24,7 +24,7 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users."erikreinert" =
-            import ./home-manager/erikreinert.nix;
+            import ./home-manager/erikreinert/darwin.nix;
         }
       ];
 
@@ -44,7 +44,7 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users."erikreinert" =
-            import ./home-manager/erikreinert.nix;
+            import ./home-manager/erikreinert/nixos.nix;
         }
       ];
 
