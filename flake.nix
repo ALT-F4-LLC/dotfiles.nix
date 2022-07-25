@@ -8,10 +8,14 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
   };
 
-  outputs = { self, darwin, home-manager, nixpkgs, neovim-nightly }: {
+  outputs = { self, darwin, home-manager, nixpkgs, neovim-nightly }:
+    let
+      overlays = [ neovim-nightly.overlay ];
+    in
+    {
     darwinConfigurations."erikreinert-macbookpro" = darwin.lib.darwinSystem {
       modules = [
-        { nixpkgs.overlays = [ neovim-nightly.overlay ]; }
+        { nixpkgs.overlays = overlays; }
 
         ./machines/baremetal-darwin.nix
 
@@ -29,13 +33,13 @@
 
     nixosConfigurations."erikreinert-nixos" = nixpkgs.lib.nixosSystem {
       modules = [
-        { nixpkgs.overlays = [ neovim-nightly.overlay ]; }
+        { nixpkgs.overlays = overlays; }
 
         ./hardware/vmware-intel.nix
         ./machines/vmware-intel.nix
         ./nixos/erikreinert.nix
 
-        home-manager.darwinModules.home-manager
+        home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
