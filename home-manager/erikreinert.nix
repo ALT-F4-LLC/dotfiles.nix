@@ -6,6 +6,6 @@
   home.packages = (import ./packages.nix) {
     inherit pkgs;
 
-    extras = with pkgs; [ discord pulumi-bin ]; 
+    extras = with pkgs; [ pulumi-bin ]; 
   };
 }
