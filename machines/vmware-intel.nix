@@ -75,7 +75,10 @@
   programs.dconf.enable = true;
   programs.geary.enable = true;
 
-  security.sudo.wheelNeedsPassword = false;
+  security.sudo = {
+    enable = true;
+    wheelNeedsPassword = false;
+  };
 
   services.logind.extraConfig = ''
     RuntimeDirectorySize=20G
@@ -118,6 +121,8 @@
   system.stateVersion = "21.11";
 
   time.timeZone = "America/Los_Angeles";
+
+  users.mutableUsers = false;
 
   virtualisation = {
     docker.enable = true;
