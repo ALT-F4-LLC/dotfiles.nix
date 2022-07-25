@@ -3,9 +3,7 @@
 {
   networking.hostName = "erikreinert-work";
 
-  nixpkgs.overlays = [
-    (import ../shared/overlays.nix)
-  ];
+  nixpkgs.overlays = [ (import ../home-manager/shared/overlays.nix) ];
 
   services.xserver.displayManager.autoLogin.user = "ereinert";
 

@@ -1,7 +1,6 @@
 { config, lib, pkgs, ... }:
 
-let
-  i3_mod = "Mod4";
+let i3_mod = "Mod4";
 in {
   home.stateVersion = "21.11";
 
@@ -17,10 +16,10 @@ in {
   #---------------------------------------------------------------------
 
   home.sessionVariables = {
-    LANG = "en_US.UTF-8";
-    LC_CTYPE = "en_US.UTF-8";
-    LC_ALL = "en_US.UTF-8";
     EDITOR = "nvim";
+    LANG = "en_US.UTF-8";
+    LC_ALL = "en_US.UTF-8";
+    LC_CTYPE = "en_US.UTF-8";
     PULUMI_K8S_SUPPRESS_HELM_HOOK_WARNINGS = "true";
   };
 
@@ -61,20 +60,22 @@ in {
         };
 
         indexed_colors = [
-          { index = 16; color = "0xff9e64"; }
-          { index = 17; color = "0xdb4b4b"; }
+          {
+            index = 16;
+            color = "0xff9e64";
+          }
+          {
+            index = 17;
+            color = "0xdb4b4b";
+          }
         ];
       };
 
       cursor.style = "Block";
 
-      font = {
-        size = 12;
-      };
+      font = { size = 12; };
 
-      window = {
-        opacity = 0.85;
-      };
+      window = { opacity = 0.85; };
     };
   };
 
@@ -87,13 +88,11 @@ in {
   };
 
   programs.git = {
-    delta = {
-      enable = true;
-    };
+    delta = { enable = true; };
 
     enable = true;
     userEmail = "erik@altf4.email";
-    userName  = "Erik Reinert";
+    userName = "Erik Reinert";
 
     extraConfig = {
       branch.autosetuprebase = "always";
@@ -169,16 +168,14 @@ in {
       vimPlugins.nvim-treesitter-context
       vimPlugins.nvim-web-devicons
     ];
-    extraConfig = (import ../shared/.config/nvim) { inherit lib; };
+    extraConfig = (import ./.config/nvim) { inherit lib; };
   };
 
   programs.nnn.enable = true;
 
   programs.tmux = {
     enable = true;
-    plugins = with pkgs; [
-      customTmux.tokyonight
-    ]; 
+    plugins = with pkgs; [ customTmux.tokyonight ];
   };
 
   programs.vscode.enable = true;
@@ -206,17 +203,15 @@ in {
       woof = "k9s";
     };
 
-    plugins = [
-      {
-        name = "zsh-z";
-        src = pkgs.fetchFromGitHub {
-          owner = "agkozak";
-          repo = "zsh-z";
-          rev = "aaafebcd97424c570ee247e2aeb3da30444299cd";
-          sha256 = "sha256-9Wr4uZLk2CvINJilg4o72x0NEAl043lP30D3YnHk+ZA=";
-        };
-      }
-    ];
+    plugins = [{
+      name = "zsh-z";
+      src = pkgs.fetchFromGitHub {
+        owner = "agkozak";
+        repo = "zsh-z";
+        rev = "aaafebcd97424c570ee247e2aeb3da30444299cd";
+        sha256 = "sha256-9Wr4uZLk2CvINJilg4o72x0NEAl043lP30D3YnHk+ZA=";
+      };
+    }];
 
     initExtra = ''
       kindc () {

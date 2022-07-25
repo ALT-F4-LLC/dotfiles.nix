@@ -1,6 +1,7 @@
 self: super:
 
-rec {
+let tabnine_version = "4.4.84";
+in {
   customTmux = with self; {
     tokyonight = pkgs.tmuxPlugins.mkTmuxPlugin rec {
       name = "tokyo-night-tmux";
@@ -16,7 +17,7 @@ rec {
   };
 
   customVim = with self; {
-    cmp-tabnine = pkgs.vimPlugins.cmp-tabnine.overrideAttrs (oldAttrs: { 
+    cmp-tabnine = pkgs.vimPlugins.cmp-tabnine.overrideAttrs (oldAttrs: {
       buildInputs = [ customVim.tabnine ];
       postFixup = ''
         mkdir -p $target/binaries/${customVim.tabnine.version}
@@ -40,14 +41,15 @@ rec {
         sha256 = "sha256-hI8eGfHC7la52nImg6BaBxdl9oD/J9q3F3+xbsHrn30=";
       };
       vendorSha256 = "sha256-UEQogVVlTVnSRSHH2koyYaR9l50Rn3075opieK5Fu7I=";
-    }; 
+    };
 
-    tabnine = pkgs.tabnine.overrideAttrs (oldAttrs: { 
-      version = "4.4.54";
+    tabnine = pkgs.tabnine.overrideAttrs (oldAttrs: {
       src = fetchurl {
         sha256 = "sha256-wBHjrcCmt6n7nQC/BuUrVJ3oqPG6WGMoaxrfjB3aA+k=";
-        url = "https://update.tabnine.com/bundles/4.4.54/x86_64-apple-darwin/TabNine.zip";
+        url =
+          "https://update.tabnine.com/bundles/4.4.54/x86_64-apple-darwin/TabNine.zip";
       };
+      version = tabnine_version;
     });
 
     vim-just = pkgs.vimUtils.buildVimPlugin {

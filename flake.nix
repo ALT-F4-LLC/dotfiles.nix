@@ -1,42 +1,50 @@
 {
   inputs = {
+    darwin.inputs.nixpkgs.follows = "nixpkgs";
+    darwin.url = "github:lnl7/nix-darwin";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.url = "github:nix-community/home-manager";
+    neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    darwin = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:lnl7/nix-darwin";
-    };
-
-    home-manager = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:nix-community/home-manager";
-    };
-
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
-  outputs = { self, darwin, home-manager, nixpkgs, ... }@inputs:
-    let
-      mkVM = import ./lib/mkvm.nix;
-      overlays = [ inputs.neovim-nightly-overlay.overlay ];
-    in {
-      nixosConfigurations.personal = mkVM "vm-intel" rec {
-        inherit nixpkgs home-manager overlays;
-        system = "x86_64-linux";
-        user = "erikreinert";
-      };
+  outputs = { self, darwin, home-manager, nixpkgs, neovim-nightly }: {
+    darwinConfigurations."erikreinert-macbookpro" = darwin.lib.darwinSystem {
+      modules = [
+        { nixpkgs.overlays = [ neovim-nightly.overlay ]; }
 
-      darwinConfigurations."erikreinert-macbookpro" = darwin.lib.darwinSystem {
-        modules = [
-          ./darwin-configuration.nix
-          { nixpkgs.overlays = overlays; }
-          home-manager.darwinModules.home-manager {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.erikreinert = import ./users/erikreinert/home-manager.nix;
-          }
-        ];
-        system = "x86_64-darwin";
-      };
+        ./machines/baremetal-darwin.nix
+
+        home-manager.darwinModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users."erikreinert" =
+            import ./home-manager/erikreinert.nix;
+        }
+      ];
+
+      system = "x86_64-darwin";
     };
+
+    nixosConfigurations."erikreinert-nixos" = nixpkgs.lib.nixosSystem {
+      modules = [
+        { nixpkgs.overlays = [ neovim-nightly.overlay ]; }
+
+        ./hardware/vmware-intel.nix
+        ./machines/vmware-intel.nix
+        ./nixos/erikreinert.nix
+
+        home-manager.darwinModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users."erikreinert" =
+            import ./home-manager/erikreinert.nix;
+        }
+      ];
+
+      system = "x86_64-linux";
+    };
+  };
 }

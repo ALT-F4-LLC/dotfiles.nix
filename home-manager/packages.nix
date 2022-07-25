@@ -1,5 +1,7 @@
-{ pkgs, extras, ... }:
-with pkgs; [
+{ extras, pkgs, ... }:
+
+with pkgs;
+[
   # programs
   ansible
   awscli2

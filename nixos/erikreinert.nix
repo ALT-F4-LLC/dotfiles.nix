@@ -4,11 +4,7 @@
   fileSystems."/mnt/nfs/production" = {
     device = "192.168.3.7:/mnt/data";
     fsType = "nfs";
-    options = [
-      "nfsvers=4.2"
-      "noauto"
-      "x-systemd.automount"
-    ];
+    options = [ "nfsvers=4.2" "noauto" "x-systemd.automount" ];
   };
 
   networking = {
@@ -18,9 +14,7 @@
     hostName = "erikreinert-personal";
   };
 
-  nixpkgs.overlays = [
-    (import ../shared/overlays.nix)
-  ];
+  nixpkgs.overlays = [ (import ../home-manager/shared/overlays.nix) ];
 
   services.xserver.displayManager.autoLogin.user = "erikreinert";
 

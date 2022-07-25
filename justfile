@@ -1,16 +1,17 @@
 clean:
   rm -f ./result
 
-switch profile: && clean
-  sudo nixos-rebuild switch --flake .#{{profile}}
+darwin subcommand profile: && clean
+  darwin-rebuild {{ subcommand }} --flake ".#{{profile}}"
 
-test profile: && clean
-  sudo nixos-rebuild test --flake .#{{profile}}
+nixos subcommand profile: && clean
+  nixos-rebuild {{ subcommand }} --flake ".#{{profile}}"
 
-update profile: && (test profile) (switch profile)
+update:
   nix flake update
 
 upkeep:
-  sudo nix-store --verify --repair
-  sudo nix-store --optimise
-  sudo nix-store --gc
+  nix store verify
+  nix store repair
+  nix store optimise
+  nix store gc
