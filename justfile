@@ -5,7 +5,7 @@ darwin subcommand profile: && clean
   darwin-rebuild {{ subcommand }} --flake ".#{{profile}}"
 
 nixos subcommand profile: && clean
-  nixos-rebuild {{ subcommand }} --flake ".#{{profile}}"
+  sudo nixos-rebuild {{ subcommand }} --flake ".#{{profile}}"
 
 update:
   nix flake update

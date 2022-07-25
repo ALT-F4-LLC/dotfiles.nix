@@ -11,7 +11,7 @@
     extraHosts = ''
       192.168.1.32 cluster-endpoint
     '';
-    hostName = "erikreinert-personal";
+    hostName = "erikreinert-nixos";
   };
 
   nixpkgs.overlays = [ (import ../home-manager/shared/overlays.nix) ];
