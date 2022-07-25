@@ -1,6 +1,23 @@
 self: super:
 
-let tabnine_version = "4.4.84";
+let
+  tabnineVersion = "4.4.90";
+  tabnineSupportedPlatforms = {
+    "x86_64-linux" = {
+      name = "x86_64-unknown-linux-musl";
+      sha256 = "sha256-BLWJDua9EjAHjXg7+WBzsnPdbfYG/xDILs7WSIfqldc=";
+    };
+    "x86_64-darwin" = {
+      name = "x86_64-apple-darwin";
+      sha256 = "";
+    };
+  };
+  tabninePlatform = if (builtins.hasAttr super.stdenv.hostPlatform.system
+    tabnineSupportedPlatforms) then
+    builtins.getAttr (super.stdenv.hostPlatform.system)
+    tabnineSupportedPlatforms
+  else
+    throw "Not supported on ${super.stdenv.hostPlatform.system}";
 in {
   customTmux = with self; {
     tokyonight = pkgs.tmuxPlugins.mkTmuxPlugin rec {
@@ -45,11 +62,11 @@ in {
 
     tabnine = pkgs.tabnine.overrideAttrs (oldAttrs: {
       src = fetchurl {
-        sha256 = "sha256-wBHjrcCmt6n7nQC/BuUrVJ3oqPG6WGMoaxrfjB3aA+k=";
+        inherit (tabninePlatform) sha256;
         url =
-          "https://update.tabnine.com/bundles/4.4.54/x86_64-apple-darwin/TabNine.zip";
+          "https://update.tabnine.com/bundles/${tabnineVersion}/${tabninePlatform.name}/TabNine.zip";
       };
-      version = tabnine_version;
+      version = tabnineVersion;
     });
 
     vim-just = pkgs.vimUtils.buildVimPlugin {
