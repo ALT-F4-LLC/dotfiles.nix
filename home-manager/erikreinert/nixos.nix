@@ -1,7 +1,6 @@
 { config, lib, pkgs, ... }:
 
-let
-  i3_mod = "Mod4";
+let i3_mod = "Mod4";
 in {
   imports = [ ../shared/home-manager.nix ];
 
@@ -10,12 +9,6 @@ in {
   #---------------------------------------------------------------------
 
   home.file.".background-image".source = ../shared/background-image;
-
-  home.packages = (import ../shared/packages.nix) {
-    inherit pkgs;
-
-    extras = with pkgs; [ pulumi-bin ];
-  };
 
   #---------------------------------------------------------------------
   # programs
@@ -63,46 +56,42 @@ in {
     enable = true;
 
     config = {
-      bars = [
-        {
-          position = "bottom";
-          statusCommand = "${pkgs.i3status}/bin/i3status";
-          colors = {
-            background = "#1a1b26";
-            statusline = "#c0caf5";
-            separator = "#3b4261";
-            focusedWorkspace = {
-              background = "#c0caf5";
-              border = "#3b4261";
-              text = "#565f89";
-            };
-            activeWorkspace = {
-              background = "#353836";
-              border = "#595B5B";
-              text = "#FDF6E3";
-            };
-            inactiveWorkspace = {
-              background = "#222D31";
-              border = "#595B5B";
-              text = "#EEE8D5";
-            };
-            bindingMode = {
-              background = "#2C2C2C";
-              border = "#16a085";
-              text = "#F9FAF9";
-            };
-            urgentWorkspace = {
-              background = "#FDF6E3";
-              border = "#16a085";
-              text = "#E5201D";
-            };
+      bars = [{
+        position = "bottom";
+        statusCommand = "${pkgs.i3status}/bin/i3status";
+        colors = {
+          background = "#1a1b26";
+          statusline = "#c0caf5";
+          separator = "#3b4261";
+          focusedWorkspace = {
+            background = "#c0caf5";
+            border = "#3b4261";
+            text = "#565f89";
           };
-        }
-      ];
+          activeWorkspace = {
+            background = "#353836";
+            border = "#595B5B";
+            text = "#FDF6E3";
+          };
+          inactiveWorkspace = {
+            background = "#222D31";
+            border = "#595B5B";
+            text = "#EEE8D5";
+          };
+          bindingMode = {
+            background = "#2C2C2C";
+            border = "#16a085";
+            text = "#F9FAF9";
+          };
+          urgentWorkspace = {
+            background = "#FDF6E3";
+            border = "#16a085";
+            text = "#E5201D";
+          };
+        };
+      }];
 
-      fonts = {
-        names = [ "Meslo LG M Regular Nerd Font Complete Mono" ];
-      };
+      fonts = { names = [ "Meslo LG M Regular Nerd Font Complete Mono" ]; };
 
       gaps = {
         inner = 0;
@@ -113,7 +102,8 @@ in {
         "${i3_mod}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
         "${i3_mod}+Shift+q" = "kill";
 
-        "${i3_mod}+d" = "exec --no-startup-id ${pkgs.rofi}/bin/rofi -modi drun -show drun";
+        "${i3_mod}+d" =
+          "exec --no-startup-id ${pkgs.rofi}/bin/rofi -modi drun -show drun";
 
         "${i3_mod}+h" = "focus left";
         "${i3_mod}+j" = "focus down";
@@ -165,7 +155,8 @@ in {
 
         "${i3_mod}+Shift+c" = "reload";
         "${i3_mod}+Shift+r" = "restart";
-        "${i3_mod}+Shift+e" = "exec i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes' 'i3-msg exit'";
+        "${i3_mod}+Shift+e" =
+          "exec i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes' 'i3-msg exit'";
 
         "${i3_mod}+r" = "mode resize";
       };

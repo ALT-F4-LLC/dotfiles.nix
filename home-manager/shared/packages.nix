@@ -1,7 +1,6 @@
-{ extras, pkgs, ... }:
+{ pkgs, ... }:
 
-with pkgs;
-[
+with pkgs; [
   # programs
   ansible
   awscli2
@@ -22,6 +21,7 @@ with pkgs;
   nodejs-16_x
   poetry
   postman
+  pulumi-bin
   python3Full
   ripgrep
   rustc
@@ -45,4 +45,4 @@ with pkgs;
   sumneko-lua-language-server
   terraform-ls
   customVim.jsonnet-language-server
-] ++ extras
+]

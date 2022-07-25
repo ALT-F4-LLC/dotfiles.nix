@@ -1,11 +1,12 @@
-{ config, lib, pkgs, ... }:
-{
+{ config, lib, pkgs, ... }: {
   #---------------------------------------------------------------------
   # home
   #---------------------------------------------------------------------
 
   home.file.".config/k9s/skin.yml".source = ./.config/k9s/skin.yml;
   home.file.".gitconfig".source = ./gitconfig;
+
+  home.packages = (import ./packages.nix) { inherit pkgs; };
 
   home.sessionVariables = {
     EDITOR = "nvim";
