@@ -11,10 +11,10 @@
     extraHosts = ''
       192.168.1.32 cluster-endpoint
     '';
-    hostName = "erikreinert-nixos";
+    hostName = "erikreinert-personal";
   };
 
-  nixpkgs.overlays = [ (import ../home-manager/shared/overlays.nix) ];
+  nixpkgs.overlays = [ (import ../home-manager/overlays.nix) ];
 
   services.xserver.displayManager.autoLogin.user = "erikreinert";
 

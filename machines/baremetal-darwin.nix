@@ -20,7 +20,7 @@
   nixpkgs = {
     config.allowUnfree = true;
 
-    overlays = [ (import ../home-manager/shared/overlays.nix) ];
+    overlays = [ (import ../home-manager/overlays.nix) ];
   };
 
   programs.zsh.enable = true;

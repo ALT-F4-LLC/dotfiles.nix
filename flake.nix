@@ -11,7 +11,7 @@
   outputs = { self, darwin, home-manager, nixpkgs, neovim-nightly }:
     let overlays = [ neovim-nightly.overlay ];
     in {
-      darwinConfigurations."erikreinert-macbookpro" = darwin.lib.darwinSystem {
+      darwinConfigurations."darwin-personal" = darwin.lib.darwinSystem {
         modules = [
           { nixpkgs.overlays = overlays; }
 
@@ -22,14 +22,14 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users."erikreinert" =
-              import ./home-manager/erikreinert/darwin.nix;
+              import ./home-manager/darwin.nix;
           }
         ];
 
         system = "x86_64-darwin";
       };
 
-      darwinConfigurations."ereinert-work" = darwin.lib.darwinSystem {
+      darwinConfigurations."darwin-work" = darwin.lib.darwinSystem {
         modules = [
           { nixpkgs.overlays = overlays; }
 
@@ -40,14 +40,14 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users."ereinert" =
-              import ./home-manager/ereinert/darwin.nix;
+              import ./home-manager/darwin.nix;
           }
         ];
 
         system = "x86_64-darwin";
       };
 
-      nixosConfigurations."erikreinert-nixos" = nixpkgs.lib.nixosSystem {
+      nixosConfigurations."nixos-personal" = nixpkgs.lib.nixosSystem {
         modules = [
           { nixpkgs.overlays = overlays; }
 
@@ -60,7 +60,27 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users."erikreinert" =
-              import ./home-manager/erikreinert/nixos.nix;
+              import ./home-manager/nixos.nix;
+          }
+        ];
+
+        system = "x86_64-linux";
+      };
+
+      nixosConfigurations."nixos-work" = nixpkgs.lib.nixosSystem {
+        modules = [
+          { nixpkgs.overlays = overlays; }
+
+          ./hardware/vmware-intel.nix
+          ./machines/vmware-intel.nix
+          ./nixos/ereinert.nix
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users."ereinert" =
+              import ./home-manager/nixos.nix;
           }
         ];
 

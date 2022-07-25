@@ -2,13 +2,13 @@
 
 let i3_mod = "Mod4";
 in {
-  imports = [ ../shared/home-manager.nix ];
+  imports = [ ./home-manager.nix ];
 
   #---------------------------------------------------------------------
   # home
   #---------------------------------------------------------------------
 
-  home.file.".background-image".source = ../shared/background-image;
+  home.file.".background-image".source = ./background-image;
 
   #---------------------------------------------------------------------
   # programs
