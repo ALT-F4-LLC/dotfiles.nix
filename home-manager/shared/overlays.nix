@@ -1,7 +1,12 @@
 self: super:
 
 let
-  tabnineVersion = "4.4.90";
+  tabninePlatform = if (builtins.hasAttr super.stdenv.hostPlatform.system
+    tabnineSupportedPlatforms) then
+    builtins.getAttr (super.stdenv.hostPlatform.system)
+    tabnineSupportedPlatforms
+  else
+    throw "Not supported on ${super.stdenv.hostPlatform.system}";
   tabnineSupportedPlatforms = {
     "x86_64-linux" = {
       name = "x86_64-unknown-linux-musl";
@@ -9,15 +14,10 @@ let
     };
     "x86_64-darwin" = {
       name = "x86_64-apple-darwin";
-      sha256 = "";
+      sha256 = "sha256-rLt7l+WmUTuKkkRg6pDEPinGatBmecDNg+IMjubniB4=";
     };
   };
-  tabninePlatform = if (builtins.hasAttr super.stdenv.hostPlatform.system
-    tabnineSupportedPlatforms) then
-    builtins.getAttr (super.stdenv.hostPlatform.system)
-    tabnineSupportedPlatforms
-  else
-    throw "Not supported on ${super.stdenv.hostPlatform.system}";
+  tabnineVersion = "4.4.90";
 in {
   customTmux = with self; {
     tokyonight = pkgs.tmuxPlugins.mkTmuxPlugin rec {
