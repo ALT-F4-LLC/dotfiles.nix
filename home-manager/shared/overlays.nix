@@ -43,8 +43,8 @@ in {
       src = fetchFromGitHub {
         owner = "tzachar";
         repo = "cmp-tabnine";
-        rev = "a5081776185e3c7f406e7fc3dd5f0a0ae0288e59";
-        sha256 = "sha256-4pbwy+fEIaRrEvfie7LphD5oY4EVQaPZKRb5p9vujGk=";
+        rev = "bfc45c962a4e8da957e9972d4f4ddeda92580db0";
+        sha256 = "sha256-M1YVigvvOmpt9+TbsCm/+hQ3r9YPQDW5ECM/qprWnyI=";
       };
     });
 

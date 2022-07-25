@@ -29,6 +29,24 @@
         system = "x86_64-darwin";
       };
 
+      darwinConfigurations."ereinert-work" = darwin.lib.darwinSystem {
+        modules = [
+          { nixpkgs.overlays = overlays; }
+
+          ./machines/baremetal-darwin.nix
+
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users."ereinert" =
+              import ./home-manager/ereinert/darwin.nix;
+          }
+        ];
+
+        system = "x86_64-darwin";
+      };
+
       nixosConfigurations."erikreinert-nixos" = nixpkgs.lib.nixosSystem {
         modules = [
           { nixpkgs.overlays = overlays; }

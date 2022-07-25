@@ -173,8 +173,6 @@
     plugins = with pkgs; [ customTmux.tokyonight ];
   };
 
-  programs.vscode.enable = true;
-
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
