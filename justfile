@@ -1,11 +1,11 @@
 clean:
   rm -f ./result
 
-darwin subcommand profile: && clean
-  darwin-rebuild {{ subcommand }} --flake ".#{{profile}}"
+darwin command profile: && clean
+  darwin-rebuild {{ command }} --flake ".#darwin-{{profile}}"
 
-nixos subcommand profile: && clean
-  sudo nixos-rebuild {{ subcommand }} --flake ".#{{profile}}"
+nixos command profile: && clean
+  sudo nixos-rebuild {{ command }} --flake ".#nixos-{{profile}}"
 
 update:
   nix flake update
