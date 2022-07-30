@@ -11,7 +11,6 @@ update:
   nix flake update
 
 upkeep:
-  nix store verify
-  nix store repair
-  nix store optimise
-  nix store gc
+  sudo nix-store --verify --repair
+  sudo nix-store --optimise
+  sudo nix-store --gc
