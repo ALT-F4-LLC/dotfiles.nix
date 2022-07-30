@@ -21,8 +21,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users."erikreinert" =
-              import ./home-manager/darwin.nix;
+            home-manager.users."erikreinert" = import ./home-manager/darwin.nix;
           }
         ];
 
@@ -39,8 +38,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users."ereinert" =
-              import ./home-manager/darwin.nix;
+            home-manager.users."ereinert" = import ./home-manager/darwin.nix;
           }
         ];
 
@@ -59,8 +57,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users."erikreinert" =
-              import ./home-manager/nixos.nix;
+            home-manager.users."erikreinert" = import ./home-manager/nixos.nix;
           }
         ];
 
@@ -79,8 +76,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users."ereinert" =
-              import ./home-manager/nixos.nix;
+            home-manager.users."ereinert" = import ./home-manager/nixos.nix;
           }
         ];
 
