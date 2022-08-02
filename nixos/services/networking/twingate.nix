@@ -17,7 +17,7 @@ in {
     environment.systemPackages = [ twingate ]; # for the CLI
     systemd.packages = [ twingate ];
 
-    system.activationScripts.twingate = stringAfter ["etc"] ''
+    system.activationScripts.twingate = stringAfter [ "etc" ] ''
       mkdir -p '/etc/twingate'
 
       cp -r -n ${twingate}/etc/twingate/. /etc/twingate/

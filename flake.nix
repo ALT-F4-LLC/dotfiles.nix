@@ -1,30 +1,29 @@
 {
   inputs = {
+    darwin.inputs.nixpkgs.follows = "nixpkgs";
+    darwin.url = "github:lnl7/nix-darwin";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.url = "github:nix-community/home-manager";
+    neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    home-manager = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:nix-community/home-manager";
-    };
-
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, darwin, home-manager, nixpkgs, neovim-nightly }:
     let
-      mkVM = import ./lib/mkvm.nix;
-      overlays = [ inputs.neovim-nightly-overlay.overlay ];
+      darwinSystem = import ./configuration/darwin.nix;
+      nixosSystem = import ./configuration/nixos.nix;
+      overlays = [ neovim-nightly.overlay ];
     in {
-      nixosConfigurations.personal = mkVM "vm-intel" rec {
-        inherit nixpkgs home-manager overlays;
-        system = "x86_64-linux";
-        user = "erikreinert";
-      };
+      darwinConfigurations."macbookpro-personal" =
+        darwinSystem "erikreinert" { inherit darwin home-manager overlays; };
 
-      nixosConfigurations.work = mkVM "vm-intel" rec {
-        inherit nixpkgs home-manager overlays;
-        system = "x86_64-linux";
-        user = "ereinert";
-      };
+      darwinConfigurations."macbookpro-work" =
+        darwinSystem "ereinert" { inherit darwin home-manager overlays; };
+
+      nixosConfigurations."vmware-personal" =
+        nixosSystem "erikreinert" { inherit nixpkgs home-manager overlays; };
+
+      nixosConfigurations."vmware-work" =
+        nixosSystem "ereinert" { inherit nixpkgs home-manager overlays; };
     };
 }

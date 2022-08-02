@@ -10,7 +10,7 @@ local function setup_languages()
     "jsonls",
     "jsonnet_ls",
     "prismals",
-    "pylsp",
+    "pyright",
     "rust_analyzer",
     "sumneko_lua",
     "terraformls",

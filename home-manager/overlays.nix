@@ -1,6 +1,24 @@
 self: super:
 
-rec {
+let
+  tabninePlatform = if (builtins.hasAttr super.stdenv.hostPlatform.system
+    tabnineSupportedPlatforms) then
+    builtins.getAttr (super.stdenv.hostPlatform.system)
+    tabnineSupportedPlatforms
+  else
+    throw "Not supported on ${super.stdenv.hostPlatform.system}";
+  tabnineSupportedPlatforms = {
+    "x86_64-linux" = {
+      name = "x86_64-unknown-linux-musl";
+      sha256 = "sha256-BLWJDua9EjAHjXg7+WBzsnPdbfYG/xDILs7WSIfqldc=";
+    };
+    "x86_64-darwin" = {
+      name = "x86_64-apple-darwin";
+      sha256 = "sha256-rLt7l+WmUTuKkkRg6pDEPinGatBmecDNg+IMjubniB4=";
+    };
+  };
+  tabnineVersion = "4.4.90";
+in {
   customTmux = with self; {
     tokyonight = pkgs.tmuxPlugins.mkTmuxPlugin rec {
       name = "tokyo-night-tmux";
@@ -16,7 +34,7 @@ rec {
   };
 
   customVim = with self; {
-    cmp-tabnine = pkgs.vimPlugins.cmp-tabnine.overrideAttrs (oldAttrs: { 
+    cmp-tabnine = pkgs.vimPlugins.cmp-tabnine.overrideAttrs (oldAttrs: {
       buildInputs = [ customVim.tabnine ];
       postFixup = ''
         mkdir -p $target/binaries/${customVim.tabnine.version}
@@ -25,8 +43,8 @@ rec {
       src = fetchFromGitHub {
         owner = "tzachar";
         repo = "cmp-tabnine";
-        rev = "a5081776185e3c7f406e7fc3dd5f0a0ae0288e59";
-        sha256 = "sha256-4pbwy+fEIaRrEvfie7LphD5oY4EVQaPZKRb5p9vujGk=";
+        rev = "bfc45c962a4e8da957e9972d4f4ddeda92580db0";
+        sha256 = "sha256-M1YVigvvOmpt9+TbsCm/+hQ3r9YPQDW5ECM/qprWnyI=";
       };
     });
 
@@ -40,14 +58,25 @@ rec {
         sha256 = "sha256-hI8eGfHC7la52nImg6BaBxdl9oD/J9q3F3+xbsHrn30=";
       };
       vendorSha256 = "sha256-UEQogVVlTVnSRSHH2koyYaR9l50Rn3075opieK5Fu7I=";
-    }; 
+    };
 
-    tabnine = pkgs.tabnine.overrideAttrs (oldAttrs: { 
-      version = "4.4.54";
-      src = fetchurl {
-        sha256 = "sha256-nCugWm/aI505RYvhSuyAfm7/Avhv3hlhp/o+tcVCZzc=";
-        url = "https://update.tabnine.com/bundles/4.4.54/x86_64-unknown-linux-musl/TabNine.zip";
+    lsp_lines-nvim = pkgs.vimUtils.buildVimPlugin {
+      name = "lsp_lines-nvim";
+      src = pkgs.fetchFromGitHub {
+        owner = "ErichDonGubler";
+        repo = "lsp_lines.nvim";
+        rev = "3b57922d2d79762e6baedaf9d66d8ba71f822816";
+        sha256 = "sha256-1vHMs2Nej/uTancRbo5SNuovE+hxw9fR20pVVfH9UIs=";
       };
+    };
+
+    tabnine = pkgs.tabnine.overrideAttrs (oldAttrs: {
+      src = fetchurl {
+        inherit (tabninePlatform) sha256;
+        url =
+          "https://update.tabnine.com/bundles/${tabnineVersion}/${tabninePlatform.name}/TabNine.zip";
+      };
+      version = tabnineVersion;
     });
 
     vim-just = pkgs.vimUtils.buildVimPlugin {
