@@ -1,9 +1,7 @@
 { pkgs, ... }:
 
-let 
-  username = "erikreinert";
-in
-{
+let username = "erikreinert";
+in {
   fileSystems."/mnt/nfs/production" = {
     device = "192.168.3.7:/mnt/data";
     fsType = "nfs";
@@ -19,7 +17,7 @@ in
 
   nixpkgs.overlays = [ (import ../home-manager/overlays.nix) ];
 
-  services.xserver.displayManager.autoLogin.user = ${username};
+  services.xserver.displayManager.autoLogin.user = "${username}";
 
   users.users.${username} = {
     extraGroups = [ "audio" "docker" "wheel" ];

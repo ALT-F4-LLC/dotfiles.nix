@@ -9,78 +9,21 @@
   };
 
   outputs = { self, darwin, home-manager, nixpkgs, neovim-nightly }:
-    let overlays = [ neovim-nightly.overlay ];
+    let
+      darwinSystem = import ./configuration/darwin.nix;
+      nixosSystem = import ./configuration/nixos.nix;
+      overlays = [ neovim-nightly.overlay ];
     in {
-      darwinConfigurations."darwin-personal" = darwin.lib.darwinSystem {
-        modules = [
-          { nixpkgs.overlays = overlays; }
+      darwinConfigurations."macbookpro-personal" =
+        darwinSystem "erikreinert" { inherit darwin home-manager overlays; };
 
-          ./machines/baremetal-darwin.nix
+      darwinConfigurations."macbookpro-work" =
+        darwinSystem "ereinert" { inherit darwin home-manager overlays; };
 
-          home-manager.darwinModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users."erikreinert" = import ./home-manager/darwin.nix;
-          }
-        ];
+      nixosConfigurations."vmware-personal" =
+        nixosSystem "erikreinert" { inherit nixpkgs home-manager overlays; };
 
-        system = "x86_64-darwin";
-      };
-
-      darwinConfigurations."darwin-work" = darwin.lib.darwinSystem {
-        modules = [
-          { nixpkgs.overlays = overlays; }
-
-          ./machines/baremetal-darwin.nix
-
-          home-manager.darwinModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users."ereinert" = import ./home-manager/darwin.nix;
-          }
-        ];
-
-        system = "x86_64-darwin";
-      };
-
-      nixosConfigurations."nixos-personal" = nixpkgs.lib.nixosSystem {
-        modules = [
-          { nixpkgs.overlays = overlays; }
-
-          ./hardware/vmware-intel.nix
-          ./machines/vmware-intel.nix
-          ./nixos/erikreinert.nix
-
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users."erikreinert" = import ./home-manager/nixos.nix;
-          }
-        ];
-
-        system = "x86_64-linux";
-      };
-
-      nixosConfigurations."nixos-work" = nixpkgs.lib.nixosSystem {
-        modules = [
-          { nixpkgs.overlays = overlays; }
-
-          ./hardware/vmware-intel.nix
-          ./machines/vmware-intel.nix
-          ./nixos/ereinert.nix
-
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users."ereinert" = import ./home-manager/nixos.nix;
-          }
-        ];
-
-        system = "x86_64-linux";
-      };
+      nixosConfigurations."vmware-work" =
+        nixosSystem "ereinert" { inherit nixpkgs home-manager overlays; };
     };
 }

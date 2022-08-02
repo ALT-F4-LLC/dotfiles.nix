@@ -1,14 +1,12 @@
 { pkgs, ... }:
 
-let 
-  username = "ereinert";
-in
-{
+let username = "ereinert";
+in {
   networking.hostName = "${username}-nixos";
 
   nixpkgs.overlays = [ (import ../home-manager/overlays.nix) ];
 
-  services.xserver.displayManager.autoLogin.user = ${username};
+  services.xserver.displayManager.autoLogin.user = "${username}";
 
   users.users.${username} = {
     extraGroups = [ "audio" "docker" "wheel" ];
