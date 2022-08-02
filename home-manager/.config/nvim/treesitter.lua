@@ -12,6 +12,7 @@ local function setup_treesitter()
       'jsdoc',
       'json',
       'lua',
+      'nix',
       'python',
       'rust',
       'svelte',
