@@ -3,7 +3,7 @@ local function setup_extras()
 
   require("lsp-colors").setup()
 
-  require("lsp_lines").register_lsp_virtual_lines()
+  require("lsp_lines").setup()
 
   require("lualine").setup({
     options = {

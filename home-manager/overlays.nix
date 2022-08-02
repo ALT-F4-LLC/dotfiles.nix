@@ -60,6 +60,16 @@ in {
       vendorSha256 = "sha256-UEQogVVlTVnSRSHH2koyYaR9l50Rn3075opieK5Fu7I=";
     };
 
+    lsp_lines-nvim = pkgs.vimUtils.buildVimPlugin {
+      name = "lsp_lines-nvim";
+      src = pkgs.fetchFromGitHub {
+        owner = "ErichDonGubler";
+        repo = "lsp_lines.nvim";
+        rev = "3b57922d2d79762e6baedaf9d66d8ba71f822816";
+        sha256 = "sha256-1vHMs2Nej/uTancRbo5SNuovE+hxw9fR20pVVfH9UIs=";
+      };
+    };
+
     tabnine = pkgs.tabnine.overrideAttrs (oldAttrs: {
       src = fetchurl {
         inherit (tabninePlatform) sha256;

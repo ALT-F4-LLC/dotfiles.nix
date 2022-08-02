@@ -157,7 +157,7 @@
       vimPlugins.gitsigns-nvim
       vimPlugins.indent-blankline-nvim
       vimPlugins.lsp-colors-nvim
-      vimPlugins.lsp_lines-nvim
+      customVim.lsp_lines-nvim
       vimPlugins.lualine-nvim
       vimPlugins.nerdcommenter
       vimPlugins.nvim-treesitter-context

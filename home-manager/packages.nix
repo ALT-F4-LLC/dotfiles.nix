@@ -30,19 +30,19 @@ with pkgs; [
   yarn
 
   # language servers
+  customVim.jsonnet-language-server
   elixir_ls
   gopls
   nodePackages."@prisma/language-server"
   nodePackages."bash-language-server"
   nodePackages."dockerfile-language-server-nodejs"
   nodePackages."graphql-language-service-cli"
+  nodePackages."pyright"
   nodePackages."typescript"
   nodePackages."typescript-language-server"
   nodePackages."vscode-langservers-extracted"
   nodePackages."yaml-language-server"
-  python3Packages."python-lsp-server"
   rust-analyzer
   sumneko-lua-language-server
   terraform-ls
-  customVim.jsonnet-language-server
 ]
