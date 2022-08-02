@@ -1,5 +1,8 @@
 { pkgs, ... }:
 
+let 
+  username = "erikreinert";
+in
 {
   fileSystems."/mnt/nfs/production" = {
     device = "192.168.3.7:/mnt/data";
@@ -11,20 +14,20 @@
     extraHosts = ''
       192.168.1.32 cluster-endpoint
     '';
-    hostName = "erikreinert-personal";
+    hostName = "${username}-nixos";
   };
 
   nixpkgs.overlays = [ (import ../home-manager/overlays.nix) ];
 
-  services.xserver.displayManager.autoLogin.user = "erikreinert";
+  services.xserver.displayManager.autoLogin.user = ${username};
 
-  users.users.erikreinert = {
+  users.users.${username} = {
     extraGroups = [ "audio" "docker" "wheel" ];
     hashedPassword = "";
-    home = "/home/erikreinert";
+    home = "/home/${username}";
     isNormalUser = true;
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJs7Z5a/QPZPaly3N79Ns4qL73k9XMACmqH8H03gHMXf Erik-Reinert-iPad"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJs7Z5a/QPZPaly3N79Ns4qL73k9XMACmqH8H03gHMXf" # iPad
     ];
     shell = pkgs.zsh;
   };
