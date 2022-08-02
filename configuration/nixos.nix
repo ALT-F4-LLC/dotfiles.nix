@@ -13,7 +13,7 @@ nixpkgs.lib.nixosSystem {
     {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
-      home-manager.users."${username}" = import ./home-manager/nixos.nix;
+      home-manager.users."${username}" = import ../home-manager/nixos.nix;
     }
   ];
 
