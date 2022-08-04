@@ -10,10 +10,12 @@
       keep-derivations = true
       warn-dirty = false
     '';
+
     gc = {
       automatic = true;
       options = "--delete-older-than 30d";
     };
+
     package = pkgs.nixUnstable;
   };
 

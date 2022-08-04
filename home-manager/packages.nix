@@ -8,6 +8,7 @@ with pkgs; [
   cargo
   dogdns
   doppler
+  fd
   gcc
   httpie
   jetbrains.datagrip
