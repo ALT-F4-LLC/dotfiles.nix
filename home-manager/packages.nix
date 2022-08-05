@@ -10,6 +10,7 @@ with pkgs; [
   doppler
   fd
   gcc
+  gnumake
   httpie
   jetbrains.datagrip
   jq
