@@ -10,20 +10,19 @@
 
   outputs = { self, darwin, home-manager, nixpkgs, neovim-nightly }:
     let
-      darwinSystem = import ./configuration/darwin.nix;
-      nixosSystem = import ./configuration/nixos.nix;
       overlays = [ neovim-nightly.overlay ];
+      configDarwin = import ./configuration/darwin.nix;
+      configNixos = import ./configuration/nixos.nix;
+      configParams = { inherit darwin home-manager overlays; };
     in {
-      darwinConfigurations."macbookpro-personal" =
-        darwinSystem "erikreinert" { inherit darwin home-manager overlays; };
+      darwinConfigurations = {
+        macbookpro-personal = configDarwin "erikreinert" configParams;
+        macbookpro-work = configDarwin "ereinert" configParams;
+      };
 
-      darwinConfigurations."macbookpro-work" =
-        darwinSystem "ereinert" { inherit darwin home-manager overlays; };
-
-      nixosConfigurations."vmware-personal" =
-        nixosSystem "erikreinert" { inherit nixpkgs home-manager overlays; };
-
-      nixosConfigurations."vmware-work" =
-        nixosSystem "ereinert" { inherit nixpkgs home-manager overlays; };
+      nixosConfigurations = {
+        vmware-personal = configNixos "erikreinert" configParams;
+        vmware-work = configNixos "ereinert" configParams;
+      };
     };
 }
