@@ -13,16 +13,23 @@
       overlays = [ neovim-nightly.overlay ];
       configDarwin = import ./configuration/darwin.nix;
       configNixos = import ./configuration/nixos.nix;
-      configParams = { inherit darwin home-manager overlays; };
     in {
       darwinConfigurations = {
-        macbookpro-personal = configDarwin "erikreinert" configParams;
-        macbookpro-work = configDarwin "ereinert" configParams;
+        macbookpro-personal = configDarwin "erikreinert" {
+          inherit darwin home-manager overlays;
+        };
+        macbookpro-work = configDarwin "ereinert" {
+          inherit darwin home-manager overlays;
+        };
       };
 
       nixosConfigurations = {
-        vmware-personal = configNixos "erikreinert" configParams;
-        vmware-work = configNixos "ereinert" configParams;
+        vmware-personal = configNixos "erikreinert" {
+          inherit nixpkgs home-manager overlays;
+        };
+        vmware-work = configNixos "ereinert" {
+          inherit nixpkgs home-manager overlays;
+        };
       };
     };
 }
