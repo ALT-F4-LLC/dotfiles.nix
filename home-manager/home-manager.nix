@@ -194,6 +194,7 @@
       ssh = "TERM='xterm-256color' ssh";
       update = "fetch && rebase";
       woof = "k9s";
+      wt = "git worktree";
     };
 
     plugins = [{
