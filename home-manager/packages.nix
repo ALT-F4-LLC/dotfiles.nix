@@ -29,6 +29,7 @@ with pkgs; [
   rustc
   rustfmt
   terraform
+  virtualenv
   yarn
 
   # language servers
