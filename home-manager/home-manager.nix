@@ -16,7 +16,7 @@
     PULUMI_K8S_SUPPRESS_HELM_HOOK_WARNINGS = "true";
   };
 
-  home.stateVersion = "21.11";
+  home.stateVersion = "22.05";
 
   #---------------------------------------------------------------------
   # programs

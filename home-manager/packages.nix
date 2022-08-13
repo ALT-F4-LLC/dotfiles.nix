@@ -21,6 +21,7 @@ with pkgs; [
   kn
   kubectl
   lazydocker
+  niv
   nodejs-16_x
   poetry
   postman

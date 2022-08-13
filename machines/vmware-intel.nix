@@ -63,7 +63,7 @@
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 30d";
+      options = "--delete-older-than 7d";
     };
     package = pkgs.nixUnstable;
     settings = { auto-optimise-store = true; };
@@ -118,7 +118,7 @@
 
   sound.enable = true;
 
-  system.stateVersion = "21.11";
+  system.stateVersion = "22.05";
 
   time.timeZone = "America/Los_Angeles";
 
