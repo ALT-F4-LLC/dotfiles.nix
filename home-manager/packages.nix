@@ -8,6 +8,7 @@ with pkgs; [
   cargo
   dogdns
   doppler
+  earthly
   fd
   gcc
   gnumake
