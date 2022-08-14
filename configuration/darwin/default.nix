@@ -5,13 +5,13 @@ darwin.lib.darwinSystem {
   modules = [
     { nixpkgs.overlays = overlays; }
 
-    ../machines/baremetal-darwin.nix
+    ./system.nix
 
     home-manager.darwinModules.home-manager
     {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
-      home-manager.users."${username}" = import ../home-manager/darwin.nix;
+      home-manager.users."${username}" = import ../../home-manager/darwin.nix;
     }
   ];
 

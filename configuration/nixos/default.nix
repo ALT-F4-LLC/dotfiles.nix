@@ -5,15 +5,15 @@ nixpkgs.lib.nixosSystem {
   modules = [
     { nixpkgs.overlays = overlays; }
 
-    ../hardware/vmware-intel.nix
-    ../machines/vmware-intel.nix
+    ./hardware-vmware.nix
+    ./system.nix
     ../nix/${username}.nix
 
     home-manager.nixosModules.home-manager
     {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
-      home-manager.users."${username}" = import ../home-manager/nixos.nix;
+      home-manager.users."${username}" = import ../../home-manager/nixos.nix;
     }
   ];
 
