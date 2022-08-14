@@ -24,8 +24,6 @@
       nixosConfigurations = {
         vmware-personal =
           configNixos "erikreinert" { inherit nixpkgs home-manager overlays; };
-        vmware-work =
-          configNixos "ereinert" { inherit nixpkgs home-manager overlays; };
       };
     };
 }

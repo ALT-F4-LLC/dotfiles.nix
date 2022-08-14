@@ -1,7 +1,7 @@
 self: super:
 
 let
-  sources = import ../nix/sources.nix;
+  sources = import ../nixos/sources.nix;
   tabninePlatform = if (builtins.hasAttr super.stdenv.hostPlatform.system
     tabnineSupportedPlatforms) then
     builtins.getAttr (super.stdenv.hostPlatform.system)

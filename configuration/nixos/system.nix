@@ -1,5 +1,5 @@
 { config, pkgs, ... }: {
-  imports = [ ../nix/services/networking/twingate.nix ];
+  imports = [ ../../nixos/services/networking/twingate.nix ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -16,6 +16,12 @@
       "auto_unmount"
       "defaults"
     ];
+  };
+
+  fileSystems."/mnt/nfs/production" = {
+    device = "192.168.3.7:/mnt/data";
+    fsType = "nfs";
+    options = [ "nfsvers=4.2" "noauto" "x-systemd.automount" ];
   };
 
   fonts = {
@@ -48,10 +54,16 @@
 
   i18n.defaultLocale = "en_US.UTF-8";
 
-  networking.useDHCP = false;
-  networking.firewall.enable = false;
-  networking.interfaces.ens33.useDHCP = true;
-  networking.networkmanager.enable = true;
+  networking = {
+    extraHosts = ''
+      192.168.1.32 cluster-endpoint
+    '';
+    firewall.enable = false;
+    hostName = "erikreinert-nixos";
+    interfaces.ens33.useDHCP = true;
+    networkmanager.enable = true;
+    useDHCP = false;
+  };
 
   nix = {
     extraOptions = ''
@@ -71,6 +83,7 @@
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.pulseaudio = true;
+  nixpkgs.overlays = [ (import ../home-manager/overlays.nix) ];
 
   programs.dconf.enable = true;
   programs.geary.enable = true;
@@ -104,7 +117,10 @@
     };
 
     displayManager = {
-      autoLogin.enable = true;
+      autoLogin = {
+        enable = true;
+        user = "erikreinert";
+      };
       defaultSession = "none+i3";
       lightdm.enable = true;
     };
@@ -123,6 +139,17 @@
   time.timeZone = "America/Los_Angeles";
 
   users.mutableUsers = false;
+
+  users.users.erikreinert = {
+    extraGroups = [ "audio" "docker" "wheel" ];
+    hashedPassword = "";
+    home = "/home/erikreinert";
+    isNormalUser = true;
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJs7Z5a/QPZPaly3N79Ns4qL73k9XMACmqH8H03gHMXf" # iPad
+    ];
+    shell = pkgs.zsh;
+  };
 
   virtualisation = {
     docker.enable = true;
