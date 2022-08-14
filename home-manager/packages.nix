@@ -35,7 +35,6 @@ with pkgs; [
   yarn
 
   # language servers
-  customVim.jsonnet-language-server
   elixir_ls
   gopls
   nodePackages."@prisma/language-server"

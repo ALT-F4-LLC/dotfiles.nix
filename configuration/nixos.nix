@@ -7,7 +7,7 @@ nixpkgs.lib.nixosSystem {
 
     ../hardware/vmware-intel.nix
     ../machines/vmware-intel.nix
-    ../nixos/${username}.nix
+    ../nix/${username}.nix
 
     home-manager.nixosModules.home-manager
     {

@@ -1,4 +1,8 @@
-{ config, lib, pkgs, ... }: {
+{ config, lib, pkgs, ... }: 
+let
+  sources = import ../nix/sources.nix;
+in
+{
   #---------------------------------------------------------------------
   # home
   #---------------------------------------------------------------------
@@ -120,9 +124,10 @@
     package = pkgs.neovim-nightly;
     plugins = with pkgs; [
       # languages
-      vimPlugins.nvim-lspconfig
-      vimPlugins.lsp_extensions-nvim
+      customVim.earthly-vim
       customVim.vim-just
+      vimPlugins.lsp_extensions-nvim
+      vimPlugins.nvim-lspconfig
       vimPlugins.vim-nix
       vimPlugins.vim-prisma
       vimPlugins.vim-terraform
@@ -131,15 +136,15 @@
       vimPlugins.nvim-treesitter
 
       # completion
-      vimPlugins.nvim-cmp
-      vimPlugins.lspkind-nvim
+      customVim.cmp-tabnine
       vimPlugins.cmp-buffer
       vimPlugins.cmp-cmdline
       vimPlugins.cmp-nvim-lsp
       vimPlugins.cmp-path
-      customVim.cmp-tabnine
       vimPlugins.cmp-treesitter
       vimPlugins.cmp-vsnip
+      vimPlugins.lspkind-nvim
+      vimPlugins.nvim-cmp
       vimPlugins.vim-vsnip
 
       # telescope
@@ -154,10 +159,10 @@
       vimPlugins.vim-floaterm
 
       # extras
+      customVim.lsp_lines-nvim
       vimPlugins.gitsigns-nvim
       vimPlugins.indent-blankline-nvim
       vimPlugins.lsp-colors-nvim
-      customVim.lsp_lines-nvim
       vimPlugins.lualine-nvim
       vimPlugins.nerdcommenter
       vimPlugins.nvim-treesitter-context
@@ -199,12 +204,7 @@
 
     plugins = [{
       name = "zsh-z";
-      src = pkgs.fetchFromGitHub {
-        owner = "agkozak";
-        repo = "zsh-z";
-        rev = "aaafebcd97424c570ee247e2aeb3da30444299cd";
-        sha256 = "sha256-9Wr4uZLk2CvINJilg4o72x0NEAl043lP30D3YnHk+ZA=";
-      };
+      src = sources.zsh-z;
     }];
 
     initExtra = ''

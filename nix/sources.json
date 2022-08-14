@@ -1,0 +1,74 @@
+{
+    "cmp-tabnine": {
+        "branch": "main",
+        "description": "TabNine plugin for hrsh7th/nvim-cmp",
+        "homepage": "",
+        "owner": "tzachar",
+        "repo": "cmp-tabnine",
+        "rev": "ab45a742c686496a923c4aaeea335349b2d7ee92",
+        "sha256": "1rv9qr8cpsiyzzjxm36wpb4d03dykm3kmb08rwarlvb579g5r76z",
+        "type": "tarball",
+        "url": "https://github.com/tzachar/cmp-tabnine/archive/ab45a742c686496a923c4aaeea335349b2d7ee92.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "earthly.vim": {
+        "branch": "main",
+        "description": "Earthfile syntax highlighting for vim",
+        "homepage": "",
+        "owner": "earthly",
+        "repo": "earthly.vim",
+        "rev": "9402908f41c5165fa69317da9fe1c47ea5f9e5dd",
+        "sha256": "1sx9grnx2hvjdbx8wj4hjqnsw79yn0cbcblga7682cdcfr8mis98",
+        "type": "tarball",
+        "url": "https://github.com/earthly/earthly.vim/archive/9402908f41c5165fa69317da9fe1c47ea5f9e5dd.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "lsp_lines.nvim": {
+        "branch": "main",
+        "description": "GitHub mirror of https://git.sr.ht/~whynothugo/lsp_lines.nvim to work around Windows issues with `packer.nvim`.",
+        "homepage": null,
+        "owner": "ErichDonGubler",
+        "repo": "lsp_lines.nvim",
+        "rev": "3b57922d2d79762e6baedaf9d66d8ba71f822816",
+        "sha256": "12shzpqmamaavg8xghvix09jzsinaa76w4bpda9zp3sycfrwrwfn",
+        "type": "tarball",
+        "url": "https://github.com/ErichDonGubler/lsp_lines.nvim/archive/3b57922d2d79762e6baedaf9d66d8ba71f822816.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "tokyo-night-tmux": {
+        "branch": "master",
+        "description": "A clean, dark Tmux theme that celebrates the lights of Downtown Tokyo at night.",
+        "homepage": "",
+        "owner": "janoamaral",
+        "repo": "tokyo-night-tmux",
+        "rev": "16469dfad86846138f594ceec780db27039c06cd",
+        "sha256": "14f02a1gspv8id571lfn29s292n6r7qdk6s4ksbsqnglm5hs180h",
+        "type": "tarball",
+        "url": "https://github.com/janoamaral/tokyo-night-tmux/archive/16469dfad86846138f594ceec780db27039c06cd.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "vim-just": {
+        "branch": "master",
+        "description": "Vim Just Syntax",
+        "homepage": null,
+        "owner": "NoahTheDuke",
+        "repo": "vim-just",
+        "rev": "312615d5b4c4aa2595d697faca5af345ba8fe102",
+        "sha256": "05c2qdnrjvxshy48m0s6msvqq47n536p8c4dvf0j28hm39hqb8gj",
+        "type": "tarball",
+        "url": "https://github.com/NoahTheDuke/vim-just/archive/312615d5b4c4aa2595d697faca5af345ba8fe102.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "zsh-z": {
+        "branch": "master",
+        "description": "Jump quickly to directories that you have visited \"frecently.\" A native Zsh port of z.sh with added features.",
+        "homepage": "",
+        "owner": "agkozak",
+        "repo": "zsh-z",
+        "rev": "aaafebcd97424c570ee247e2aeb3da30444299cd",
+        "sha256": "147rwiqn5xs0vx7pkqvl1480s7fv7f5879cq6k42pn74jawzhspm",
+        "type": "tarball",
+        "url": "https://github.com/agkozak/zsh-z/archive/aaafebcd97424c570ee247e2aeb3da30444299cd.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    }
+}

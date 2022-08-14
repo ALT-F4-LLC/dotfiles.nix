@@ -1,5 +1,5 @@
 { config, pkgs, ... }: {
-  imports = [ ../nixos/services/networking/twingate.nix ];
+  imports = [ ../nix/services/networking/twingate.nix ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.loader.efi.canTouchEfiVariables = true;

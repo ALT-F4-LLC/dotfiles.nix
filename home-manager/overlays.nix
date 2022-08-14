@@ -1,6 +1,7 @@
 self: super:
 
 let
+  sources = import ../nix/sources.nix;
   tabninePlatform = if (builtins.hasAttr super.stdenv.hostPlatform.system
     tabnineSupportedPlatforms) then
     builtins.getAttr (super.stdenv.hostPlatform.system)
@@ -8,28 +9,23 @@ let
   else
     throw "Not supported on ${super.stdenv.hostPlatform.system}";
   tabnineSupportedPlatforms = {
-    "x86_64-linux" = {
-      name = "x86_64-unknown-linux-musl";
-      sha256 = "sha256-BLWJDua9EjAHjXg7+WBzsnPdbfYG/xDILs7WSIfqldc=";
-    };
     "x86_64-darwin" = {
       name = "x86_64-apple-darwin";
-      sha256 = "sha256-rLt7l+WmUTuKkkRg6pDEPinGatBmecDNg+IMjubniB4=";
+      sha256 = "sha256-hmpcLcRrTouzKA+Hq45IJFn+D49lcD4UXuDC8UZar74=";
+    };
+    "x86_64-linux" = {
+      name = "x86_64-unknown-linux-musl";
+      sha256 = "";
     };
   };
-  tabnineVersion = "4.4.90";
+  tabnineVersion = "4.4.107";
 in {
   customTmux = with self; {
-    tokyonight = pkgs.tmuxPlugins.mkTmuxPlugin rec {
+    tokyonight = pkgs.tmuxPlugins.mkTmuxPlugin {
       name = "tokyo-night-tmux";
       pluginName = "tokyo-night-tmux";
       rtpFilePath = "tokyo-night.tmux";
-      src = fetchFromGitHub {
-        owner = "janoamaral";
-        repo = "tokyo-night-tmux";
-        rev = "16469dfad86846138f594ceec780db27039c06cd";
-        sha256 = "sha256-EKCgYan0WayXnkSb2fDJxookdBLW0XBKi2hf/YISwJE=";
-      };
+      src = sources.tokyo-night-tmux;
     };
   };
 
@@ -40,34 +36,17 @@ in {
         mkdir -p $target/binaries/${customVim.tabnine.version}
         ln -s ${customVim.tabnine}/bin/ $target/binaries/${customVim.tabnine.version}/${customVim.tabnine.passthru.platform}
       '';
-      src = fetchFromGitHub {
-        owner = "tzachar";
-        repo = "cmp-tabnine";
-        rev = "bfc45c962a4e8da957e9972d4f4ddeda92580db0";
-        sha256 = "sha256-M1YVigvvOmpt9+TbsCm/+hQ3r9YPQDW5ECM/qprWnyI=";
-      };
+      src = sources.cmp-tabnine;
     });
 
-    jsonnet-language-server = buildGo117Module rec {
-      pname = "jsonnet-language-server";
-      version = "0.7.2";
-      src = fetchFromGitHub {
-        owner = "grafana";
-        repo = pname;
-        rev = "v${version}";
-        sha256 = "sha256-hI8eGfHC7la52nImg6BaBxdl9oD/J9q3F3+xbsHrn30=";
-      };
-      vendorSha256 = "sha256-UEQogVVlTVnSRSHH2koyYaR9l50Rn3075opieK5Fu7I=";
+    earthly-vim = pkgs.vimUtils.buildVimPlugin {
+      name = "earthly-vim";
+      src = sources."earthly.vim";
     };
 
     lsp_lines-nvim = pkgs.vimUtils.buildVimPlugin {
       name = "lsp_lines-nvim";
-      src = pkgs.fetchFromGitHub {
-        owner = "ErichDonGubler";
-        repo = "lsp_lines.nvim";
-        rev = "3b57922d2d79762e6baedaf9d66d8ba71f822816";
-        sha256 = "sha256-1vHMs2Nej/uTancRbo5SNuovE+hxw9fR20pVVfH9UIs=";
-      };
+      src = sources."lsp_lines.nvim";
     };
 
     tabnine = pkgs.tabnine.overrideAttrs (oldAttrs: {
@@ -81,12 +60,7 @@ in {
 
     vim-just = pkgs.vimUtils.buildVimPlugin {
       name = "vim-just";
-      src = pkgs.fetchFromGitHub {
-        owner = "NoahTheDuke";
-        repo = "vim-just";
-        rev = "312615d5b4c4aa2595d697faca5af345ba8fe102";
-        sha256 = "sha256-8qGFYRoVIiGB240wdM0o9hCMt65Gg4qIh7pvmW3DghU=";
-      };
+      src = sources.vim-just;
     };
   };
 }
