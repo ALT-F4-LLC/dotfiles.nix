@@ -83,7 +83,7 @@
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.pulseaudio = true;
-  nixpkgs.overlays = [ (import ../home-manager/overlays.nix) ];
+  nixpkgs.overlays = [ (import ../../home-manager/overlays.nix) ];
 
   programs.dconf.enable = true;
   programs.geary.enable = true;

@@ -15,7 +15,7 @@ let
     };
     "x86_64-linux" = {
       name = "x86_64-unknown-linux-musl";
-      sha256 = "";
+      sha256 = "sha256-X69meyIQgx+9JgEZxVVTWoLu0yHm1UUgSY/EPc1vKeM=";
     };
   };
   tabnineVersion = "4.4.107";
