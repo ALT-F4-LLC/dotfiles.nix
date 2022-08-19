@@ -5,7 +5,6 @@ in {
   # home
   #---------------------------------------------------------------------
 
-  home.file.".config/k9s/skin.yml".source = ./.config/k9s/skin.yml;
   home.file.".gitconfig".source = ./gitconfig;
 
   home.packages = (import ./packages.nix) { inherit pkgs; };
@@ -124,7 +123,6 @@ in {
       # languages
       customVim.earthly-vim
       customVim.vim-just
-      vimPlugins.lsp_extensions-nvim
       vimPlugins.nvim-lspconfig
       vimPlugins.vim-nix
       vimPlugins.vim-prisma
