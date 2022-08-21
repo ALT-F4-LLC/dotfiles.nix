@@ -5,10 +5,10 @@
         "homepage": "",
         "owner": "tzachar",
         "repo": "cmp-tabnine",
-        "rev": "ab45a742c686496a923c4aaeea335349b2d7ee92",
-        "sha256": "1rv9qr8cpsiyzzjxm36wpb4d03dykm3kmb08rwarlvb579g5r76z",
+        "rev": "14e287b5b1434cef322de9cc1ec6fda13b913f45",
+        "sha256": "1mvydmhwx240wpbvfmm8lrb2iny08sxz18zx9z8g9bvmhi4mp1ww",
         "type": "tarball",
-        "url": "https://github.com/tzachar/cmp-tabnine/archive/ab45a742c686496a923c4aaeea335349b2d7ee92.tar.gz",
+        "url": "https://github.com/tzachar/cmp-tabnine/archive/14e287b5b1434cef322de9cc1ec6fda13b913f45.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "earthly.vim": {
@@ -41,10 +41,10 @@
         "homepage": "",
         "owner": "janoamaral",
         "repo": "tokyo-night-tmux",
-        "rev": "16469dfad86846138f594ceec780db27039c06cd",
-        "sha256": "14f02a1gspv8id571lfn29s292n6r7qdk6s4ksbsqnglm5hs180h",
+        "rev": "5c9163260543be2258eef77cd4f3c626efdd93c2",
+        "sha256": "052xqkmaq6a002x1pc5nyncsy509qx1jyazn1abkcmrj1w6ss7i2",
         "type": "tarball",
-        "url": "https://github.com/janoamaral/tokyo-night-tmux/archive/16469dfad86846138f594ceec780db27039c06cd.tar.gz",
+        "url": "https://github.com/janoamaral/tokyo-night-tmux/archive/5c9163260543be2258eef77cd4f3c626efdd93c2.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "vim-just": {
