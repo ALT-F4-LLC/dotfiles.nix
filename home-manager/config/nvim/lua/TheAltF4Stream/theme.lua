@@ -9,4 +9,10 @@ local function setup_theme()
   vim.cmd[[colorscheme tokyonight]]
 end
 
-setup_theme()
+local function init()
+  setup_theme()
+end
+
+return {
+  init = init,
+}

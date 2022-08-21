@@ -70,4 +70,10 @@ local function setup_completion()
   })
 end
 
-setup_completion()
+local function init()
+  setup_completion()
+end
+
+return {
+  init = init,
+}

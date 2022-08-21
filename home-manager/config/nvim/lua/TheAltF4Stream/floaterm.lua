@@ -11,4 +11,10 @@ local function setup_floaterm()
   map('n', '<leader>tt', '<CMD>FloatermNew --autoclose=2 --height=0.9 --width=0.9 zsh<CR>', options)
 end
 
-setup_floaterm()
+local function init()
+  setup_floaterm()
+end
+
+return {
+  init = init,
+}

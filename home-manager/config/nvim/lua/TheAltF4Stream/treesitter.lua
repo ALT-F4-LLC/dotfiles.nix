@@ -39,4 +39,10 @@ local function setup_treesitter()
   }
 end
 
-setup_treesitter()
+local function init()
+  setup_treesitter()
+end
+
+return {
+  init = init,
+}

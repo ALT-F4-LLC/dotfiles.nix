@@ -29,4 +29,10 @@ local function setup_telescope()
   map('n', '<leader>lst', '<CMD>lua require("telescope.builtin").lsp_type_definitions{}<CR>', options)
 end
 
-setup_telescope()
+local function init()
+  setup_telescope()
+end
+
+return {
+  init = init,
+}
