@@ -11,14 +11,14 @@ let
   tabnineSupportedPlatforms = {
     "x86_64-darwin" = {
       name = "x86_64-apple-darwin";
-      sha256 = "sha256-hmpcLcRrTouzKA+Hq45IJFn+D49lcD4UXuDC8UZar74=";
+      sha256 = "";
     };
     "x86_64-linux" = {
       name = "x86_64-unknown-linux-musl";
-      sha256 = "sha256-X69meyIQgx+9JgEZxVVTWoLu0yHm1UUgSY/EPc1vKeM=";
+      sha256 = "sha256-eN3uW3y/jETyK+sHpvJ+PR1bfcYBEYWhy0WGGa9z57I=";
     };
   };
-  tabnineVersion = "4.4.107";
+  tabnineVersion = "4.4.118";
 in {
   customTmux = with self; {
     tokyonight = pkgs.tmuxPlugins.mkTmuxPlugin {
@@ -57,6 +57,11 @@ in {
       };
       version = tabnineVersion;
     });
+
+    thealtf4stream = pkgs.vimUtils.buildVimPlugin {
+      name = "TheAltF4Stream";
+      src = ./config/nvim;
+    };
 
     vim-just = pkgs.vimUtils.buildVimPlugin {
       name = "vim-just";

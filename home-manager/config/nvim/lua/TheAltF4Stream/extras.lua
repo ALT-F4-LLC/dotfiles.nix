@@ -17,4 +17,10 @@ local function setup_extras()
   })
 end
 
-setup_extras()
+local function init()
+  setup_extras()
+end
+
+return {
+  init = init,
+}

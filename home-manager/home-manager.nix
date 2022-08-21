@@ -5,7 +5,10 @@ in {
   # home
   #---------------------------------------------------------------------
 
-  home.file.".gitconfig".source = ./gitconfig;
+  home.file = {
+    ".gitconfig" = { source = ./gitconfig; target = ".gitconfig"; };
+    "init.lua" = { source = ./config/nvim/init.lua; target = ".config/nvim/init.lua"; };
+  };
 
   home.packages = (import ./packages.nix) { inherit pkgs; };
 
@@ -163,8 +166,10 @@ in {
       vimPlugins.nerdcommenter
       vimPlugins.nvim-treesitter-context
       vimPlugins.nvim-web-devicons
+
+      # configuration
+      customVim.thealtf4stream
     ];
-    extraConfig = (import ./.config/nvim) { inherit lib; };
   };
 
   programs.nnn.enable = true;
