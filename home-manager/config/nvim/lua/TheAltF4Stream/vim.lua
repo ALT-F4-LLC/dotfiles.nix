@@ -1,3 +1,10 @@
+local function set_augroup()
+  vim.api.nvim_command("augroup WrapInMarkdown")
+  vim.api.nvim_command("autocmd!")
+  vim.api.nvim_command("autocmd FileType markdown setlocal wrap")
+  vim.api.nvim_command("augroup END")
+end
+
 local function set_vim_g()
   vim.g.mapleader = " "
 end
@@ -51,6 +58,7 @@ local function set_keymaps()
 end
 
 local function init()
+  set_augroup()
   set_vim_g()
   set_vim_o()
   set_vim_wo()
