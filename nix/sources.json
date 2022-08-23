@@ -41,10 +41,10 @@
         "homepage": "",
         "owner": "janoamaral",
         "repo": "tokyo-night-tmux",
-        "rev": "5c9163260543be2258eef77cd4f3c626efdd93c2",
-        "sha256": "052xqkmaq6a002x1pc5nyncsy509qx1jyazn1abkcmrj1w6ss7i2",
+        "rev": "16469dfad86846138f594ceec780db27039c06cd",
+        "sha256": "14f02a1gspv8id571lfn29s292n6r7qdk6s4ksbsqnglm5hs180h",
         "type": "tarball",
-        "url": "https://github.com/janoamaral/tokyo-night-tmux/archive/5c9163260543be2258eef77cd4f3c626efdd93c2.tar.gz",
+        "url": "https://github.com/janoamaral/tokyo-night-tmux/archive/16469dfad86846138f594ceec780db27039c06cd.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "vim-just": {
