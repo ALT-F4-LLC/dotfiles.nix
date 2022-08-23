@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  home.file."Library/Preferences/k9s/skin.yml".source = ./.config/k9s/skin.yml;
+  home.file."Library/Application Support/k9s/skin.yml".source = ./config/k9s/skin.yml;
 
   imports = [ ./home-manager.nix ];
 }

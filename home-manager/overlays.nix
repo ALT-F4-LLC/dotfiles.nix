@@ -11,7 +11,7 @@ let
   tabnineSupportedPlatforms = {
     "x86_64-darwin" = {
       name = "x86_64-apple-darwin";
-      sha256 = "";
+      sha256 = "sha256-NY6+KMqpjHYeWiYQ5RtDDZm0uh3zByzsLN4l0VTisyA=";
     };
     "x86_64-linux" = {
       name = "x86_64-unknown-linux-musl";
