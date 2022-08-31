@@ -7,7 +7,6 @@ in {
 
   home.file = {
     ".gitconfig" = { source = ./gitconfig; target = ".gitconfig"; };
-    "init.lua" = { source = ./config/nvim/init.lua; target = ".config/nvim/init.lua"; };
   };
 
   home.packages = (import ./packages.nix) { inherit pkgs; };
@@ -170,6 +169,12 @@ in {
       # configuration
       customVim.thealtf4stream
     ];
+
+    extraConfig = ''
+      lua << EOF
+        require 'TheAltF4Stream'.init()
+      EOF
+    '';
   };
 
   programs.nnn.enable = true;
