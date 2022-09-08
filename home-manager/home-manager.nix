@@ -6,7 +6,10 @@ in {
   #---------------------------------------------------------------------
 
   home.file = {
-    ".gitconfig" = { source = ./gitconfig; target = ".gitconfig"; };
+    ".gitconfig" = {
+      source = ./gitconfig;
+      target = ".gitconfig";
+    };
   };
 
   home.packages = (import ./packages.nix) { inherit pkgs; };
