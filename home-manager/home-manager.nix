@@ -121,6 +121,7 @@ in {
   programs.neovim = {
     enable = true;
     package = pkgs.neovim-nightly;
+
     plugins = with pkgs; [
       # languages
       customVim.earthly-vim
@@ -157,8 +158,8 @@ in {
       vimPlugins.vim-floaterm
 
       # extras
+      customVim.gitsigns-nvim
       customVim.lsp_lines-nvim
-      vimPlugins.gitsigns-nvim
       vimPlugins.indent-blankline-nvim
       vimPlugins.lsp-colors-nvim
       vimPlugins.lualine-nvim

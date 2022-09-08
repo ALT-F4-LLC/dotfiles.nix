@@ -5,10 +5,10 @@
         "homepage": "",
         "owner": "tzachar",
         "repo": "cmp-tabnine",
-        "rev": "14e287b5b1434cef322de9cc1ec6fda13b913f45",
-        "sha256": "1mvydmhwx240wpbvfmm8lrb2iny08sxz18zx9z8g9bvmhi4mp1ww",
+        "rev": "cfd93698c1ada2c0f493e48f0df19930d6cdc218",
+        "sha256": "19xc1ypah2ql4cspbj6c3y9hhfjcx5iwjb6c34cfdqzlaynfar9s",
         "type": "tarball",
-        "url": "https://github.com/tzachar/cmp-tabnine/archive/14e287b5b1434cef322de9cc1ec6fda13b913f45.tar.gz",
+        "url": "https://github.com/tzachar/cmp-tabnine/archive/cfd93698c1ada2c0f493e48f0df19930d6cdc218.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "earthly.vim": {
@@ -21,6 +21,18 @@
         "sha256": "1sx9grnx2hvjdbx8wj4hjqnsw79yn0cbcblga7682cdcfr8mis98",
         "type": "tarball",
         "url": "https://github.com/earthly/earthly.vim/archive/9402908f41c5165fa69317da9fe1c47ea5f9e5dd.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "gitsigns.nvim": {
+        "branch": "main",
+        "description": "Git integration for buffers",
+        "homepage": "",
+        "owner": "lewis6991",
+        "repo": "gitsigns.nvim",
+        "rev": "d7e0bcbe45bd9d5d106a7b2e11dc15917d272c7a",
+        "sha256": "1h4gxyamynwygxpqfib2a7sd1xbi6sh8ixg85j6qiaqqpahr0a4k",
+        "type": "tarball",
+        "url": "https://github.com/lewis6991/gitsigns.nvim/archive/d7e0bcbe45bd9d5d106a7b2e11dc15917d272c7a.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "lsp_lines.nvim": {
@@ -41,10 +53,10 @@
         "homepage": "",
         "owner": "janoamaral",
         "repo": "tokyo-night-tmux",
-        "rev": "16469dfad86846138f594ceec780db27039c06cd",
-        "sha256": "14f02a1gspv8id571lfn29s292n6r7qdk6s4ksbsqnglm5hs180h",
+        "rev": "5c9163260543be2258eef77cd4f3c626efdd93c2",
+        "sha256": "052xqkmaq6a002x1pc5nyncsy509qx1jyazn1abkcmrj1w6ss7i2",
         "type": "tarball",
-        "url": "https://github.com/janoamaral/tokyo-night-tmux/archive/16469dfad86846138f594ceec780db27039c06cd.tar.gz",
+        "url": "https://github.com/janoamaral/tokyo-night-tmux/archive/5c9163260543be2258eef77cd4f3c626efdd93c2.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "vim-just": {

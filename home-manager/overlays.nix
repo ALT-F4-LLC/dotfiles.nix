@@ -44,6 +44,11 @@ in {
       src = sources."earthly.vim";
     };
 
+    gitsigns-nvim = pkgs.vimUtils.buildVimPluginFrom2Nix {
+      name = "gitsigns.nvim";
+      src = sources."gitsigns.nvim";
+    };
+
     lsp_lines-nvim = pkgs.vimUtils.buildVimPlugin {
       name = "lsp_lines-nvim";
       src = sources."lsp_lines.nvim";
