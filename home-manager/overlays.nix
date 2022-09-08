@@ -20,15 +20,6 @@ let
   };
   tabnineVersion = "4.4.118";
 in {
-  customTmux = with self; {
-    tokyonight = pkgs.tmuxPlugins.mkTmuxPlugin {
-      name = "tokyo-night-tmux";
-      pluginName = "tokyo-night-tmux";
-      rtpFilePath = "tokyo-night.tmux";
-      src = sources.tokyo-night-tmux;
-    };
-  };
-
   customVim = with self; {
     cmp-tabnine = pkgs.vimPlugins.cmp-tabnine.overrideAttrs (oldAttrs: {
       buildInputs = [ customVim.tabnine ];
@@ -36,7 +27,7 @@ in {
         mkdir -p $target/binaries/${customVim.tabnine.version}
         ln -s ${customVim.tabnine}/bin/ $target/binaries/${customVim.tabnine.version}/${customVim.tabnine.passthru.platform}
       '';
-      src = sources.cmp-tabnine;
+      src = sources."cmp-tabnine";
     });
 
     earthly-vim = pkgs.vimUtils.buildVimPlugin {
@@ -70,7 +61,7 @@ in {
 
     vim-just = pkgs.vimUtils.buildVimPlugin {
       name = "vim-just";
-      src = sources.vim-just;
+      src = sources."vim-just";
     };
   };
 }

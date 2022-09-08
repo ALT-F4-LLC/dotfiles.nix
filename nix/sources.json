@@ -47,18 +47,6 @@
         "url": "https://github.com/ErichDonGubler/lsp_lines.nvim/archive/3b57922d2d79762e6baedaf9d66d8ba71f822816.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "tokyo-night-tmux": {
-        "branch": "master",
-        "description": "A clean, dark Tmux theme that celebrates the lights of Downtown Tokyo at night.",
-        "homepage": "",
-        "owner": "janoamaral",
-        "repo": "tokyo-night-tmux",
-        "rev": "5c9163260543be2258eef77cd4f3c626efdd93c2",
-        "sha256": "052xqkmaq6a002x1pc5nyncsy509qx1jyazn1abkcmrj1w6ss7i2",
-        "type": "tarball",
-        "url": "https://github.com/janoamaral/tokyo-night-tmux/archive/5c9163260543be2258eef77cd4f3c626efdd93c2.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "vim-just": {
         "branch": "master",
         "description": "Vim Just Syntax",

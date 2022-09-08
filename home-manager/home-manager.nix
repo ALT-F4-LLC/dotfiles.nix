@@ -185,7 +185,7 @@ in {
 
   programs.tmux = {
     enable = true;
-    plugins = with pkgs; [ customTmux.tokyonight ];
+    plugins = with pkgs; [ tmuxPlugins.nord ];
   };
 
   programs.zsh = {
