@@ -10,9 +10,9 @@
 
   outputs = { self, darwin, home-manager, nixpkgs, neovim-nightly }:
     let
-      overlays = [ neovim-nightly.overlay ];
       configDarwin = import ./configuration/darwin;
       configNixos = import ./configuration/nixos;
+      overlays = [ neovim-nightly.overlay ];
     in {
       darwinConfigurations = {
         macbookpro-personal =
