@@ -6,24 +6,19 @@ with pkgs; [
   awscli2
   azure-cli
   cargo
-  dogdns
   doppler
   earthly
   fd
   gcc
-  gnumake
-  httpie
+  google-cloud-sdk
   jetbrains.datagrip
   jq
   just
   k9s
-  kind
-  kn
   kubectl
   lazydocker
   niv
   nodejs-16_x
-  poetry
   postman
   pulumi-bin
   python3Full
