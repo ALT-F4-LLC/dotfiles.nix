@@ -20,6 +20,13 @@ let
   };
   tabnineVersion = "4.4.118";
 in {
+  customTmux = with self; {
+    catppuccin = pkgs.tmuxPlugins.mkTmuxPlugin {
+      pluginName = "catppuccin";
+      src = sources."catppuccin-tmux";
+      version = "unstable-2022-09-14";
+    };
+  };
   customVim = with self; {
     cmp-tabnine = pkgs.vimPlugins.cmp-tabnine.overrideAttrs (oldAttrs: {
       buildInputs = [ customVim.tabnine ];

@@ -8,7 +8,7 @@ local function setup_extras()
   require("lualine").setup({
     options = {
       extensions = { "fzf", "quickfix" },
-      theme = "tokyonight"
+      theme = "catppuccin"
     }
   })
 

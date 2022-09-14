@@ -80,7 +80,21 @@ in {
     };
   };
 
-  programs.bat.enable = true;
+  programs.bat = {
+    enable = true;
+    config = {
+      theme = "catppuccin";
+    };
+    themes = {
+      catppuccin = builtins.readFile (pkgs.fetchFromGitHub {
+        owner = "catppuccin";
+        repo = "bat";
+        rev = "00bd462e8fab5f74490335dcf881ebe7784d23fa";
+        sha256 = "sha256-yzn+1IXxQaKcCK7fBdjtVohns0kbN+gcqbWVE4Bx7G8=";
+      } + "/Catppuccin-macchiato.tmTheme");
+    };
+  };
+
   programs.bottom.enable = true;
 
   programs.go = {
@@ -96,14 +110,11 @@ in {
     userName = "Erik Reinert";
 
     extraConfig = {
-      branch.autosetuprebase = "always";
       color.ui = true;
       diff.colorMoved = "zebra";
       fetch.prune = true;
       github.user = "erikreinert";
       init.defaultBranch = "main";
-      pull.rebase = true;
-      push.default = "tracking";
       rebase.autoStash = true;
     };
   };
@@ -155,7 +166,7 @@ in {
       vimPlugins.telescope-nvim
 
       # theme
-      vimPlugins.tokyonight-nvim
+      vimPlugins.catppuccin-nvim
 
       # floaterm
       vimPlugins.vim-floaterm
@@ -185,7 +196,11 @@ in {
 
   programs.tmux = {
     enable = true;
-    plugins = with pkgs; [ tmuxPlugins.nord ];
+    extraConfig = ''
+    set -g default-terminal "xterm-256color"
+    set-option -ga terminal-overrides ",xterm-256color:Tc"
+    '';
+    plugins = with pkgs; [ customTmux.catppuccin ];
   };
 
   programs.zsh = {
@@ -201,11 +216,11 @@ in {
     };
 
     shellAliases = {
-      cat = "bat --paging=never --theme='base16'";
+      cat = "bat";
       fetch = "git fetch --all --jobs=4 --progress --prune";
       ll = "n -Hde";
-      pull = "git pull --autostash --ff --no-rebase --squash --summary origin";
-      rebase = "git rebase --autostash --merge --stat";
+      pull = "git pull --autostash --jobs=4 --summary origin";
+      rebase = "git rebase --autostash --stat";
       ssh = "TERM='xterm-256color' ssh";
       update = "fetch && rebase";
       woof = "k9s";
@@ -239,6 +254,7 @@ in {
           protocol: TCP
       EOF
       }
+
       n () {
         if [ -n $NNNLVL ] && [ "$NNNLVL" -ge 1 ]; then
           echo "nnn is already running"

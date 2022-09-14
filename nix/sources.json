@@ -1,4 +1,16 @@
 {
+    "catppuccin-tmux": {
+        "branch": "main",
+        "description": "💽 Soothing pastel theme for Tmux!",
+        "homepage": "",
+        "owner": "catppuccin",
+        "repo": "tmux",
+        "rev": "97183fc51071fa9ff20da6c208c9922ec319b1df",
+        "sha256": "0jjjp8jfxwdpk2j49a740rz78plglf9xffmwpmlrrc8iyv87jb8v",
+        "type": "tarball",
+        "url": "https://github.com/catppuccin/tmux/archive/97183fc51071fa9ff20da6c208c9922ec319b1df.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "cmp-tabnine": {
         "branch": "main",
         "description": "TabNine plugin for hrsh7th/nvim-cmp",
