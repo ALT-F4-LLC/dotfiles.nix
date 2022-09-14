@@ -1,12 +1,13 @@
 local function setup_theme()
   -- Theme settings
-  vim.g.tokyonight_style = "storm"
-  vim.g.tokyonight_italic_functions = true
-  vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
-  vim.g.tokyonight_transparent = true
+  vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
 
   -- Load colorscheme
-  vim.cmd[[colorscheme tokyonight]]
+  require("catppuccin").setup({
+    transparent_background = true,
+  })
+
+  vim.cmd[[colorscheme catppuccin]]
 end
 
 local function init()

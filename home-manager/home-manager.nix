@@ -152,7 +152,7 @@ in {
       vimPlugins.telescope-nvim
 
       # theme
-      vimPlugins.tokyonight-nvim
+      vimPlugins.catppuccin-nvim
 
       # floaterm
       vimPlugins.vim-floaterm
