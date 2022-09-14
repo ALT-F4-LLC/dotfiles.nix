@@ -96,14 +96,11 @@ in {
     userName = "Erik Reinert";
 
     extraConfig = {
-      branch.autosetuprebase = "always";
       color.ui = true;
       diff.colorMoved = "zebra";
       fetch.prune = true;
       github.user = "erikreinert";
       init.defaultBranch = "main";
-      pull.rebase = true;
-      push.default = "tracking";
       rebase.autoStash = true;
     };
   };
@@ -204,8 +201,8 @@ in {
       cat = "bat --paging=never --theme='base16'";
       fetch = "git fetch --all --jobs=4 --progress --prune";
       ll = "n -Hde";
-      pull = "git pull --autostash --ff --no-rebase --squash --summary origin";
-      rebase = "git rebase --autostash --merge --stat";
+      pull = "git pull --autostash --jobs=4 --summary origin";
+      rebase = "git rebase --autostash --stat";
       ssh = "TERM='xterm-256color' ssh";
       update = "fetch && rebase";
       woof = "k9s";
