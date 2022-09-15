@@ -15,6 +15,7 @@ in {
   home.packages = (import ./packages.nix) { inherit pkgs; };
 
   home.sessionVariables = {
+    CHARM_HOST = "localhost";
     EDITOR = "nvim";
     LANG = "en_US.UTF-8";
     LC_ALL = "en_US.UTF-8";

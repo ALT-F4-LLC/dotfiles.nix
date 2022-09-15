@@ -2,14 +2,9 @@
 
 with pkgs; [
   # programs
-  ansible
-  awscli2
-  azure-cli
   cargo
   doppler
-  earthly
   fd
-  gcc
   google-cloud-sdk
   jetbrains.datagrip
   jq
