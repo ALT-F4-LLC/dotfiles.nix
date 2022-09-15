@@ -28,58 +28,6 @@ in {
   # programs
   #---------------------------------------------------------------------
 
-  programs.alacritty = {
-    enable = true;
-
-    settings = {
-      colors = {
-        primary = {
-          background = "0x24283b";
-          foreground = "0xc0caf5";
-        };
-
-        normal = {
-          black = "0x1D202F";
-          red = "0xf7768e";
-          green = "0x9ece6a";
-          yellow = "0xe0af68";
-          blue = "0x7aa2f7";
-          magenta = "0xbb9af7";
-          cyan = "0x7dcfff";
-          white = "0xa9b1d6";
-        };
-
-        bright = {
-          black = "0x414868";
-          red = "0xf7768e";
-          green = "0x9ece6a";
-          yellow = "0xe0af68";
-          blue = "0x7aa2f7";
-          magenta = "0xbb9af7";
-          cyan = "0x7dcfff";
-          white = "0xc0caf5";
-        };
-
-        indexed_colors = [
-          {
-            index = 16;
-            color = "0xff9e64";
-          }
-          {
-            index = 17;
-            color = "0xdb4b4b";
-          }
-        ];
-      };
-
-      cursor.style = "Block";
-
-      font = { size = 12; };
-
-      window = { opacity = 0.85; };
-    };
-  };
-
   programs.bat = {
     enable = true;
     config = {
@@ -117,6 +65,54 @@ in {
       init.defaultBranch = "main";
       rebase.autoStash = true;
     };
+  };
+
+  programs.kitty = {
+    enable = true;
+    settings = {
+      foreground = "#CAD3F5";
+      background = "#24273A";
+      selection_foreground = "#24273A";
+      selection_background = "#F4DBD6";
+      cursor = "#F4DBD6";
+      cursor_text_color = "#24273A";
+      url_color = "#F4DBD6";
+      active_border_color = "#B7BDF8";
+      inactive_border_color = "#6E738D";
+      bell_border_color = "#EED49F";
+      wayland_titlebar_color = "system";
+      macos_titlebar_color = "system";
+      active_tab_foreground = "#181926";
+      active_tab_background = "#C6A0F6";
+      inactive_tab_foreground = "#CAD3F5";
+      inactive_tab_background = "#1E2030";
+      tab_bar_background = "#181926";
+      mark1_foreground = "#24273A";
+      mark1_background = "#B7BDF8";
+      mark2_foreground = "#24273A";
+      mark2_background = "#C6A0F6";
+      mark3_foreground = "#24273A";
+      mark3_background = "#7DC4E4";
+      color0 = "#494D64";
+      color8 = "#5B6078";
+      color1 = "#ED8796";
+      color9 = "#ED8796";
+      color2 = "#A6DA95";
+      color10 = "#A6DA95";
+      color3 = "#EED49F";
+      color11 = "#EED49F";
+      color4 = "#8AADF4";
+      color12 = "#8AADF4";
+      color5 = "#F5BDE6";
+      color13 = "#F5BDE6";
+      color6 = "#8BD5CA";
+      color14 = "#8BD5CA";
+      color7 = "#B8C0E0";
+      color15 = "#A5ADCB";
+      background_opacity= "0.9";
+      font_size = "12.0";
+    };
+    theme = "Catppuccin-Macchiato";
   };
 
   programs.lazygit = {

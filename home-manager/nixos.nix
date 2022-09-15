@@ -102,7 +102,7 @@ in {
       };
 
       keybindings = {
-        "${i3_mod}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
+        "${i3_mod}+Return" = "exec ${pkgs.kitty}/bin/kitty";
         "${i3_mod}+Shift+q" = "kill";
 
         "${i3_mod}+d" =
