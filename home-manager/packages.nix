@@ -2,6 +2,7 @@
 
 with pkgs; [
   # programs
+  awscli2
   cargo
   doppler
   fd
