@@ -3,6 +3,7 @@
 with pkgs; [
   # programs
   awscli2
+  azure-cli
   cargo
   doppler
   fd

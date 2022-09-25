@@ -21,6 +21,7 @@ in {
     LC_ALL = "en_US.UTF-8";
     LC_CTYPE = "en_US.UTF-8";
     PULUMI_K8S_SUPPRESS_HELM_HOOK_WARNINGS = "true";
+    PULUMI_SKIP_UPDATE_CHECK = "true";
   };
 
   home.stateVersion = "22.05";
