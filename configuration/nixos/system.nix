@@ -43,6 +43,7 @@
     lxappearance
     pavucontrol
     wget
+    xclip
   ];
 
   environment.pathsToLink = [ "/libexec" "/share/zsh" ];
