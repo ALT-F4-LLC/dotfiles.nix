@@ -17,6 +17,7 @@ in {
   home.sessionVariables = {
     CHARM_HOST = "localhost";
     EDITOR = "nvim";
+    GOPATH = "$HOME/Development/language/go";
     LANG = "en_US.UTF-8";
     LC_ALL = "en_US.UTF-8";
     LC_CTYPE = "en_US.UTF-8";
@@ -49,7 +50,6 @@ in {
 
   programs.go = {
     enable = true;
-    goPath = "Development/language/go";
   };
 
   programs.git = {
