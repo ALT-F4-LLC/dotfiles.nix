@@ -17,7 +17,6 @@ in {
   home.sessionVariables = {
     CHARM_HOST = "localhost";
     EDITOR = "nvim";
-    GOPATH = "$HOME/Development/language/go";
     LANG = "en_US.UTF-8";
     LC_ALL = "en_US.UTF-8";
     LC_CTYPE = "en_US.UTF-8";
@@ -33,9 +32,7 @@ in {
 
   programs.bat = {
     enable = true;
-    config = {
-      theme = "catppuccin";
-    };
+    config = { theme = "catppuccin"; };
     themes = {
       catppuccin = builtins.readFile (pkgs.fetchFromGitHub {
         owner = "catppuccin";
@@ -50,6 +47,7 @@ in {
 
   programs.go = {
     enable = true;
+    goPath = "Development/language/go";
   };
 
   programs.git = {
@@ -111,7 +109,7 @@ in {
       color14 = "#8BD5CA";
       color7 = "#B8C0E0";
       color15 = "#A5ADCB";
-      background_opacity= "0.9";
+      background_opacity = "0.9";
       font_size = "12.0";
     };
     theme = "Catppuccin-Macchiato";
@@ -195,8 +193,8 @@ in {
   programs.tmux = {
     enable = true;
     extraConfig = ''
-    set -g default-terminal "xterm-256color"
-    set-option -ga terminal-overrides ",xterm-256color:Tc"
+      set -g default-terminal "xterm-256color"
+      set-option -ga terminal-overrides ",xterm-256color:Tc"
     '';
     plugins = with pkgs; [ customTmux.catppuccin ];
   };

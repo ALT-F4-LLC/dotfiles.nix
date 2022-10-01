@@ -3,7 +3,10 @@ username:
 
 darwin.lib.darwinSystem {
   modules = [
-    { nixpkgs.overlays = overlays; }
+    {
+      nixpkgs.overlays = overlays;
+      users.users.${username}.home = "/Users/${username}";
+    }
 
     ./system.nix
 
