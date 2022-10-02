@@ -68,6 +68,7 @@ local function setup_languages()
     "html",
     "jsonls",
     "jsonnet_ls",
+    "nil_ls",
     "prismals",
     "pyright",
     "rust_analyzer",

@@ -29,6 +29,7 @@ with pkgs; [
   # language servers
   elixir_ls
   gopls
+  nil
   nodePackages."@prisma/language-server"
   nodePackages."bash-language-server"
   nodePackages."dockerfile-language-server-nodejs"
