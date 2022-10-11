@@ -5,10 +5,10 @@
         "homepage": "",
         "owner": "catppuccin",
         "repo": "tmux",
-        "rev": "8820440bb70e6b1a79fc372edad1c28e2a670528",
-        "sha256": "1g0rh53dhiis70mawmvyvrsqny8x1asgdf18nlrlvq81k7paydxm",
+        "rev": "bd1ea4b86a159faddbb049e6be8082217348234d",
+        "sha256": "1gi8rd8vfig8mnyixjzyrmysm4w32qlgrwv69x422mkjq969mzri",
         "type": "tarball",
-        "url": "https://github.com/catppuccin/tmux/archive/8820440bb70e6b1a79fc372edad1c28e2a670528.tar.gz",
+        "url": "https://github.com/catppuccin/tmux/archive/bd1ea4b86a159faddbb049e6be8082217348234d.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "cmp-tabnine": {
@@ -17,10 +17,10 @@
         "homepage": "",
         "owner": "tzachar",
         "repo": "cmp-tabnine",
-        "rev": "01653a5934b242e8ca517e079419c3b151ce2b00",
-        "sha256": "03nvx8rmdi23iiga5c3fnyaxl46jhv0hkqkcvcx10jjk34v1x9b0",
+        "rev": "5a6d58badbfed69ee285983bf2cf5a17d957483a",
+        "sha256": "1dsbq0wcqf8c7y5ld74gqxbf2pdh28km7wdk37xvlqcvfk1kzmxs",
         "type": "tarball",
-        "url": "https://github.com/tzachar/cmp-tabnine/archive/01653a5934b242e8ca517e079419c3b151ce2b00.tar.gz",
+        "url": "https://github.com/tzachar/cmp-tabnine/archive/5a6d58badbfed69ee285983bf2cf5a17d957483a.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "earthly.vim": {
@@ -41,10 +41,10 @@
         "homepage": "",
         "owner": "lewis6991",
         "repo": "gitsigns.nvim",
-        "rev": "f98c85e7c3d65a51f45863a34feb4849c82f240f",
-        "sha256": "0ljzja43jdkv77nh4253x3gwk2hjx968yk7b5ag4y1mvyp1540qn",
+        "rev": "9d18976c10413e52d76d41a771f042704786ce2e",
+        "sha256": "1fzmg74i9q6xal0k1s1ikgbc37s0q1z79af5vhlfll5f2c5dkpsk",
         "type": "tarball",
-        "url": "https://github.com/lewis6991/gitsigns.nvim/archive/f98c85e7c3d65a51f45863a34feb4849c82f240f.tar.gz",
+        "url": "https://github.com/lewis6991/gitsigns.nvim/archive/9d18976c10413e52d76d41a771f042704786ce2e.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "lsp_lines.nvim": {
