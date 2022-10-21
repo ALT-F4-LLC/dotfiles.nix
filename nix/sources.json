@@ -5,10 +5,10 @@
         "homepage": "",
         "owner": "catppuccin",
         "repo": "tmux",
-        "rev": "a26f31a7dc977e1b1e37706b847d932d06031c79",
-        "sha256": "1m9p029kmk3gjwzmdwrhlid4j6rc6346q1nig7ajvdvlnn4kvs0b",
+        "rev": "d9e5c6d1e3b2c6f6f344f7663691c4c8e7ebeb4c",
+        "sha256": "0658dbzxsj7jzmmf0kqb2fq29mf37fca25vn789jskg2d26dhjck",
         "type": "tarball",
-        "url": "https://github.com/catppuccin/tmux/archive/a26f31a7dc977e1b1e37706b847d932d06031c79.tar.gz",
+        "url": "https://github.com/catppuccin/tmux/archive/d9e5c6d1e3b2c6f6f344f7663691c4c8e7ebeb4c.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "cmp-tabnine": {
@@ -41,10 +41,10 @@
         "homepage": "",
         "owner": "lewis6991",
         "repo": "gitsigns.nvim",
-        "rev": "2c6f96dda47e55fa07052ce2e2141e8367cbaaf2",
-        "sha256": "08pzc6nj7vif3c6m0q1nqacwfgq2pp5rnad5y7dmfrxwcj54gbni",
+        "rev": "56e01cb0ea52635854e97bd2dd2587c8ebfab978",
+        "sha256": "0rdfnw2pr0hjxlw7bfjfvbh7lll4ba8ymp5nxq58d0jq01lzsxkr",
         "type": "tarball",
-        "url": "https://github.com/lewis6991/gitsigns.nvim/archive/2c6f96dda47e55fa07052ce2e2141e8367cbaaf2.tar.gz",
+        "url": "https://github.com/lewis6991/gitsigns.nvim/archive/56e01cb0ea52635854e97bd2dd2587c8ebfab978.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "lsp_lines.nvim": {
