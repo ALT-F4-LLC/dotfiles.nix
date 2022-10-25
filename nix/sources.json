@@ -41,10 +41,10 @@
         "homepage": "",
         "owner": "lewis6991",
         "repo": "gitsigns.nvim",
-        "rev": "56e01cb0ea52635854e97bd2dd2587c8ebfab978",
-        "sha256": "0rdfnw2pr0hjxlw7bfjfvbh7lll4ba8ymp5nxq58d0jq01lzsxkr",
+        "rev": "851cd32caaea84f303c4fdf51d72dfa5fcd795bb",
+        "sha256": "0d5fbxljh2mqsjjmzbk4hgwgq9cyl7vrqplsqvxzrhs58c41f9m5",
         "type": "tarball",
-        "url": "https://github.com/lewis6991/gitsigns.nvim/archive/56e01cb0ea52635854e97bd2dd2587c8ebfab978.tar.gz",
+        "url": "https://github.com/lewis6991/gitsigns.nvim/archive/851cd32caaea84f303c4fdf51d72dfa5fcd795bb.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "lsp_lines.nvim": {
