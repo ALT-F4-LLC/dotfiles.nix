@@ -41,10 +41,10 @@
         "homepage": "",
         "owner": "lewis6991",
         "repo": "gitsigns.nvim",
-        "rev": "851cd32caaea84f303c4fdf51d72dfa5fcd795bb",
-        "sha256": "0d5fbxljh2mqsjjmzbk4hgwgq9cyl7vrqplsqvxzrhs58c41f9m5",
+        "rev": "6321c884b1a462918b1a7c7c016bcc2f0944832c",
+        "sha256": "0s2frxp25pf7fig25g5p99pq4hbhhhqlm7727h3lcwnjy60jfb59",
         "type": "tarball",
-        "url": "https://github.com/lewis6991/gitsigns.nvim/archive/851cd32caaea84f303c4fdf51d72dfa5fcd795bb.tar.gz",
+        "url": "https://github.com/lewis6991/gitsigns.nvim/archive/6321c884b1a462918b1a7c7c016bcc2f0944832c.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "lsp_lines.nvim": {
@@ -77,10 +77,10 @@
         "homepage": "",
         "owner": "agkozak",
         "repo": "zsh-z",
-        "rev": "aaafebcd97424c570ee247e2aeb3da30444299cd",
-        "sha256": "147rwiqn5xs0vx7pkqvl1480s7fv7f5879cq6k42pn74jawzhspm",
+        "rev": "82f5088641862d0e83561bb251fb60808791c76a",
+        "sha256": "0jp8a58bshq3v6nsf31zdv0g049g3mrg6hjjsaz6k3fwyk6mh4z8",
         "type": "tarball",
-        "url": "https://github.com/agkozak/zsh-z/archive/aaafebcd97424c570ee247e2aeb3da30444299cd.tar.gz",
+        "url": "https://github.com/agkozak/zsh-z/archive/82f5088641862d0e83561bb251fb60808791c76a.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
