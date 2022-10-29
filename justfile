@@ -1,11 +1,12 @@
 clean:
-  rm -f ./result
+    rm -f ./result
 
 macbookpro command profile: && clean
-  darwin-rebuild {{ command }} --flake ".#macbookpro-{{profile}}"
+    darwin-rebuild {{ command }} --flake ".#macbookpro-{{profile}}"
 
 vmware command: && clean
-  sudo nixos-rebuild {{ command }} --flake ".#vmware-personal"
+    sudo nixos-rebuild {{ command }} --flake ".#vmware-personal"
 
 update:
-  nix flake update
+    nix flake update
+    niv update
