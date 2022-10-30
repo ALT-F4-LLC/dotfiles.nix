@@ -15,7 +15,7 @@ with pkgs; [
   kubectl
   lazydocker
   niv
-  nodejs-16_x
+  nodejs-18_x
   postman
   pulumi-bin
   python3Full
