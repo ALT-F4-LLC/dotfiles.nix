@@ -7,6 +7,7 @@ with pkgs; [
   cargo
   doppler
   fd
+  gcc
   google-cloud-sdk
   jetbrains.datagrip
   jq

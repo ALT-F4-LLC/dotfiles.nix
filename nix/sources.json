@@ -17,10 +17,10 @@
         "homepage": "",
         "owner": "tzachar",
         "repo": "cmp-tabnine",
-        "rev": "5a6d58badbfed69ee285983bf2cf5a17d957483a",
-        "sha256": "1dsbq0wcqf8c7y5ld74gqxbf2pdh28km7wdk37xvlqcvfk1kzmxs",
+        "rev": "0f56fc14792602da05ac17517c755bee9645a9a7",
+        "sha256": "09c3jwrraq1m9yyiwsr1rh3a7ixilmx2v85nd1haaclb6dfd5x10",
         "type": "tarball",
-        "url": "https://github.com/tzachar/cmp-tabnine/archive/5a6d58badbfed69ee285983bf2cf5a17d957483a.tar.gz",
+        "url": "https://github.com/tzachar/cmp-tabnine/archive/0f56fc14792602da05ac17517c755bee9645a9a7.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "earthly.vim": {
@@ -41,10 +41,10 @@
         "homepage": "",
         "owner": "lewis6991",
         "repo": "gitsigns.nvim",
-        "rev": "6321c884b1a462918b1a7c7c016bcc2f0944832c",
-        "sha256": "0s2frxp25pf7fig25g5p99pq4hbhhhqlm7727h3lcwnjy60jfb59",
+        "rev": "9ff7dfb051e5104088ff80556203634fc8f8546d",
+        "sha256": "0cfssyyhcjndwr2xlk91rxzyir4ng5hk1f4fgij5hgrhhh3wgjdv",
         "type": "tarball",
-        "url": "https://github.com/lewis6991/gitsigns.nvim/archive/6321c884b1a462918b1a7c7c016bcc2f0944832c.tar.gz",
+        "url": "https://github.com/lewis6991/gitsigns.nvim/archive/9ff7dfb051e5104088ff80556203634fc8f8546d.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "lsp_lines.nvim": {
@@ -65,10 +65,10 @@
         "homepage": null,
         "owner": "NoahTheDuke",
         "repo": "vim-just",
-        "rev": "312615d5b4c4aa2595d697faca5af345ba8fe102",
-        "sha256": "05c2qdnrjvxshy48m0s6msvqq47n536p8c4dvf0j28hm39hqb8gj",
+        "rev": "838c9096d4c5d64d1000a6442a358746324c2123",
+        "sha256": "07p62nlba85kbzj7lqg2fg4f27crdn93n1k9lgplaf5h7ppvh80d",
         "type": "tarball",
-        "url": "https://github.com/NoahTheDuke/vim-just/archive/312615d5b4c4aa2595d697faca5af345ba8fe102.tar.gz",
+        "url": "https://github.com/NoahTheDuke/vim-just/archive/838c9096d4c5d64d1000a6442a358746324c2123.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "zsh-z": {
