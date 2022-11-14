@@ -28,7 +28,6 @@ with pkgs; [
   yarn
 
   # language servers
-  elixir_ls
   gopls
   nil
   nodePackages."@prisma/language-server"
