@@ -17,10 +17,10 @@
         "homepage": "",
         "owner": "tzachar",
         "repo": "cmp-tabnine",
-        "rev": "0f56fc14792602da05ac17517c755bee9645a9a7",
-        "sha256": "09c3jwrraq1m9yyiwsr1rh3a7ixilmx2v85nd1haaclb6dfd5x10",
+        "rev": "851fbcc8ee54bdb93f9482e13b5fc31b50012422",
+        "sha256": "1ll0m244zvfj5xbic7dda8s42hfk0g64p6rqani335fiznf9gijw",
         "type": "tarball",
-        "url": "https://github.com/tzachar/cmp-tabnine/archive/0f56fc14792602da05ac17517c755bee9645a9a7.tar.gz",
+        "url": "https://github.com/tzachar/cmp-tabnine/archive/851fbcc8ee54bdb93f9482e13b5fc31b50012422.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "earthly.vim": {
