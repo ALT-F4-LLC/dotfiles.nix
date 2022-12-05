@@ -249,6 +249,7 @@ in {
       pull = "git pull --autostash --jobs=4 --summary origin";
       rebase = "git rebase --autostash --stat";
       ssh = "TERM='xterm-256color' ssh";
+      secrets = "doppler run --project \"$(whoami)\"";
       update = "fetch && rebase";
       woof = "k9s";
       wt = "git worktree";
