@@ -15,15 +15,18 @@
       overlays = [ neovim-nightly.overlay ];
     in {
       darwinConfigurations = {
-        macbookpro-personal =
-          configDarwin "erikreinert" { inherit darwin home-manager overlays; };
-        macbookpro-work =
-          configDarwin "ereinert" { inherit darwin home-manager overlays; };
+        macbookpro-personal = configDarwin "erikreinert" {
+          inherit darwin home-manager overlays;
+        };
+        macbookpro-work = configDarwin "ereinert" {
+          inherit darwin home-manager overlays;
+        };
       };
 
       nixosConfigurations = {
-        vmware-personal =
-          configNixos "erikreinert" { inherit nixpkgs home-manager overlays; };
+        vmware-personal = configNixos "erikreinert" {
+          inherit nixpkgs home-manager overlays;
+        };
       };
     };
 }
