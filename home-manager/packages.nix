@@ -17,7 +17,6 @@ with pkgs; [
   lazydocker
   niv
   nodejs-18_x
-  postman
   pulumi-bin
   python3Full
   ripgrep
