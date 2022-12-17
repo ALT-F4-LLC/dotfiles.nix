@@ -5,6 +5,14 @@ in {
   # home
   #---------------------------------------------------------------------
 
+  home.file.".config/nvim/after/ftplugin/markdown.vim".text = ''
+    setlocal wrap
+  '';
+
+  home.file.".config/nvim/after/ftplugin/yaml.vim".text = ''
+    setlocal expandtab tabstop=4 sts=0 shiftwidth=4
+  '';
+
   home.packages = (import ./packages.nix) { inherit pkgs; };
 
   home.sessionVariables = {
@@ -141,7 +149,7 @@ in {
       color7 = "#B8C0E0";
       color15 = "#A5ADCB";
       background_opacity = "0.9";
-      font_size = "12.0";
+      font_size = "13.5";
     };
     theme = "Catppuccin-Macchiato";
   };
