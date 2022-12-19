@@ -8,6 +8,7 @@ with pkgs; [
   doppler
   fd
   gcc
+  ghc
   google-cloud-sdk
   jetbrains.datagrip
   jq
@@ -16,7 +17,7 @@ with pkgs; [
   kubectl
   lazydocker
   niv
-  nodejs-18_x
+  nodejs
   pulumi-bin
   python3Full
   ripgrep
@@ -28,6 +29,7 @@ with pkgs; [
 
   # language servers
   gopls
+  haskell-language-server
   nil
   nodePackages."@prisma/language-server"
   nodePackages."bash-language-server"
