@@ -37,11 +37,6 @@ in {
       src = sources."cmp-tabnine";
     });
 
-    earthly-vim = pkgs.vimUtils.buildVimPlugin {
-      name = "earthly-vim";
-      src = sources."earthly.vim";
-    };
-
     gitsigns-nvim = pkgs.vimUtils.buildVimPluginFrom2Nix {
       name = "gitsigns.nvim";
       src = sources."gitsigns.nvim";

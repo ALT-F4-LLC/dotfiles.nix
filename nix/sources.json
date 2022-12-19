@@ -23,28 +23,16 @@
         "url": "https://github.com/tzachar/cmp-tabnine/archive/851fbcc8ee54bdb93f9482e13b5fc31b50012422.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "earthly.vim": {
-        "branch": "main",
-        "description": "Earthfile syntax highlighting for vim",
-        "homepage": "",
-        "owner": "earthly",
-        "repo": "earthly.vim",
-        "rev": "9402908f41c5165fa69317da9fe1c47ea5f9e5dd",
-        "sha256": "1sx9grnx2hvjdbx8wj4hjqnsw79yn0cbcblga7682cdcfr8mis98",
-        "type": "tarball",
-        "url": "https://github.com/earthly/earthly.vim/archive/9402908f41c5165fa69317da9fe1c47ea5f9e5dd.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "gitsigns.nvim": {
         "branch": "main",
         "description": "Git integration for buffers",
         "homepage": "",
         "owner": "lewis6991",
         "repo": "gitsigns.nvim",
-        "rev": "d076301a634198e0ae3efee3b298fc63c055a871",
-        "sha256": "12990v2zcsas8575nf6ln1byw3zg473s5jpizk4g3v9ikfdvjbfr",
+        "rev": "71644a2907adc076f1c5e712f59d897f5197d5d6",
+        "sha256": "03gx7af2n6m04jwpng8l8d35rf6a67d85sq66crmqwg1ycyk1vln",
         "type": "tarball",
-        "url": "https://github.com/lewis6991/gitsigns.nvim/archive/d076301a634198e0ae3efee3b298fc63c055a871.tar.gz",
+        "url": "https://github.com/lewis6991/gitsigns.nvim/archive/71644a2907adc076f1c5e712f59d897f5197d5d6.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "lsp_lines.nvim": {

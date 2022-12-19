@@ -173,7 +173,6 @@ in {
 
     plugins = with pkgs; [
       # languages
-      customVim.earthly-vim
       customVim.vim-just
       vimPlugins.nvim-lspconfig
       vimPlugins.vim-nix

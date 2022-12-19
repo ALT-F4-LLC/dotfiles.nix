@@ -12,7 +12,8 @@ local function set_vim_o()
         shortmess = vim.o.shortmess .. 'c',
         splitright = true,
         tabstop = 4,
-        termguicolors = true
+        termguicolors = true,
+        updatetime = 150,
     }
 
     for k, v in pairs(settings) do
