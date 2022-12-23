@@ -83,7 +83,7 @@
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.pulseaudio = true;
-  nixpkgs.overlays = [ (import ../../home-manager/overlays.nix) ];
+  nixpkgs.overlays = [ (import ../home-manager/overlays.nix) ];
 
   programs.dconf.enable = true;
   programs.geary.enable = true;
@@ -95,9 +95,8 @@
 
   services.k3s = {
     enable = true;
-    extraFlags = toString [
-      "--container-runtime-endpoint unix:///run/containerd/containerd.sock"
-    ];
+    extraFlags = toString
+      [ "--container-runtime-endpoint unix:///run/containerd/containerd.sock" ];
     role = "server";
   };
 
@@ -162,21 +161,17 @@
   virtualisation = {
     containerd = {
       enable = true;
-      settings = 
-        let
-          fullCNIPlugins = pkgs.buildEnv {
-            name = "full-cni";
-            paths = with pkgs;[
-              cni-plugins
-              cni-plugin-flannel
-            ];
-          };
-        in {
-          plugins."io.containerd.grpc.v1.cri".cni = {
-            bin_dir = "${fullCNIPlugins}/bin";
-            conf_dir = "/var/lib/rancher/k3s/agent/etc/cni/net.d/";
-          };
+      settings = let
+        fullCNIPlugins = pkgs.buildEnv {
+          name = "full-cni";
+          paths = with pkgs; [ cni-plugins cni-plugin-flannel ];
         };
+      in {
+        plugins."io.containerd.grpc.v1.cri".cni = {
+          bin_dir = "${fullCNIPlugins}/bin";
+          conf_dir = "/var/lib/rancher/k3s/agent/etc/cni/net.d/";
+        };
+      };
     };
 
     docker.enable = true;

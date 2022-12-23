@@ -5,7 +5,7 @@ macbookpro command profile: && clean
     darwin-rebuild {{ command }} --flake ".#macbookpro-{{profile}}"
 
 vmware command: && clean
-    sudo nixos-rebuild {{ command }} --flake ".#vmware-personal"
+    sudo nixos-rebuild {{ command }} --flake ".#vmware"
 
 update:
     nix flake update

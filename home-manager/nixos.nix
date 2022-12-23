@@ -2,7 +2,7 @@
 
 let i3_mod = "Mod4";
 in {
-  imports = [ ./home-manager.nix ];
+  imports = [ ./default.nix ];
 
   #---------------------------------------------------------------------
   # home
@@ -15,10 +15,7 @@ in {
   # programs
   #---------------------------------------------------------------------
 
-  programs.firefox = {
-    enable = true;
-    package = pkgs.firefox-bin;
-  };
+  programs.firefox = { enable = true; };
 
   programs.gpg.enable = true;
 

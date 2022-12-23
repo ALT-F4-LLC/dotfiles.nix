@@ -10,22 +10,52 @@
 
   outputs = { self, darwin, home-manager, nixpkgs, neovim-nightly }:
     let
-      configDarwin = import ./configuration/darwin;
-      configNixos = import ./configuration/nixos;
       overlays = [ neovim-nightly.overlay ];
+      darwinSystem = username:
+        darwin.lib.darwinSystem {
+          modules = [
+            {
+              nixpkgs.overlays = overlays;
+              users.users.${username}.home = "/Users/${username}";
+            }
+
+            ./configuration/darwin.nix
+
+            home-manager.darwinModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users."${username}" =
+                import ./home-manager/darwin.nix;
+            }
+          ];
+
+          system = "x86_64-darwin";
+        };
     in {
       darwinConfigurations = {
-        macbookpro-personal = configDarwin "erikreinert" {
-          inherit darwin home-manager overlays;
-        };
-        macbookpro-work = configDarwin "ereinert" {
-          inherit darwin home-manager overlays;
-        };
+        macbookpro-personal = darwinSystem "erikreinert";
+        macbookpro-work = darwinSystem "ereinert";
       };
 
       nixosConfigurations = {
-        vmware-personal = configNixos "erikreinert" {
-          inherit nixpkgs home-manager overlays;
+        vmware = nixpkgs.lib.nixosSystem {
+          modules = [
+            { nixpkgs.overlays = overlays; }
+
+            ./configuration/nixos-vmware.nix
+            ./configuration/nixos.nix
+
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users."erikreinert" =
+                import ./home-manager/nixos.nix;
+            }
+          ];
+
+          system = "x86_64-linux";
         };
       };
     };
