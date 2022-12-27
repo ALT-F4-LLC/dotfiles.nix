@@ -2,6 +2,8 @@
 
 Cross-platform development environments for `blackglasses` at The Alt-F4 Stream on Twitch.
 
+![NixOS](https://raw.githubusercontent.com/NixOS/nixos-artwork/master/logo/nixos.svg)
+
 ## Goals
 
 Maintain declarative configurations for development environments that are reproducible on any operating system (Windows not included).
