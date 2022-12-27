@@ -1,6 +1,6 @@
 # dotfiles-nixos
 
-Cross-platform development environments for `blackglasses` at The Alt-F4 Stream on Twitch.
+Cross-platform development environments for `blackglasses` at [TheAltF4Stream](https://www.twitch.tv/thealtf4stream) on Twitch.
 
 ![NixOS](https://raw.githubusercontent.com/NixOS/nixos-artwork/master/logo/nixos.svg)
 
