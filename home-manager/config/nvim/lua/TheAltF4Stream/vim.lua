@@ -13,7 +13,7 @@ local function set_vim_o()
         splitright = true,
         tabstop = 4,
         termguicolors = true,
-        updatetime = 225,
+        updatetime = 300,
     }
 
     for k, v in pairs(settings) do
