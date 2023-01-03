@@ -11,18 +11,6 @@
         "url": "https://github.com/catppuccin/tmux/archive/d9e5c6d1e3b2c6f6f344f7663691c4c8e7ebeb4c.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "cmp-tabnine": {
-        "branch": "main",
-        "description": "TabNine plugin for hrsh7th/nvim-cmp",
-        "homepage": "",
-        "owner": "tzachar",
-        "repo": "cmp-tabnine",
-        "rev": "ee1341c53e7b82f55c6e83287828f652c2ac35e1",
-        "sha256": "0x61dhbx1wvbnf1pjz1an3zhmp25xy07wshw8dw5yf46qi623l09",
-        "type": "tarball",
-        "url": "https://github.com/tzachar/cmp-tabnine/archive/ee1341c53e7b82f55c6e83287828f652c2ac35e1.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "gitsigns.nvim": {
         "branch": "main",
         "description": "Git integration for buffers",
