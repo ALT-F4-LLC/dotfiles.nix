@@ -16,7 +16,6 @@ with pkgs; [
   k9s
   kubectl
   lazydocker
-  niv
   nodejs
   pulumi-bin
   python3Full

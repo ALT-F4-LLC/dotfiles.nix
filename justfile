@@ -12,4 +12,3 @@ vmware command:
 
 update:
     nix flake update
-    niv update

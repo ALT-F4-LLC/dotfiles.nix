@@ -264,7 +264,12 @@ in {
 
     plugins = [{
       name = "zsh-z";
-      src = sources.zsh-z;
+      src = pkgs.fetchFromGitHub {
+        owner = "agkozak";
+        repo = "zsh-z";
+        rev = "82f5088641862d0e83561bb251fb60808791c76a";
+        sha256 = "sha256-6BNYzfTcjWm+0lJC83IdLxHwwG4/DKet2QNDvVBR6Eo=";
+      };
     }];
 
     initExtra = ''

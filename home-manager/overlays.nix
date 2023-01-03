@@ -1,15 +1,18 @@
 self: super:
-
-let
-  sources = import ../nix/sources.nix;
-in {
+{
   customTmux = with self; {
     catppuccin = pkgs.tmuxPlugins.mkTmuxPlugin {
       pluginName = "catppuccin";
-      src = sources."catppuccin-tmux";
+      src = pkgs.fetchFromGitHub {
+        owner = "catppuccin";
+        repo = "tmux";
+        rev = "d9e5c6d1e3b2c6f6f344f7663691c4c8e7ebeb4c";
+        sha256 = "sha256-k0nYjGjiTS0TOnYXoZg7w9UksBMLT+Bq/fJI3f9qqBg=";
+      };
       version = "unstable-2022-09-14";
     };
   };
+
   customVim = with self; {
     thealtf4stream = pkgs.vimUtils.buildVimPlugin {
       name = "TheAltF4Stream";
