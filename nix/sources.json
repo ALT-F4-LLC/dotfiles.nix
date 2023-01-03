@@ -11,18 +11,6 @@
         "url": "https://github.com/catppuccin/tmux/archive/d9e5c6d1e3b2c6f6f344f7663691c4c8e7ebeb4c.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "gitsigns.nvim": {
-        "branch": "main",
-        "description": "Git integration for buffers",
-        "homepage": "",
-        "owner": "lewis6991",
-        "repo": "gitsigns.nvim",
-        "rev": "2ab3bdf0a40bab53033048c6be75bda86316b55d",
-        "sha256": "13j5cmrd54cx9d8rirmys01xgmf90ylc3wb5dzmsdjc7hy0viha2",
-        "type": "tarball",
-        "url": "https://github.com/lewis6991/gitsigns.nvim/archive/2ab3bdf0a40bab53033048c6be75bda86316b55d.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "lsp_lines.nvim": {
         "branch": "main",
         "description": "GitHub mirror of https://git.sr.ht/~whynothugo/lsp_lines.nvim to work around Windows issues with `packer.nvim`.",
