@@ -206,10 +206,10 @@ in {
       vimPlugins.vim-floaterm
 
       # extras
-      customVim.lsp_lines-nvim
       vimPlugins.gitsigns-nvim
       vimPlugins.indent-blankline-nvim
       vimPlugins.lsp-colors-nvim
+      vimPlugins.lsp_lines-nvim
       vimPlugins.lualine-nvim
       vimPlugins.nerdcommenter
       vimPlugins.nvim-treesitter-context

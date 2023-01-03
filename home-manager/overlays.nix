@@ -2,23 +2,6 @@ self: super:
 
 let
   sources = import ../nix/sources.nix;
-  tabninePlatform = if (builtins.hasAttr super.stdenv.hostPlatform.system
-    tabnineSupportedPlatforms) then
-    builtins.getAttr (super.stdenv.hostPlatform.system)
-    tabnineSupportedPlatforms
-  else
-    throw "Not supported on ${super.stdenv.hostPlatform.system}";
-  tabnineSupportedPlatforms = {
-    "x86_64-darwin" = {
-      name = "x86_64-apple-darwin";
-      sha256 = "sha256-NY6+KMqpjHYeWiYQ5RtDDZm0uh3zByzsLN4l0VTisyA=";
-    };
-    "x86_64-linux" = {
-      name = "x86_64-unknown-linux-musl";
-      sha256 = "sha256-eN3uW3y/jETyK+sHpvJ+PR1bfcYBEYWhy0WGGa9z57I=";
-    };
-  };
-  tabnineVersion = "4.4.118";
 in {
   customTmux = with self; {
     catppuccin = pkgs.tmuxPlugins.mkTmuxPlugin {
@@ -28,29 +11,6 @@ in {
     };
   };
   customVim = with self; {
-    cmp-tabnine = pkgs.vimPlugins.cmp-tabnine.overrideAttrs (oldAttrs: {
-      buildInputs = [ customVim.tabnine ];
-      postFixup = ''
-        mkdir -p $target/binaries/${customVim.tabnine.version}
-        ln -s ${customVim.tabnine}/bin/ $target/binaries/${customVim.tabnine.version}/${customVim.tabnine.passthru.platform}
-      '';
-      src = sources."cmp-tabnine";
-    });
-
-    lsp_lines-nvim = pkgs.vimUtils.buildVimPlugin {
-      name = "lsp_lines-nvim";
-      src = sources."lsp_lines.nvim";
-    };
-
-    tabnine = pkgs.tabnine.overrideAttrs (oldAttrs: {
-      src = fetchurl {
-        inherit (tabninePlatform) sha256;
-        url =
-          "https://update.tabnine.com/bundles/${tabnineVersion}/${tabninePlatform.name}/TabNine.zip";
-      };
-      version = tabnineVersion;
-    });
-
     thealtf4stream = pkgs.vimUtils.buildVimPlugin {
       name = "TheAltF4Stream";
       src = ./config/nvim;
@@ -58,7 +18,12 @@ in {
 
     vim-just = pkgs.vimUtils.buildVimPlugin {
       name = "vim-just";
-      src = sources."vim-just";
+      src = pkgs.fetchFromGitHub {
+        owner = "NoahTheDuke";
+        repo = "vim-just";
+        rev = "838c9096d4c5d64d1000a6442a358746324c2123";
+        sha256 = "sha256-DSC47z2wOEXvo2kGO5JtmR3hyHPiYXrkX7MgtagV5h4=";
+      };
     };
   };
 }

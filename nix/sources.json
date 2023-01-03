@@ -11,30 +11,6 @@
         "url": "https://github.com/catppuccin/tmux/archive/d9e5c6d1e3b2c6f6f344f7663691c4c8e7ebeb4c.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "lsp_lines.nvim": {
-        "branch": "main",
-        "description": "GitHub mirror of https://git.sr.ht/~whynothugo/lsp_lines.nvim to work around Windows issues with `packer.nvim`.",
-        "homepage": null,
-        "owner": "ErichDonGubler",
-        "repo": "lsp_lines.nvim",
-        "rev": "3b57922d2d79762e6baedaf9d66d8ba71f822816",
-        "sha256": "12shzpqmamaavg8xghvix09jzsinaa76w4bpda9zp3sycfrwrwfn",
-        "type": "tarball",
-        "url": "https://github.com/ErichDonGubler/lsp_lines.nvim/archive/3b57922d2d79762e6baedaf9d66d8ba71f822816.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
-    "vim-just": {
-        "branch": "master",
-        "description": "Vim Just Syntax",
-        "homepage": null,
-        "owner": "NoahTheDuke",
-        "repo": "vim-just",
-        "rev": "838c9096d4c5d64d1000a6442a358746324c2123",
-        "sha256": "07p62nlba85kbzj7lqg2fg4f27crdn93n1k9lgplaf5h7ppvh80d",
-        "type": "tarball",
-        "url": "https://github.com/NoahTheDuke/vim-just/archive/838c9096d4c5d64d1000a6442a358746324c2123.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "zsh-z": {
         "branch": "master",
         "description": "Jump quickly to directories that you have visited \"frecently.\" A native Zsh port of z.sh with added features.",
