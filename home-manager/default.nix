@@ -9,10 +9,6 @@ in {
     setlocal wrap
   '';
 
-  home.file.".config/nvim/after/ftplugin/yaml.vim".text = ''
-    setlocal expandtab tabstop=4 sts=0 shiftwidth=4
-  '';
-
   home.packages = (import ./packages.nix) { inherit pkgs; };
 
   home.sessionVariables = {
