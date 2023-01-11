@@ -30,12 +30,8 @@
     enable = true;
     config = { theme = "catppuccin"; };
     themes = {
-      catppuccin = builtins.readFile (pkgs.fetchFromGitHub {
-        owner = "catppuccin";
-        repo = "bat";
-        rev = "00bd462e8fab5f74490335dcf881ebe7784d23fa";
-        sha256 = "sha256-yzn+1IXxQaKcCK7fBdjtVohns0kbN+gcqbWVE4Bx7G8=";
-      } + "/Catppuccin-macchiato.tmTheme");
+      catppuccin = builtins.readFile
+        (pkgs.customBat.catppuccin + "/Catppuccin-macchiato.tmTheme");
     };
   };
 
@@ -258,12 +254,7 @@
 
     plugins = [{
       name = "zsh-z";
-      src = pkgs.fetchFromGitHub {
-        owner = "agkozak";
-        repo = "zsh-z";
-        rev = "82f5088641862d0e83561bb251fb60808791c76a";
-        sha256 = "sha256-6BNYzfTcjWm+0lJC83IdLxHwwG4/DKet2QNDvVBR6Eo=";
-      };
+      src = pkgs.customZsh.zsh-z;
     }];
 
     initExtra = ''
