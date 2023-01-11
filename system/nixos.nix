@@ -91,18 +91,19 @@ in {
     wheelNeedsPassword = false;
   };
 
-  services.k3s = {
-    enable = true;
-    extraFlags = toString
-      [ "--container-runtime-endpoint unix:///run/containerd/containerd.sock" ];
-    role = "server";
-  };
-
-  services.logind.extraConfig = ''
-    RuntimeDirectorySize=20G
-  '';
-
   services = {
+    k3s = {
+      enable = true;
+      extraFlags = toString [
+        "--container-runtime-endpoint unix:///run/containerd/containerd.sock"
+      ];
+      role = "server";
+    };
+
+    logind.extraConfig = ''
+      RuntimeDirectorySize=20G
+    '';
+
     openssh = {
       enable = true;
       passwordAuthentication = false;
