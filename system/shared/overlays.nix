@@ -1,5 +1,13 @@
-self: super:
-{
+self: super: {
+  customBat = with self; {
+    catppuccin = pkgs.fetchFromGitHub {
+      owner = "catppuccin";
+      repo = "bat";
+      rev = "00bd462e8fab5f74490335dcf881ebe7784d23fa";
+      sha256 = "sha256-yzn+1IXxQaKcCK7fBdjtVohns0kbN+gcqbWVE4Bx7G8=";
+    };
+  };
+
   customTmux = with self; {
     catppuccin = pkgs.tmuxPlugins.mkTmuxPlugin {
       pluginName = "catppuccin";
@@ -16,7 +24,7 @@ self: super:
   customVim = with self; {
     thealtf4stream = pkgs.vimUtils.buildVimPlugin {
       name = "TheAltF4Stream";
-      src = ./config/nvim;
+      src = ../../config/nvim;
     };
 
     vim-just = pkgs.vimUtils.buildVimPlugin {
@@ -27,6 +35,15 @@ self: super:
         rev = "838c9096d4c5d64d1000a6442a358746324c2123";
         sha256 = "sha256-DSC47z2wOEXvo2kGO5JtmR3hyHPiYXrkX7MgtagV5h4=";
       };
+    };
+  };
+
+  customZsh = with self; {
+    zsh-z = pkgs.fetchFromGitHub {
+      owner = "agkozak";
+      repo = "zsh-z";
+      rev = "82f5088641862d0e83561bb251fb60808791c76a";
+      sha256 = "sha256-6BNYzfTcjWm+0lJC83IdLxHwwG4/DKet2QNDvVBR6Eo=";
     };
   };
 }
