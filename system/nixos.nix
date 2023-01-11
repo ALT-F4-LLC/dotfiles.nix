@@ -1,4 +1,19 @@
 { config, pkgs, ... }:
+let
+  nix = import ./shared/nixpkgs.nix { inherit pkgs; };
+  nixpkgs = import ./shared/nixpkgs.nix { enablePulseAudio = true; };
+  systemPackages = import ./shared/systemPackages.nix {
+    inherit pkgs;
+    extraPackages = with pkgs; [
+      dunst
+      k3s
+      libnotify
+      lxappearance
+      pavucontrol
+      xclip
+    ];
+  };
+in
 {
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -35,16 +50,7 @@
     fonts = with pkgs; [ (nerdfonts.override { fonts = [ "Meslo" ]; }) ];
   };
 
-  environment.systemPackages = with pkgs; [
-    curl
-    dunst
-    k3s
-    libnotify
-    lxappearance
-    pavucontrol
-    wget
-    xclip
-  ];
+  environment.systemPackages = systemPackages;
 
   environment.pathsToLink = [ "/libexec" "/share/zsh" ];
 
@@ -66,23 +72,9 @@
     useDHCP = false;
   };
 
-  nix = {
-    extraOptions = ''
-      experimental-features = nix-command flakes
-      keep-outputs = true
-      keep-derivations = true
-      warn-dirty = false
-    '';
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
-    };
-    package = pkgs.nixUnstable;
-    settings = { auto-optimise-store = true; };
-  };
+  nix = nix;
 
-  nixpkgs = import ./shared/nixpkgs.nix { enablePulseAudio = true; };
+  nixpkgs = nixpkgs;
 
   programs.dconf.enable = true;
   programs.geary.enable = true;
@@ -134,7 +126,12 @@
     windowManager.i3 = {
       enable = true;
       package = pkgs.i3-gaps;
-      extraPackages = [ pkgs.i3status pkgs.i3lock pkgs.i3blocks pkgs.rofi ];
+      extraPackages = with pkgs; [
+        i3status
+        i3lock
+        i3blocks
+        rofi
+      ];
     };
   };
 

@@ -1,13 +1,19 @@
 { config, pkgs, ... }:
-{
-  environment.systemPackages = with pkgs; [ vim ];
-
+let
   nix = import ./shared/nix.nix { inherit pkgs; };
-
   nixpkgs = import ./shared/nixpkgs.nix { enablePulseAudio = false; };
+  systemPackages = import ./shared/systemPackages.nix { inherit pkgs; };
+  zsh = import ./shared/zsh.nix;
+in
+{
+  environment.systemPackages = systemPackages;
+
+  nix = nix; 
+
+  nixpkgs = nixpkgs;
 
   programs = {
-    zsh = import ./shared/zsh.nix;
+    zsh = zsh; 
   };
 
   services.nix-daemon.enable = true;
