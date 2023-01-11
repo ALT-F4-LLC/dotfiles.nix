@@ -1,5 +1,4 @@
-{ enablePulseAudio ? false }:
-{
+{ enablePulseAudio ? false }: {
   config = {
     allowUnfree = true;
     pulseaudio = enablePulseAudio;

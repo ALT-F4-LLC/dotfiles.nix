@@ -4,17 +4,14 @@ let
   nixpkgs = import ./shared/nixpkgs.nix { enablePulseAudio = false; };
   systemPackages = import ./shared/systemPackages.nix { inherit pkgs; };
   zsh = import ./shared/zsh.nix;
-in
-{
+in {
   environment.systemPackages = systemPackages;
 
-  nix = nix; 
+  nix = nix;
 
   nixpkgs = nixpkgs;
 
-  programs = {
-    zsh = zsh; 
-  };
+  programs = { zsh = zsh; };
 
   services.nix-daemon.enable = true;
 

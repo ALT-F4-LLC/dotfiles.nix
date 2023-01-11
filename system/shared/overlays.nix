@@ -1,5 +1,4 @@
-self: super:
-{
+self: super: {
   customTmux = with self; {
     catppuccin = pkgs.tmuxPlugins.mkTmuxPlugin {
       pluginName = "catppuccin";

@@ -13,8 +13,7 @@ let
       xclip
     ];
   };
-in
-{
+in {
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.enable = true;
@@ -126,12 +125,7 @@ in
     windowManager.i3 = {
       enable = true;
       package = pkgs.i3-gaps;
-      extraPackages = with pkgs; [
-        i3status
-        i3lock
-        i3blocks
-        rofi
-      ];
+      extraPackages = with pkgs; [ i3status i3lock i3blocks rofi ];
     };
   };
 
@@ -160,7 +154,7 @@ in
       settings = let
         fullCNIPlugins = pkgs.buildEnv {
           name = "full-cni";
-          paths = with pkgs; [ cni-plugins cni-plugin-flannel ];
+          paths = with pkgs; [ cni-plugin-flannel cni-plugins ];
         };
       in {
         plugins."io.containerd.grpc.v1.cri".cni = {

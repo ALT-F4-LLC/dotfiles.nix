@@ -1,5 +1,4 @@
-{ pkgs }:
-{
+{ pkgs }: {
   extraOptions = ''
     experimental-features = nix-command flakes
     keep-outputs = true
@@ -14,7 +13,5 @@
 
   package = pkgs.nixUnstable;
 
-  settings = {
-    auto-optimise-store = true;
-  };
+  settings = { auto-optimise-store = true; };
 }

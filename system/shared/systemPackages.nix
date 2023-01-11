@@ -1,2 +1,1 @@
-{ extraPackages ? [], pkgs }:
-with pkgs; extraPackages ++ [ curl wget vim ]
+{ extraPackages ? [ ], pkgs }: with pkgs; extraPackages ++ [ curl wget vim ]
