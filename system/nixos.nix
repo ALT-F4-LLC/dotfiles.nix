@@ -1,4 +1,5 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.enable = true;
@@ -81,9 +82,7 @@
     settings = { auto-optimise-store = true; };
   };
 
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.pulseaudio = true;
-  nixpkgs.overlays = [ (import ../home-manager/overlays.nix) ];
+  nixpkgs = import ./shared/nixpkgs.nix { enablePulseAudio = true; };
 
   programs.dconf.enable = true;
   programs.geary.enable = true;

@@ -16,7 +16,7 @@ self: super:
   customVim = with self; {
     thealtf4stream = pkgs.vimUtils.buildVimPlugin {
       name = "TheAltF4Stream";
-      src = ./config/nvim;
+      src = ../../config/nvim;
     };
 
     vim-just = pkgs.vimUtils.buildVimPlugin {

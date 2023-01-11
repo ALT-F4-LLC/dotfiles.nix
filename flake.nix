@@ -19,7 +19,7 @@
               users.users.${username}.home = "/Users/${username}";
             }
 
-            ./configuration/darwin.nix
+            ./system/darwin.nix
 
             home-manager.darwinModules.home-manager
             {
@@ -43,8 +43,8 @@
           modules = [
             { nixpkgs.overlays = overlays; }
 
-            ./configuration/nixos-vmware.nix
-            ./configuration/nixos.nix
+            ./system/nixos-vmware.nix
+            ./system/nixos.nix
 
             home-manager.nixosModules.home-manager
             {

@@ -8,7 +8,7 @@ in {
   # home
   #---------------------------------------------------------------------
 
-  home.file.".config/k9s/skin.yml".source = ./config/k9s/skin.yml;
+  home.file.".config/k9s/skin.yml".source = ../config/k9s/skin.yml;
   home.file.".background-image".source = ./background-image;
 
   #---------------------------------------------------------------------
