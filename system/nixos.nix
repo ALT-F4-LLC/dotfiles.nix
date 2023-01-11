@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  nix = import ./shared/nixpkgs.nix { inherit pkgs; };
+  nix = import ./shared/nix.nix { inherit pkgs; };
   nixpkgs = import ./shared/nixpkgs.nix { enablePulseAudio = true; };
   systemPackages = import ./shared/systemPackages.nix {
     inherit pkgs;
