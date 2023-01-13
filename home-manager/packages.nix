@@ -17,6 +17,7 @@ with pkgs; [
   kubectl
   lazydocker
   nodejs
+  powershell
   pulumi-bin
   python3Full
   ripgrep
