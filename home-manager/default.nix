@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }: {
+{ config, lib, pkgs, ... }: 
+
+let
+  isDarwin = pkgs.system == "x86_64-darwin";
+in
+{
   #---------------------------------------------------------------------
   # home
   #---------------------------------------------------------------------
@@ -221,10 +226,11 @@
   programs.tmux = {
     enable = true;
     extraConfig = ''
-      set -g default-terminal "xterm-256color"
-      set-option -ga terminal-overrides ",xterm-256color:Tc"
+      set-option -a terminal-overrides ",*256col*:RGB"
     '';
     plugins = with pkgs; [ customTmux.catppuccin ];
+    shell = "${pkgs.zsh}/bin/zsh";
+    terminal = if isDarwin then "screen-256color" else "xterm-256color";
   };
 
   programs.zsh = {
@@ -245,7 +251,6 @@
       ll = "n -Hde";
       pull = "git pull --autostash --jobs=4 --summary origin";
       rebase = "git rebase --autostash --stat";
-      ssh = "TERM='xterm-256color' ssh";
       secrets = ''doppler run --project "$(whoami)"'';
       update = "fetch && rebase";
       woof = "k9s";
