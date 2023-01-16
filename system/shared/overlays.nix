@@ -8,6 +8,15 @@ self: super: {
     };
   };
 
+  customRofi = with self; {
+    catppuccin = pkgs.fetchFromGitHub {
+      owner = "catppuccin";
+      repo = "rofi";
+      rev = "5350da41a11814f950c3354f090b90d4674a95ce";
+      sha256 = "sha256-DNorfyl3C4RBclF2KDgwvQQwixpTwSRu7fIvihPN8JY=";
+    };
+  };
+
   customTmux = with self; {
     catppuccin = pkgs.tmuxPlugins.mkTmuxPlugin {
       pluginName = "catppuccin";

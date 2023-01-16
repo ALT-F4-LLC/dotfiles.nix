@@ -10,6 +10,8 @@ in {
 
   home.file.".background-image".source = ../config/background-image;
   home.file.".config/k9s/skin.yml".source = ../config/k9s/skin.yml;
+  home.file.".config/rofi/catppuccin-macchiato.rasi".source = 
+    pkgs.customRofi.catppuccin + "/basic/.local/share/rofi/themes/catppuccin-macchiato.rasi";
 
   #---------------------------------------------------------------------
   # programs
@@ -34,6 +36,26 @@ in {
       "wireless _first_".enable = false;
       "battery all".enable = false;
     };
+  };
+
+  programs.rofi = {
+    enable = true;
+    extraConfig = {
+      disable-history = false;
+      display-Network = " 󰤨  Network";
+      display-drun = "   Apps ";
+      display-run = "   Run ";
+      display-window = " 﩯  Window";
+      drun-display-format = "{icon} {name}";
+      hide-scrollbar = true;
+      icon-theme = "Oranchelo";
+      location = 0;
+      modi = "run,drun,window";
+      show-icons = true;
+      sidebar-mode = true;
+      terminal = "kitty";
+    };
+    theme = "catppuccin-macchiato";
   };
 
   programs.vscode.enable = true;
