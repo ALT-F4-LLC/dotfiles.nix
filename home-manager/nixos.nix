@@ -10,8 +10,9 @@ in {
 
   home.file.".background-image".source = ../config/background-image;
   home.file.".config/k9s/skin.yml".source = ../config/k9s/skin.yml;
-  home.file.".config/rofi/catppuccin-macchiato.rasi".source = 
-    pkgs.customRofi.catppuccin + "/basic/.local/share/rofi/themes/catppuccin-macchiato.rasi";
+  home.file.".config/rofi/catppuccin-macchiato.rasi".source =
+    pkgs.customRofi.catppuccin
+    + "/basic/.local/share/rofi/themes/catppuccin-macchiato.rasi";
 
   #---------------------------------------------------------------------
   # programs

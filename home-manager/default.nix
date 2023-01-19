@@ -1,9 +1,7 @@
-{ config, lib, pkgs, ... }: 
+{ config, lib, pkgs, ... }:
 
-let
-  isDarwin = pkgs.system == "x86_64-darwin";
-in
-{
+let isDarwin = pkgs.system == "x86_64-darwin";
+in {
   #---------------------------------------------------------------------
   # home
   #---------------------------------------------------------------------
