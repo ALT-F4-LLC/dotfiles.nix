@@ -11,7 +11,7 @@
   outputs = { self, darwin, home-manager, nixpkgs, neovim-nightly }:
     let
       overlays = [ neovim-nightly.overlay ];
-      darwinSystem = username:
+      darwinSystem = { system, username }:
         darwin.lib.darwinSystem {
           modules = [
             {
@@ -30,12 +30,19 @@
             }
           ];
 
-          system = "x86_64-darwin";
+          system = system;
         };
     in {
       darwinConfigurations = {
-        macbookpro-personal = darwinSystem "erikreinert";
-        macbookpro-work = darwinSystem "ereinert";
+        macbookpro-personal = darwinSystem {
+          system = "x86_64-darwin";
+          username = "erikreinert";
+        };
+
+        macbookpro-work = darwinSystem {
+          system = "aarch64-darwin";
+          username = "ereinert";
+        };
       };
 
       nixosConfigurations = {

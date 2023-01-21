@@ -29,7 +29,7 @@ with pkgs; [
 
   # language servers
   gopls
-  haskell-language-server
+  #haskell-language-server
   nil
   nodePackages."@prisma/language-server"
   nodePackages."bash-language-server"
