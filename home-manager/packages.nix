@@ -3,15 +3,12 @@
 with pkgs; [
   # programs
   awscli2
-  azure-cli
   cargo
   doppler
   fd
   gcc
   ghc
-  google-cloud-sdk
   jetbrains.datagrip
-  jq
   just
   k9s
   kubectl
