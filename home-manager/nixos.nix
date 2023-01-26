@@ -18,7 +18,10 @@ in {
   # programs
   #---------------------------------------------------------------------
 
-  programs.firefox = { enable = true; };
+  programs.firefox = {
+    enable = true;
+    package = pkgs.firefox-bin;
+  };
 
   programs.gpg.enable = true;
 

@@ -106,11 +106,14 @@ in {
 
     openssh = {
       enable = true;
-      passwordAuthentication = false;
-      permitRootLogin = "no";
+      settings = {
+        passwordAuthentication = false;
+        permitRootLogin = "no";
+      };
     };
 
     picom.enable = true;
+
     twingate.enable = true;
 
     xserver = {
