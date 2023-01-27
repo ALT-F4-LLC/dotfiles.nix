@@ -36,7 +36,12 @@ local function set_vim_wo()
     end
 end
 
-local function set_keymaps()
+local function set_vim_opt()
+    vim.opt.list = true
+    vim.opt.listchars:append "eol:↴"
+end
+
+local function set_vim_keymaps()
     local map = vim.api.nvim_set_keymap
     local options = { noremap = false }
 
@@ -50,7 +55,8 @@ local function init()
     set_vim_g()
     set_vim_o()
     set_vim_wo()
-    set_keymaps()
+    set_vim_opt()
+    set_vim_keymaps()
 end
 
 return {

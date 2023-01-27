@@ -1,26 +1,20 @@
-local function setup_extras()
-  require("gitsigns").setup()
-
-  require("lsp-colors").setup()
-
-  require("lsp_lines").setup()
-
-  require("lualine").setup({
-    options = {
-      extensions = { "fzf", "quickfix" },
-      theme = "catppuccin"
-    }
-  })
-
-  vim.diagnostic.config({
-    virtual_text = false,
-  })
-end
+local gitsigns = require 'gitsigns'
+local lualine = require 'lualine'
+local treesitter_context = require 'treesitter-context'
 
 local function init()
-  setup_extras()
+    gitsigns.setup()
+
+    lualine.setup({
+        options = {
+            extensions = { "fzf", "quickfix" },
+            theme = "catppuccin"
+        }
+    })
+
+    treesitter_context.setup()
 end
 
 return {
-  init = init,
+    init = init,
 }

@@ -162,11 +162,12 @@ in {
 
   programs.neovim = {
     enable = true;
-    #package = pkgs.neovim-nightly;
+    package = pkgs.neovim-nightly;
 
     plugins = with pkgs; [
       # languages
       customVim.vim-just
+      vimPlugins.lsp-zero-nvim
       vimPlugins.nvim-lspconfig
       vimPlugins.vim-nix
       vimPlugins.vim-prisma
@@ -177,15 +178,15 @@ in {
 
       # completion
       vimPlugins.cmp-buffer
-      vimPlugins.cmp-cmdline
-      vimPlugins.cmp-nvim-lsp
       vimPlugins.cmp-path
+      vimPlugins.cmp-nvim-lsp
       vimPlugins.cmp-tabnine
       vimPlugins.cmp-treesitter
-      vimPlugins.cmp-vsnip
+      vimPlugins.cmp_luasnip
+      vimPlugins.friendly-snippets
       vimPlugins.lspkind-nvim
+      vimPlugins.luasnip
       vimPlugins.nvim-cmp
-      vimPlugins.vim-vsnip
 
       # telescope
       vimPlugins.plenary-nvim
@@ -200,9 +201,6 @@ in {
 
       # extras
       vimPlugins.gitsigns-nvim
-      vimPlugins.indent-blankline-nvim
-      vimPlugins.lsp-colors-nvim
-      vimPlugins.lsp_lines-nvim
       vimPlugins.lualine-nvim
       vimPlugins.nerdcommenter
       vimPlugins.nvim-treesitter-context
