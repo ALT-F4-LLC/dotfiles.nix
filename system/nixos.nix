@@ -35,12 +35,6 @@ in {
     ];
   };
 
-  fileSystems."/mnt/nfs/production" = {
-    device = "192.168.3.7:/mnt/data";
-    fsType = "nfs";
-    options = [ "nfsvers=4.2" "noauto" "x-systemd.automount" ];
-  };
-
   fonts = {
     fontconfig = {
       enable = true;
