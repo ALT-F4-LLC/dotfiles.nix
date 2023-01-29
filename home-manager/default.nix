@@ -142,7 +142,7 @@ in {
       color7 = "#B8C0E0";
       color15 = "#A5ADCB";
       background_opacity = "0.9";
-      font_size = "13.5";
+      font_size = "15";
     };
     theme = "Catppuccin-Macchiato";
   };
