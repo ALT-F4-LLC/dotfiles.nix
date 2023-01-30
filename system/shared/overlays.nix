@@ -23,6 +23,7 @@ self: super: {
       src = pkgs.fetchFromGitHub {
         owner = "catppuccin";
         repo = "tmux";
+        # Needs to be debugged before upgraded
         rev = "d9e5c6d1e3b2c6f6f344f7663691c4c8e7ebeb4c";
         sha256 = "sha256-k0nYjGjiTS0TOnYXoZg7w9UksBMLT+Bq/fJI3f9qqBg=";
       };
@@ -51,8 +52,8 @@ self: super: {
     zsh-z = pkgs.fetchFromGitHub {
       owner = "agkozak";
       repo = "zsh-z";
-      rev = "82f5088641862d0e83561bb251fb60808791c76a";
-      sha256 = "sha256-6BNYzfTcjWm+0lJC83IdLxHwwG4/DKet2QNDvVBR6Eo=";
+      rev = "da8dee3ccaf882d1bf653c34850041025616ceb5";
+      sha256 = "sha256-MHb9Q7mwgWAs99vom6a2aODB40I9JTBaJnbvTYbMwiA=";
     };
   };
 }
