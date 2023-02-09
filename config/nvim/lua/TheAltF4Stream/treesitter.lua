@@ -13,6 +13,7 @@ local function setup_treesitter()
             'javascript',
             'jsdoc',
             'json',
+            'jsonnet',
             'lua',
             'make',
             'nix',

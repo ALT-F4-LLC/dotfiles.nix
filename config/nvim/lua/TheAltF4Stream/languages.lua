@@ -63,6 +63,7 @@ local function init()
         'hls',
         'html',
         'jsonls',
+        'jsonnet_ls',
         'nil_ls',
         'prismals',
         'pyright',
