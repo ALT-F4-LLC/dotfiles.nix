@@ -3,9 +3,8 @@
 with pkgs; [
   # programs
   awscli2
-  #azure-cli
+  azure-cli
   cargo
-  #clang
   doppler
   fd
   gcc
