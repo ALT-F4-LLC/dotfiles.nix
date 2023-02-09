@@ -12,6 +12,7 @@ with pkgs; [
   google-cloud-sdk
   jetbrains.datagrip
   jq
+  jsonnet
   just
   k9s
   kubectl
