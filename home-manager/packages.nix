@@ -5,6 +5,7 @@ with pkgs; [
   awscli2
   #azure-cli
   cargo
+  #clang
   doppler
   fd
   gcc
