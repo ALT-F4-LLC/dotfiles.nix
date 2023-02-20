@@ -73,12 +73,21 @@ local function init()
         'yamlls'
     })
 
-    lsp.configure('sumneko_lua', {
+    lsp.configure('lua_ls', {
         settings = {
             Lua = {
                 diagnostics = {
                     globals = { 'vim' }
-                }
+                },
+                runtime = {
+                    version = 'LuaJIT',
+                },
+                telemetry = {
+                    enable = false,
+                },
+                workspace = {
+                    library = vim.api.nvim_get_runtime_file("", true),
+                },
             }
         }
     })
@@ -167,11 +176,11 @@ local function init()
     lsp.setup()
 
     tabnine:setup({
-        max_lines = 1000;
-        max_num_results = 20;
-        sort = true;
-        run_on_every_keystroke = true;
-        snippet_placeholder = '..';
+        max_lines = 1000,
+        max_num_results = 20,
+        sort = true,
+        run_on_every_keystroke = true,
+        snippet_placeholder = '..',
     })
 
     vim.diagnostic.config({

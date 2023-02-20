@@ -4,7 +4,8 @@ let
   nixpkgs = import ./shared/nixpkgs.nix { };
   systemPackages = import ./shared/systemPackages.nix { inherit pkgs; };
   zsh = import ./shared/zsh.nix;
-in {
+in
+{
   environment.systemPackages = systemPackages;
 
   nix = nix;

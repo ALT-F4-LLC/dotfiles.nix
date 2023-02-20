@@ -37,6 +37,16 @@ self: super: {
       src = ../../config/nvim;
     };
 
+    catppuccin-nvim = pkgs.vimUtils.buildVimPlugin {
+      name = "catppuccin-nvim";
+      src = pkgs.fetchFromGitHub {
+        owner = "catppuccin";
+        repo = "nvim";
+        rev = "e1fc2c3ade0d8872665d7570c493bbd5e11919c7";
+        sha256 = "sha256-s8nMeBtDnf/L7/rYwmf6UexykfADXJx0fZoDg8JacGs=";
+      };
+    };
+
     vim-just = pkgs.vimUtils.buildVimPlugin {
       name = "vim-just";
       src = pkgs.fetchFromGitHub {

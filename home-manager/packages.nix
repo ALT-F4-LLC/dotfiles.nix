@@ -32,6 +32,7 @@ with pkgs; [
   gopls
   #haskell-language-server
   jsonnet-language-server
+  lua-language-server
   nil
   nodePackages."@prisma/language-server"
   nodePackages."bash-language-server"
@@ -43,6 +44,5 @@ with pkgs; [
   nodePackages."vscode-langservers-extracted"
   nodePackages."yaml-language-server"
   rust-analyzer
-  sumneko-lua-language-server
   terraform-ls
 ]

@@ -194,7 +194,7 @@ in {
       vimPlugins.telescope-nvim
 
       # theme
-      vimPlugins.catppuccin-nvim
+      customVim.catppuccin-nvim
 
       # floaterm
       vimPlugins.vim-floaterm

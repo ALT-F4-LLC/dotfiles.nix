@@ -32,7 +32,8 @@
 
           system = system;
         };
-    in {
+    in
+    {
       darwinConfigurations = {
         macbookpro-personal = darwinSystem {
           system = "x86_64-darwin";
