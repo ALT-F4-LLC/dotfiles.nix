@@ -1,9 +1,11 @@
 local cmp = require 'cmp'
 local cmp_compare = require 'cmp.config.compare'
-local cmp_compare_tabnine = require('cmp_tabnine.compare')
+local copilot = require 'copilot'
+local copilot_cmp = require 'copilot_cmp'
+local copilot_cmp_format = require 'copilot_cmp.format'
+local copilot_cmp_comparators = require 'copilot_cmp.comparators'
 local lsp = require 'lsp-zero'
 local lspkind = require 'lspkind'
-local tabnine = require 'cmp_tabnine.config'
 
 local function autocmd(args)
     local event = args[1]
@@ -20,6 +22,12 @@ local function autocmd(args)
     })
 end
 
+local has_words_before = function()
+    if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
+end
+
 local function init()
     local augroup_highlight = vim.api.nvim_create_augroup("custom-lsp-references", { clear = true })
     local autocmd_clear = vim.api.nvim_clear_autocmds
@@ -30,24 +38,22 @@ local function init()
         ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
         ['<C-y>'] = cmp.mapping.confirm({ select = true }),
         ['<C-Space>'] = cmp.mapping.complete(),
+        ["<Tab>"] = vim.schedule_wrap(function(fallback)
+            if cmp.visible() and has_words_before() then
+                cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+            else
+                fallback()
+            end
+        end),
     })
     local cmp_sources = {
-        { name = 'cmp_tabnine' },
+        { name = "copilot" },
         { name = 'nvim_lsp' },
         { name = 'treesitter' },
         { name = 'luasnip' },
         { name = 'path' },
         { name = 'buffer' },
         { name = 'nvim_lua' }
-    }
-    local cmp_sources_mapping = {
-        cmp_tabnine = "[TN]",
-        nvim_lsp = "[LSP]",
-        treesitter = "[TS]",
-        luasnip = "[Snippet]",
-        path = "[Path]",
-        buffer = "[Buffer]",
-        nvim_lua = "[Lua]",
     }
 
     lsp.preset('recommended')
@@ -94,36 +100,18 @@ local function init()
 
     lsp.setup_nvim_cmp({
         formatting = {
-            format = function(entry, vim_item)
-                vim_item.kind = lspkind.symbolic(vim_item.kind, { mode = "symbol" })
-                vim_item.menu = cmp_sources_mapping[entry.source.name]
-
-                if entry.source.name == "cmp_tabnine" then
-                    local detail = (entry.completion_item.data or {}).detail
-
-                    vim_item.kind = ""
-
-                    if detail and detail:find('.*%%.*') then
-                        vim_item.kind = vim_item.kind .. ' ' .. detail
-                    end
-
-                    if (entry.completion_item.data or {}).multiline then
-                        vim_item.kind = vim_item.kind .. ' ' .. '[ML]'
-                    end
-                end
-
-                local maxwidth = 80
-
-                vim_item.abbr = string.sub(vim_item.abbr, 1, maxwidth)
-
-                return vim_item
-            end,
+            format = lspkind.cmp_format({
+                ellipsis_char = '...',
+                mode = 'symbol',
+                maxwidth = 50,
+                symbol_map = { Copilot = "" }
+            }),
         },
         mapping = cmp_mappings,
         sorting = {
             priority_weight = 2,
             comparators = {
-                cmp_compare_tabnine,
+                copilot_cmp_comparators.prioritize,
                 cmp_compare.offset,
                 cmp_compare.exact,
                 cmp_compare.score,
@@ -175,12 +163,20 @@ local function init()
 
     lsp.setup()
 
-    tabnine:setup({
-        max_lines = 1000,
-        max_num_results = 20,
-        sort = true,
-        run_on_every_keystroke = true,
-        snippet_placeholder = '..',
+    copilot.setup({
+        filetypes = {
+            ["*"] = true
+        },
+        panel = { enabled = false },
+        suggestion = { enabled = false },
+    })
+
+    copilot_cmp.setup({
+        formatters = {
+            insert_text = copilot_cmp_format.format_insert_text,
+            label = copilot_cmp_format.format_label_text,
+            preview = copilot_cmp_format.deindent,
+        },
     })
 
     vim.diagnostic.config({

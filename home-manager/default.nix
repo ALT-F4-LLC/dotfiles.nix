@@ -178,11 +178,12 @@ in {
 
       # completion
       vimPlugins.cmp-buffer
-      vimPlugins.cmp-path
       vimPlugins.cmp-nvim-lsp
-      vimPlugins.cmp-tabnine
+      vimPlugins.cmp-path
       vimPlugins.cmp-treesitter
       vimPlugins.cmp_luasnip
+      vimPlugins.copilot-cmp
+      vimPlugins.copilot-lua
       vimPlugins.friendly-snippets
       vimPlugins.lspkind-nvim
       vimPlugins.luasnip
