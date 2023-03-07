@@ -45,6 +45,11 @@ local function init()
                 fallback()
             end
         end),
+        ["<CR>"] = cmp.mapping.confirm({
+            -- this is the important line
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = false,
+        }),
     })
     local cmp_sources = {
         { name = "copilot" },
