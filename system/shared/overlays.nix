@@ -17,26 +17,18 @@ self: super: {
     };
   };
 
-  customTmux = with self; {
-    catppuccin = pkgs.tmuxPlugins.mkTmuxPlugin {
-      pluginName = "catppuccin";
-      src = pkgs.fetchFromGitHub {
+  customTmux = {
+    catppuccin = super.tmuxPlugins.catppuccin.overrideAttrs(old: {
+      src = super.fetchFromGitHub {
         owner = "catppuccin";
         repo = "tmux";
-        # Needs to be debugged before upgraded
-        rev = "d9e5c6d1e3b2c6f6f344f7663691c4c8e7ebeb4c";
-        sha256 = "sha256-k0nYjGjiTS0TOnYXoZg7w9UksBMLT+Bq/fJI3f9qqBg=";
+        rev = "8dd142b4e0244a357360cf87fb36c41373ab451f";
+        sha256 = "sha256-KoGrA5Mgw52jU00bgirQb/E8GbsMkG1WVyS5NSFqv7o=";
       };
-      version = "unstable-2022-09-14";
-    };
+    });
   };
 
   customVim = with self; {
-    thealtf4stream = pkgs.vimUtils.buildVimPlugin {
-      name = "TheAltF4Stream";
-      src = ../../config/nvim;
-    };
-
     catppuccin-nvim = pkgs.vimUtils.buildVimPlugin {
       name = "catppuccin-nvim";
       src = pkgs.fetchFromGitHub {
@@ -45,6 +37,11 @@ self: super: {
         rev = "e1fc2c3ade0d8872665d7570c493bbd5e11919c7";
         sha256 = "sha256-s8nMeBtDnf/L7/rYwmf6UexykfADXJx0fZoDg8JacGs=";
       };
+    };
+
+    thealtf4stream = pkgs.vimUtils.buildVimPlugin {
+      name = "TheAltF4Stream";
+      src = ../../config/nvim;
     };
 
     vim-just = pkgs.vimUtils.buildVimPlugin {
