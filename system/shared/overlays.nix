@@ -1,4 +1,13 @@
 self: super: {
+  nil = super.nil.overrideAttrs(old: {
+    src = super.fetchFromGitHub {
+      owner = "oxalica";
+      repo = "nil";
+      rev = "b5797b481ae87de5d4d99791e08400b9ac5a43a5";
+      sha256 = "sha256-5ABNUoXmlGjwkqGJ3YhUeQarcu0qwH7Al2tiuR/Pzoc=";
+    };
+  });
+
   customBat = with self; {
     catppuccin = pkgs.fetchFromGitHub {
       owner = "catppuccin";
