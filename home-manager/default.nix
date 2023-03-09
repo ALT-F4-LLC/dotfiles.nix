@@ -193,6 +193,7 @@ in {
       vimPlugins.plenary-nvim
       vimPlugins.popup-nvim
       vimPlugins.telescope-nvim
+      vimPlugins.telescope-manix
 
       # theme
       customVim.catppuccin-nvim
@@ -204,6 +205,7 @@ in {
       vimPlugins.gitsigns-nvim
       vimPlugins.lualine-nvim
       vimPlugins.nerdcommenter
+      vimPlugins.nvim-colorizer-lua
       vimPlugins.nvim-treesitter-context
       vimPlugins.nvim-web-devicons
 
@@ -222,6 +224,7 @@ in {
       gopls
       jsonnet-language-server
       lua-language-server
+      manix
       nil
       nodePackages."@prisma/language-server"
       nodePackages."bash-language-server"

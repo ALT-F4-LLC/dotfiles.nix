@@ -11,6 +11,8 @@ local function init()
         }
     }
 
+    telescope.load_extension('manix')
+
     local map = vim.api.nvim_set_keymap
 
     local options = { noremap = true }
@@ -29,6 +31,9 @@ local function init()
     map('n', '<leader>lsi', '<CMD>lua require("telescope.builtin").lsp_implementations{}<CR>', options)
     map('n', '<leader>lsl', '<CMD>lua require("telescope.builtin").lsp_code_actions{}<CR>', options)
     map('n', '<leader>lst', '<CMD>lua require("telescope.builtin").lsp_type_definitions{}<CR>', options)
+
+    -- Extensions
+    map('n', '<leader>fn', '<CMD>lua require("telescope-manix").search{}<CR>', options)
 end
 
 return {
