@@ -174,7 +174,7 @@ in {
       vimPlugins.vim-terraform
 
       # treesitter
-      vimPlugins.nvim-treesitter
+      vimPlugins.nvim-treesitter.withAllGrammars
 
       # completion
       vimPlugins.cmp-buffer
