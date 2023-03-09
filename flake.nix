@@ -1,11 +1,17 @@
 {
   inputs = {
-    darwin.inputs.nixpkgs.follows = "nixpkgs";
-    darwin.url = "github:lnl7/nix-darwin";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager.url = "github:nix-community/home-manager";
-    neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    darwin = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:lnl7/nix-darwin";
+    };
+    home-manager = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/home-manager";
+    };
+    neovim-nightly = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/neovim-nightly-overlay";
+    };
   };
 
   outputs = { self, darwin, home-manager, neovim-nightly, nixpkgs }:
