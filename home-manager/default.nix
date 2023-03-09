@@ -216,6 +216,26 @@ in {
         require 'TheAltF4Stream'.init()
       EOF
     '';
+
+    extraPackages = with pkgs; [
+      #haskell-language-server
+      gopls
+      jsonnet-language-server
+      lua-language-server
+      nil
+      nodePackages."@prisma/language-server"
+      nodePackages."bash-language-server"
+      nodePackages."dockerfile-language-server-nodejs"
+      nodePackages."graphql-language-service-cli"
+      nodePackages."pyright"
+      nodePackages."typescript"
+      nodePackages."typescript-language-server"
+      nodePackages."vscode-langservers-extracted"
+      nodePackages."yaml-language-server"
+      rust-analyzer
+      rustfmt
+      terraform-ls
+    ];
   };
 
   programs.nnn.enable = true;
