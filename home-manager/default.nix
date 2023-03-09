@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
 let isDarwin = pkgs.system == "x86_64-darwin";
 in {
@@ -169,6 +169,7 @@ in {
       customVim.vim-just
       vimPlugins.lsp-zero-nvim
       vimPlugins.nvim-lspconfig
+      vimPlugins.rust-tools-nvim
       vimPlugins.vim-nix
       vimPlugins.vim-prisma
       vimPlugins.vim-terraform
@@ -207,6 +208,7 @@ in {
       vimPlugins.nerdcommenter
       vimPlugins.nvim-colorizer-lua
       vimPlugins.nvim-treesitter-context
+      vimPlugins.nvim-ts-rainbow
       vimPlugins.nvim-web-devicons
 
       # configuration

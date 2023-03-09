@@ -2,10 +2,11 @@ local cmp = require 'cmp'
 local cmp_compare = require 'cmp.config.compare'
 local copilot = require 'copilot'
 local copilot_cmp = require 'copilot_cmp'
-local copilot_cmp_format = require 'copilot_cmp.format'
 local copilot_cmp_comparators = require 'copilot_cmp.comparators'
+local copilot_cmp_format = require 'copilot_cmp.format'
 local lsp = require 'lsp-zero'
 local lspkind = require 'lspkind'
+local rust_tools = require 'rust-tools'
 
 local function autocmd(args)
     local event = args[1]
@@ -28,24 +29,50 @@ local has_words_before = function()
     return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
 end
 
-local function init()
+local function on_attach(client, bufnr)
     local augroup_highlight = vim.api.nvim_create_augroup("custom-lsp-references", { clear = true })
     local autocmd_clear = vim.api.nvim_clear_autocmds
 
+    local bufopts = { buffer = bufnr, remap = false }
+
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+    vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+    vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+    vim.keymap.set('n', '<space>wl', function()
+        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    end, bufopts)
+    vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
+    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+    vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+    vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+
+    if client.server_capabilities.documentHighlightProvider then
+        autocmd_clear { group = augroup_highlight, buffer = bufnr }
+        autocmd { "CursorHold", augroup_highlight, vim.lsp.buf.document_highlight, bufnr }
+        autocmd { "CursorMoved", augroup_highlight, vim.lsp.buf.clear_references, bufnr }
+    end
+end
+
+local function init()
     local cmp_select = { behavior = cmp.SelectBehavior.Select }
     local cmp_mappings = lsp.defaults.cmp_mappings({
-        ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-        ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ["<Tab>"] = vim.schedule_wrap(function(fallback)
+            ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+            ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+            ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+            ['<C-Space>'] = cmp.mapping.complete(),
+            ["<Tab>"] = vim.schedule_wrap(function(fallback)
             if cmp.visible() and has_words_before() then
                 cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
             else
                 fallback()
             end
         end),
-        ["<CR>"] = cmp.mapping.confirm({
+            ["<CR>"] = cmp.mapping.confirm({
             -- this is the important line
             behavior = cmp.ConfirmBehavior.Replace,
             select = false,
@@ -78,7 +105,6 @@ local function init()
         'nil_ls',
         'prismals',
         'pyright',
-        'rust_analyzer',
         'terraformls',
         'tsserver',
         'yamlls'
@@ -140,37 +166,19 @@ local function init()
         suggest_lsp_servers = false,
     })
 
-    lsp.on_attach(function(client, bufnr)
-        local bufopts = { buffer = bufnr, remap = false }
-
-        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-        vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-        vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-        vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-        vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-        vim.keymap.set('n', '<space>wl', function()
-            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-        end, bufopts)
-        vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-        vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-        vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-        vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-        vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
-
-        if client.server_capabilities.documentHighlightProvider then
-            autocmd_clear { group = augroup_highlight, buffer = bufnr }
-            autocmd { "CursorHold", augroup_highlight, vim.lsp.buf.document_highlight, bufnr }
-            autocmd { "CursorMoved", augroup_highlight, vim.lsp.buf.clear_references, bufnr }
-        end
-    end)
+    lsp.on_attach(on_attach)
 
     lsp.setup()
 
+    rust_tools.setup({
+        server = {
+            on_attach = on_attach,
+        },
+    })
+
     copilot.setup({
         filetypes = {
-            ["*"] = true
+                ["*"] = true
         },
         panel = { enabled = false },
         suggestion = { enabled = false },
