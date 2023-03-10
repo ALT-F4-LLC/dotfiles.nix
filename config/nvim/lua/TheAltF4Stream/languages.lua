@@ -73,7 +73,6 @@ local function init()
             end
         end),
             ["<CR>"] = cmp.mapping.confirm({
-            -- this is the important line
             behavior = cmp.ConfirmBehavior.Replace,
             select = false,
         }),
@@ -147,6 +146,7 @@ local function init()
                 cmp_compare.exact,
                 cmp_compare.score,
                 cmp_compare.recently_used,
+                cmp_compare.locality,
                 cmp_compare.kind,
                 cmp_compare.sort_text,
                 cmp_compare.length,
@@ -186,7 +186,7 @@ local function init()
 
     copilot_cmp.setup({
         formatters = {
-            insert_text = copilot_cmp_format.format_insert_text,
+            insert_text = copilot_cmp_format.remove_existing,
             label = copilot_cmp_format.format_label_text,
             preview = copilot_cmp_format.deindent,
         },
