@@ -222,8 +222,8 @@ in {
     '';
 
     extraPackages = with pkgs; [
-      #haskell-language-server
       gopls
+      haskell-language-server
       jsonnet-language-server
       lua-language-server
       manix
