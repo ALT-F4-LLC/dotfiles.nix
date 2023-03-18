@@ -1,6 +1,5 @@
 clean:
-    nix store optimise --verbose
-    nix store gc --verbose
+    sudo nix-collect-garbage -d
 
 macbookpro command profile:
     darwin-rebuild {{ command }} --flake ".#macbookpro-{{profile}}"
