@@ -3,10 +3,12 @@
 with pkgs; [
   awscli2
   azure-cli
+  cachix
   cargo
   doppler
   fd
   gcc
+  gh
   ghc
   google-cloud-sdk
   jetbrains.datagrip
