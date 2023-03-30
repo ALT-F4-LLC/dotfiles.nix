@@ -25,6 +25,7 @@ with pkgs; [
   ripgrep
   rustc
   terraform
+  viddy
   virtualenv
   yarn
 ]
