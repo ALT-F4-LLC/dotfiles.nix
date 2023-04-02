@@ -79,6 +79,7 @@ in
   programs = {
     dconf.enable = true;
     geary.enable = true;
+    zsh.enable = true;
   };
 
   security.sudo = {
