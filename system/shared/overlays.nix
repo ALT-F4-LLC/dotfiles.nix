@@ -18,7 +18,7 @@ self: super: {
   };
 
   customTmux = {
-    catppuccin = super.tmuxPlugins.catppuccin.overrideAttrs(old: {
+    catppuccin = super.tmuxPlugins.catppuccin.overrideAttrs (old: {
       src = super.fetchFromGitHub {
         owner = "catppuccin";
         repo = "tmux";

@@ -1,8 +1,8 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 let
-  nix = import ./shared/nix.nix { inherit pkgs; };
-  nixpkgs = import ./shared/nixpkgs.nix { enablePulseAudio = true; };
-  systemPackages = import ./shared/systemPackages.nix {
+  nix = import ../shared/nix.nix { inherit pkgs; };
+  nixpkgs = import ../shared/nixpkgs.nix { enablePulseAudio = true; };
+  systemPackages = import ../shared/systemPackages.nix {
     inherit pkgs;
     extraPackages = with pkgs; [
       dunst
@@ -13,6 +13,7 @@ let
       xclip
     ];
   };
+  zsh = import ../shared/zsh.nix;
 in
 {
   boot = {
@@ -79,7 +80,7 @@ in
   programs = {
     dconf.enable = true;
     geary.enable = true;
-    zsh.enable = true;
+    zsh = zsh;
   };
 
   security.sudo = {
