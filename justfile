@@ -1,12 +1,12 @@
 clean:
     sudo nix-collect-garbage -d
 
-macbookpro command profile:
-    darwin-rebuild {{ command }} --flake ".#macbookpro-{{profile}}"
+darwin profile command:
+    darwin-rebuild {{ command }} --flake ".#darwin-{{profile}}"
     rm -rf ./result
 
-vmware command:
-    sudo nixos-rebuild {{ command }} --flake ".#vmware"
+nixos profile command:
+    sudo nixos-rebuild {{ command }} --flake ".#nixos-{{profile}}"
     rm -rf ./result
 
 update:
