@@ -1,4 +1,4 @@
-inputs:
+{ inputs }:
 
 { pkgs, ... }:
 
@@ -12,7 +12,7 @@ in {
     setlocal wrap
   '';
 
-  home.packages = (import ./packages.nix) { inherit pkgs; };
+  home.packages = import ./packages.nix { inherit pkgs; };
 
   home.sessionVariables = {
     CHARM_HOST = "localhost";

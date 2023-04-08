@@ -1,18 +1,24 @@
-{ darwin, home-manager, system ? "x86_64-darwin", overlays, username ? "erikreinert" }:
-darwin.lib.darwinSystem {
+{ inputs }:
+
+{ system ? "x86_64-darwin"
+, username ? "erikreinert"
+}:
+
+inputs.darwin.lib.darwinSystem {
   modules = [
     {
-      nixpkgs.overlays = overlays;
       users.users.${username}.home = "/Users/${username}";
     }
 
     ./system.nix
 
-    home-manager.darwinModules.home-manager
+    inputs.home-manager.darwinModules.home-manager
     {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
-      home-manager.users."${username}" = import ../../home-manager/darwin.nix;
+      home-manager.users."${username}" = import ./home-manager.nix {
+        inherit inputs;
+      };
     }
   ];
 

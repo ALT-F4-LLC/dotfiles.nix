@@ -1,11 +1,12 @@
-inputs:
+{ inputs }:
 
 { pkgs, ... }:
 
-let 
-  home-manager = import ../shared/home-manager inputs; 
+let
+  home-manager = import ../shared/home-manager { inherit inputs; };
   i3_mod = "Mod4";
-in {
+in
+{
   imports = [ home-manager ];
 
   #---------------------------------------------------------------------

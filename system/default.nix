@@ -1,3 +1,4 @@
-inputs: {
-  mkNixOS = import ./nixos inputs;
+{ inputs }: {
+  mkDarwin = import ./darwin { inherit inputs; };
+  mkNixOS = import ./nixos { inherit inputs; };
 }
