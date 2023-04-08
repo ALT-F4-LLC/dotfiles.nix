@@ -1,3 +1,5 @@
+inputs:
+
 { pkgs, ... }:
 
 let isDarwin = pkgs.system == "x86_64-darwin";
@@ -162,7 +164,7 @@ in {
 
   programs.neovim = {
     enable = true;
-    package = pkgs.neovim-nightly;
+    package = inputs.neovim-nightly.packages.${pkgs.system}.neovim;
 
     plugins = with pkgs; [
       # languages

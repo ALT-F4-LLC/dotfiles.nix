@@ -1,4 +1,3 @@
-{ inputs }:
-{
+inputs: {
   mkNixOS = import ./nixos inputs;
 }

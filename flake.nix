@@ -1,5 +1,5 @@
 {
-  description = "Development environments and packages for TheAltF4Stream";
+  description = "Development packages and operating systems for TheAltF4Stream";
 
   inputs = {
     darwin.inputs.nixpkgs.follows = "nixpkgs";
@@ -12,15 +12,15 @@
   };
 
   outputs = inputs@{ flake-parts, ... }:
-    let
-      systems = import ./system { inherit inputs; };
-    in
+  let
+    systems = import ./system inputs;
+  in
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" "aarch64-darwin" ];
       perSystem = { config, self', inputs', pkgs, system, ... }: { };
       flake = {
         nixosConfigurations = {
-          nixos-personal = systems.mkNixOS { };
+          nixos-personal = systems.mkNixOS {};
         };
       };
     };

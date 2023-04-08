@@ -1,7 +1,8 @@
 inputs:
 
-{ system ? "x86_64-linux"
-, username ? "erikreinert"
+{ 
+  system ? "x86_64-linux",
+  username ? "erikreinert"
 }:
 
 inputs.nixpkgs.lib.nixosSystem {
@@ -15,7 +16,7 @@ inputs.nixpkgs.lib.nixosSystem {
     {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
-      home-manager.users."${username}" = import ./home-manager.nix;
+      home-manager.users."${username}" = import ./home-manager.nix inputs;
     }
   ];
 }
