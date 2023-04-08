@@ -2,7 +2,20 @@
 
 { pkgs, ... }:
 
-let isDarwin = pkgs.system == "x86_64-darwin";
+let 
+  catppuccin-bat = pkgs.fetchFromGitHub {
+    owner = "catppuccin";
+    repo = "bat";
+    rev = "ba4d16880d63e656acced2b7d4e034e4a93f74b1";
+    sha256 = "sha256-6WVKQErGdaqb++oaXnY3i6/GuH2FhTgK0v4TN4Y0Wbw=";
+  };
+  isDarwin = pkgs.system == "x86_64-darwin";
+  zsh-z = pkgs.fetchFromGitHub {
+    owner = "agkozak";
+    repo = "zsh-z";
+    rev = "da8dee3ccaf882d1bf653c34850041025616ceb5";
+    sha256 = "sha256-MHb9Q7mwgWAs99vom6a2aODB40I9JTBaJnbvTYbMwiA=";
+  };
 in {
   #---------------------------------------------------------------------
   # home
@@ -36,7 +49,7 @@ in {
     config = { theme = "catppuccin"; };
     themes = {
       catppuccin = builtins.readFile
-        (pkgs.customBat.catppuccin + "/Catppuccin-macchiato.tmTheme");
+        (catppuccin-bat + "/Catppuccin-macchiato.tmTheme");
     };
   };
 
@@ -168,7 +181,7 @@ in {
 
     plugins = with pkgs; [
       # languages
-      customVim.vim-just
+      inputs.self.packages.${pkgs.system}.vim-just
       vimPlugins.lsp-zero-nvim
       vimPlugins.nvim-lspconfig
       vimPlugins.rust-tools-nvim
@@ -199,7 +212,7 @@ in {
       vimPlugins.telescope-manix
 
       # theme
-      customVim.catppuccin-nvim
+      vimPlugins.catppuccin-nvim
 
       # floaterm
       vimPlugins.vim-floaterm
@@ -214,7 +227,7 @@ in {
       vimPlugins.nvim-web-devicons
 
       # configuration
-      customVim.thealtf4stream
+      inputs.self.packages.${pkgs.system}.thealtf4stream-nvim
     ];
 
     extraConfig = ''
@@ -283,7 +296,7 @@ in {
 
     plugins = [{
       name = "zsh-z";
-      src = pkgs.customZsh.zsh-z;
+      src = zsh-z;
     }];
 
     initExtra = ''

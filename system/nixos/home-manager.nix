@@ -3,6 +3,12 @@
 { pkgs, ... }:
 
 let
+  catppuccin-rofi = pkgs.fetchFromGitHub {
+    owner = "catppuccin";
+    repo = "rofi";
+    rev = "5350da41a11814f950c3354f090b90d4674a95ce";
+    sha256 = "sha256-DNorfyl3C4RBclF2KDgwvQQwixpTwSRu7fIvihPN8JY=";
+  };
   home-manager = import ../shared/home-manager { inherit inputs; };
   i3_mod = "Mod4";
 in
@@ -15,9 +21,7 @@ in
 
   home.file.".background-image".source = ../../config/background-image;
   home.file.".config/k9s/skin.yml".source = ../../config/k9s/skin.yml;
-  home.file.".config/rofi/catppuccin-macchiato.rasi".source =
-    pkgs.customRofi.catppuccin
-    + "/basic/.local/share/rofi/themes/catppuccin-macchiato.rasi";
+  home.file.".config/rofi/catppuccin-macchiato.rasi".source = catppuccin-rofi + "/basic/.local/share/rofi/themes/catppuccin-macchiato.rasi";
 
   #---------------------------------------------------------------------
   # programs

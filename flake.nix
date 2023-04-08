@@ -13,11 +13,14 @@
 
   outputs = inputs@{ flake-parts, ... }:
     let
+      packages = import ./package { inherit inputs; };
       systems = import ./system { inherit inputs; };
     in
     flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [ "x86_64-darwin" "x86_64-linux" "aarch64-darwin" ];
-      perSystem = { config, self', inputs', pkgs, system, ... }: { };
+      systems = [ "aarch64-darwin" "x86_64-darwin" "x86_64-linux" ];
+      perSystem = { config, self', inputs', pkgs, system, ... }: {
+        packages = packages { inherit pkgs; };
+      };
       flake = {
         darwinConfigurations = {
           darwin-personal = systems.mkDarwin { };
