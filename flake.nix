@@ -13,7 +13,7 @@
 
   outputs = inputs@{ flake-parts, ... }:
     let
-      packages = import ./package { inherit inputs; };
+      packages = import ./package;
       systems = import ./system { inherit inputs; };
     in
     flake-parts.lib.mkFlake { inherit inputs; } {

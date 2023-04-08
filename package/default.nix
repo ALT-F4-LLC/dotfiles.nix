@@ -1,5 +1,3 @@
-{ inputs }:
-
 { pkgs }:
 
 {
