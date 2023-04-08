@@ -2,7 +2,7 @@
 
 { pkgs, ... }:
 
-let 
+let
   catppuccin-bat = pkgs.fetchFromGitHub {
     owner = "catppuccin";
     repo = "bat";
@@ -16,7 +16,8 @@ let
     rev = "da8dee3ccaf882d1bf653c34850041025616ceb5";
     sha256 = "sha256-MHb9Q7mwgWAs99vom6a2aODB40I9JTBaJnbvTYbMwiA=";
   };
-in {
+in
+{
   #---------------------------------------------------------------------
   # home
   #---------------------------------------------------------------------
