@@ -159,6 +159,9 @@ in
       color15 = "#A5ADCB";
       background_opacity = "0.9";
       font_size = "15";
+      allow_remote_control = "yes";
+      listen_on = "unix:/tmp/kitty";
+      enabled_layouts = "splits";
     };
     theme = "Catppuccin-Macchiato";
   };
@@ -259,7 +262,21 @@ in
     ];
   };
 
-  programs.nnn.enable = true;
+  programs.nnn = {
+    enable = true;
+    package =  pkgs.nnn.override ({ withNerdIcons = true; });
+    plugins = {
+      mappings = {
+        K = "preview-tui";
+      };
+      src = (pkgs.fetchFromGitHub {
+        owner = "jarun";
+        repo = "nnn";
+        rev = "18b5371d08e341ddefd2d023e3f7d201cac22b89";
+        sha256 = "sha256-L6p7bd5XXOHBZWei21czHC0N0Ne1k2YMuc6QhVdSxcQ=";
+      }) + "/plugins";
+    };
+  };
 
   programs.tmux = {
     enable = true;
@@ -285,13 +302,8 @@ in
 
     shellAliases = {
       cat = "bat";
-      fetch = "git fetch --all --jobs=4 --progress --prune";
-      ll = "n -Hde";
-      pull = "git pull --autostash --jobs=4 --summary origin";
-      rebase = "git rebase --autostash --stat";
-      secrets = ''doppler run --project "$(whoami)"'';
-      update = "fetch && rebase";
-      woof = "k9s";
+      ll = "nnn -adeHo -P K";
+      s = ''doppler run --config "nixos" --project "$(whoami)"'';
       wt = "git worktree";
     };
 
@@ -321,22 +333,6 @@ in
           hostPort: 443
           protocol: TCP
       EOF
-      }
-
-      n () {
-        if [ -n $NNNLVL ] && [ "$NNNLVL" -ge 1 ]; then
-          echo "nnn is already running"
-          return
-        fi
-
-        export NNN_TMPFILE="$HOME/.config/nnn/.lastd"
-
-        nnn "$@"
-
-        if [ -f "$NNN_TMPFILE" ]; then
-          . "$NNN_TMPFILE"
-          rm -f "$NNN_TMPFILE" > /dev/null
-        fi
       }
     '';
   };
