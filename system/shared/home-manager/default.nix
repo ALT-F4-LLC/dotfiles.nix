@@ -9,7 +9,7 @@ let
     rev = "ba4d16880d63e656acced2b7d4e034e4a93f74b1";
     sha256 = "sha256-6WVKQErGdaqb++oaXnY3i6/GuH2FhTgK0v4TN4Y0Wbw=";
   };
-  isDarwin = pkgs.system == "x86_64-darwin";
+  isDarwin = pkgs.system == "aarch64-darwin" || pkgs.system == "x86_64-darwin";
   zsh-z = pkgs.fetchFromGitHub {
     owner = "agkozak";
     repo = "zsh-z";
@@ -302,7 +302,7 @@ in
 
     shellAliases = {
       cat = "bat";
-      ll = "nnn -adeHo -P K";
+      ll = if isDarwin then "nnn -adeHo" else "nnn -adeHo -P K";
       s = ''doppler run --config "nixos" --project "$(whoami)"'';
       wt = "git worktree";
     };
