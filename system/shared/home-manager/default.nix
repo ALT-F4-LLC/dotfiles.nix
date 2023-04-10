@@ -302,7 +302,7 @@ in
 
     shellAliases = {
       cat = "bat";
-      ll = if isDarwin then "nnn -adeHo" else "nnn -adeHo -P K";
+      ll = if isDarwin then "n" else "n -P K";
       s = ''doppler run --config "nixos" --project "$(whoami)"'';
       wt = "git worktree";
     };
@@ -333,6 +333,21 @@ in
           hostPort: 443
           protocol: TCP
       EOF
+      }
+      n () {
+        if [ -n $NNNLVL ] && [ "$NNNLVL" -ge 1 ]; then
+          echo "nnn is already running"
+          return
+        fi
+
+        export NNN_TMPFILE="$HOME/.config/nnn/.lastd"
+
+        nnn -adeHo "$@"
+
+        if [ -f "$NNN_TMPFILE" ]; then
+          . "$NNN_TMPFILE"
+          rm -f "$NNN_TMPFILE" > /dev/null
+        fi
       }
     '';
   };
