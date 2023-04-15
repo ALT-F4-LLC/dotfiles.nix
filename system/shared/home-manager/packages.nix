@@ -26,6 +26,5 @@ with pkgs; [
   rustc
   terraform
   viddy
-  virtualenv
   yarn
 ]

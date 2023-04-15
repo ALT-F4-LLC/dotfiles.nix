@@ -13,24 +13,28 @@
 
   outputs = inputs@{ flake-parts, ... }:
     let
-      packages = import ./package;
       systems = import ./system { inherit inputs; };
     in
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "aarch64-darwin" "x86_64-darwin" "x86_64-linux" ];
       perSystem = { config, self', inputs', pkgs, system, ... }: {
-        packages = packages { inherit pkgs; };
+        packages = {
+          thealtf4stream-nvim = pkgs.vimUtils.buildVimPlugin {
+            name = "TheAltF4Stream";
+            src = ./config/nvim;
+          };
+        };
       };
       flake = {
         darwinConfigurations = {
-          darwin-personal = systems.mkDarwin { };
-          darwin-work = systems.mkDarwin {
+          thealtf4stream-darwin = systems.mkDarwin { };
+          work-darwin = systems.mkDarwin {
             system = "aarch64-darwin";
             username = "ereinert";
           };
         };
         nixosConfigurations = {
-          nixos-personal = systems.mkNixOS { };
+          thealtf4stream-nixos = systems.mkNixOS { };
         };
       };
     };

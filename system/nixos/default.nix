@@ -1,6 +1,8 @@
 { inputs }:
 
-{ system ? "x86_64-linux"
+{ hypervisor ? "vmware"
+, home-manager ? false
+, system ? "x86_64-linux"
 , username ? "erikreinert"
 }:
 
@@ -8,7 +10,7 @@ inputs.nixpkgs.lib.nixosSystem {
   inherit system;
 
   modules = [
-    ./hardware-vmware.nix
+    ./${hypervisor}-${system}.nix
     ./system.nix
 
     inputs.home-manager.nixosModules.home-manager
