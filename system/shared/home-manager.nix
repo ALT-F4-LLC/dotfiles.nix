@@ -35,8 +35,6 @@ in
     setlocal wrap
   '';
 
-  home.packages = import ./packages.nix { inherit pkgs; };
-
   home.sessionVariables = {
     CHARM_HOST = "localhost";
     EDITOR = "nvim";

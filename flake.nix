@@ -35,6 +35,11 @@
         };
         nixosConfigurations = {
           thealtf4stream-nixos = systems.mkNixOS { };
+          work-nixos = systems.mkNixOS {
+            desktop = false;
+            system = "aarch64-linux";
+            username = "ereinert";
+          };
         };
       };
     };

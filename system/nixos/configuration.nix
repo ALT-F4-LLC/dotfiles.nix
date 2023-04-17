@@ -1,41 +1,20 @@
+{ desktop, username }:
+
 { pkgs, ... }:
 
 let
-  nix = import ../shared/nix.nix { inherit pkgs; };
-  nixpkgs = import ../shared/nixpkgs.nix { enablePulseAudio = true; };
-  systemPackages = import ../shared/systemPackages.nix {
-    inherit pkgs;
-    extraPackages = with pkgs; [
-      dunst
-      k3s
-      libnotify
-      lxappearance
-      pavucontrol
-      xclip
-    ];
-  };
-  zsh = import ../shared/zsh.nix;
+  desktop-config = import ./configuration-desktop.nix { inherit username; };
+  shared-overlays = import ../shared/overlays.nix;
 in
 {
+  imports = [ ] ++ pkgs.lib.optionals desktop [ desktop-config ];
+
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
     loader = {
       efi.canTouchEfiVariables = true;
       systemd-boot.enable = true;
     };
-  };
-
-  fileSystems."/host" = {
-    fsType = "fuse./run/current-system/sw/bin/vmhgfs-fuse";
-    device = ".host:/";
-    options = [
-      "umask=22"
-      "uid=1000"
-      "gid=1000"
-      "allow_other"
-      "auto_unmount"
-      "defaults"
-    ];
   };
 
   fonts = {
@@ -45,43 +24,62 @@ in
         monospace = [ "Meslo LG M Regular Nerd Font Complete Mono" ];
       };
     };
-
     fonts = with pkgs; [ (nerdfonts.override { fonts = [ "Meslo" ]; }) ];
   };
 
   environment = {
     pathsToLink = [ "/libexec" "/share/zsh" ];
-    systemPackages = systemPackages;
-  };
-
-  hardware = {
-    opengl.enable = true;
-
-    pulseaudio = {
-      enable = true;
-      extraConfig = "unload-module module-suspend-on-idle";
-      support32Bit = true;
-    };
+    systemPackages = with pkgs; [
+      curl
+      k3s
+      vim
+      wget
+      xclip
+    ] ++ pkgs.lib.optionals desktop [
+      dunst
+      libnotify
+      lxappearance
+      pavucontrol
+    ];
   };
 
   i18n.defaultLocale = "en_US.UTF-8";
 
   networking = {
     firewall.enable = false;
-    hostName = "erikreinert-nixos";
-    interfaces.ens33.useDHCP = true;
+    hostName = "${username}-nixos";
     networkmanager.enable = true;
-    useDHCP = false;
   };
 
-  nix = nix;
+  nix = {
+    package = pkgs.nixUnstable;
 
-  nixpkgs = nixpkgs;
+    settings = {
+      auto-optimise-store = true;
+      builders-use-substitutes = true;
+      experimental-features = [ "nix-command" "flakes" ];
+      substituters = [
+        "https://nix-community.cachix.org"
+      ];
+      trusted-public-keys = [
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      ];
+      trusted-users = [ "@wheel" ];
+      warn-dirty = false;
+    };
+  };
+
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      pulseaudio = if desktop then true else false;
+    };
+
+    overlays = [ shared-overlays ];
+  };
 
   programs = {
-    dconf.enable = true;
-    geary.enable = true;
-    zsh = zsh;
+    zsh.enable = true;
   };
 
   security.sudo = {
@@ -109,55 +107,21 @@ in
         permitRootLogin = "no";
       };
     };
-
-    picom.enable = true;
-
-    twingate.enable = true;
-
-    xserver = {
-      enable = true;
-      layout = "us";
-      videoDrivers = [
-        "vmware"
-      ]; # Fixes https://github.com/NixOS/nixpkgs/commit/5157246aa4fdcbef7796ef9914c3a7e630c838ef
-
-      desktopManager = {
-        xterm.enable = false;
-        wallpaper.mode = "fill";
-      };
-
-      displayManager = {
-        autoLogin = {
-          enable = true;
-          user = "erikreinert";
-        };
-        defaultSession = "none+i3";
-        lightdm.enable = true;
-      };
-
-      windowManager.i3 = {
-        enable = true;
-        package = pkgs.i3-gaps;
-        extraPackages = with pkgs; [ i3status i3lock i3blocks ];
-      };
-    };
   };
 
-  sound.enable = true;
-
-  system.stateVersion = "22.05";
+  system.stateVersion = "22.11";
 
   time.timeZone = "America/Los_Angeles";
 
   users = {
     mutableUsers = false;
-
-    users.erikreinert = {
-      extraGroups = [ "audio" "docker" "wheel" ];
+    users."${username}" = {
+      extraGroups = [ "docker" "wheel" ] ++ pkgs.lib.optionals desktop [ "audio" ];
       hashedPassword = "";
-      home = "/home/erikreinert";
+      home = "/home/${username}";
       isNormalUser = true;
       openssh.authorizedKeys.keys = [
+        "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCozwyCmg3mPDHPn5QgZiqqEA+eyd5qtZTlncvCuz4HzIpNW1MQBwwlh43+0aPG7shr3G2BTfmGaWQB8/xAvJtNzFa2U84giEW7PhtWGtH338favimdNNtnR3qe8ME3XyjAFoiycmKneyZGhcyoOPiuQpTlW8HTmo0hGae0bhfDKexAhActDsFQc5DsOQuIr2RsMxSTWFxQp87LoLrO7KTTdcpOYWX/ZT8JAhyAdqFcQzPvGil5CDOBTNoD67c8gay6H0aOfR6F17gm0izz0W1PUoG7VGN5QDMv/NhVVE08/kF13Kxyj+fR0o6Nku++5CvTuwDJUubrGwjjmEN3kBo+r/TV1qGsq928ev4O3I1wPigZAEeZBfkE7xYYBvTK9IxMoQDFGtIDyjABA/V+prtxJTj2ttR36W72dlK3ofWrV5Et/ABbGocvK3dR4SjLDrQs0jfKWksUGFmB06X/FkbV73RY/+5zJiWqi78qGTuoR1qM0px7QDwJWhqcfgxt2hv4NFjgW4cc7FsuDqexZXj0ipH8OVl1k2smX1VQnsHs1XPO+65XaHAKs/wvA6w9UMAqkrc3Mt2PZ2errspzqxlmBKw+pPbqIeUOyU7/mYX713mON66R7S+iROYOAy5uxmlue0bqkyMvxqmi4LaowwW6hnEnO4LPI7bCNCEPSRn6WQ==", # work
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJs7Z5a/QPZPaly3N79Ns4qL73k9XMACmqH8H03gHMXf" # iPad
       ];
       shell = pkgs.zsh;

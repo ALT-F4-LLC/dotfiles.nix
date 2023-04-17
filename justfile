@@ -2,15 +2,15 @@ ssh_options := "-o PubkeyAuthentication=no -o UserKnownHostsFile=/dev/null -o St
 
 bootstrap destination:
     ssh {{ssh_options}} {{destination}} " \
-        parted /dev/vda -- mklabel gpt; \
-        parted /dev/vda -- mkpart primary 512MiB -8GiB; \
-        parted /dev/vda -- mkpart primary linux-swap -8GiB 100\%; \
-        parted /dev/vda -- mkpart ESP fat32 1MiB 512MiB; \
-        parted /dev/vda -- set 3 esp on; \
+        parted /dev/nvme0n1 -- mklabel gpt; \
+        parted /dev/nvme0n1 -- mkpart primary 512MiB -8GiB; \
+        parted /dev/nvme0n1 -- mkpart primary linux-swap -8GiB 100\%; \
+        parted /dev/nvme0n1 -- mkpart ESP fat32 1MiB 512MiB; \
+        parted /dev/nvme0n1 -- set 3 esp on; \
         sleep 1; \
-        mkfs.ext4 -L nixos /dev/vda1; \
-        mkswap -L swap /dev/vda2; \
-        mkfs.fat -F 32 -n boot /dev/vda3; \
+        mkfs.ext4 -L nixos /dev/nvme0n1p1; \
+        mkswap -L swap /dev/nvme0n1p2; \
+        mkfs.fat -F 32 -n boot /dev/nvme0n1p3; \
         sleep 1; \
         mount /dev/disk/by-label/nixos /mnt; \
         mkdir -p /mnt/boot; \
@@ -32,7 +32,7 @@ clean:
     sudo nix-collect-garbage -d
 
 darwin profile command:
-    darwin-rebuild {{ command }} --flake ".#{{profile}}-darwin"
+    darwin-rebuild {{ command }} --flake ".#{{profile}}-darwin" --show-trace
     rm -rf ./result
 
 nixos profile command:
