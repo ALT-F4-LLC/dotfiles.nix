@@ -38,7 +38,7 @@
         deploy = {
           nodes = {
             work-nixos = {
-              hostname = "work-nixos";
+              hostname = "work-nixos.localhost";
               profiles.system.path =
                 activate "aarch64-linux" self.nixosConfigurations.work-nixos;
               sshUser = "ereinert";
