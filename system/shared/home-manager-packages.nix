@@ -11,7 +11,6 @@ with pkgs; [
   gh
   ghc
   google-cloud-sdk
-  jetbrains.datagrip
   jq
   jsonnet
   just
@@ -26,6 +25,5 @@ with pkgs; [
   rustc
   terraform
   viddy
-  virtualenv
   yarn
 ]

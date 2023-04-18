@@ -10,6 +10,15 @@ let
     sha256 = "sha256-6WVKQErGdaqb++oaXnY3i6/GuH2FhTgK0v4TN4Y0Wbw=";
   };
   isDarwin = pkgs.system == "aarch64-darwin" || pkgs.system == "x86_64-darwin";
+  vim-just = pkgs.vimUtils.buildVimPlugin {
+    name = "vim-just";
+    src = pkgs.fetchFromGitHub {
+      owner = "NoahTheDuke";
+      repo = "vim-just";
+      rev = "10de9ebf0bd8df8ff8593b0b87ec8bf3b715326f";
+      sha256 = "sha256-NGhWF4/SEPww9e/wCDghGMSPZmmAbms6tn/IHqDMDkI=";
+    };
+  };
   zsh-z = pkgs.fetchFromGitHub {
     owner = "agkozak";
     repo = "zsh-z";
@@ -25,8 +34,6 @@ in
   home.file.".config/nvim/after/ftplugin/markdown.vim".text = ''
     setlocal wrap
   '';
-
-  home.packages = import ./packages.nix { inherit pkgs; };
 
   home.sessionVariables = {
     CHARM_HOST = "localhost";
@@ -185,7 +192,7 @@ in
 
     plugins = with pkgs; [
       # languages
-      inputs.self.packages.${pkgs.system}.vim-just
+      vim-just
       vimPlugins.lsp-zero-nvim
       vimPlugins.nvim-lspconfig
       vimPlugins.rust-tools-nvim
@@ -264,7 +271,7 @@ in
 
   programs.nnn = {
     enable = true;
-    package =  pkgs.nnn.override ({ withNerdIcons = true; });
+    package = pkgs.nnn.override ({ withNerdIcons = true; });
     plugins = {
       mappings = {
         K = "preview-tui";
