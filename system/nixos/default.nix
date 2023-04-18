@@ -1,10 +1,6 @@
 { inputs }:
 
-{ desktop ? false
-, hypervisor ? "vmware",
-, system ? "x86_64-linux"
-, username ? "erikreinert"
-}:
+{ desktop, hypervisor ? "vmware", system, username }:
 
 let
   hardware-configuration = import ./hardware/${hypervisor}/${system}.nix;
@@ -16,7 +12,8 @@ inputs.nixpkgs.lib.nixosSystem {
     hardware-configuration
     configuration
 
-    inputs.home-manager.nixosModules.home-manager {
+    inputs.home-manager.nixosModules.home-manager
+    {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
       home-manager.users."${username}" = import ./home-manager.nix {

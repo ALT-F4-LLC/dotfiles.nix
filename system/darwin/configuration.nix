@@ -22,7 +22,7 @@ in
       trusted-users = [ "@wheel" ];
       warn-dirty = false;
     };
-  }; 
+  };
 
   nixpkgs = {
     config.allowUnfree = true;

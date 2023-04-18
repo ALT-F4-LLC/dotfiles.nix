@@ -1,7 +1,9 @@
-ssh_options := "-o PubkeyAuthentication=no -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
-
-bootstrap destination:
-    ssh {{ssh_options}} {{destination}} " \
+bootstrap destination username publickey:
+    ssh \
+    -o PubkeyAuthentication=no \
+    -o UserKnownHostsFile=/dev/null \
+    -o StrictHostKeyChecking=no \
+    {{destination}} " \
         parted /dev/nvme0n1 -- mklabel gpt; \
         parted /dev/nvme0n1 -- mkpart primary 512MiB -8GiB; \
         parted /dev/nvme0n1 -- mkpart primary linux-swap -8GiB 100\%; \
@@ -19,20 +21,26 @@ bootstrap destination:
         sed --in-place '/system\.stateVersion = .*/a \
             nix.package = pkgs.nixUnstable;\n \
             nix.extraOptions = \"experimental-features = nix-command flakes\";\n \
+            security.sudo.enable = true;\n \
+            security.sudo.wheelNeedsPassword = false;\n \
             services.openssh.enable = true;\n \
-            services.openssh.passwordAuthentication = true;\n \
-            services.openssh.permitRootLogin = \"yes\";\n \
-            users.users.root.initialPassword = \"root\";\n \
+            services.openssh.passwordAuthentication = false;\n \
+            services.openssh.permitRootLogin = \"no\";\n \
+            users.mutableUsers = false;\n \
+            users.users.{{username}}.extraGroups = [ \"wheel\" ];\n \
+            users.users.{{username}}.hashedPassword = \"\";\n \
+            users.users.{{username}}.home = \"/home/{{username}}\";\n \
+            users.users.{{username}}.isNormalUser = true;\n \
+            users.users.{{username}}.openssh.authorizedKeys.keys = [ \"{{publickey}}\" ];\n \
         ' /mnt/etc/nixos/configuration.nix; \
         nixos-install --no-root-passwd; \
-        reboot; \
-        "
+        reboot;"
 
 clean:
     sudo nix-collect-garbage -d
 
 darwin profile command:
-    darwin-rebuild {{ command }} --flake ".#{{profile}}-darwin" --show-trace
+    darwin-rebuild {{ command }} --flake ".#{{profile}}-darwin"
     rm -rf ./result
 
 nixos profile command:

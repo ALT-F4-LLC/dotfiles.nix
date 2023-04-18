@@ -4,11 +4,11 @@
 
 let
   desktop-config = import ./home-manager-desktop.nix { inherit pkgs; };
-  shared-config = import ../shared/home-manager { inherit inputs; };
-  shared-packages = import ../shared/home-manager/packages.nix { inherit pkgs; };
+  shared-config = import ../shared/home-manager.nix { inherit inputs; };
+  shared-packages = import ../shared/home-manager-packages.nix { inherit pkgs; };
 in
 {
-  imports = [ shared-config ] ++ pkgs.lib.optionals desktop [ desktop-config ];
+  imports = if desktop then [ desktop-config shared-config ] else [ shared-config ];
 
   #---------------------------------------------------------------------
   # home
