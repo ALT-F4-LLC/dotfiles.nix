@@ -36,9 +36,6 @@ bootstrap destination username publickey:
         nixos-install --no-root-passwd; \
         reboot;"
 
-clean:
-    sudo nix-collect-garbage -d
-
 darwin profile command:
     darwin-rebuild {{ command }} --flake ".#{{profile}}-darwin"
     rm -rf ./result
