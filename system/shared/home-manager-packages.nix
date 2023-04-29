@@ -17,6 +17,7 @@ with pkgs; [
   k9s
   kubectl
   lazydocker
+  nixpkgs-fmt
   nodejs
   powershell
   pulumi-bin
