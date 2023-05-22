@@ -256,6 +256,7 @@ in
       nil
       nodePackages."@prisma/language-server"
       nodePackages."bash-language-server"
+      nodePackages."diagnostic-languageserver"
       nodePackages."dockerfile-language-server-nodejs"
       nodePackages."graphql-language-service-cli"
       nodePackages."pyright"
@@ -263,6 +264,7 @@ in
       nodePackages."typescript-language-server"
       nodePackages."vscode-langservers-extracted"
       nodePackages."yaml-language-server"
+      python310Packages.black
       rust-analyzer
       rustfmt
       terraform-ls

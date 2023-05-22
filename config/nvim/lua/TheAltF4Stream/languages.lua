@@ -61,18 +61,18 @@ end
 local function init()
     local cmp_select = { behavior = cmp.SelectBehavior.Select }
     local cmp_mappings = lsp.defaults.cmp_mappings({
-            ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-            ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-            ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-            ['<C-Space>'] = cmp.mapping.complete(),
-            ["<Tab>"] = vim.schedule_wrap(function(fallback)
+        ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+        ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ["<Tab>"] = vim.schedule_wrap(function(fallback)
             if cmp.visible() and has_words_before() then
                 cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
             else
                 fallback()
             end
         end),
-            ["<CR>"] = cmp.mapping.confirm({
+        ["<CR>"] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Replace,
             select = false,
         }),
@@ -103,10 +103,28 @@ local function init()
         'jsonnet_ls',
         'nil_ls',
         'prismals',
-        'pyright',
         'terraformls',
         'tsserver',
         'yamlls'
+    })
+
+    lsp.configure('diagnosticls', {
+        filetypes = { "python" },
+        init_options = {
+            filetypes = {
+                python = "black"
+            },
+            formatFiletypes = {
+                python = { "black" }
+            },
+            formatters = {
+                black = {
+                    command = "black",
+                    args = { "--quiet", "-" },
+                    rootPatterns = { "pyproject.toml" },
+                },
+            },
+        }
     })
 
     lsp.configure('lua_ls', {
@@ -126,6 +144,18 @@ local function init()
                 },
             }
         }
+    })
+
+    lsp.configure('pyright', {
+        settings = {
+            python = {
+                analysis = {
+                    autoSearchPaths = true,
+                    diagnosticMode = "workspace",
+                    useLibraryCodeForTypes = true
+                },
+            },
+        },
     })
 
     lsp.setup_nvim_cmp({
@@ -178,7 +208,7 @@ local function init()
 
     copilot.setup({
         filetypes = {
-                ["*"] = true
+            ["*"] = true
         },
         panel = { enabled = false },
         suggestion = { enabled = false },

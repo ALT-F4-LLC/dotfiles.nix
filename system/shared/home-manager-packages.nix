@@ -21,7 +21,7 @@ with pkgs; [
   nodejs
   powershell
   pulumi-bin
-  python3Full
+  python310Full
   ripgrep
   rustc
   terraform
