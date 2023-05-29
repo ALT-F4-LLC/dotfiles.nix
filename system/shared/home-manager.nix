@@ -118,6 +118,7 @@ in
       github.user = "erikreinert";
       init.defaultBranch = "main";
       merge.conflictstyle = "diff3";
+      push.autoSetupRemote = true;
       rebase.autoStash = true;
     };
   };
