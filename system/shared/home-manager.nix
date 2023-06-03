@@ -189,7 +189,6 @@ in
 
   programs.neovim = {
     enable = true;
-    package = inputs.neovim-nightly.packages.${pkgs.system}.neovim;
 
     plugins = with pkgs; [
       # languages
