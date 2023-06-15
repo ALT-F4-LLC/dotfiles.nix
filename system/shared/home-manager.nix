@@ -229,9 +229,11 @@ in
       vimPlugins.vim-floaterm
 
       # extras
+      vimPlugins.ChatGPT-nvim
       vimPlugins.gitsigns-nvim
       vimPlugins.lualine-nvim
       vimPlugins.nerdcommenter
+      vimPlugins.nui-nvim
       vimPlugins.nvim-colorizer-lua
       vimPlugins.nvim-treesitter-context
       vimPlugins.nvim-ts-rainbow
