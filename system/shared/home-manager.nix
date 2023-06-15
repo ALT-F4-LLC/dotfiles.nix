@@ -233,8 +233,10 @@ in
       vimPlugins.gitsigns-nvim
       vimPlugins.lualine-nvim
       vimPlugins.nerdcommenter
+      vimPlugins.noice-nvim
       vimPlugins.nui-nvim
       vimPlugins.nvim-colorizer-lua
+      vimPlugins.nvim-notify
       vimPlugins.nvim-treesitter-context
       vimPlugins.nvim-ts-rainbow
       #vimPlugins.nvim-web-devicons # https://github.com/intel/intel-one-mono/issues/9
