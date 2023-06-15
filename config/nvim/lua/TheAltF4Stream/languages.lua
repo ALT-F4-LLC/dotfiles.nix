@@ -7,6 +7,8 @@ local copilot_cmp_format = require 'copilot_cmp.format'
 local lsp = require 'lsp-zero'
 local lspkind = require 'lspkind'
 local rust_tools = require 'rust-tools'
+local treesitter = require 'nvim-treesitter.configs'
+local treesitter_context = require 'treesitter-context'
 
 local function autocmd(args)
     local event = args[1]
@@ -221,6 +223,14 @@ local function init()
             preview = copilot_cmp_format.deindent,
         },
     })
+
+    treesitter.setup {
+        highlight = { enable = true },
+        indent = { enable = true },
+        rainbow = { enable = true },
+    }
+
+    treesitter_context.setup()
 
     vim.diagnostic.config({
         virtual_text = true
