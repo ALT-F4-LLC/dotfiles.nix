@@ -235,7 +235,7 @@ in
       vimPlugins.nvim-colorizer-lua
       vimPlugins.nvim-treesitter-context
       vimPlugins.nvim-ts-rainbow
-      vimPlugins.nvim-web-devicons
+      #vimPlugins.nvim-web-devicons # https://github.com/intel/intel-one-mono/issues/9
 
       # configuration
       inputs.self.packages.${pkgs.system}.thealtf4stream-nvim
@@ -273,7 +273,7 @@ in
 
   programs.nnn = {
     enable = true;
-    package = pkgs.nnn.override ({ withNerdIcons = true; });
+    #package = pkgs.nnn.override ({ withNerdIcons = true; }); # https://github.com/intel/intel-one-mono/issues/9
     plugins = {
       mappings = {
         K = "preview-tui";

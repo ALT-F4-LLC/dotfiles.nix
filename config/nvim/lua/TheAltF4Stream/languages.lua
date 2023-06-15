@@ -162,7 +162,7 @@ local function init()
         formatting = {
             format = lspkind.cmp_format({
                 ellipsis_char = '...',
-                mode = 'symbol',
+                mode = 'text',
                 maxwidth = 50,
                 symbol_map = { Copilot = "" }
             }),

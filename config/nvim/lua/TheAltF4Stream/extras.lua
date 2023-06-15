@@ -10,6 +10,7 @@ local function init()
 
     lualine.setup({
         options = {
+            icons_enabled = false,
             extensions = { "fzf", "quickfix" },
             theme = "catppuccin"
         }

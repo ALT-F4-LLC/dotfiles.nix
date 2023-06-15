@@ -108,7 +108,7 @@ in
         };
       }];
 
-      fonts = { names = [ "Meslo LG M Regular Nerd Font Complete Mono" ]; };
+      fonts = { names = [ "IntelOne Mono" ]; };
 
       gaps = {
         inner = 0;

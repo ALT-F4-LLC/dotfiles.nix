@@ -20,11 +20,13 @@ in
   fonts = {
     fontconfig = {
       enable = true;
+
       defaultFonts = {
-        monospace = [ "Meslo LG M Regular Nerd Font Complete Mono" ];
+        monospace = [ "IntelOne Mono" ];
       };
     };
-    fonts = with pkgs; [ (nerdfonts.override { fonts = [ "Meslo" ]; }) ];
+
+    fonts = with pkgs; [ intel-one-mono ];
   };
 
   environment = {
