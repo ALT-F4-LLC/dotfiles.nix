@@ -1,18 +1,17 @@
 local chatgpt = require 'chatgpt'
 
 local function init()
+    local api_key_cmd = "doppler --config 'nixos' --project 'erikreinert' secrets get OPENAI_API_KEY --plain"
+    local model = "gpt-3.5-turbo"
+    local edit_model = "code-davinci-edit-001"
+
     chatgpt.setup({
-        api_key_cmd = "doppler --config 'nixos' --project 'erikreinert' secrets get OPENAI_API_KEY --plain",
-        openai_params = {
-            model = "gpt-3.5-turbo-0613"
-        },
-        openai_edit_params = {
-            model = "code-davinci-edit-001"
-        }
+        api_key_cmd = api_key_cmd,
+        openai_params = { model = model },
+        openai_edit_params = { model = edit_model }
     })
 
     local map = vim.api.nvim_set_keymap
-
     local options = { noremap = true }
 
     map('n', '<leader>ga', '<CMD>ChatGPTActAs<CR>', options)
