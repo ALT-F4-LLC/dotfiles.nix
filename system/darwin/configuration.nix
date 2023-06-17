@@ -6,11 +6,6 @@ let
   shared-overlays = import ../shared/overlays.nix;
 in
 {
-  environment = {
-    systemPackages = with pkgs; [ podman qemu ];
-  };
-
-
   nix = {
     package = pkgs.nixUnstable;
 
