@@ -27,8 +27,10 @@ local function init()
 
     lualine.setup {
         options = {
-            icons_enabled = false,
+            component_separators = { left = '', right = '' },
             extensions = { "fzf", "quickfix" },
+            icons_enabled = false,
+            section_separators = { left = '', right = '' },
             theme = "catppuccin"
         },
         sections = {
@@ -40,17 +42,17 @@ local function init()
                 {
                     noice.api.status.command.get,
                     cond = noice.api.status.command.has,
-                    color = { fg = "#ff9e64" },
+                    color = { fg = "#EED49F" },
                 },
                 {
                     noice.api.status.mode.get,
                     cond = noice.api.status.mode.has,
-                    color = { fg = "#ff9e64" },
+                    color = { fg = "#EED49F" },
                 },
                 {
                     noice.api.status.search.get,
                     cond = noice.api.status.search.has,
-                    color = { fg = "#ff9e64" },
+                    color = { fg = "#EED49F" },
                 },
             },
         }
