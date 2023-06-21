@@ -192,8 +192,10 @@ in
 
     plugins = with pkgs; [
       # languages
+      vimPlugins.go-nvim
       vimPlugins.nvim-lspconfig
       vimPlugins.nvim-treesitter.withAllGrammars
+      vimPlugins.rust-tools-nvim
 
       # telescope
       vimPlugins.plenary-nvim
@@ -253,9 +255,10 @@ in
       terraform-ls
 
       # formatters
-      python310Packages.black
       gofumpt
+      golines
       nixpkgs-fmt
+      python310Packages.black
       rustfmt
 
       # tools

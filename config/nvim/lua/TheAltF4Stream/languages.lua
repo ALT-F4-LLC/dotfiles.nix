@@ -1,4 +1,7 @@
+local go = require 'go'
+local go_lsp = require 'go.lsp'
 local lspconfig = require 'lspconfig'
+local rust_tools = require 'rust-tools'
 local treesitter = require 'nvim-treesitter.configs'
 local treesitter_context = require 'treesitter-context'
 
@@ -50,6 +53,22 @@ local function on_attach(client, buffer)
 end
 
 local function init()
+    -- Go specific setup
+    go.setup {
+        gofmt = 'gofumpt',
+        goimport = 'goimport',
+        lsp_cfg = false,
+        lsp_gofumpt = true,
+        lsp_on_attach = true,
+    }
+
+    -- Rust specific setup
+    rust_tools.setup {
+        server = {
+            on_attach = on_attach,
+        },
+    }
+
     local language_servers = {
         bashls = {},
         diagnosticls = {
@@ -71,7 +90,7 @@ local function init()
             }
         },
         dockerls = {},
-        gopls = {},
+        gopls = go_lsp.config(),
         hls = {},
         jsonls = {},
         lua_ls = {
