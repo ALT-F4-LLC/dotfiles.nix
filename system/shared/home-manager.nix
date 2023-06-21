@@ -192,7 +192,7 @@ in
 
     plugins = with pkgs; [
       # languages
-      vimPlugins.go-nvim
+      vim-just
       vimPlugins.nvim-lspconfig
       vimPlugins.nvim-treesitter.withAllGrammars
       vimPlugins.rust-tools-nvim
