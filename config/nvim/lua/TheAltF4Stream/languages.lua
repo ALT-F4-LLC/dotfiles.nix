@@ -59,7 +59,7 @@ local function init()
         goimport = 'goimport',
         lsp_cfg = false,
         lsp_gofumpt = true,
-        lsp_on_attach = true,
+        lsp_on_attach = false,
     }
 
     -- Rust specific setup
