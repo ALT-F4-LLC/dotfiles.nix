@@ -11,6 +11,7 @@ with pkgs; [
   jq
   just
   k9s
+  kind
   kubectl
   lazydocker
   powershell
