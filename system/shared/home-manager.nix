@@ -210,7 +210,7 @@ in
 
       # extras
       vimPlugins.ChatGPT-nvim
-      vimPlugins.copilot-vim
+      vimPlugins.copilot-lua
       vimPlugins.gitsigns-nvim
       vimPlugins.lualine-nvim
       vimPlugins.nerdcommenter
