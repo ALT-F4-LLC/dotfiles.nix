@@ -3,7 +3,6 @@
 with pkgs; [
   awscli2
   azure-cli
-  cachix
   doppler
   fd
   gh
@@ -13,8 +12,6 @@ with pkgs; [
   k9s
   kind
   kubectl
-  lazydocker
-  powershell
   pulumi-bin
   ripgrep
   terraform

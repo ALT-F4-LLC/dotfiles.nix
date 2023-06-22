@@ -265,6 +265,7 @@ in
       cargo
       gcc
       ghc
+      lazydocker
       yarn
     ];
   };
