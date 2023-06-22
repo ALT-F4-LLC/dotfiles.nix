@@ -193,34 +193,14 @@ in
     plugins = with pkgs; [
       # languages
       vim-just
-      vimPlugins.lsp-zero-nvim
       vimPlugins.nvim-lspconfig
-      vimPlugins.rust-tools-nvim
-      vimPlugins.vim-nix
-      vimPlugins.vim-prisma
-      vimPlugins.vim-terraform
-
-      # treesitter
       vimPlugins.nvim-treesitter.withAllGrammars
-
-      # completion
-      vimPlugins.cmp-buffer
-      vimPlugins.cmp-nvim-lsp
-      vimPlugins.cmp-path
-      vimPlugins.cmp-treesitter
-      vimPlugins.cmp_luasnip
-      vimPlugins.copilot-cmp
-      vimPlugins.copilot-lua
-      vimPlugins.friendly-snippets
-      vimPlugins.lspkind-nvim
-      vimPlugins.luasnip
-      vimPlugins.nvim-cmp
+      vimPlugins.rust-tools-nvim
 
       # telescope
       vimPlugins.plenary-nvim
       vimPlugins.popup-nvim
       vimPlugins.telescope-nvim
-      vimPlugins.telescope-manix
 
       # theme
       vimPlugins.catppuccin-nvim
@@ -230,6 +210,7 @@ in
 
       # extras
       vimPlugins.ChatGPT-nvim
+      vimPlugins.copilot-lua
       vimPlugins.gitsigns-nvim
       vimPlugins.lualine-nvim
       vimPlugins.nerdcommenter
@@ -238,7 +219,7 @@ in
       vimPlugins.nvim-colorizer-lua
       vimPlugins.nvim-notify
       vimPlugins.nvim-treesitter-context
-      vimPlugins.nvim-ts-rainbow
+      vimPlugins.nvim-ts-rainbow2
       #vimPlugins.nvim-web-devicons # https://github.com/intel/intel-one-mono/issues/9
 
       # configuration
@@ -252,26 +233,39 @@ in
     '';
 
     extraPackages = with pkgs; [
+      # languages
+      nodejs
+      python310Full
+      rustc
+
+      # language servers
       gopls
       haskell-language-server
-      jsonnet-language-server
       lua-language-server
-      manix
       nil
-      nodePackages."@prisma/language-server"
       nodePackages."bash-language-server"
       nodePackages."diagnostic-languageserver"
       nodePackages."dockerfile-language-server-nodejs"
-      nodePackages."graphql-language-service-cli"
       nodePackages."pyright"
       nodePackages."typescript"
       nodePackages."typescript-language-server"
       nodePackages."vscode-langservers-extracted"
       nodePackages."yaml-language-server"
-      python310Packages.black
       rust-analyzer
-      rustfmt
       terraform-ls
+
+      # formatters
+      gofumpt
+      golines
+      nixpkgs-fmt
+      python310Packages.black
+      rustfmt
+
+      # tools
+      cargo
+      gcc
+      ghc
+      yarn
     ];
   };
 

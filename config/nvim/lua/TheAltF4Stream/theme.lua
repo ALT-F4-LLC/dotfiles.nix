@@ -8,7 +8,6 @@ local function init()
     catppuccin.setup({
         flavour = "macchiato",
         integrations = {
-            cmp = true,
             gitsigns = true,
             --indent_blankline = { enabled = true },
             native_lsp = {
