@@ -51,7 +51,6 @@ local function on_attach(client, buffer)
     end
 end
 
-
 local function init()
     -- Copilot setup
     copilot.setup {
@@ -115,7 +114,13 @@ local function init()
                 },
             }
         },
-        nil_ls = {},
+        nil_ls = {
+            settings = {
+                ['nil'] = {
+                    formatting = { command = { "nixpkgs-fmt" } },
+                },
+            }
+        },
         pyright = {
             settings = {
                 python = {
