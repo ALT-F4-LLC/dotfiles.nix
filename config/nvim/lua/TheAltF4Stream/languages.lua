@@ -96,6 +96,7 @@ local function init()
         },
         hls = {},
         jsonls = {},
+        jsonnet_ls = {},
         lua_ls = {
             settings = {
                 Lua = {

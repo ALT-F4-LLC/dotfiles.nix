@@ -10,6 +10,7 @@ let
     sha256 = "sha256-6WVKQErGdaqb++oaXnY3i6/GuH2FhTgK0v4TN4Y0Wbw=";
   };
   isDarwin = pkgs.system == "aarch64-darwin" || pkgs.system == "x86_64-darwin";
+  jsonnet = import ./jsonnet.nix { inherit pkgs; };
   vim-just = pkgs.vimUtils.buildVimPlugin {
     name = "vim-just";
     src = pkgs.fetchFromGitHub {
@@ -241,6 +242,7 @@ in
 
     extraPackages = with pkgs; [
       # languages
+      jsonnet
       nodejs
       python310Full
       rustc
@@ -248,6 +250,7 @@ in
       # language servers
       gopls
       haskell-language-server
+      jsonnet-language-server
       lua-language-server
       nil
       nodePackages."bash-language-server"
