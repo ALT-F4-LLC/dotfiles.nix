@@ -47,7 +47,7 @@ in
     PULUMI_SKIP_UPDATE_CHECK = "true";
   };
 
-  home.stateVersion = "22.11";
+  home.stateVersion = "23.05";
 
   #---------------------------------------------------------------------
   # programs

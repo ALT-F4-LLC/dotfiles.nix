@@ -90,14 +90,6 @@ in
   };
 
   services = {
-    k3s = {
-      enable = true;
-      extraFlags = toString [
-        "--container-runtime-endpoint unix:///run/containerd/containerd.sock"
-      ];
-      role = "server";
-    };
-
     logind.extraConfig = ''
       RuntimeDirectorySize=20G
     '';
@@ -111,7 +103,7 @@ in
     };
   };
 
-  system.stateVersion = "22.11";
+  system.stateVersion = "23.05";
 
   time.timeZone = "America/Los_Angeles";
 
