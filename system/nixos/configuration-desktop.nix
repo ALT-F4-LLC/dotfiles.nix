@@ -21,7 +21,7 @@
   services = {
     picom.enable = true;
 
-    twingate.enable = true;
+    #twingate.enable = true;
 
     xserver = {
       enable = true;
