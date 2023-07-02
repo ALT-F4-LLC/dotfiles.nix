@@ -28,7 +28,7 @@ bootstrap destination username publickey:
             services.openssh.permitRootLogin = \"no\";\n \
             users.mutableUsers = false;\n \
             users.users.{{username}}.extraGroups = [ \"wheel\" ];\n \
-            users.users.{{username}}.hashedPassword = \"\";\n \
+            users.users.{{username}}.password = \"password\";\n \
             users.users.{{username}}.home = \"/home/{{username}}\";\n \
             users.users.{{username}}.isNormalUser = true;\n \
             users.users.{{username}}.openssh.authorizedKeys.keys = [ \"{{publickey}}\" ];\n \
