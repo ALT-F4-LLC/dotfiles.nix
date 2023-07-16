@@ -50,7 +50,7 @@ in
   networking = {
     firewall.enable = false;
     hostName = "${username}-nixos";
-    #networkmanager.enable = true;
+    networkmanager.enable = true;
   };
 
   nix = {
