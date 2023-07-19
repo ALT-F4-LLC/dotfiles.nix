@@ -68,6 +68,7 @@ local function init()
 
     local language_servers = {
         bashls = {},
+        cssls = {},
         diagnosticls = {
             filetypes = { "python" },
             init_options = {
@@ -95,6 +96,7 @@ local function init()
             },
         },
         hls = {},
+        html = {},
         jsonls = {},
         jsonnet_ls = {},
         lua_ls = {
