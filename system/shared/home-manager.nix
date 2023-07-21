@@ -310,9 +310,7 @@ in
     enable = true;
     enableAutosuggestions = true;
     enableCompletion = true;
-    syntaxHighlighting = {
-      enable = true;
-    };
+    enableSyntaxHighlighting = true;
 
     oh-my-zsh = {
       enable = true;

@@ -1,4 +1,4 @@
-{ desktop, username }:
+{ inputs, desktop, username }:
 
 { pkgs, ... }:
 
@@ -26,7 +26,9 @@ in
       };
     };
 
-    fonts = with pkgs; [ intel-one-mono ];
+    fonts = [
+      inputs.nixpkgs-unstable.legacyPackages."${pkgs.system}".intel-one-mono
+    ];
   };
 
   environment = {

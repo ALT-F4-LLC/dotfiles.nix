@@ -28,6 +28,8 @@
   services = {
     picom.enable = true;
 
+    twingate.enable = true;
+
     xserver = {
       enable = true;
       layout = "us";

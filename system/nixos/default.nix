@@ -4,7 +4,7 @@
 
 let
   hardware-configuration = import ./hardware/${hypervisor}/${system}.nix;
-  configuration = import ./configuration.nix { inherit desktop username; };
+  configuration = import ./configuration.nix { inherit inputs desktop username; };
 in
 inputs.nixpkgs.lib.nixosSystem {
   inherit system;
