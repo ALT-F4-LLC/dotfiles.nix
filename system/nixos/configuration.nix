@@ -142,9 +142,9 @@ in
         };
     };
 
-    docker.enable = true;
-
     podman = {
+      defaultNetwork.settings.dns_enabled = true;
+      dockerCompat = true;
       enable = true;
       extraPackages = with pkgs; [ zfs ];
     };
