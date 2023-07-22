@@ -137,7 +137,13 @@ local function init()
         },
         terraformls = {},
         tsserver = {},
-        yamlls = {},
+        yamlls = {
+            settings = {
+                yaml = {
+                    keyOrdering = false,
+                },
+            },
+        },
     }
 
     -- Initialize servers
