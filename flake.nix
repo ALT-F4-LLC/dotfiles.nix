@@ -15,7 +15,7 @@
       systems = import ./system { inherit inputs; };
     in
     flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [ "aarch64-darwin" "aarch64-linux" "x86_64-darwin" "x86_64-linux" ];
+      systems = [ "aarch64-darwin" "x86_64-linux" ];
       perSystem = { config, self', inputs', pkgs, system, ... }: {
         packages = {
           thealtf4stream-nvim = pkgs.vimUtils.buildVimPlugin {
@@ -28,7 +28,7 @@
       flake = {
         darwinConfigurations = {
           thealtf4stream-darwin = systems.mkDarwin {
-            system = "x86_64-darwin";
+            system = "aarch64-darwin";
             username = "erikreinert";
           };
 
