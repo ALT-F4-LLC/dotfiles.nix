@@ -121,14 +121,11 @@ in
       };
 
       enable = true;
-      #userEmail = gitUserEmail;
-      #userName = gitUserName;
 
       extraConfig = {
         color.ui = true;
         diff.colorMoved = "zebra";
         fetch.prune = true;
-        #github.user = "erikreinert";
         init.defaultBranch = "main";
         merge.conflictstyle = "diff3";
         push.autoSetupRemote = true;
