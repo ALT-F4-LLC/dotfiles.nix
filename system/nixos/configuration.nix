@@ -4,7 +4,6 @@
 
 let
   configuration-desktop = import ./configuration-desktop.nix { inherit username; };
-  shared-overlays = import ../shared/overlays.nix;
 in
 {
   imports = if desktop then [ configuration-desktop ] else [ ];
@@ -78,8 +77,6 @@ in
       allowUnfree = true;
       pulseaudio = if desktop then true else false;
     };
-
-    overlays = [ shared-overlays ];
   };
 
   programs = {

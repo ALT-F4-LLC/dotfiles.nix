@@ -10,21 +10,15 @@ let
     sha256 = "sha256-6WVKQErGdaqb++oaXnY3i6/GuH2FhTgK0v4TN4Y0Wbw=";
   };
   isDarwin = pkgs.system == "aarch64-darwin" || pkgs.system == "x86_64-darwin";
-  jsonnet = import ./jsonnet.nix { inherit pkgs; };
   vim-just = pkgs.vimUtils.buildVimPlugin {
     name = "vim-just";
+    nativeBuildInputs = with pkgs; [ pkg-config readline ];
     src = pkgs.fetchFromGitHub {
       owner = "NoahTheDuke";
       repo = "vim-just";
-      rev = "10de9ebf0bd8df8ff8593b0b87ec8bf3b715326f";
-      sha256 = "sha256-NGhWF4/SEPww9e/wCDghGMSPZmmAbms6tn/IHqDMDkI=";
+      rev = "927b41825b9cd07a40fc15b4c68635c4b36fa923";
+      sha256 = "sha256-Y8ZvJIiymdIxiUi+ZaCzLcJk9JnTWRqv78aD2Ud1Des=";
     };
-  };
-  zsh-z = pkgs.fetchFromGitHub {
-    owner = "agkozak";
-    repo = "zsh-z";
-    rev = "da8dee3ccaf882d1bf653c34850041025616ceb5";
-    sha256 = "sha256-MHb9Q7mwgWAs99vom6a2aODB40I9JTBaJnbvTYbMwiA=";
   };
 in
 {
@@ -210,14 +204,7 @@ in
       vimPlugins.vim-floaterm
 
       # extras
-      (vimPlugins.ChatGPT-nvim.overrideAttrs (old: {
-        src = fetchFromGitHub {
-          owner = "jackMort";
-          repo = "ChatGPT.nvim";
-          rev = "f499559f636676498692a2f19e74b077cbf52839";
-          sha256 = "sha256-98daaRkdrTZyNZuQPciaeRNuzyS52bsha4yyyAALcog=";
-        };
-      }))
+      vimPlugins.ChatGPT-nvim
       vimPlugins.copilot-lua
       vimPlugins.gitsigns-nvim
       vimPlugins.lualine-nvim
@@ -287,12 +274,7 @@ in
       mappings = {
         K = "preview-tui";
       };
-      src = (pkgs.fetchFromGitHub {
-        owner = "jarun";
-        repo = "nnn";
-        rev = "18b5371d08e341ddefd2d023e3f7d201cac22b89";
-        sha256 = "sha256-L6p7bd5XXOHBZWei21czHC0N0Ne1k2YMuc6QhVdSxcQ=";
-      }) + "/plugins";
+      src = pkgs.nnn + "/plugins";
     };
   };
 
@@ -301,7 +283,7 @@ in
     extraConfig = ''
       set-option -a terminal-overrides ",*256col*:RGB"
     '';
-    plugins = with pkgs; [ customTmux.catppuccin ];
+    plugins = with pkgs; [ tmuxPlugins.catppuccin ];
     shell = "${pkgs.zsh}/bin/zsh";
     terminal = if isDarwin then "screen-256color" else "xterm-256color";
   };
@@ -324,11 +306,6 @@ in
       s = ''doppler run --config "nixos" --project "$(whoami)"'';
       wt = "git worktree";
     };
-
-    plugins = [{
-      name = "zsh-z";
-      src = zsh-z;
-    }];
 
     initExtra = ''
       kindc () {

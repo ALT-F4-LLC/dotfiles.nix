@@ -16,4 +16,5 @@ with pkgs; [
   ripgrep
   terraform
   viddy
+  z-lua
 ]

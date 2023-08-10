@@ -2,9 +2,6 @@
 
 { pkgs, ... }:
 
-let
-  shared-overlays = import ../shared/overlays.nix;
-in
 {
   nix = {
     package = pkgs.nixUnstable;
@@ -26,7 +23,6 @@ in
 
   nixpkgs = {
     config.allowUnfree = true;
-    overlays = [ shared-overlays ];
   };
 
   programs = {
