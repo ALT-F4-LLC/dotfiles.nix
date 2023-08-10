@@ -12,7 +12,7 @@
 
   outputs = inputs@{ flake-parts, self, ... }:
     let
-      systems = import ./system { inherit inputs; };
+      systems = import ./system inputs;
     in
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "aarch64-darwin" "x86_64-linux" ];
@@ -27,23 +27,11 @@
 
       flake = {
         darwinConfigurations = {
-          thealtf4stream-darwin = systems.mkDarwin {
-            system = "aarch64-darwin";
-            username = "erikreinert";
-          };
-
-          work-darwin = systems.mkDarwin {
-            system = "aarch64-darwin";
-            username = "ereinert";
-          };
+          thealtf4stream = systems.mkDarwin "aarch64-darwin" "erikreinert";
         };
 
         nixosConfigurations = {
-          thealtf4stream-nixos = systems.mkNixOS {
-            desktop = true;
-            system = "x86_64-linux";
-            username = "erikreinert";
-          };
+          thealtf4stream = systems.mkNixOS "x86_64-linux" "erikreinert";
         };
       };
     };

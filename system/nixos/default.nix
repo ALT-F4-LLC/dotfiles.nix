@@ -1,6 +1,4 @@
-{ inputs }:
-
-{ desktop, hypervisor ? "vmware", system, username }:
+inputs: system: username: { desktop ? true, hypervisor ? "vmware" }:
 
 let
   hardware-configuration = import ./hardware/${hypervisor}/${system}.nix;

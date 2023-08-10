@@ -1,6 +1,4 @@
-{ inputs }:
-
-{ system, username }:
+inputs: system: username:
 
 let
   configuration = import ./configuration.nix { inherit username; };
