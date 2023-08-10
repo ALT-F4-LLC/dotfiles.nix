@@ -1,8 +1,4 @@
-{ pkgs }:
-
 {
-  package = pkgs.nixUnstable;
-
   settings = {
     auto-optimise-store = true;
     builders-use-substitutes = true;

@@ -1,6 +1,4 @@
-{ inputs }:
-
-{ pkgs, ... }:
+{ inputs }: { git }: { pkgs, ... }:
 
 let
   catppuccin-bat = pkgs.fetchFromGitHub {
@@ -17,7 +15,7 @@ let
       owner = "NoahTheDuke";
       repo = "vim-just";
       rev = "927b41825b9cd07a40fc15b4c68635c4b36fa923";
-      sha256 = "sha256-Y8ZvJIiymdIxiUi+ZaCzLcJk9JnTWRqv78aD2Ud1Des=";
+      sha256 = "sha256-BmxYWUVBzTowH68eWNrQKV1fNN9d1hRuCnXqbEagRoY=";
     };
   };
 in
@@ -29,6 +27,25 @@ in
   home.file.".config/nvim/after/ftplugin/markdown.vim".text = ''
     setlocal wrap
   '';
+
+  home.packages = with pkgs; [
+    awscli2
+    azure-cli
+    doppler
+    fd
+    gh
+    google-cloud-sdk
+    jq
+    just
+    k9s
+    kind
+    kubectl
+    pulumi-bin
+    ripgrep
+    terraform
+    viddy
+    z-lua
+  ];
 
   home.sessionVariables = {
     CHARM_HOST = "localhost";
@@ -63,60 +80,61 @@ in
     goPath = "Development/language/go";
   };
 
-  programs.git = {
-    delta = {
-      enable = true;
-      options = {
-        chameleon = {
-          dark = true;
-          line-numbers = true;
+  programs.git = pkgs.lib.recursiveUpdate git
+    {
+      delta = {
+        enable = true;
+        options = {
+          chameleon = {
+            dark = true;
+            line-numbers = true;
+            side-by-side = true;
+            keep-plus-minus-markers = true;
+            syntax-theme = "Nord";
+            file-style = "#434C5E bold";
+            file-decoration-style = "#434C5E ul";
+            file-added-label = "[+]";
+            file-copied-label = "[==]";
+            file-modified-label = "[*]";
+            file-removed-label = "[-]";
+            file-renamed-label = "[->]";
+            hunk-header-style = "omit";
+            line-numbers-left-format = " {nm:>1} │";
+            line-numbers-left-style = "red";
+            line-numbers-right-format = " {np:>1} │";
+            line-numbers-right-style = "green";
+            line-numbers-minus-style = "red italic black";
+            line-numbers-plus-style = "green italic black";
+            line-numbers-zero-style = "#434C5E italic";
+            minus-style = "bold red";
+            minus-emph-style = "bold red";
+            plus-style = "bold green";
+            plus-emph-style = "bold green";
+            zero-style = "syntax";
+            blame-code-style = "syntax";
+            blame-format = "{author:<18} ({commit:>7}) {timestamp:^12} ";
+            blame-palette = "#2E3440 #3B4252 #434C5E #4C566A";
+          };
+          features = "chameleon";
           side-by-side = true;
-          keep-plus-minus-markers = true;
-          syntax-theme = "Nord";
-          file-style = "#434C5E bold";
-          file-decoration-style = "#434C5E ul";
-          file-added-label = "[+]";
-          file-copied-label = "[==]";
-          file-modified-label = "[*]";
-          file-removed-label = "[-]";
-          file-renamed-label = "[->]";
-          hunk-header-style = "omit";
-          line-numbers-left-format = " {nm:>1} │";
-          line-numbers-left-style = "red";
-          line-numbers-right-format = " {np:>1} │";
-          line-numbers-right-style = "green";
-          line-numbers-minus-style = "red italic black";
-          line-numbers-plus-style = "green italic black";
-          line-numbers-zero-style = "#434C5E italic";
-          minus-style = "bold red";
-          minus-emph-style = "bold red";
-          plus-style = "bold green";
-          plus-emph-style = "bold green";
-          zero-style = "syntax";
-          blame-code-style = "syntax";
-          blame-format = "{author:<18} ({commit:>7}) {timestamp:^12} ";
-          blame-palette = "#2E3440 #3B4252 #434C5E #4C566A";
         };
-        features = "chameleon";
-        side-by-side = true;
+      };
+
+      enable = true;
+      #userEmail = gitUserEmail;
+      #userName = gitUserName;
+
+      extraConfig = {
+        color.ui = true;
+        diff.colorMoved = "zebra";
+        fetch.prune = true;
+        #github.user = "erikreinert";
+        init.defaultBranch = "main";
+        merge.conflictstyle = "diff3";
+        push.autoSetupRemote = true;
+        rebase.autoStash = true;
       };
     };
-
-    enable = true;
-    userEmail = "4638629+erikreinert@users.noreply.github.com";
-    userName = "Erik Reinert";
-
-    extraConfig = {
-      color.ui = true;
-      diff.colorMoved = "zebra";
-      fetch.prune = true;
-      github.user = "erikreinert";
-      init.defaultBranch = "main";
-      merge.conflictstyle = "diff3";
-      push.autoSetupRemote = true;
-      rebase.autoStash = true;
-    };
-  };
 
   programs.kitty = {
     enable = true;

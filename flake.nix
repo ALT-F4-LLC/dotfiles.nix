@@ -12,7 +12,12 @@
 
   outputs = inputs@{ flake-parts, self, ... }:
     let
-      systems = import ./system inputs;
+      git = {
+        extraConfig.github.user = username;
+        userEmail = "4638629+erikreinert@users.noreply.github.com";
+        userName = "Erik Reinert";
+      };
+      username = "erikreinert";
     in
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "aarch64-darwin" "x86_64-linux" ];
@@ -26,12 +31,20 @@
       };
 
       flake = {
+        lib = import ./lib { inherit inputs; };
+
         darwinConfigurations = {
-          thealtf4stream = systems.mkDarwin "aarch64-darwin" "erikreinert";
+          thealtf4stream = self.lib.mkDarwin {
+            inherit git username;
+            system = "aarch64-darwin";
+          };
         };
 
         nixosConfigurations = {
-          thealtf4stream = systems.mkNixOS "x86_64-linux" "erikreinert";
+          thealtf4stream = self.lib.mkNixos {
+            inherit git username;
+            system = "x86_64-linux";
+          };
         };
       };
     };

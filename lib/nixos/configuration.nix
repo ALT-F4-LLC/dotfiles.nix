@@ -4,6 +4,7 @@
 
 let
   configuration-desktop = import ./configuration-desktop.nix { inherit username; };
+  nix = import ../shared/nix.nix;
 in
 {
   imports = if desktop then [ configuration-desktop ] else [ ];
@@ -54,23 +55,7 @@ in
     networkmanager.enable = true;
   };
 
-  nix = {
-    package = pkgs.nixUnstable;
-
-    settings = {
-      auto-optimise-store = true;
-      builders-use-substitutes = true;
-      experimental-features = [ "nix-command" "flakes" ];
-      substituters = [
-        "https://nix-community.cachix.org"
-      ];
-      trusted-public-keys = [
-        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      ];
-      trusted-users = [ "@wheel" ];
-      warn-dirty = false;
-    };
-  };
+  nix = nix;
 
   nixpkgs = {
     config = {
