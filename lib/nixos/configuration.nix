@@ -19,16 +19,11 @@ in
 
   fonts = {
     fontconfig = {
+      defaultFonts.monospace = [ "IntelOne Mono" ];
       enable = true;
-
-      defaultFonts = {
-        monospace = [ "IntelOne Mono" ];
-      };
     };
 
-    fonts = [
-      inputs.nixpkgs-unstable.legacyPackages."${pkgs.system}".intel-one-mono
-    ];
+    fonts = [ pkgs.intel-one-mono ];
   };
 
   environment = {
@@ -64,9 +59,7 @@ in
     };
   };
 
-  programs = {
-    zsh.enable = true;
-  };
+  programs.zsh.enable = true;
 
   security.sudo = {
     enable = true;
