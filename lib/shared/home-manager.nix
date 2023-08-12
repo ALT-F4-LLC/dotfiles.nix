@@ -40,6 +40,7 @@ in
     k9s
     kind
     kubectl
+    lazydocker
     pulumi-bin
     ripgrep
     terraform
@@ -74,6 +75,12 @@ in
   };
 
   programs.bottom.enable = true;
+
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+    nix-direnv.enable = true;
+  };
 
   programs.go = {
     enable = true;
@@ -277,7 +284,6 @@ in
       cargo
       gcc
       ghc
-      lazydocker
       yarn
     ];
   };
