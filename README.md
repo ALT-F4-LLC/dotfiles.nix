@@ -1,12 +1,14 @@
 # dotfiles-nixos
 
-Cross-platform development environments for `blackglasses` at [TheAltF4Stream](https://www.twitch.tv/thealtf4stream) on Twitch.
+Cross-platform (Linux & macOS) development environments for the [TheAltF4Stream](https://www.twitch.tv/thealtf4stream).
 
-![NixOS](https://raw.githubusercontent.com/NixOS/nixos-artwork/master/logo/nixos.svg)
+![flake status](https://github.com/ALT-F4-LLC/dotfiles-nixos/actions/workflows/flake.yml/badge.svg)
 
 ## Goals
 
-Maintain declarative configurations for development environments that are reproducible on any operating system (Windows not included).
+Maintain declarative configurations for environments that are reproducible on each operating system.
+
+![Preview macOS](https://github.com/ALT-F4-LLC/dotfiles-nixos/blob/main/config/preview-macos.png)
 
 ### Why move from Manjaro + Ansible?
 
