@@ -14,4 +14,3 @@ jobs:
     - uses: DeterminateSystems/nix-installer-action@main
     - uses: DeterminateSystems/magic-nix-cache-action@main
     - run: nix flake check
-    - run: nix build .#thealt4stream
