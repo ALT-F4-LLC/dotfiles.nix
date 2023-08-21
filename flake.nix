@@ -24,6 +24,7 @@
         devShells = {
           default = pkgs.mkShell { };
         };
+
         packages = {
           thealtf4stream-nvim = pkgs.vimUtils.buildVimPlugin {
             name = "TheAltF4Stream";

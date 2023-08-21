@@ -62,6 +62,17 @@ local function init()
     -- Rust specific setup
     rust_tools.setup {
         server = {
+            settings = {
+                ['rust-analyzer'] = {
+                    diagnostics = {
+                        enable = false,
+                    },
+                    files = {
+                        excludeDirs = { ".direnv", ".git" },
+                        watcherExclude = { ".direnv", ".git" },
+                    },
+                },
+            },
             on_attach = on_attach,
         },
     }
