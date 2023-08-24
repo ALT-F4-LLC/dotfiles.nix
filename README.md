@@ -8,7 +8,7 @@ Cross-platform (Linux & macOS) development environments for the [TheAltF4Stream]
 
 Maintain declarative configurations for environments that are reproducible on each operating system.
 
-![Preview macOS](https://github.com/ALT-F4-LLC/dotfiles-nixos/blob/main/config/preview-macos.png)
+![Preview macOS](https://github.com/ALT-F4-LLC/dotfiles-nixos/blob/main/config/preview-macos-nixos.png)
 
 ### Why move from Manjaro + Ansible?
 
