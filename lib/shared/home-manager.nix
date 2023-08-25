@@ -299,6 +299,11 @@ in
     };
   };
 
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   programs.tmux = {
     enable = true;
     extraConfig = ''
