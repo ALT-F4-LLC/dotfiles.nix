@@ -64,6 +64,11 @@ local function init()
         server = {
             settings = {
                 ['rust-analyzer'] = {
+                    cargo = {
+                        buildScripts = {
+                            enable = true,
+                        },
+                    },
                     diagnostics = {
                         enable = false,
                     },
