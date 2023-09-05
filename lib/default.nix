@@ -37,8 +37,6 @@ in
             imports = [ (home-manager { inherit git; }) ];
           };
         }
-      ] ++ (if desktop then [
-        (import ./nixos/configuration-desktop.nix { inherit username; })
-      ] else [ ]);
+      ];
     };
 }
