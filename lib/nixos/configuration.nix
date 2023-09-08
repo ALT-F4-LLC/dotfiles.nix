@@ -3,12 +3,9 @@
 { pkgs, ... }:
 
 let
-  configuration-desktop = import ./configuration-desktop.nix { inherit username; };
   nix = import ../shared/nix.nix;
 in
 {
-  imports = if desktop then [ configuration-desktop ] else [ ];
-
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
     loader = {

@@ -2,6 +2,7 @@
 
 let
   home-manager = import ./shared/home-manager.nix { inherit inputs; };
+  home-manager-desktop = import ./nixos/home-manager-desktop.nix;
 in
 {
   mkDarwin = { git ? { }, system, username }:
@@ -28,13 +29,17 @@ in
       modules = [
         (import ./nixos/hardware/${hypervisor}/${system}.nix)
         (import ./nixos/configuration.nix { inherit inputs desktop username; })
+        (import ./nixos/configuration-desktop.nix { inherit username; })
 
         inputs.home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users."${username}" = { pkgs, ... }: {
-            imports = [ (home-manager { inherit git; }) ];
+            imports = [
+              (home-manager { inherit git; })
+              (home-manager-desktop { inherit pkgs; })
+            ];
           };
         }
       ];

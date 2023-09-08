@@ -1,4 +1,4 @@
-{ pkgs }:
+{ pkgs, ... }:
 
 let
   catppuccin-rofi = pkgs.fetchFromGitHub {
