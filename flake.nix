@@ -30,14 +30,14 @@
       };
 
       flake = {
-        lib = import ./lib { inherit inputs; };
-
         darwinConfigurations = {
           thealtf4stream = self.lib.mkDarwin {
             inherit git username;
             system = "aarch64-darwin";
           };
         };
+
+        lib = import ./lib { inherit inputs; };
 
         nixosConfigurations = {
           thealtf4stream = self.lib.mkNixos {
