@@ -34,9 +34,9 @@ local function init()
 
     notify.setup({
         background_colour = "#1e222a",
-        render = "minimal",
+        render = "compact",
         stages = "static",
-        timeout = 5000,
+        timeout = 1000,
     })
 
     vim.cmd [[
