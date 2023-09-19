@@ -82,11 +82,6 @@ in
     nix-direnv.enable = true;
   };
 
-  programs.go = {
-    enable = true;
-    goPath = "Development/language/go";
-  };
-
   programs.git = pkgs.lib.recursiveUpdate git
     {
       delta = {
@@ -131,6 +126,7 @@ in
 
       extraConfig = {
         color.ui = true;
+        commit.gpgsign = true;
         diff.colorMoved = "zebra";
         fetch.prune = true;
         init.defaultBranch = "main";
@@ -139,6 +135,11 @@ in
         rebase.autoStash = true;
       };
     };
+
+  programs.go = {
+    enable = true;
+    goPath = "Development/language/go";
+  };
 
   programs.kitty = {
     enable = true;
