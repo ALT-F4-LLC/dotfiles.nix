@@ -30,20 +30,15 @@ in
 
   home.packages = with pkgs; [
     awscli2
-    azure-cli
     doppler
     fd
     gh
-    google-cloud-sdk
     jq
     just
     k9s
-    kind
     kubectl
     lazydocker
-    pulumi-bin
     ripgrep
-    terraform
     viddy
     z-lua
   ];
@@ -232,7 +227,6 @@ in
       vimPlugins.gitsigns-nvim
       vimPlugins.lualine-nvim
       vimPlugins.nerdcommenter
-      vimPlugins.noice-nvim
       vimPlugins.nui-nvim
       vimPlugins.nvim-colorizer-lua
       vimPlugins.nvim-notify
