@@ -4,7 +4,6 @@ local function init()
     require 'TheAltF4Stream.languages'.init()
     require 'TheAltF4Stream.chatgpt'.init()
     require 'TheAltF4Stream.floaterm'.init()
-    require 'TheAltF4Stream.noice'.init()
     require 'TheAltF4Stream.telescope'.init()
 end
 
