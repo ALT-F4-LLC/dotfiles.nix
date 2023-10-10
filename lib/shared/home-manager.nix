@@ -30,11 +30,11 @@ in
 
   home.packages = with pkgs; [
     awscli2
+    cue
     doppler
     fd
     gh
     jq
-    just
     k9s
     kubectl
     lazydocker
@@ -252,6 +252,7 @@ in
       rustc
 
       # language servers
+      cuelsp
       gopls
       haskell-language-server
       jsonnet-language-server

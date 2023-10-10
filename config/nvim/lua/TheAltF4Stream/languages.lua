@@ -85,6 +85,7 @@ local function init()
     local language_servers = {
         bashls = {},
         cssls = {},
+        dagger = {},
         diagnosticls = {
             filetypes = { "python" },
             init_options = {
