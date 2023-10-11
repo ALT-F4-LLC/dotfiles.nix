@@ -205,11 +205,11 @@ in
 
     plugins = with pkgs; [
       # languages
-      vim-cue
       vim-just
       vimPlugins.nvim-lspconfig
       vimPlugins.nvim-treesitter.withAllGrammars
       vimPlugins.rust-tools-nvim
+      vimPlugins.vim-cue
 
       # telescope
       vimPlugins.plenary-nvim
