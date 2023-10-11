@@ -328,6 +328,7 @@ in
 
     shellAliases = {
       cat = "bat";
+      lg = "lazygit";
       ll = if isDarwin then "n" else "n -P K";
       s = ''doppler run --config "nixos" --project "$(whoami)"'';
       wt = "git worktree";
