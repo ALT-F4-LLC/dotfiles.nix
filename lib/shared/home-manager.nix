@@ -205,6 +205,7 @@ in
 
     plugins = with pkgs; [
       # languages
+      vim-cue
       vim-just
       vimPlugins.nvim-lspconfig
       vimPlugins.nvim-treesitter.withAllGrammars
