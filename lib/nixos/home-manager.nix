@@ -5,7 +5,6 @@
 let
   desktop-config = import ./home-manager-desktop.nix { inherit pkgs; };
   shared-config = import ../shared/home-manager.nix { inherit inputs; };
-  shared-packages = import ../shared/home-manager-packages.nix { inherit pkgs; };
 in
 {
   imports = if desktop then [ desktop-config shared-config ] else [ shared-config ];
@@ -15,9 +14,7 @@ in
   #---------------------------------------------------------------------
 
   home.file.".config/k9s/skin.yml".source = ../../config/k9s/skin.yml;
-  home.packages = shared-packages ++ pkgs.lib.optionals desktop [
-    pkgs.jetbrains.datagrip
-  ];
+  home.packages = pkgs.lib.optionals desktop [ pkgs.jetbrains.datagrip ];
 
   #---------------------------------------------------------------------
   # programs

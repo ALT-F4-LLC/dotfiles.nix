@@ -30,16 +30,12 @@ in
 
   home.packages = with pkgs; [
     awscli2
-    cue
     doppler
-    fd
     gh
     jq
     k9s
     kubectl
-    lazydocker
     ripgrep
-    viddy
     z-lua
   ];
 
@@ -280,8 +276,10 @@ in
 
       # tools
       cargo
+      fd
       gcc
       ghc
+      lazydocker
       yarn
     ];
   };
