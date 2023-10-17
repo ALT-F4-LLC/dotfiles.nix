@@ -130,6 +130,7 @@ in
   programs.go = {
     enable = true;
     goPath = "Development/language/go";
+    package = pkgs.go_1_21;
   };
 
   programs.kitty = {
