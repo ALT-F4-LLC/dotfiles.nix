@@ -8,6 +8,7 @@ let
     sha256 = "sha256-6WVKQErGdaqb++oaXnY3i6/GuH2FhTgK0v4TN4Y0Wbw=";
   };
   isDarwin = pkgs.system == "aarch64-darwin" || pkgs.system == "x86_64-darwin";
+  pkgsUnstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system};
   vim-just = pkgs.vimUtils.buildVimPlugin {
     name = "vim-just";
     nativeBuildInputs = with pkgs; [ pkg-config readline ];
@@ -130,7 +131,7 @@ in
   programs.go = {
     enable = true;
     goPath = "Development/language/go";
-    package = pkgs.go_1_21;
+    package = pkgsUnstable.go_1_21;
   };
 
   programs.kitty = {
