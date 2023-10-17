@@ -252,7 +252,6 @@ in
 
       # language servers
       cuelsp
-      gopls
       haskell-language-server
       jsonnet-language-server
       lua-language-server
@@ -265,13 +264,14 @@ in
       nodePackages."typescript-language-server"
       nodePackages."vscode-langservers-extracted"
       nodePackages."yaml-language-server"
+      pkgsUnstable.gopls
       rust-analyzer
       terraform-ls
 
       # formatters
-      gofumpt
-      golines
       nixpkgs-fmt
+      pkgsUnstable.gofumpt
+      pkgsUnstable.golines
       python310Packages.black
       rustfmt
       terraform
