@@ -15,8 +15,8 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "NoahTheDuke";
       repo = "vim-just";
-      rev = "927b41825b9cd07a40fc15b4c68635c4b36fa923";
-      sha256 = "sha256-BmxYWUVBzTowH68eWNrQKV1fNN9d1hRuCnXqbEagRoY=";
+      rev = "3451e22daade268f99b1cfeb0d9fe39f4ddc06d5";
+      sha256 = "sha256-2pzdtMGdmCTprkPslGdlEezdQ6dTFrhqvz5Sc8DN3Ts=";
     };
   };
 in
