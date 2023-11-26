@@ -141,6 +141,9 @@ local function init()
                 },
             }
         },
+        omnisharp = {
+            cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
+        },
         pyright = {
             settings = {
                 python = {

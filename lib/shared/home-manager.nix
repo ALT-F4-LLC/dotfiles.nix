@@ -1,14 +1,7 @@
 { inputs }: { git }: { pkgs, ... }:
 
 let
-  catppuccin-bat = pkgs.fetchFromGitHub {
-    owner = "catppuccin";
-    repo = "bat";
-    rev = "ba4d16880d63e656acced2b7d4e034e4a93f74b1";
-    sha256 = "sha256-6WVKQErGdaqb++oaXnY3i6/GuH2FhTgK0v4TN4Y0Wbw=";
-  };
   isDarwin = pkgs.system == "aarch64-darwin" || pkgs.system == "x86_64-darwin";
-  pkgsUnstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system};
   vim-just = pkgs.vimUtils.buildVimPlugin {
     name = "vim-just";
     nativeBuildInputs = with pkgs; [ pkg-config readline ];
@@ -42,6 +35,7 @@ in
 
   home.sessionVariables = {
     CHARM_HOST = "localhost";
+    DOTNET_CLI_TELEMETRY_OPTOUT = "true";
     EDITOR = "nvim";
     LANG = "en_US.UTF-8";
     LC_ALL = "en_US.UTF-8";
@@ -61,8 +55,16 @@ in
     enable = true;
     config = { theme = "catppuccin"; };
     themes = {
-      catppuccin = builtins.readFile
-        (catppuccin-bat + "/Catppuccin-macchiato.tmTheme");
+      catppuccin = {
+        src = pkgs.fetchFromGitHub
+          {
+            owner = "catppuccin";
+            repo = "bat";
+            rev = "ba4d16880d63e656acced2b7d4e034e4a93f74b1";
+            sha256 = "sha256-6WVKQErGdaqb++oaXnY3i6/GuH2FhTgK0v4TN4Y0Wbw=";
+          };
+        file = "Catppuccin-macchiato.tmTheme";
+      };
     };
   };
 
@@ -131,7 +133,6 @@ in
   programs.go = {
     enable = true;
     goPath = "Development/language/go";
-    package = pkgsUnstable.go_1_21;
   };
 
   programs.kitty = {
@@ -245,6 +246,7 @@ in
 
     extraPackages = with pkgs; [
       # languages
+      dotnet-sdk
       jsonnet
       nodejs
       python310Full
@@ -264,14 +266,15 @@ in
       nodePackages."typescript-language-server"
       nodePackages."vscode-langservers-extracted"
       nodePackages."yaml-language-server"
-      pkgsUnstable.gopls
+      omnisharp-roslyn
+      gopls
       rust-analyzer
       terraform-ls
 
       # formatters
       nixpkgs-fmt
-      pkgsUnstable.gofumpt
-      pkgsUnstable.golines
+      gofumpt
+      golines
       python310Packages.black
       rustfmt
       terraform
@@ -319,22 +322,6 @@ in
     enable = true;
     enableAutosuggestions = true;
     enableCompletion = true;
-    enableSyntaxHighlighting = true;
-
-    oh-my-zsh = {
-      enable = true;
-      plugins = [ "git" "z" ];
-      theme = "robbyrussell";
-    };
-
-    shellAliases = {
-      cat = "bat";
-      lg = "lazygit";
-      ll = if isDarwin then "n" else "n -P K";
-      nb = "nix build --json --no-link --print-build-logs";
-      s = ''doppler run --config "nixos" --project "$(whoami)"'';
-      wt = "git worktree";
-    };
 
     initExtra = ''
       kindc () {
@@ -374,5 +361,24 @@ in
         fi
       }
     '';
+
+    oh-my-zsh = {
+      enable = true;
+      plugins = [ "git" "z" ];
+      theme = "robbyrussell";
+    };
+
+    shellAliases = {
+      cat = "bat";
+      lg = "lazygit";
+      ll = if isDarwin then "n" else "n -P K";
+      nb = "nix build --json --no-link --print-build-logs";
+      s = ''doppler run --config "nixos" --project "$(whoami)"'';
+      wt = "git worktree";
+    };
+
+    syntaxHighlighting = {
+      enable = true;
+    };
   };
 }

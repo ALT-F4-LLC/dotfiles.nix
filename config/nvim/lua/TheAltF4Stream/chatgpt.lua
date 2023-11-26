@@ -1,7 +1,7 @@
 local chatgpt = require 'chatgpt'
 
 local function init()
-    local api_key_cmd = "doppler --config 'nixos' --project 'erikreinert' secrets get OPENAI_API_KEY --plain"
+    local api_key_cmd = "doppler secrets get OPENAI_API_KEY --plain"
     local model = "gpt-3.5-turbo"
     local edit_model = "code-davinci-edit-001"
 
