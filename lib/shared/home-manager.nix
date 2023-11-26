@@ -247,7 +247,7 @@ in
 
     extraPackages = with pkgs; [
       # languages
-      dotnet-sdk
+      dotnet-sdk_8
       jsonnet
       nodejs
       python310Full
