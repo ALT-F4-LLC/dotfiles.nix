@@ -1,5 +1,6 @@
 local copilot = require 'copilot'
 local lspconfig = require 'lspconfig'
+local omnisharp_extended = require 'omnisharp_extended'
 local rust_tools = require 'rust-tools'
 local treesitter = require 'nvim-treesitter.configs'
 local treesitter_context = require 'treesitter-context'
@@ -143,6 +144,9 @@ local function init()
         },
         omnisharp = {
             cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
+            handlers = {
+                ["textDocument/definition"] = omnisharp_extended.handler,
+            },
         },
         pyright = {
             settings = {
