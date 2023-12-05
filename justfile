@@ -23,11 +23,11 @@ bootstrap destination username publickey:
             security.sudo.enable = true;\n \
             security.sudo.wheelNeedsPassword = false;\n \
             services.openssh.enable = true;\n \
-            services.openssh.passwordAuthentication = false;\n \
-            services.openssh.permitRootLogin = \"no\";\n \
+            services.openssh.settings.PasswordAuthentication = false;\n \
+            services.openssh.settings.PermitRootLogin = \"no\";\n \
             users.mutableUsers = false;\n \
             users.users.{{username}}.extraGroups = [ \"wheel\" ];\n \
-            users.users.{{username}}.password = \"password\";\n \
+            users.users.{{username}}.initialPassword = \"{{username}}\";\n \
             users.users.{{username}}.home = \"/home/{{username}}\";\n \
             users.users.{{username}}.isNormalUser = true;\n \
             users.users.{{username}}.openssh.authorizedKeys.keys = [ \"{{publickey}}\" ];\n \

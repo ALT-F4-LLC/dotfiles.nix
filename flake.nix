@@ -19,16 +19,6 @@
       username = "erikreinert";
     in
     flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [ "aarch64-darwin" "x86_64-linux" ];
-      perSystem = { config, self', inputs', pkgs, system, ... }: {
-        packages = {
-          thealtf4stream-nvim = pkgs.vimUtils.buildVimPlugin {
-            name = "TheAltF4Stream";
-            src = ./config/nvim;
-          };
-        };
-      };
-
       flake = {
         darwinConfigurations = {
           thealtf4stream = self.lib.mkDarwin {
@@ -43,6 +33,23 @@
           thealtf4stream = self.lib.mkNixos {
             inherit git username;
             system = "x86_64-linux";
+          };
+        };
+      };
+
+      systems = [ "aarch64-darwin" "x86_64-linux" ];
+
+      perSystem = { config, self', inputs', pkgs, system, ... }: {
+        devShells = {
+          default = pkgs.mkShell {
+            buildInputs = with pkgs; [ just ];
+          };
+        };
+
+        packages = {
+          thealtf4stream-nvim = pkgs.vimUtils.buildVimPlugin {
+            name = "TheAltF4Stream";
+            src = ./config/nvim;
           };
         };
       };
