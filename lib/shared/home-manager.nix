@@ -137,6 +137,11 @@ in
 
   programs.kitty = {
     enable = true;
+    font = {
+      name = "Geist Mono";
+      package = inputs.self.packages.${pkgs.system}.geist-mono;
+      size = if isDarwin then 20 else 15;
+    };
     settings = {
       active_border_color = "#B7BDF8";
       active_tab_background = "#C6A0F6";
@@ -164,8 +169,6 @@ in
       cursor = "#F4DBD6";
       cursor_text_color = "#24273A";
       enabled_layouts = "splits";
-      font_family = "IntelOne Mono Regular";
-      font_size = if isDarwin then "20" else "15";
       foreground = "#CAD3F5";
       hide_window_decorations = "titlebar-and-corners";
       inactive_border_color = "#6E738D";

@@ -47,6 +47,10 @@
         };
 
         packages = {
+          geist-mono = self.lib.geist-mono {
+            inherit (pkgs) fetchFromGitHub lib stdenvNoCC;
+          };
+
           thealtf4stream-nvim = pkgs.vimUtils.buildVimPlugin {
             name = "TheAltF4Stream";
             src = ./config/nvim;
