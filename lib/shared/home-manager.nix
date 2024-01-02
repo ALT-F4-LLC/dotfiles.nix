@@ -2,16 +2,6 @@
 
 let
   isDarwin = pkgs.system == "aarch64-darwin" || pkgs.system == "x86_64-darwin";
-  vim-just = pkgs.vimUtils.buildVimPlugin {
-    name = "vim-just";
-    nativeBuildInputs = with pkgs; [ pkg-config readline ];
-    src = pkgs.fetchFromGitHub {
-      owner = "NoahTheDuke";
-      repo = "vim-just";
-      rev = "3451e22daade268f99b1cfeb0d9fe39f4ddc06d5";
-      sha256 = "sha256-2pzdtMGdmCTprkPslGdlEezdQ6dTFrhqvz5Sc8DN3Ts=";
-    };
-  };
 in
 {
   #---------------------------------------------------------------------
@@ -25,10 +15,12 @@ in
   home.packages = with pkgs; [
     awscli2
     doppler
+    fd
     gh
     jq
     k9s
     kubectl
+    lazydocker
     ripgrep
     z-lua
   ];
@@ -140,7 +132,7 @@ in
     font = {
       name = "Geist Mono";
       package = inputs.self.packages.${pkgs.system}.geist-mono;
-      size = if isDarwin then 20 else 15;
+      size = if isDarwin then 22 else 15;
     };
     settings = {
       active_border_color = "#B7BDF8";
@@ -211,15 +203,13 @@ in
 
     plugins = with pkgs; [
       # languages
-      vim-just
       vimPlugins.nvim-lspconfig
       vimPlugins.nvim-treesitter.withAllGrammars
       vimPlugins.rust-tools-nvim
-      vimPlugins.vim-cue
+      vimPlugins.vim-just
 
       # telescope
       vimPlugins.plenary-nvim
-      vimPlugins.popup-nvim
       vimPlugins.telescope-nvim
 
       # theme
@@ -238,8 +228,8 @@ in
       vimPlugins.nvim-colorizer-lua
       vimPlugins.nvim-notify
       vimPlugins.nvim-treesitter-context
-      vimPlugins.nvim-ts-rainbow2
       vimPlugins.omnisharp-extended-lsp-nvim
+      vimPlugins.rainbow-delimiters-nvim
       #vimPlugins.nvim-web-devicons # https://github.com/intel/intel-one-mono/issues/9
 
       # configuration
@@ -253,15 +243,9 @@ in
     '';
 
     extraPackages = with pkgs; [
-      # languages
-      dotnet-sdk_8
-      jsonnet
-      nodejs
-      python310Full
-      rustc
-
       # language servers
       cuelsp
+      gopls
       haskell-language-server
       jsonnet-language-server
       lua-language-server
@@ -275,7 +259,6 @@ in
       nodePackages."vscode-langservers-extracted"
       nodePackages."yaml-language-server"
       omnisharp-roslyn
-      gopls
       rust-analyzer
       terraform-ls
 
@@ -286,15 +269,11 @@ in
       python310Packages.black
       rustfmt
       terraform
-
-      # tools
-      cargo
-      fd
-      gcc
-      ghc
-      lazydocker
-      yarn
     ];
+
+    withNodeJs = true;
+    withPython3 = true;
+    withRuby = true;
   };
 
   programs.nnn = {
