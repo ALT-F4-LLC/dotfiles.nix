@@ -74,34 +74,34 @@ in
         enable = true;
         options = {
           chameleon = {
-            dark = true;
-            line-numbers = true;
-            side-by-side = true;
-            keep-plus-minus-markers = true;
-            syntax-theme = "Nord";
-            file-style = "#434C5E bold";
-            file-decoration-style = "#434C5E ul";
-            file-added-label = "[+]";
-            file-copied-label = "[==]";
-            file-modified-label = "[*]";
-            file-removed-label = "[-]";
-            file-renamed-label = "[->]";
-            hunk-header-style = "omit";
-            line-numbers-left-format = " {nm:>1} │";
-            line-numbers-left-style = "red";
-            line-numbers-right-format = " {np:>1} │";
-            line-numbers-right-style = "green";
-            line-numbers-minus-style = "red italic black";
-            line-numbers-plus-style = "green italic black";
-            line-numbers-zero-style = "#434C5E italic";
-            minus-style = "bold red";
-            minus-emph-style = "bold red";
-            plus-style = "bold green";
-            plus-emph-style = "bold green";
-            zero-style = "syntax";
             blame-code-style = "syntax";
             blame-format = "{author:<18} ({commit:>7}) {timestamp:^12} ";
             blame-palette = "#2E3440 #3B4252 #434C5E #4C566A";
+            dark = true;
+            file-added-label = "[+]";
+            file-copied-label = "[==]";
+            file-decoration-style = "#434C5E ul";
+            file-modified-label = "[*]";
+            file-removed-label = "[-]";
+            file-renamed-label = "[->]";
+            file-style = "#434C5E bold";
+            hunk-header-style = "omit";
+            keep-plus-minus-markers = true;
+            line-numbers = true;
+            line-numbers-left-format = " {nm:>1} │";
+            line-numbers-left-style = "red";
+            line-numbers-minus-style = "red italic black";
+            line-numbers-plus-style = "green italic black";
+            line-numbers-right-format = " {np:>1} │";
+            line-numbers-right-style = "green";
+            line-numbers-zero-style = "#434C5E italic";
+            minus-emph-style = "bold red";
+            minus-style = "bold red";
+            plus-emph-style = "bold green";
+            plus-style = "bold green";
+            side-by-side = true;
+            syntax-theme = "Nord";
+            zero-style = "syntax";
           };
           features = "chameleon";
           side-by-side = true;
@@ -129,60 +129,56 @@ in
 
   programs.kitty = {
     enable = true;
+
     font = {
       name = "Geist Mono";
       package = inputs.self.packages.${pkgs.system}.geist-mono;
       size = if isDarwin then 22 else 15;
     };
+
     settings = {
-      active_border_color = "#B7BDF8";
-      active_tab_background = "#C6A0F6";
-      active_tab_foreground = "#181926";
+      active_border_color = "#ee5396";
+      active_tab_background = "#ee5396";
+      active_tab_foreground = "#161616";
       allow_remote_control = "yes";
-      background = "#24273A";
+      background = "#161616";
       background_opacity = "0.9";
-      bell_border_color = "#EED49F";
-      color0 = "#494D64";
-      color1 = "#ED8796";
-      color10 = "#A6DA95";
-      color11 = "#EED49F";
-      color12 = "#8AADF4";
-      color13 = "#F5BDE6";
-      color14 = "#8BD5CA";
-      color15 = "#A5ADCB";
-      color2 = "#A6DA95";
-      color3 = "#EED49F";
-      color4 = "#8AADF4";
-      color5 = "#F5BDE6";
-      color6 = "#8BD5CA";
-      color7 = "#B8C0E0";
-      color8 = "#5B6078";
-      color9 = "#ED8796";
-      cursor = "#F4DBD6";
-      cursor_text_color = "#24273A";
+      bell_border_color = "#ee5396";
+      color0 = "#262626";
+      color1 = "#ff7eb6";
+      color10 = "#42be65";
+      color11 = "#82cfff";
+      color12 = "#33b1ff";
+      color13 = "#ee5396";
+      color14 = "#3ddbd9";
+      color15 = "#ffffff";
+      color2 = "#42be65";
+      color3 = "#82cfff";
+      color4 = "#33b1ff";
+      color5 = "#ee5396";
+      color6 = "#3ddbd9";
+      color7 = "#dde1e6";
+      color8 = "#393939";
+      color9 = "#ff7eb6";
+      cursor = "#f2f4f8";
+      cursor_text_color = "#393939";
       enabled_layouts = "splits";
-      foreground = "#CAD3F5";
+      foreground = "#dde1e6";
       hide_window_decorations = "titlebar-and-corners";
-      inactive_border_color = "#6E738D";
-      inactive_tab_background = "#1E2030";
-      inactive_tab_foreground = "#CAD3F5";
+      inactive_border_color = "#ff7eb6";
+      inactive_tab_background = "#393939";
+      inactive_tab_foreground = "#dde1e6";
       listen_on = "unix:/tmp/kitty";
       macos_option_as_alt = "yes";
       macos_quit_when_last_window_closed = "yes";
-      macos_titlebar_color = "background";
-      mark1_background = "#B7BDF8";
-      mark1_foreground = "#24273A";
-      mark2_background = "#C6A0F6";
-      mark2_foreground = "#24273A";
-      mark3_background = "#7DC4E4";
-      mark3_foreground = "#24273A";
-      selection_background = "#F4DBD6";
-      selection_foreground = "#24273A";
-      tab_bar_background = "#181926";
-      url_color = "#F4DBD6";
+      macos_titlebar_color = "system";
+      selection_background = "#525252";
+      selection_foreground = "#f2f4f8";
+      tab_bar_background = "#161616";
+      url_color = "#ee5396";
+      url_style = "single";
       wayland_titlebar_color = "system";
     };
-    theme = "Catppuccin-Macchiato";
   };
 
   programs.lazygit = {
@@ -213,7 +209,7 @@ in
       vimPlugins.telescope-nvim
 
       # theme
-      vimPlugins.catppuccin-nvim
+      vimPlugins.oxocarbon-nvim
 
       # floaterm
       vimPlugins.vim-floaterm
