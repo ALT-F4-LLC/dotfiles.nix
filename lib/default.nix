@@ -1,28 +1,25 @@
 { inputs }:
 
 let
-  home-manager = import ./shared/home-manager.nix { inherit inputs; };
-  home-manager-desktop = import ./nixos/home-manager-desktop.nix;
+  home-manager-nixos = import ./nixos/home-manager.nix { inherit inputs; };
+  home-manager-shared = import ./shared/home-manager.nix { inherit inputs; };
 in
 {
-  # from: https://github.com/NixOS/nixpkgs/pull/264285/files
-  geist-mono = { lib, stdenvNoCC, fetchFromGitHub }:
-    stdenvNoCC.mkDerivation
-      rec {
-        pname = "geist-font";
-        version = "1.1.0";
+  geist-mono = { lib, stdenvNoCC, fetchzip }:
+    stdenvNoCC.mkDerivation {
+      pname = "geist-mono";
+      version = "3.1.1";
 
-        src = fetchFromGitHub {
-          hash = "sha256-V74Co6VlqAxROf5/RZvM9X7avygW7th3YQrlg2d3CYc=";
-          owner = "vercel";
-          repo = "geist-font";
-          rev = version;
-        };
-
-        postInstall = ''
-          install -Dm444 packages/next/dist/fonts/geist-{mono,sans}/*.woff2 -t $out/share/fonts/woff2
-        '';
+      src = fetchzip {
+        hash = "sha256-GzWly6hGshy8DYZNweejvPymcxQSIU7oGUmZEhreMCM=";
+        stripRoot = false;
+        url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/GeistMono.zip";
       };
+
+      postInstall = ''
+        install -Dm444 *.otf -t $out/share/fonts
+      '';
+    };
 
   mkDarwin = { git ? { }, system, username }:
     inputs.darwin.lib.darwinSystem {
@@ -35,7 +32,9 @@ in
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.${username} = { pkgs, ... }: {
-            imports = [ (home-manager { inherit git; }) ];
+            imports = [
+              (home-manager-shared { inherit git; })
+            ];
             home.file."Library/Application Support/k9s/skin.yml".source = ../config/k9s/skin.yml;
           };
         }
@@ -56,8 +55,8 @@ in
           home-manager.useUserPackages = true;
           home-manager.users."${username}" = { pkgs, ... }: {
             imports = [
-              (home-manager { inherit git; })
-              (home-manager-desktop { inherit pkgs; })
+              (home-manager-nixos { inherit desktop; })
+              (home-manager-shared { inherit git; })
             ];
           };
         }

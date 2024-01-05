@@ -48,7 +48,7 @@
 
         packages = {
           geist-mono = self.lib.geist-mono {
-            inherit (pkgs) fetchFromGitHub lib stdenvNoCC;
+            inherit (pkgs) fetchzip lib stdenvNoCC;
           };
 
           thealtf4stream-nvim = pkgs.vimUtils.buildVimPlugin {

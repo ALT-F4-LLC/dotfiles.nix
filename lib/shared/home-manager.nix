@@ -131,7 +131,7 @@ in
     enable = true;
 
     font = {
-      name = "Geist Mono";
+      name = "GeistMono Nerd Font";
       package = inputs.self.packages.${pkgs.system}.geist-mono;
       size = if isDarwin then 22 else 15;
     };
@@ -224,9 +224,9 @@ in
       vimPlugins.nvim-colorizer-lua
       vimPlugins.nvim-notify
       vimPlugins.nvim-treesitter-context
+      vimPlugins.nvim-web-devicons
       vimPlugins.omnisharp-extended-lsp-nvim
       vimPlugins.rainbow-delimiters-nvim
-      #vimPlugins.nvim-web-devicons # https://github.com/intel/intel-one-mono/issues/9
 
       # configuration
       inputs.self.packages.${pkgs.system}.thealtf4stream-nvim

@@ -1,13 +1,10 @@
-{ desktop, inputs }:
-
-{ pkgs, ... }:
+{ inputs }: { desktop }: { pkgs, ... }:
 
 let
-  desktop-config = import ./home-manager-desktop.nix { inherit pkgs; };
-  shared-config = import ../shared/home-manager.nix { inherit inputs; };
+  home-manager-desktop = import ./home-manager-desktop.nix { inherit pkgs; };
 in
 {
-  imports = if desktop then [ desktop-config shared-config ] else [ shared-config ];
+  imports = if desktop then [ home-manager-desktop ] else [ ];
 
   #---------------------------------------------------------------------
   # home

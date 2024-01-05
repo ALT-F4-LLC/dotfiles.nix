@@ -16,11 +16,11 @@ in
 
   fonts = {
     fontconfig = {
-      defaultFonts.monospace = [ "IntelOne Mono" ];
+      defaultFonts.monospace = [ "GeistMono Nerd Font" ];
       enable = true;
     };
 
-    fonts = [ pkgs.intel-one-mono ];
+    packages = [ inputs.self.packages.${pkgs.system}.geist-mono ];
   };
 
   environment = {
