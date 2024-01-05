@@ -51,9 +51,9 @@ in
 
     general = {
       colors = true;
-      color_good = "#c0caf5";
-      color_bad = "#f7768e";
-      color_degraded = "#ff9e64";
+      color_good = "#42be65";
+      color_bad = "#ff7eb6";
+      color_degraded = "#3ddbd9";
     };
 
     modules = {
@@ -103,23 +103,23 @@ in
         position = "bottom";
         statusCommand = "${pkgs.i3status}/bin/i3status";
         colors = {
-          background = "#1a1b26";
-          statusline = "#c0caf5";
-          separator = "#3b4261";
+          background = "#161616";
+          statusline = "#dde1e6";
+          separator = "#42be65";
           focusedWorkspace = {
-            background = "#c0caf5";
-            border = "#3b4261";
-            text = "#565f89";
+            background = "#33b1ff";
+            border = "#82cfff";
+            text = "#161616";
           };
           activeWorkspace = {
-            background = "#353836";
+            background = "#393939";
             border = "#595B5B";
-            text = "#FDF6E3";
+            text = "#dde1e6";
           };
           inactiveWorkspace = {
-            background = "#222D31";
+            background = "#393939";
             border = "#595B5B";
-            text = "#EEE8D5";
+            text = "#dde1e6";
           };
           bindingMode = {
             background = "#2C2C2C";

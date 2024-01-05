@@ -254,6 +254,8 @@ in
       nodePackages."typescript-language-server"
       nodePackages."vscode-langservers-extracted"
       nodePackages."yaml-language-server"
+      ocaml-ng.ocamlPackages_5_1.ocaml-lsp
+      ocaml-ng.ocamlPackages_5_1.ocamlformat
       omnisharp-roslyn
       rust-analyzer
       terraform-ls
