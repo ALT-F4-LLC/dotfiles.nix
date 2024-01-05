@@ -131,7 +131,7 @@ in
     enable = true;
 
     font = {
-      name = "GeistMono Nerd Font";
+      name = "GeistMono";
       package = inputs.self.packages.${pkgs.system}.geist-mono;
       size = if isDarwin then 22 else 15;
     };
@@ -274,7 +274,7 @@ in
 
   programs.nnn = {
     enable = true;
-    #package = pkgs.nnn.override ({ withNerdIcons = true; }); # https://github.com/intel/intel-one-mono/issues/9
+    package = pkgs.nnn.override ({ withNerdIcons = true; });
     plugins = {
       mappings = {
         K = "preview-tui";

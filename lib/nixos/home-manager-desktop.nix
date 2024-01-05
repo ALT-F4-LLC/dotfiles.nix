@@ -134,7 +134,7 @@ in
         };
       }];
 
-      fonts = { names = [ "IntelOne Mono" ]; };
+      fonts = { names = [ "GeistMono" ]; };
 
       gaps = {
         inner = 0;

@@ -16,7 +16,7 @@ in
 
   fonts = {
     fontconfig = {
-      defaultFonts.monospace = [ "GeistMono Nerd Font" ];
+      defaultFonts.monospace = [ "GeistMono" ];
       enable = true;
     };
 
