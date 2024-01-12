@@ -133,7 +133,7 @@ in
     font = {
       name = "GeistMono";
       package = inputs.self.packages.${pkgs.system}.geist-mono;
-      size = if isDarwin then 22 else 15;
+      size = if isDarwin then 18 else 15;
     };
 
     settings = {
