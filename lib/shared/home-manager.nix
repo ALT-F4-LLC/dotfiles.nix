@@ -1,7 +1,8 @@
 { inputs }: { git }: { pkgs, ... }:
 
 let
-  isDarwin = pkgs.system == "aarch64-darwin" || pkgs.system == "x86_64-darwin";
+  isDarwin = system == "aarch64-darwin" || system == "x86_64-darwin";
+  system = pkgs.system;
 in
 {
   #---------------------------------------------------------------------
@@ -194,10 +195,7 @@ in
     };
   };
 
-  programs.neovim = {
-    enable = true;
-    package = inputs.thealtf4stream-nvim.packages.${pkgs.system}.neovim;
-  };
+  programs.neovim = inputs.thealtf4stream-nvim.lib.mkHomeManager { inherit system; };
 
   programs.nnn = {
     enable = true;

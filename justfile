@@ -45,12 +45,12 @@ nixos-bootstrap destination username publickey:
         nixos-install --no-root-passwd; \
         reboot;"
 
-nixos-build profile="aarch64":
+nixos-build profile="x86_64":
     nix build --json --no-link --print-build-logs \
         ".#nixosConfigurations.{{ profile }}.config.system.build.toplevel"
 
-nixos-test profile="aarch64":
+nixos-test profile="x86_64":
     nixos-rebuild test --flake ".#{{ profile }}"
 
-nixos-switch profile="aarch64":
+nixos-switch profile="x86_64":
     nixos-rebuild switch --flake ".#{{ profile }}"
