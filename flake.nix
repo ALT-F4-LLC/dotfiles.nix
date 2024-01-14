@@ -26,6 +26,7 @@
         lib = import ./lib { inherit inputs; };
 
         nixosConfigurations = {
+          aarch64 = mkNixos { system = "aarch64-linux"; };
           x86_64 = mkNixos { system = "x86_64-linux"; };
         };
       };
