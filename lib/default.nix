@@ -21,7 +21,7 @@ in
       '';
     };
 
-  mkDarwin = { git ? { }, system, username }:
+  mkDarwin = { git ? { }, username }: { system }:
     inputs.nix-darwin.lib.darwinSystem {
       inherit system;
       modules = [
@@ -41,7 +41,7 @@ in
       ];
     };
 
-  mkNixos = { desktop ? true, git ? { }, hypervisor ? "vmware", system, username }:
+  mkNixos = { desktop ? true, git ? { }, hypervisor ? "vmware", username }: { system }:
     inputs.nixpkgs.lib.nixosSystem {
       inherit system;
       modules = [

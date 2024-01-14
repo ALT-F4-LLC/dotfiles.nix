@@ -18,27 +18,25 @@
         userName = "Erik Reinert";
       };
       username = "erikreinert";
+      mkDarwin = self.lib.mkDarwin { inherit git username; };
+      mkNixos = self.lib.mkNixos { inherit git username; };
     in
     flake-parts.lib.mkFlake { inherit inputs; } {
       flake = {
         darwinConfigurations = {
-          thealtf4stream = self.lib.mkDarwin {
-            inherit git username;
-            system = "aarch64-darwin";
-          };
+          aarch64 = mkDarwin { system = "aarch64-darwin"; };
+          x86_64 = mkDarwin { system = "x86_64-darwin"; };
         };
 
         lib = import ./lib { inherit inputs; };
 
         nixosConfigurations = {
-          thealtf4stream = self.lib.mkNixos {
-            inherit git username;
-            system = "x86_64-linux";
-          };
+          aarch64 = mkNixos { system = "aarch64-linux"; };
+          x86_64 = mkNixos { system = "x86_64-linux"; };
         };
       };
 
-      systems = [ "aarch64-darwin" "x86_64-linux" ];
+      systems = [ "aarch64-darwin" "aarch64-linux" "x86_64-darwin" "x86_64-linux" ];
 
       perSystem = { config, self', inputs', pkgs, system, ... }: {
         devShells = {

@@ -1,13 +1,14 @@
-build-darwin system="thealtf4stream":
+darwin-build profile="aarch64":
     nix build --json --no-link --print-build-logs \
-        ".#darwinConfigurations.{{ system }}.config.system.build.toplevel"
+        ".#darwinConfigurations.{{ profile }}.config.system.build.toplevel"
 
+darwin-switch profile="aarch64":
+    darwin-rebuild switch --flake ".#{{ profile }}"
 
-build-nixos system="thealtf4stream":
-    nix build --json --no-link --print-build-logs \
-        ".#nixosConfigurations.{{ system }}.config.system.build.toplevel"
+darwin-test profile="aarch64":
+    darwin-rebuild check --flake ".#{{ profile }}"
 
-bootstrap destination username publickey:
+nixos-bootstrap destination username publickey:
     ssh \
     -o PubkeyAuthentication=no \
     -o UserKnownHostsFile=/dev/null \
@@ -43,3 +44,13 @@ bootstrap destination username publickey:
         ' /mnt/etc/nixos/configuration.nix; \
         nixos-install --no-root-passwd; \
         reboot;"
+
+nixos-build profile="aarch64":
+    nix build --json --no-link --print-build-logs \
+        ".#nixosConfigurations.{{ profile }}.config.system.build.toplevel"
+
+nixos-test profile="aarch64":
+    nixos-rebuild test --flake ".#{{ profile }}"
+
+nixos-switch profile="aarch64":
+    nixos-rebuild switch --flake ".#{{ profile }}"

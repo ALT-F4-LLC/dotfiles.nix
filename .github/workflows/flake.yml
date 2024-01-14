@@ -23,7 +23,7 @@ jobs:
       - uses: DeterminateSystems/magic-nix-cache-action@main
       - uses: extractions/setup-just@v1
       - uses: actions/checkout@v3
-      - run: just build-darwin
+      - run: just darwin-build "x86_64"
 
   build-nixos:
     needs: check
@@ -33,5 +33,4 @@ jobs:
       - uses: DeterminateSystems/magic-nix-cache-action@main
       - uses: extractions/setup-just@v1
       - uses: actions/checkout@v3
-      - run: just build-nixos
-
+      - run: just nixos-build "x86_64"
