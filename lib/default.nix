@@ -1,8 +1,14 @@
 { inputs }:
 
 let
-  home-manager-nixos = import ./nixos/home-manager.nix { inherit inputs; };
-  home-manager-shared = import ./shared/home-manager.nix { inherit inputs; };
+  defaultGit = {
+    extraConfig.github.user = defaultUsername;
+    userEmail = "4638629+erikreinert@users.noreply.github.com";
+    userName = "Erik Reinert";
+  };
+  defaultUsername = "erikreinert";
+  homeManagerNixos = import ./nixos/home-manager.nix { inherit inputs; };
+  homeManagerShared = import ./shared/home-manager.nix { inherit inputs; };
 in
 {
   geist-mono = { lib, stdenvNoCC, fetchzip }:
@@ -21,7 +27,7 @@ in
       '';
     };
 
-  mkDarwin = { git ? { }, username }: { system }:
+  mkDarwin = { git ? defaultGit, username ? defaultUsername }: { system }:
     inputs.nix-darwin.lib.darwinSystem {
       inherit system;
       modules = [
@@ -33,7 +39,7 @@ in
           home-manager.useUserPackages = true;
           home-manager.users.${username} = { pkgs, ... }: {
             imports = [
-              (home-manager-shared { inherit git; })
+              (homeManagerShared { inherit git; })
             ];
             home.file."Library/Application Support/k9s/skin.yml".source = ../config/k9s/skin.yml;
           };
@@ -41,7 +47,7 @@ in
       ];
     };
 
-  mkNixos = { desktop ? true, git ? { }, hypervisor ? "vmware", username }: { system }:
+  mkNixos = { desktop ? true, git ? defaultGit, hypervisor ? "vmware", username ? defaultUsername }: { system }:
     inputs.nixpkgs.lib.nixosSystem {
       inherit system;
       modules = [
@@ -55,8 +61,8 @@ in
           home-manager.useUserPackages = true;
           home-manager.users."${username}" = { pkgs, ... }: {
             imports = [
-              (home-manager-nixos { inherit desktop; })
-              (home-manager-shared { inherit git; })
+              (homeManagerNixos { inherit desktop; })
+              (homeManagerShared { inherit git; })
             ];
           };
         }

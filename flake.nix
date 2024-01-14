@@ -12,14 +12,8 @@
 
   outputs = inputs@{ self, flake-parts, ... }:
     let
-      git = {
-        extraConfig.github.user = username;
-        userEmail = "4638629+erikreinert@users.noreply.github.com";
-        userName = "Erik Reinert";
-      };
-      username = "erikreinert";
-      mkDarwin = self.lib.mkDarwin { inherit git username; };
-      mkNixos = self.lib.mkNixos { inherit git username; };
+      mkDarwin = self.lib.mkDarwin { };
+      mkNixos = self.lib.mkNixos { };
     in
     flake-parts.lib.mkFlake { inherit inputs; } {
       flake = {
@@ -31,7 +25,6 @@
         lib = import ./lib { inherit inputs; };
 
         nixosConfigurations = {
-          aarch64 = mkNixos { system = "aarch64-linux"; };
           x86_64 = mkNixos { system = "x86_64-linux"; };
         };
       };
