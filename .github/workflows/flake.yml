@@ -1,4 +1,4 @@
-name: "flake"
+name: "Test flake"
 
 on:
   pull_request:
@@ -7,10 +7,30 @@ on:
       - main
 
 jobs:
-  build:
-    runs-on: ubuntu-22.04
+  check:
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
     - uses: DeterminateSystems/nix-installer-action@main
     - uses: DeterminateSystems/magic-nix-cache-action@main
+    - uses: actions/checkout@v3
     - run: nix flake check
+
+  build-darwin:
+    needs: check
+    runs-on: macos-latest
+    steps:
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - uses: extractions/setup-just@v1
+      - uses: actions/checkout@v3
+      - run: just darwin-build "x86_64"
+
+  build-nixos:
+    needs: check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - uses: extractions/setup-just@v1
+      - uses: actions/checkout@v3
+      - run: just nixos-build "x86_64"
