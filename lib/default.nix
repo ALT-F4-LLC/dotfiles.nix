@@ -22,7 +22,7 @@ in
     };
 
   mkDarwin = { git ? { }, system, username }:
-    inputs.darwin.lib.darwinSystem {
+    inputs.nix-darwin.lib.darwinSystem {
       inherit system;
       modules = [
         (import ./darwin/configuration.nix { inherit username; })

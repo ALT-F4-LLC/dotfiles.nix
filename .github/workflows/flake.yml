@@ -1,4 +1,4 @@
-name: "flake"
+name: "Test flake"
 
 on:
   pull_request:
@@ -7,8 +7,8 @@ on:
       - main
 
 jobs:
-  build:
-    runs-on: ubuntu-22.04
+  check:
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - uses: DeterminateSystems/nix-installer-action@main

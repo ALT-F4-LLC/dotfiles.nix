@@ -2,14 +2,15 @@
   description = "Development packages and systems for TheAltF4Stream";
 
   inputs = {
-    darwin.inputs.nixpkgs.follows = "nixpkgs";
-    darwin.url = "github:lnl7/nix-darwin";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    nix-darwin.url = "github:LnL7/nix-darwin";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    thealtf4stream-nvim.url = "github:ALT-F4-LLC/thealtf4stream.nvim";
   };
 
-  outputs = inputs@{ flake-parts, self, ... }:
+  outputs = inputs@{ self, flake-parts, ... }:
     let
       git = {
         extraConfig.github.user = username;
@@ -49,11 +50,6 @@
         packages = {
           geist-mono = self.lib.geist-mono {
             inherit (pkgs) fetchzip lib stdenvNoCC;
-          };
-
-          thealtf4stream-nvim = pkgs.vimUtils.buildVimPlugin {
-            name = "TheAltF4Stream";
-            src = ./config/nvim;
           };
         };
       };
