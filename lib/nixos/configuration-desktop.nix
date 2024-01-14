@@ -2,6 +2,9 @@
 
 { pkgs, ... }:
 
+let
+  system = pkgs.system;
+in
 {
   fileSystems."/nix" = {
     device = "/dev/disk/by-label/nix";
@@ -28,7 +31,7 @@
   services = {
     picom.enable = true;
 
-    twingate.enable = true;
+    twingate.enable = system == "x86_64-linux";
 
     xserver = {
       enable = true;
