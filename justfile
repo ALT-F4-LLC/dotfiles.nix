@@ -1,3 +1,12 @@
+build-darwin system="thealtf4stream":
+    nix build --json --no-link --print-build-logs \
+        ".#darwinConfigurations.{{ system }}.config.system.build.toplevel"
+
+
+build-nixos system="thealtf4stream":
+    nix build --json --no-link --print-build-logs \
+        ".#nixosConfigurations.{{ system }}.config.system.build.toplevel"
+
 bootstrap destination username publickey:
     ssh \
     -o PubkeyAuthentication=no \
