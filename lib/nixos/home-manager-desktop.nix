@@ -41,10 +41,7 @@ in
     };
   };
 
-  programs.firefox = {
-    enable = true;
-    package = pkgs.firefox-bin;
-  };
+  programs.firefox.enable = true;
 
   programs.i3status = {
     enable = true;
