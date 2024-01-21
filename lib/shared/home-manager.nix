@@ -14,14 +14,37 @@ in
   '';
 
   home.file.".config/ghostty/config".text = ''
+    # settings
     background = "#161616"
     background-opacity = 0.9
     font-family = "GeistMono NFM"
     font-size = 16
     foreground = "#dde1e6"
     macos-option-as-alt = true
-    theme = "Oxocarbon"
     window-decoration = false
+
+    # theme
+    palette = 0=#262626
+    palette = 1=#ff7eb6
+    palette = 2=#42be65
+    palette = 3=#82cfff
+    palette = 4=#33b1ff
+    palette = 5=#ee5396
+    palette = 6=#3ddbd9
+    palette = 7=#dde1e6
+    palette = 8=#393939
+    palette = 9=#ff7eb6
+    palette = 10=#42be65
+    palette = 11=#82cfff
+    palette = 12=#33b1ff
+    palette = 13=#ee5396
+    palette = 14=#3ddbd9
+    palette = 15=#ffffff
+    background = 161616
+    foreground = dde1e6
+    cursor-color = f2f4f8
+    selection-background = 525252
+    selection-foreground = f2f4f8
   '';
 
   home.packages = with pkgs; [
