@@ -13,6 +13,17 @@ in
     setlocal wrap
   '';
 
+  home.file.".config/ghostty/config".text = ''
+    background = "#161616"
+    background-opacity = 0.9
+    font-family = "GeistMono NFM"
+    font-size = 16
+    foreground = "#dde1e6"
+    macos-option-as-alt = true
+    theme = "Oxocarbon"
+    window-decoration = false
+  '';
+
   home.packages = with pkgs; [
     awscli2
     doppler
