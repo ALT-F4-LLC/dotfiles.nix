@@ -13,6 +13,40 @@ in
     setlocal wrap
   '';
 
+  home.file.".config/ghostty/config".text = ''
+    # settings
+    background = "#161616"
+    background-opacity = 0.9
+    font-family = "GeistMono NFM"
+    font-size = 16
+    foreground = "#dde1e6"
+    macos-option-as-alt = true
+    window-decoration = false
+
+    # theme
+    palette = 0=#262626
+    palette = 1=#ff7eb6
+    palette = 2=#42be65
+    palette = 3=#82cfff
+    palette = 4=#33b1ff
+    palette = 5=#ee5396
+    palette = 6=#3ddbd9
+    palette = 7=#dde1e6
+    palette = 8=#393939
+    palette = 9=#ff7eb6
+    palette = 10=#42be65
+    palette = 11=#82cfff
+    palette = 12=#33b1ff
+    palette = 13=#ee5396
+    palette = 14=#3ddbd9
+    palette = 15=#ffffff
+    background = 161616
+    foreground = dde1e6
+    cursor-color = f2f4f8
+    selection-background = 525252
+    selection-foreground = f2f4f8
+  '';
+
   home.packages = with pkgs; [
     awscli2
     doppler
@@ -220,8 +254,29 @@ in
     enable = true;
     extraConfig = ''
       set-option -a terminal-overrides ",*256col*:RGB"
+
+      # Palette
+      set -g status-style bg=colour8,fg=colour7
+      setw -g window-status-style bg=default,fg=colour8
+      setw -g window-status-current-style bg=colour8,fg=colour7
+      setw -g pane-border-style fg=colour8
+      setw -g pane-active-border-style fg=colour7
+
+      # Basic colors
+      set -g status-bg colour8
+      set -g status-fg colour7
+
+      # Set the default background and foreground colors
+      set -g default-terminal "screen-256color"
+
+      # More specific window status formatting
+      setw -g window-status-format "#[fg=colour3,bg=default]#I #W"
+      setw -g window-status-current-format "#[fg=colour2,bg=colour8]#I #W"
+
+      # Message styling
+      set -g message-style bg=colour0,fg=colour7
+      set -g message-command-style bg=colour0,fg=colour7
     '';
-    plugins = with pkgs; [ tmuxPlugins.catppuccin ];
     shell = "${pkgs.zsh}/bin/zsh";
     terminal = if isDarwin then "screen-256color" else "xterm-256color";
   };
