@@ -254,8 +254,29 @@ in
     enable = true;
     extraConfig = ''
       set-option -a terminal-overrides ",*256col*:RGB"
+
+      # Palette
+      set -g status-style bg=colour8,fg=colour7
+      setw -g window-status-style bg=default,fg=colour8
+      setw -g window-status-current-style bg=colour8,fg=colour7
+      setw -g pane-border-style fg=colour8
+      setw -g pane-active-border-style fg=colour7
+
+      # Basic colors
+      set -g status-bg colour8
+      set -g status-fg colour7
+
+      # Set the default background and foreground colors
+      set -g default-terminal "screen-256color"
+
+      # More specific window status formatting
+      setw -g window-status-format "#[fg=colour3,bg=default]#I #W"
+      setw -g window-status-current-format "#[fg=colour2,bg=colour8]#I #W"
+
+      # Message styling
+      set -g message-style bg=colour0,fg=colour7
+      set -g message-command-style bg=colour0,fg=colour7
     '';
-    plugins = with pkgs; [ tmuxPlugins.catppuccin ];
     shell = "${pkgs.zsh}/bin/zsh";
     terminal = if isDarwin then "screen-256color" else "xterm-256color";
   };
