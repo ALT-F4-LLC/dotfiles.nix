@@ -18,7 +18,7 @@ in
     background = "#161616"
     background-opacity = 0.9
     font-family = "GeistMono NFM"
-    font-size = 16
+    font-size = 18
     foreground = "#dde1e6"
     macos-option-as-alt = true
     window-decoration = false
