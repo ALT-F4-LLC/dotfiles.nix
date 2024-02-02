@@ -1,6 +1,7 @@
 { inputs }: { git }: { pkgs, ... }:
 
 let
+  attic = inputs.attic.packages.${pkgs.system}.default;
   isDarwin = system == "aarch64-darwin" || system == "x86_64-darwin";
   system = pkgs.system;
 in
@@ -48,6 +49,7 @@ in
   '';
 
   home.packages = with pkgs; [
+    attic
     awscli2
     doppler
     fd

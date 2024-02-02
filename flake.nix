@@ -2,12 +2,12 @@
   description = "Development packages and systems for TheAltF4Stream";
 
   inputs = {
+    attic.url = "github:zhaofengli/attic";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    thealtf4stream-nvim.inputs.nixpkgs.follows = "nixpkgs";
     thealtf4stream-nvim.url = "github:ALT-F4-LLC/thealtf4stream.nvim";
   };
 
@@ -40,6 +40,17 @@
         };
 
         packages = {
+          attic = pkgs.dockerTools.buildImage {
+            config = {
+              Cmd = "${inputs'.attic.packages.default}/bin/atticd";
+              Env = [
+                "SSL_CERT_FILE=${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"
+              ];
+            };
+            name = "attic";
+            tag = "latest";
+          };
+
           geist-mono = self.lib.geist-mono {
             inherit (pkgs) fetchzip lib stdenvNoCC;
           };

@@ -1,14 +1,6 @@
-darwin-build profile="aarch64":
-    nix build --json --no-link --print-build-logs \
-        ".#darwinConfigurations.{{ profile }}.config.system.build.toplevel"
+build_nix := "nix build --json --no-link --print-build-logs"
 
-darwin-switch profile="aarch64":
-    darwin-rebuild switch --flake ".#{{ profile }}"
-
-darwin-test profile="aarch64":
-    darwin-rebuild check --flake ".#{{ profile }}"
-
-nixos-bootstrap destination username publickey:
+bootstrap-darwin destination username publickey:
     ssh \
     -o PubkeyAuthentication=no \
     -o UserKnownHostsFile=/dev/null \
@@ -45,12 +37,23 @@ nixos-bootstrap destination username publickey:
         nixos-install --no-root-passwd; \
         reboot;"
 
-nixos-build profile="x86_64":
-    nix build --json --no-link --print-build-logs \
-        ".#nixosConfigurations.{{ profile }}.config.system.build.toplevel"
+build-attic:
+    {{ build_nix }} ".#attic"
 
-nixos-test profile="x86_64":
-    nixos-rebuild test --flake ".#{{ profile }}"
+build-darwin profile="aarch64":
+    {{ build_nix }} ".#darwinConfigurations.{{ profile }}.config.system.build.toplevel"
 
-nixos-switch profile="x86_64":
+build-nixos profile="x86_64":
+    {{ build_nix }} ".#nixosConfigurations.{{ profile }}.config.system.build.toplevel"
+
+switch-darwin profile="aarch64":
+    darwin-rebuild switch --flake ".#{{ profile }}"
+
+switch-nixos profile="x86_64":
     nixos-rebuild switch --flake ".#{{ profile }}"
+
+test-darwin profile="aarch64":
+    darwin-rebuild check --flake ".#{{ profile }}"
+
+test-nixos profile="x86_64":
+    nixos-rebuild test --flake ".#{{ profile }}"
