@@ -37,6 +37,27 @@ jobs:
       - run: cachix use "$CACHIX_BINARY_CACHE"
       - run: nix develop -c just cache-shell "$CACHIX_BINARY_CACHE"
 
+  build:
+    env:
+      CACHIX_AUTH_TOKEN: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+      CACHIX_BINARY_CACHE: altf4llc-os
+    needs:
+      - check
+      - build-shell
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        profile:
+          - geist-mono
+    steps:
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: actions/checkout@v4
+      - run: nix-channel --add https://nixos.org/channels/nixpkgs-unstable unstable
+      - run: nix-channel --update
+      - run: nix-env -iA unstable.cachix
+      - run: cachix use "$CACHIX_BINARY_CACHE"
+      - run: nix develop -c just cache-build "${{ matrix.profile }}" "$CACHIX_BINARY_CACHE"
+
   build-darwin:
     env:
       CACHIX_AUTH_TOKEN: '${{ secrets.CACHIX_AUTH_TOKEN }}'
