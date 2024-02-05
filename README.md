@@ -2,7 +2,7 @@
 
 Cross-platform Linux and macOS development environments for the [TheAltF4Stream](https://www.twitch.tv/thealtf4stream).
 
-![Test flake](https://github.com/ALT-F4-LLC/dotfiles-nixos/actions/workflows/flake.yml/badge.svg)
+![Test flake](https://github.com/ALT-F4-LLC/dotfiles-nixos/actions/workflows/flake.yaml/badge.svg)
 
 ## Goals
 
