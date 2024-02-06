@@ -9,7 +9,7 @@ on:
 jobs:
   check:
     container:
-      image: nixpkgs/cachix-flakes:lastest
+      image: nixpkgs/cachix-flakes:latest
       env:
         CACHIX_AUTH_TOKEN: '${{ secrets.CACHIX_AUTH_TOKEN }}'
         CACHIX_BINARY_CACHE: altf4llc-os
