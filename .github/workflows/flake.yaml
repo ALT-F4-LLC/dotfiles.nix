@@ -15,8 +15,8 @@ jobs:
         CACHIX_BINARY_CACHE: altf4llc-os
     runs-on: ubuntu-latest
     steps:
+      - run: nix shell nixpkgs#cachix nixpkgs#nodejs
       - uses: actions/checkout@v3
-      - run: nix-env -iA unstable.cachix
       - run: cachix use "$CACHIX_BINARY_CACHE"
       - run: nix develop -c just check
       - run: nix develop -c just cache-inputs "$CACHIX_BINARY_CACHE"
