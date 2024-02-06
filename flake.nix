@@ -35,14 +35,13 @@
       perSystem = { config, self', inputs', pkgs, system, ... }: {
         devShells = {
           default = pkgs.mkShell {
-            buildInputs = with pkgs; [ just ];
+            nativeBuildInputs = [ config.packages.dagger pkgs.just ];
           };
         };
 
         packages = {
-          geist-mono = self.lib.geist-mono {
-            inherit (pkgs) fetchzip lib stdenvNoCC;
-          };
+          dagger = self.lib.dagger { inherit (pkgs) stdenvNoCC system; };
+          geist-mono = self.lib.geist-mono { inherit (pkgs) fetchzip lib stdenvNoCC; };
         };
       };
     };

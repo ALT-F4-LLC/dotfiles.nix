@@ -7,10 +7,31 @@ let
     userName = "Erik Reinert";
   };
   defaultUsername = "erikreinert";
+  formatSystem = s: {
+    "aarch64-darwin" = "darwin_arm64";
+    "aarch64-linux" = "linux_arm64";
+    "x86_64-darwin" = "darwin_amd64";
+    "x86_64-linux" = "linux_amd64";
+  }.${s} or (throw "Unsupported system: ${s}");
   homeManagerNixos = import ./nixos/home-manager.nix { inherit inputs; };
   homeManagerShared = import ./shared/home-manager.nix { inherit inputs; };
 in
 {
+  dagger = { stdenvNoCC, system }:
+    stdenvNoCC.mkDerivation rec {
+      name = "dagger";
+      src = builtins.fetchurl {
+        sha256 = "sha256:1wjy4aapagxvld2y8d4bbz36xl4xy2l8xyf0wfwl0b5ps2wkn55v";
+        url = "https://github.com/dagger/dagger/releases/download/${version}/dagger_${version}_${formatSystem system}.tar.gz";
+      };
+      unpackPhase = ''
+        mkdir -p $out/bin
+        tar -xzf $src -C .
+        mv dagger $out/bin/dagger
+      '';
+      version = "v0.9.8";
+    };
+
   geist-mono = { lib, stdenvNoCC, fetchzip }:
     stdenvNoCC.mkDerivation {
       pname = "geist-mono";
