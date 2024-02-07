@@ -19,6 +19,9 @@ cache-shell cache_name:
 check:
     nix flake check
 
+darwin-build profile="aarch64":
+    just build ".#darwinConfigurations.{{ profile }}.config.system.build.toplevel"
+
 darwin-switch profile="aarch64":
     darwin-rebuild switch --flake ".#{{ profile }}"
 
@@ -61,6 +64,9 @@ nixos-bootstrap destination username publickey:
         ' /mnt/etc/nixos/configuration.nix; \
         nixos-install --no-root-passwd; \
         reboot;"
+
+nixos-build profile="x86_64":
+    just build ".#nixosConfigurations.{{ profile }}.config.system.build.toplevel"
 
 nixos-test profile="x86_64":
     nixos-rebuild test --flake ".#{{ profile }}"
