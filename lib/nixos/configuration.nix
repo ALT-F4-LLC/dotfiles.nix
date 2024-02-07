@@ -1,11 +1,10 @@
-{ inputs, desktop, username }:
-
-{ pkgs, ... }:
-
-let
-  nix = import ../shared/nix.nix;
-in
 {
+  inputs,
+  desktop,
+  username,
+}: {pkgs, ...}: let
+  nix = import ../shared/nix.nix;
+in {
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
     loader = {
@@ -16,27 +15,29 @@ in
 
   fonts = {
     fontconfig = {
-      defaultFonts.monospace = [ "GeistMono" ];
+      defaultFonts.monospace = ["GeistMono"];
       enable = true;
     };
 
-    packages = [ inputs.self.packages.${pkgs.system}.geist-mono ];
+    packages = [inputs.self.packages.${pkgs.system}.geist-mono];
   };
 
   environment = {
-    pathsToLink = [ "/libexec" "/share/zsh" ];
-    systemPackages = with pkgs; [
-      curl
-      k3s
-      vim
-      wget
-      xclip
-    ] ++ pkgs.lib.optionals desktop [
-      dunst
-      libnotify
-      lxappearance
-      pavucontrol
-    ];
+    pathsToLink = ["/libexec" "/share/zsh"];
+    systemPackages = with pkgs;
+      [
+        curl
+        k3s
+        vim
+        wget
+        xclip
+      ]
+      ++ pkgs.lib.optionals desktop [
+        dunst
+        libnotify
+        lxappearance
+        pavucontrol
+      ];
   };
 
   i18n.defaultLocale = "en_US.UTF-8";
@@ -52,7 +53,10 @@ in
   nixpkgs = {
     config = {
       allowUnfree = true;
-      pulseaudio = if desktop then true else false;
+      pulseaudio =
+        if desktop
+        then true
+        else false;
     };
   };
 
@@ -84,7 +88,7 @@ in
   users = {
     mutableUsers = false;
     users."${username}" = {
-      extraGroups = [ "docker" "wheel" ] ++ pkgs.lib.optionals desktop [ "audio" ];
+      extraGroups = ["docker" "wheel"] ++ pkgs.lib.optionals desktop ["audio"];
       hashedPassword = "";
       home = "/home/${username}";
       isNormalUser = true;
@@ -100,28 +104,29 @@ in
   virtualisation = {
     containerd = {
       enable = true;
-      settings =
-        let
-          fullCNIPlugins = pkgs.buildEnv {
-            name = "full-cni";
-            paths = with pkgs; [ cni-plugin-flannel cni-plugins ];
-          };
-        in
-        {
-          plugins."io.containerd.grpc.v1.cri".cni = {
-            bin_dir = "${fullCNIPlugins}/bin";
-            conf_dir = "/var/lib/rancher/k3s/agent/etc/cni/net.d/";
-          };
+      settings = let
+        fullCNIPlugins = pkgs.buildEnv {
+          name = "full-cni";
+          paths = with pkgs; [cni-plugin-flannel cni-plugins];
         };
+      in {
+        plugins."io.containerd.grpc.v1.cri".cni = {
+          bin_dir = "${fullCNIPlugins}/bin";
+          conf_dir = "/var/lib/rancher/k3s/agent/etc/cni/net.d/";
+        };
+      };
     };
 
     podman = {
       defaultNetwork.settings.dns_enabled = true;
       dockerCompat = true;
       enable = true;
-      extraPackages = with pkgs; [ zfs ];
+      extraPackages = with pkgs; [zfs];
     };
 
-    vmware.guest.enable = if pkgs.system == "aarch64-linux" then false else true;
+    vmware.guest.enable =
+      if pkgs.system == "aarch64-linux"
+      then false
+      else true;
   };
 }

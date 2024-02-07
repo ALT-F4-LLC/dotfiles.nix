@@ -1,9 +1,6 @@
-{ username }:
-
-let
+{username}: let
   nix = import ../shared/nix.nix;
-in
-{
+in {
   nix = nix;
   nixpkgs.config.allowUnfree = true;
   programs.zsh.enable = true;

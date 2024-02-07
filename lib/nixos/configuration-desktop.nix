@@ -1,16 +1,11 @@
-{ username }:
-
-{ pkgs, ... }:
-
-let
+{username}: {pkgs, ...}: let
   system = pkgs.system;
-in
-{
+in {
   fileSystems."/nix" = {
     device = "/dev/disk/by-label/nix";
     fsType = "ext4";
     neededForBoot = true;
-    options = [ "noatime" ];
+    options = ["noatime"];
   };
 
   hardware = {
@@ -54,7 +49,7 @@ in
       windowManager.i3 = {
         enable = true;
         package = pkgs.i3-gaps;
-        extraPackages = with pkgs; [ i3status i3lock i3blocks ];
+        extraPackages = with pkgs; [i3status i3lock i3blocks];
       };
     };
   };

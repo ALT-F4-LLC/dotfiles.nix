@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-let
+{pkgs, ...}: let
   catppuccin-rofi = pkgs.fetchFromGitHub {
     owner = "catppuccin";
     repo = "rofi";
@@ -8,8 +6,7 @@ let
     sha256 = "sha256-DNorfyl3C4RBclF2KDgwvQQwixpTwSRu7fIvihPN8JY=";
   };
   i3_mod = "Mod4";
-in
-{
+in {
   #---------------------------------------------------------------------
   # home
   #---------------------------------------------------------------------
@@ -96,42 +93,44 @@ in
     enable = true;
 
     config = {
-      bars = [{
-        position = "bottom";
-        statusCommand = "${pkgs.i3status}/bin/i3status";
-        colors = {
-          background = "#161616";
-          statusline = "#dde1e6";
-          separator = "#42be65";
-          focusedWorkspace = {
-            background = "#33b1ff";
-            border = "#82cfff";
-            text = "#161616";
+      bars = [
+        {
+          position = "bottom";
+          statusCommand = "${pkgs.i3status}/bin/i3status";
+          colors = {
+            background = "#161616";
+            statusline = "#dde1e6";
+            separator = "#42be65";
+            focusedWorkspace = {
+              background = "#33b1ff";
+              border = "#82cfff";
+              text = "#161616";
+            };
+            activeWorkspace = {
+              background = "#393939";
+              border = "#595B5B";
+              text = "#dde1e6";
+            };
+            inactiveWorkspace = {
+              background = "#393939";
+              border = "#595B5B";
+              text = "#dde1e6";
+            };
+            bindingMode = {
+              background = "#2C2C2C";
+              border = "#16a085";
+              text = "#F9FAF9";
+            };
+            urgentWorkspace = {
+              background = "#FDF6E3";
+              border = "#16a085";
+              text = "#E5201D";
+            };
           };
-          activeWorkspace = {
-            background = "#393939";
-            border = "#595B5B";
-            text = "#dde1e6";
-          };
-          inactiveWorkspace = {
-            background = "#393939";
-            border = "#595B5B";
-            text = "#dde1e6";
-          };
-          bindingMode = {
-            background = "#2C2C2C";
-            border = "#16a085";
-            text = "#F9FAF9";
-          };
-          urgentWorkspace = {
-            background = "#FDF6E3";
-            border = "#16a085";
-            text = "#E5201D";
-          };
-        };
-      }];
+        }
+      ];
 
-      fonts = { names = [ "GeistMono" ]; };
+      fonts = {names = ["GeistMono"];};
 
       gaps = {
         inner = 0;
@@ -142,8 +141,7 @@ in
         "${i3_mod}+Return" = "exec ${pkgs.kitty}/bin/kitty";
         "${i3_mod}+Shift+q" = "kill";
 
-        "${i3_mod}+d" =
-          "exec --no-startup-id ${pkgs.rofi}/bin/rofi -modi drun -show drun";
+        "${i3_mod}+d" = "exec --no-startup-id ${pkgs.rofi}/bin/rofi -modi drun -show drun";
 
         "${i3_mod}+h" = "focus left";
         "${i3_mod}+j" = "focus down";
@@ -195,8 +193,7 @@ in
 
         "${i3_mod}+Shift+c" = "reload";
         "${i3_mod}+Shift+r" = "restart";
-        "${i3_mod}+Shift+e" =
-          "exec i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes' 'i3-msg exit'";
+        "${i3_mod}+Shift+e" = "exec i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes' 'i3-msg exit'";
 
         "${i3_mod}+r" = "mode resize";
       };

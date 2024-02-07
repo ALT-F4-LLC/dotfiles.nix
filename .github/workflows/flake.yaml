@@ -1,0 +1,76 @@
+name: Test flake
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  check:
+    env:
+      CACHIX_BINARY_CACHE: altf4llc-os
+    runs-on: ubuntu-latest
+    steps:
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: cachix/cachix-action@v12
+        with:
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+          name: altf4llc-os
+      - uses: actions/checkout@v3
+      - run: cachix use "$CACHIX_BINARY_CACHE"
+      - run: nix develop -c just check
+      - run: nix develop -c just cache-inputs "$CACHIX_BINARY_CACHE"
+      - run: nix develop -c just cache-shell "$CACHIX_BINARY_CACHE"
+
+  build:
+    env:
+      CACHIX_BINARY_CACHE: altf4llc-os
+    needs:
+      - check
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        profile:
+          - geist-mono
+    steps:
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: cachix/cachix-action@v12
+        with:
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+          name: altf4llc-os
+      - uses: actions/checkout@v4
+      - run: cachix use "$CACHIX_BINARY_CACHE"
+      - run: nix develop -c just cache-build "${{ matrix.profile }}" "$CACHIX_BINARY_CACHE"
+
+  build-darwin:
+    env:
+      CACHIX_BINARY_CACHE: altf4llc-os
+    needs:
+      - check
+    runs-on: macos-latest
+    steps:
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: cachix/cachix-action@v12
+        with:
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+          name: altf4llc-os
+      - uses: actions/checkout@v4
+      - run: cachix use "$CACHIX_BINARY_CACHE"
+      - run: nix develop -c just cache-build "darwinConfigurations.x86_64.config.system.build.toplevel" "$CACHIX_BINARY_CACHE"
+
+  build-nixos:
+    env:
+      CACHIX_BINARY_CACHE: altf4llc-os
+    needs:
+      - check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: cachix/cachix-action@v12
+        with:
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+          name: altf4llc-os
+      - uses: actions/checkout@v4
+      - run: cachix use "$CACHIX_BINARY_CACHE"
+      - run: nix develop -c just cache-build "nixosConfigurations.x86_64.config.system.build.toplevel" "$CACHIX_BINARY_CACHE"
