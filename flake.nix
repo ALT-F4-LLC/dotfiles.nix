@@ -11,37 +11,49 @@
     thealtf4stream-nvim.url = "github:ALT-F4-LLC/thealtf4stream.nvim";
   };
 
-  outputs = inputs@{ self, flake-parts, ... }:
-    let
-      mkDarwin = self.lib.mkDarwin { };
-      mkNixos = self.lib.mkNixos { };
-    in
-    flake-parts.lib.mkFlake { inherit inputs; } {
+  outputs = inputs @ {
+    self,
+    flake-parts,
+    ...
+  }: let
+    mkDarwin = self.lib.mkDarwin {};
+    mkNixos = self.lib.mkNixos {};
+  in
+    flake-parts.lib.mkFlake {inherit inputs;} {
       flake = {
         darwinConfigurations = {
-          aarch64 = mkDarwin { system = "aarch64-darwin"; };
-          x86_64 = mkDarwin { system = "x86_64-darwin"; };
+          aarch64 = mkDarwin {system = "aarch64-darwin";};
+          x86_64 = mkDarwin {system = "x86_64-darwin";};
         };
 
-        lib = import ./lib { inherit inputs; };
+        lib = import ./lib {inherit inputs;};
 
         nixosConfigurations = {
-          x86_64 = mkNixos { system = "x86_64-linux"; };
+          x86_64 = mkNixos {system = "x86_64-linux";};
         };
       };
 
-      systems = [ "aarch64-darwin" "aarch64-linux" "x86_64-darwin" "x86_64-linux" ];
+      systems = ["aarch64-darwin" "aarch64-linux" "x86_64-darwin" "x86_64-linux"];
 
-      perSystem = { config, self', inputs', pkgs, system, ... }: {
+      perSystem = {
+        config,
+        self',
+        inputs',
+        pkgs,
+        system,
+        ...
+      }: {
         devShells = {
           default = pkgs.mkShell {
-            nativeBuildInputs = [ config.packages.dagger pkgs.just ];
+            nativeBuildInputs = [config.packages.dagger pkgs.just];
           };
         };
 
+        formatter = pkgs.alejandra;
+
         packages = {
-          dagger = self.lib.dagger { inherit (pkgs) stdenvNoCC system; };
-          geist-mono = self.lib.geist-mono { inherit (pkgs) fetchzip lib stdenvNoCC; };
+          dagger = self.lib.dagger {inherit (pkgs) stdenvNoCC system;};
+          geist-mono = self.lib.geist-mono {inherit (pkgs) fetchzip lib stdenvNoCC;};
         };
       };
     };

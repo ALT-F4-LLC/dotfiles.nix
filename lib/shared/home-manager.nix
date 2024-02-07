@@ -1,10 +1,7 @@
-{ inputs }: { git }: { pkgs, ... }:
-
-let
+{inputs}: {git}: {pkgs, ...}: let
   isDarwin = system == "aarch64-darwin" || system == "x86_64-darwin";
   system = pkgs.system;
-in
-{
+in {
   #---------------------------------------------------------------------
   # home
   #---------------------------------------------------------------------
@@ -80,10 +77,11 @@ in
 
   programs.bat = {
     enable = true;
-    config = { theme = "catppuccin"; };
+    config = {theme = "catppuccin";};
     themes = {
       catppuccin = {
-        src = pkgs.fetchFromGitHub
+        src =
+          pkgs.fetchFromGitHub
           {
             owner = "catppuccin";
             repo = "bat";
@@ -103,7 +101,8 @@ in
     nix-direnv.enable = true;
   };
 
-  programs.git = pkgs.lib.recursiveUpdate git
+  programs.git =
+    pkgs.lib.recursiveUpdate git
     {
       delta = {
         enable = true;
@@ -168,7 +167,10 @@ in
     font = {
       name = "GeistMono";
       package = inputs.self.packages.${pkgs.system}.geist-mono;
-      size = if isDarwin then 18 else 15;
+      size =
+        if isDarwin
+        then 18
+        else 15;
     };
 
     settings = {
@@ -229,11 +231,11 @@ in
     };
   };
 
-  programs.neovim = inputs.thealtf4stream-nvim.lib.mkHomeManager { inherit system; };
+  programs.neovim = inputs.thealtf4stream-nvim.lib.mkHomeManager {inherit system;};
 
   programs.nnn = {
     enable = true;
-    package = pkgs.nnn.override ({ withNerdIcons = true; });
+    package = pkgs.nnn.override {withNerdIcons = true;};
     plugins = {
       mappings = {
         K = "preview-tui";
@@ -278,7 +280,10 @@ in
       set -g message-command-style bg=colour0,fg=colour7
     '';
     shell = "${pkgs.zsh}/bin/zsh";
-    terminal = if isDarwin then "screen-256color" else "xterm-256color";
+    terminal =
+      if isDarwin
+      then "screen-256color"
+      else "xterm-256color";
   };
 
   programs.zsh = {
@@ -327,7 +332,7 @@ in
 
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "z" ];
+      plugins = ["git" "z"];
       theme = "robbyrussell";
     };
 
@@ -335,7 +340,10 @@ in
       cat = "bat";
       dr = "docker container run --interactive --rm --tty";
       lg = "lazygit";
-      ll = if isDarwin then "n" else "n -P K";
+      ll =
+        if isDarwin
+        then "n"
+        else "n -P K";
       nb = "nix build --json --no-link --print-build-logs";
       s = ''doppler run --config "nixos" --project "$(whoami)"'';
       wt = "git worktree";
