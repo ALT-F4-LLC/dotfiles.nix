@@ -45,14 +45,13 @@
       }: {
         devShells = {
           default = pkgs.mkShell {
-            nativeBuildInputs = [config.packages.dagger pkgs.just];
+            nativeBuildInputs = [pkgs.just];
           };
         };
 
         formatter = pkgs.alejandra;
 
         packages = {
-          dagger = self.lib.dagger {inherit (pkgs) stdenvNoCC system;};
           geist-mono = self.lib.geist-mono {inherit (pkgs) fetchzip lib stdenvNoCC;};
         };
       };
