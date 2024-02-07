@@ -21,7 +21,6 @@ in
     font-size = 18
     foreground = "#dde1e6"
     macos-option-as-alt = true
-    window-decoration = false
 
     # theme
     palette = 0=#262626
@@ -73,7 +72,7 @@ in
     PULUMI_SKIP_UPDATE_CHECK = "true";
   };
 
-  home.stateVersion = "23.05";
+  home.stateVersion = "23.11";
 
   #---------------------------------------------------------------------
   # programs
@@ -334,6 +333,7 @@ in
 
     shellAliases = {
       cat = "bat";
+      dr = "docker container run --interactive --rm --tty";
       lg = "lazygit";
       ll = if isDarwin then "n" else "n -P K";
       nb = "nix build --json --no-link --print-build-logs";
