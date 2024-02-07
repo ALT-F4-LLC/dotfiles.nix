@@ -25,18 +25,6 @@ darwin-switch profile="aarch64":
 darwin-test profile="aarch64":
     darwin-rebuild check --flake ".#{{ profile }}"
 
-docker-run recipe:
-    docker container run \
-        --interactive \
-        --rm \
-        --tty \
-        --volume "$(pwd):/data" \
-        --workdir "/data" \
-        nixpkgs/cachix-flakes:latest \
-        nix develop \
-            --option filter-syscalls false \
-            --command just "{{ recipe }}"
-
 nixos-bootstrap destination username publickey:
     ssh \
     -o PubkeyAuthentication=no \
