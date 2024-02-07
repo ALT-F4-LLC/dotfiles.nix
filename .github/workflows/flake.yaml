@@ -12,9 +12,7 @@ jobs:
       CACHIX_BINARY_CACHE: altf4llc-os
     runs-on: ubuntu-latest
     steps:
-      - uses: cachix/install-nix-action@v25
-        with:
-          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: DeterminateSystems/nix-installer-action@main
       - uses: cachix/cachix-action@v12
         with:
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
@@ -36,9 +34,7 @@ jobs:
         profile:
           - geist-mono
     steps:
-      - uses: cachix/install-nix-action@v25
-        with:
-          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: DeterminateSystems/nix-installer-action@main
       - uses: cachix/cachix-action@v12
         with:
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
@@ -54,9 +50,7 @@ jobs:
       - check
     runs-on: macos-latest
     steps:
-      - uses: cachix/install-nix-action@v25
-        with:
-          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: DeterminateSystems/nix-installer-action@main
       - uses: cachix/cachix-action@v12
         with:
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
@@ -72,9 +66,7 @@ jobs:
       - check
     runs-on: ubuntu-latest
     steps:
-      - uses: cachix/install-nix-action@v25
-        with:
-          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: DeterminateSystems/nix-installer-action@main
       - uses: cachix/cachix-action@v12
         with:
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
