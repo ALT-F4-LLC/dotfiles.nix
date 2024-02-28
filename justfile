@@ -20,7 +20,7 @@ check:
     nix flake check
 
 darwin-build profile="aarch64":
-    just build ".#darwinConfigurations.{{ profile }}.config.system.build.toplevel"
+    just build "darwinConfigurations.{{ profile }}.config.system.build.toplevel"
 
 darwin-switch profile="aarch64":
     darwin-rebuild switch --flake ".#{{ profile }}"
@@ -66,10 +66,13 @@ nixos-bootstrap destination username publickey:
         reboot;"
 
 nixos-build profile="x86_64":
-    just build ".#nixosConfigurations.{{ profile }}.config.system.build.toplevel"
+    just build "nixosConfigurations.{{ profile }}.config.system.build.toplevel"
 
 nixos-test profile="x86_64":
     nixos-rebuild test --flake ".#{{ profile }}"
 
 nixos-switch profile="x86_64":
     nixos-rebuild switch --flake ".#{{ profile }}"
+
+update:
+    nix flake update
