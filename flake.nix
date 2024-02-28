@@ -2,12 +2,12 @@
   description = "Development packages and systems for TheAltF4Stream";
 
   inputs = {
+    ghostty.url = "git+ssh://git@github.com/mitchellh/ghostty";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    thealtf4stream-nvim.inputs.nixpkgs.follows = "nixpkgs";
     thealtf4stream-nvim.url = "github:ALT-F4-LLC/thealtf4stream.nvim";
   };
 

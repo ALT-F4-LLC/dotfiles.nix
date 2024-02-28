@@ -12,12 +12,15 @@ in {
 
   home.file.".config/ghostty/config".text = ''
     # settings
-    background = "#161616"
+    background = 161616
     background-opacity = 0.9
+    cursor-color = f2f4f8
     font-family = "GeistMono NFM"
-    font-size = 18
-    foreground = "#dde1e6"
+    font-size = 16
+    foreground = dde1e6
     macos-option-as-alt = true
+    selection-background = 525252
+    selection-foreground = f2f4f8
 
     # theme
     palette = 0=#262626
@@ -36,11 +39,6 @@ in {
     palette = 13=#ee5396
     palette = 14=#3ddbd9
     palette = 15=#ffffff
-    background = 161616
-    foreground = dde1e6
-    cursor-color = f2f4f8
-    selection-background = 525252
-    selection-foreground = f2f4f8
   '';
 
   home.packages = with pkgs; [
@@ -49,6 +47,7 @@ in {
     doppler
     fd
     gh
+    inputs.ghostty.packages.${pkgs.system}.default
     jq
     k9s
     kubectl

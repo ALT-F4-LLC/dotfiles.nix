@@ -8,6 +8,19 @@ in {
     options = ["noatime"];
   };
 
+  fileSystems."/mnt/hgfs" = {
+    device = ".host:/";
+    fsType = "fuse./run/current-system/sw/bin/vmhgfs-fuse";
+    options = [
+      "allow_other"
+      "auto_unmount"
+      "defaults"
+      "gid=1000"
+      "uid=1000"
+      "umask=22"
+    ];
+  };
+
   hardware = {
     opengl.enable = true;
 
@@ -30,7 +43,6 @@ in {
 
     xserver = {
       enable = true;
-      layout = "us";
 
       desktopManager = {
         xterm.enable = false;
@@ -51,6 +63,8 @@ in {
         package = pkgs.i3-gaps;
         extraPackages = with pkgs; [i3status i3lock i3blocks];
       };
+
+      xkb.layout = "us";
     };
   };
 
