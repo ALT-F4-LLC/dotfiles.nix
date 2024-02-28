@@ -143,11 +143,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1708487111,
-        "narHash": "sha256-xjBcWhTWNgN+y1TKDPCBUcP5B3gUX/z3FDhUBqntEJU=",
+        "lastModified": 1709098824,
+        "narHash": "sha256-rmzXtEnRZqZ9NChViJrvmfKDv8QJaKATYAR6RQVIhP0=",
         "owner": "ALT-F4-LLC",
         "repo": "thealtf4stream.nvim",
-        "rev": "64e5243dd2bd481956186501049e2736e90b4c33",
+        "rev": "14887bd279718751208ba3554aa075e28f3a1434",
         "type": "github"
       },
       "original": {
