@@ -8,8 +8,6 @@ on:
 
 jobs:
   check:
-    env:
-      CACHIX_BINARY_CACHE: altf4llc-os
     runs-on: ubuntu-latest
     steps:
       - uses: shimataro/ssh-key-action@v2
@@ -28,8 +26,6 @@ jobs:
       - run: nix develop -c just cache-shell
 
   build:
-    env:
-      CACHIX_BINARY_CACHE: altf4llc-os
     needs:
       - check
     runs-on: ubuntu-latest
@@ -48,10 +44,9 @@ jobs:
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
           name: altf4llc-os
       - uses: actions/checkout@v4
-      - run: cachix use "$CACHIX_BINARY_CACHE"
+      - run: cachix use "altf4llc-os"
       - run: |
-          nix develop -c just cache-build \
-            "${{ matrix.profile }}" "$CACHIX_BINARY_CACHE"
+          nix develop -c just cache-build "${{ matrix.profile }}"
 
   build-darwin:
     needs:

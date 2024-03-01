@@ -1,5 +1,6 @@
 {inputs}: {git}: {pkgs, ...}: let
   isDarwin = system == "aarch64-darwin" || system == "x86_64-darwin";
+  isLinux = system == "aarch64-linux" || system == "x86_64-linux";
   system = pkgs.system;
 in {
   #---------------------------------------------------------------------
@@ -16,7 +17,7 @@ in {
     background-opacity = 0.9
     cursor-color = f2f4f8
     font-family = "GeistMono NFM"
-    font-size = 16
+    font-size = 18
     foreground = dde1e6
     macos-option-as-alt = true
     selection-background = 525252
@@ -41,20 +42,24 @@ in {
     palette = 15=#ffffff
   '';
 
-  home.packages = with pkgs; [
-    awscli2
-    cachix
-    doppler
-    fd
-    gh
-    inputs.ghostty.packages.${pkgs.system}.default
-    jq
-    k9s
-    kubectl
-    lazydocker
-    ripgrep
-    z-lua
-  ];
+  home.packages = with pkgs;
+    [
+      awscli2
+      cachix
+      doppler
+      fd
+      gh
+      git-remote-codecommit
+      jq
+      k9s
+      kubectl
+      lazydocker
+      ripgrep
+      z-lua
+    ]
+    ++ lib.lists.optionals isLinux [
+      inputs.ghostty.packages.${pkgs.system}.default
+    ];
 
   home.sessionVariables = {
     CHARM_HOST = "localhost";
