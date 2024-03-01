@@ -58,7 +58,7 @@ in {
       z-lua
     ]
     ++ lib.lists.optionals isLinux [
-      inputs.ghostty.packages.${pkgs.system}.macos
+      inputs.ghostty.packages.${pkgs.system}.default
     ];
 
   home.sessionVariables = {
