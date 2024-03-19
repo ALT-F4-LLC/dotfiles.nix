@@ -151,6 +151,7 @@ in {
       extraConfig = {
         color.ui = true;
         commit.gpgsign = true;
+        core.editor = "nvim";
         diff.colorMoved = "zebra";
         fetch.prune = true;
         init.defaultBranch = "main";
@@ -292,7 +293,7 @@ in {
 
   programs.zsh = {
     enable = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     enableCompletion = true;
 
     initExtra = ''
