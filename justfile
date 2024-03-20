@@ -4,9 +4,6 @@ _default:
 build profile:
     nix build --json --no-link --print-build-logs ".#{{ profile }}"
 
-build-clean profile:
-    nix store delete $(nix path-info --recursive '.#{{ profile }}')
-
 check:
     nix flake check
 
