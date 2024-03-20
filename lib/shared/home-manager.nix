@@ -323,7 +323,7 @@ in {
 
     shellAliases = {
       cat = "bat";
-      cpm = ''git diff --staged | s -- sgpt --code --no-cache "Generate a commit message describing the changes using conventional commit specifiction (DO NOT GENERATE A COMMAND)" | git commit -F -'';
+      cpm = ''git diff --staged | s -- sgpt --code --no-cache "Generate a git commit message describing the changes using the conventional commit specifiction (DO NOT GENERATE A COMMAND)" | git commit -F -'';
       cpr = ''git diff $(git merge-base main $(git branch --show-current))..HEAD | s -- sgpt --code --no-cache "Generate a 30 character max GitHub PR title and short and concise grouped lists of changes using symver specification in markdown"'';
       dr = "docker container run --interactive --rm --tty";
       lg = "lazygit";
