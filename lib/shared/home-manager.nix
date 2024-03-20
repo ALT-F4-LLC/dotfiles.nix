@@ -13,33 +13,11 @@ in {
 
   home.file.".config/ghostty/config".text = ''
     # settings
-    background = 161616
     background-opacity = 0.9
-    cursor-color = f2f4f8
-    font-family = "GeistMono NFM"
-    font-size = 18
-    foreground = dde1e6
+    font-family = GeistMono NFM
+    font-size = 20
     macos-option-as-alt = true
-    selection-background = 525252
-    selection-foreground = f2f4f8
-
-    # theme
-    palette = 0=#262626
-    palette = 1=#ff7eb6
-    palette = 2=#42be65
-    palette = 3=#82cfff
-    palette = 4=#33b1ff
-    palette = 5=#ee5396
-    palette = 6=#3ddbd9
-    palette = 7=#dde1e6
-    palette = 8=#393939
-    palette = 9=#ff7eb6
-    palette = 10=#42be65
-    palette = 11=#82cfff
-    palette = 12=#33b1ff
-    palette = 13=#ee5396
-    palette = 14=#3ddbd9
-    palette = 15=#ffffff
+    theme = TokyoNight
   '';
 
   home.packages = with pkgs;
@@ -55,6 +33,7 @@ in {
       kubectl
       lazydocker
       ripgrep
+      shell_gpt
       z-lua
     ]
     ++ lib.lists.optionals isLinux [
@@ -63,6 +42,7 @@ in {
 
   home.sessionVariables = {
     CHARM_HOST = "localhost";
+    DEFAULT_MODEL = "gpt-4-turbo-preview";
     DOTNET_CLI_TELEMETRY_OPTOUT = "true";
     EDITOR = "nvim";
     LANG = "en_US.UTF-8";
@@ -343,6 +323,8 @@ in {
 
     shellAliases = {
       cat = "bat";
+      cpm = ''git diff --staged | s -- sgpt --md "Generate git commit message using latest conventional commit methods"'';
+      cpr = ''git diff $(git merge-base main $(git branch --show-current))..HEAD | s -- sgpt --code "Generate short and concise conventional PR title and description for GitHub of the changes in markdown"'';
       dr = "docker container run --interactive --rm --tty";
       lg = "lazygit";
       ll =

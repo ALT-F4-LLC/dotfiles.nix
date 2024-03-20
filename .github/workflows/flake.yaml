@@ -22,8 +22,6 @@ jobs:
       - uses: actions/checkout@v3
       - run: cachix use "altf4llc-os"
       - run: nix develop -c just check
-      - run: nix develop -c just cache-inputs
-      - run: nix develop -c just cache-shell
 
   build:
     needs:
@@ -46,7 +44,7 @@ jobs:
       - uses: actions/checkout@v4
       - run: cachix use "altf4llc-os"
       - run: |
-          nix develop -c just cache-build "${{ matrix.profile }}"
+          nix develop -c just build "${{ matrix.profile }}"
 
   build-darwin:
     needs:
@@ -65,7 +63,7 @@ jobs:
       - uses: actions/checkout@v4
       - run: cachix use "altf4llc-os"
       - run: |
-          nix develop -c just cache-build \
+          nix develop -c just build \
             "darwinConfigurations.x86_64.config.system.build.toplevel"
 
   build-nixos:
@@ -85,5 +83,5 @@ jobs:
       - uses: actions/checkout@v4
       - run: cachix use "altf4llc-os"
       - run: |
-          nix develop -c just cache-build \
+          nix develop -c just build \
             "nixosConfigurations.x86_64.config.system.build.toplevel"

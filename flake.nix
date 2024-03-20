@@ -42,17 +42,19 @@
         pkgs,
         system,
         ...
-      }: {
+      }: let
+        inherit (pkgs) callPackage alejandra just mkShell;
+      in {
         devShells = {
-          default = pkgs.mkShell {
-            nativeBuildInputs = [pkgs.just];
+          default = mkShell {
+            nativeBuildInputs = [just];
           };
         };
 
-        formatter = pkgs.alejandra;
+        formatter = alejandra;
 
         packages = {
-          geist-mono = self.lib.geist-mono {inherit (pkgs) fetchzip lib stdenvNoCC;};
+          geist-mono = callPackage self.lib.geist-mono {};
         };
       };
     };
