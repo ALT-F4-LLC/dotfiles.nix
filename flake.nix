@@ -2,7 +2,6 @@
   description = "Development packages and systems for TheAltF4Stream";
 
   inputs = {
-    ghostty.url = "git+ssh://git@github.com/mitchellh/ghostty";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";

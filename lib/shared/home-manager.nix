@@ -20,25 +20,21 @@ in {
     theme = TokyoNight
   '';
 
-  home.packages = with pkgs;
-    [
-      awscli2
-      cachix
-      doppler
-      fd
-      gh
-      git-remote-codecommit
-      jq
-      k9s
-      kubectl
-      lazydocker
-      ripgrep
-      shell_gpt
-      z-lua
-    ]
-    ++ lib.lists.optionals isLinux [
-      inputs.ghostty.packages.${pkgs.system}.default
-    ];
+  home.packages = with pkgs; [
+    awscli2
+    cachix
+    doppler
+    fd
+    gh
+    git-remote-codecommit
+    jq
+    k9s
+    kubectl
+    lazydocker
+    ripgrep
+    shell_gpt
+    z-lua
+  ];
 
   home.sessionVariables = {
     CHARM_HOST = "localhost";
