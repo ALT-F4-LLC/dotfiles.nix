@@ -2,7 +2,6 @@
   description = "Development packages and systems for TheAltF4Stream";
 
   inputs = {
-    ghostty.url = "git+ssh://git@github.com/mitchellh/ghostty";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
@@ -42,17 +41,19 @@
         pkgs,
         system,
         ...
-      }: {
+      }: let
+        inherit (pkgs) callPackage alejandra just mkShell;
+      in {
         devShells = {
-          default = pkgs.mkShell {
-            nativeBuildInputs = [pkgs.just];
+          default = mkShell {
+            nativeBuildInputs = [just];
           };
         };
 
-        formatter = pkgs.alejandra;
+        formatter = alejandra;
 
         packages = {
-          geist-mono = self.lib.geist-mono {inherit (pkgs) fetchzip lib stdenvNoCC;};
+          geist-mono = callPackage self.lib.geist-mono {};
         };
       };
     };

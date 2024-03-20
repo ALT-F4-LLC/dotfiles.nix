@@ -11,7 +11,6 @@ in {
   #---------------------------------------------------------------------
 
   home.file.".config/k9s/skin.yml".source = ../../config/k9s/skin.yml;
-  home.packages = pkgs.lib.optionals desktop [pkgs.jetbrains.datagrip];
 
   #---------------------------------------------------------------------
   # programs
@@ -27,6 +26,5 @@ in {
     defaultCacheTtl = 31536000; # cache keys forever don't get asked for password
     enable = true;
     maxCacheTtl = 31536000;
-    pinentryFlavor = "tty";
   };
 }

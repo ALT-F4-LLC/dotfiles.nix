@@ -13,56 +13,32 @@ in {
 
   home.file.".config/ghostty/config".text = ''
     # settings
-    background = 161616
     background-opacity = 0.9
-    cursor-color = f2f4f8
-    font-family = "GeistMono NFM"
-    font-size = 18
-    foreground = dde1e6
+    font-family = GeistMono NFM
+    font-size = 20
     macos-option-as-alt = true
-    selection-background = 525252
-    selection-foreground = f2f4f8
-
-    # theme
-    palette = 0=#262626
-    palette = 1=#ff7eb6
-    palette = 2=#42be65
-    palette = 3=#82cfff
-    palette = 4=#33b1ff
-    palette = 5=#ee5396
-    palette = 6=#3ddbd9
-    palette = 7=#dde1e6
-    palette = 8=#393939
-    palette = 9=#ff7eb6
-    palette = 10=#42be65
-    palette = 11=#82cfff
-    palette = 12=#33b1ff
-    palette = 13=#ee5396
-    palette = 14=#3ddbd9
-    palette = 15=#ffffff
+    theme = TokyoNight
   '';
 
-  home.packages = with pkgs;
-    [
-      awscli2
-      cachix
-      doppler
-      fd
-      gh
-      git-remote-codecommit
-      jq
-      k9s
-      kubectl
-      lazydocker
-      ripgrep
-      z-lua
-    ]
-    ++ lib.lists.optionals isLinux [
-      inputs.ghostty.packages.${pkgs.system}.default
-    ];
+  home.packages = with pkgs; [
+    awscli2
+    cachix
+    doppler
+    fd
+    gh
+    git-remote-codecommit
+    jq
+    k9s
+    kubectl
+    lazydocker
+    ripgrep
+    shell_gpt
+    z-lua
+  ];
 
   home.sessionVariables = {
     CHARM_HOST = "localhost";
+    DEFAULT_MODEL = "gpt-4-turbo-preview";
     DOTNET_CLI_TELEMETRY_OPTOUT = "true";
     EDITOR = "nvim";
     LANG = "en_US.UTF-8";
@@ -81,18 +57,18 @@ in {
 
   programs.bat = {
     enable = true;
-    config = {theme = "catppuccin";};
+    config = {theme = "tokyonight";};
     themes = {
-      catppuccin = {
+      tokyonight = {
         src =
           pkgs.fetchFromGitHub
           {
-            owner = "catppuccin";
-            repo = "bat";
-            rev = "ba4d16880d63e656acced2b7d4e034e4a93f74b1";
-            sha256 = "sha256-6WVKQErGdaqb++oaXnY3i6/GuH2FhTgK0v4TN4Y0Wbw=";
+            owner = "folke";
+            repo = "tokyonight.nvim";
+            rev = "c025baf23b62f044eff1f4ef561c45de636f0e32";
+            sha256 = "sha256-wG4rQ4o8Q1wcsQvha/4EKRvQ1rvguU5W34h7JMSKpek=";
           };
-        file = "Catppuccin-macchiato.tmTheme";
+        file = "extras/sublime/tokyonight_night.tmTheme";
       };
     };
   };
@@ -151,6 +127,7 @@ in {
       extraConfig = {
         color.ui = true;
         commit.gpgsign = true;
+        core.editor = "nvim";
         diff.colorMoved = "zebra";
         fetch.prune = true;
         init.defaultBranch = "main";
@@ -173,53 +150,24 @@ in {
       package = inputs.self.packages.${pkgs.system}.geist-mono;
       size =
         if isDarwin
-        then 18
-        else 15;
+        then 20
+        else 18;
     };
 
     settings = {
-      active_border_color = "#ee5396";
-      active_tab_background = "#ee5396";
-      active_tab_foreground = "#161616";
       allow_remote_control = "yes";
-      background = "#161616";
       background_opacity = "0.9";
-      bell_border_color = "#ee5396";
-      color0 = "#262626";
-      color1 = "#ff7eb6";
-      color10 = "#42be65";
-      color11 = "#82cfff";
-      color12 = "#33b1ff";
-      color13 = "#ee5396";
-      color14 = "#3ddbd9";
-      color15 = "#ffffff";
-      color2 = "#42be65";
-      color3 = "#82cfff";
-      color4 = "#33b1ff";
-      color5 = "#ee5396";
-      color6 = "#3ddbd9";
-      color7 = "#dde1e6";
-      color8 = "#393939";
-      color9 = "#ff7eb6";
-      cursor = "#f2f4f8";
-      cursor_text_color = "#393939";
       enabled_layouts = "splits";
-      foreground = "#dde1e6";
       hide_window_decorations = "titlebar-and-corners";
-      inactive_border_color = "#ff7eb6";
-      inactive_tab_background = "#393939";
-      inactive_tab_foreground = "#dde1e6";
       listen_on = "unix:/tmp/kitty";
       macos_option_as_alt = "yes";
       macos_quit_when_last_window_closed = "yes";
       macos_titlebar_color = "system";
-      selection_background = "#525252";
-      selection_foreground = "#f2f4f8";
-      tab_bar_background = "#161616";
-      url_color = "#ee5396";
       url_style = "single";
       wayland_titlebar_color = "system";
     };
+
+    theme = "Tokyo Night";
   };
 
   programs.lazygit = {
@@ -292,7 +240,7 @@ in {
 
   programs.zsh = {
     enable = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     enableCompletion = true;
 
     initExtra = ''
@@ -342,6 +290,8 @@ in {
 
     shellAliases = {
       cat = "bat";
+      cpm = ''git diff --staged | s -- sgpt --code --no-cache "Generate a git commit message describing the changes using the conventional commit specifiction (DO NOT GENERATE A COMMAND)" | git commit -F -'';
+      cpr = ''git diff $(git merge-base main $(git branch --show-current))..HEAD | s -- sgpt --code --no-cache "Generate a 30 character max GitHub Pull Request title and description that includes only categorized lists (added, removed, etc) using symver specification in markdown. Do not include git diff output."'';
       dr = "docker container run --interactive --rm --tty";
       lg = "lazygit";
       ll =
@@ -350,6 +300,7 @@ in {
         else "n -P K";
       nb = "nix build --json --no-link --print-build-logs";
       s = ''doppler run --config "nixos" --project "$(whoami)"'';
+      sgpt = "s -- sgpt --no-cache";
       wt = "git worktree";
     };
 
