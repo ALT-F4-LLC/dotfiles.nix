@@ -1,6 +1,5 @@
 {inputs}: {git}: {pkgs, ...}: let
   isDarwin = system == "aarch64-darwin" || system == "x86_64-darwin";
-  isLinux = system == "aarch64-linux" || system == "x86_64-linux";
   system = pkgs.system;
 in {
   #---------------------------------------------------------------------
@@ -291,7 +290,7 @@ in {
     shellAliases = {
       cat = "bat";
       cpm = ''git diff --staged | s -- sgpt --code --no-cache "Generate a git commit message describing the changes using the conventional commit specifiction (DO NOT GENERATE A COMMAND)" | git commit -F -'';
-      cpr = ''git diff $(git merge-base main $(git branch --show-current))..HEAD | s -- sgpt --code --no-cache "Generate a 30 character max GitHub Pull Request title and description that includes only categorized lists (added, removed, etc) using symver specification in markdown. Do not include git diff output."'';
+      cpr = ''git diff $(git merge-base $(git remote show origin | grep 'HEAD branch' | cut -d' ' -f5) $(git branch --show-current))..HEAD | s -- sgpt --code --no-cache "Generate a 30 character max GitHub Pull Request title and description that includes only categorized lists (added, removed, etc) using symver specification in markdown. Do not include git diff output."'';
       dr = "docker container run --interactive --rm --tty";
       lg = "lazygit";
       ll =
