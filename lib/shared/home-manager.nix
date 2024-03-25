@@ -14,7 +14,7 @@ in {
     # settings
     background-opacity = 0.9
     font-family = GeistMono NFM
-    font-size = 20
+    font-size = 18
     macos-option-as-alt = true
     theme = TokyoNight
   '';
@@ -147,10 +147,7 @@ in {
     font = {
       name = "GeistMono";
       package = inputs.self.packages.${pkgs.system}.geist-mono;
-      size =
-        if isDarwin
-        then 20
-        else 18;
+      size = 18;
     };
 
     settings = {
