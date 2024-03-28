@@ -25,7 +25,7 @@ in {
     doppler
     fd
     gh
-    git-remote-codecommit
+    inputs.self.packages.${system}.charm-freeze
     jq
     k9s
     kubectl

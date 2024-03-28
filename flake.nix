@@ -42,7 +42,7 @@
         system,
         ...
       }: let
-        inherit (pkgs) callPackage alejandra just mkShell;
+        inherit (pkgs) alejandra callPackage just mkShell;
       in {
         devShells = {
           default = mkShell {
@@ -53,6 +53,7 @@
         formatter = alejandra;
 
         packages = {
+          charm-freeze = callPackage self.lib.charm-freeze {};
           geist-mono = callPackage self.lib.geist-mono {};
         };
       };
