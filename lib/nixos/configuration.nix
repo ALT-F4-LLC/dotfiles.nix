@@ -1,10 +1,8 @@
 {
-  inputs,
   desktop,
+  inputs,
   username,
-}: {pkgs, ...}: let
-  nix = import ../shared/nix.nix;
-in {
+}: {pkgs, ...}: {
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
     loader = {
@@ -48,7 +46,7 @@ in {
     networkmanager.enable = true;
   };
 
-  nix = nix;
+  nix = import ../shared/nix.nix;
 
   nixpkgs = {
     config = {

@@ -11,8 +11,8 @@
   };
 
   outputs = inputs @ {
-    self,
     flake-parts,
+    self,
     ...
   }: let
     mkDarwin = self.lib.mkDarwin {};
@@ -34,14 +34,7 @@
 
       systems = ["aarch64-darwin" "aarch64-linux" "x86_64-darwin" "x86_64-linux"];
 
-      perSystem = {
-        config,
-        self',
-        inputs',
-        pkgs,
-        system,
-        ...
-      }: let
+      perSystem = {pkgs, ...}: let
         inherit (pkgs) alejandra callPackage just mkShell;
       in {
         devShells = {

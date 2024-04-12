@@ -14,7 +14,7 @@ in {
     # settings
     background-opacity = 0.9
     font-family = GeistMono NFM
-    font-size = 18
+    font-size = 20
     macos-option-as-alt = true
     theme = TokyoNight
   '';
@@ -64,8 +64,8 @@ in {
           {
             owner = "folke";
             repo = "tokyonight.nvim";
-            rev = "c025baf23b62f044eff1f4ef561c45de636f0e32";
-            sha256 = "sha256-wG4rQ4o8Q1wcsQvha/4EKRvQ1rvguU5W34h7JMSKpek=";
+            rev = "9bf9ec53d5e87b025e2404069b71e7ebdc3a13e5";
+            sha256 = "sha256-ItCmSUMMTe8iQeneIJLuWedVXsNgm+FXNtdrrdJ/1oE=";
           };
         file = "extras/sublime/tokyonight_night.tmTheme";
       };

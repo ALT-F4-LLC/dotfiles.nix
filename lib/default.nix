@@ -15,30 +15,30 @@ in {
     buildGoModule rec {
       ldflags = ["-s" "-w" "-X=main.Version=${version}"];
       pname = "charm-freeze";
-      vendorHash = "sha256-01tTr5NSyg52KGspYh9Rw98uQld6U+31Fy7jnyBoPx8=";
-      version = "0.1.4";
+      vendorHash = "sha256-AUFzxmQOb/h0UgcprY09IVI7Auitn3JTDU/ptKicIAU=";
+      version = "0.1.6";
 
       src = fetchFromGitHub {
+        hash = "sha256-HLlMUOLDvNLVl4dvtyRwuLhp3pOlpm/naUXK2NiIAg8=";
         owner = "charmbracelet";
         repo = "freeze";
         rev = "v${version}";
-        hash = "sha256-ItcdgQUPrz2hpWS6nDYfnZaCdfocR3QgJTQ4TXzPQOw=";
       };
     };
 
   geist-mono = {
+    fetchzip,
     lib,
     stdenvNoCC,
-    fetchzip,
   }:
-    stdenvNoCC.mkDerivation {
+    stdenvNoCC.mkDerivation rec {
       pname = "geist-mono";
-      version = "3.1.1";
+      version = "3.2.0";
 
       src = fetchzip {
-        hash = "sha256-GzWly6hGshy8DYZNweejvPymcxQSIU7oGUmZEhreMCM=";
+        hash = "sha256-Yw9qccGokdWQN5CpxxMJqI1wXEMwkgpF7V23LzD1isk=";
         stripRoot = false;
-        url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/GeistMono.zip";
+        url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v${version}/GeistMono.zip";
       };
 
       postInstall = ''
@@ -53,7 +53,14 @@ in {
     inputs.nix-darwin.lib.darwinSystem {
       inherit system;
       modules = [
-        (import ./darwin/configuration.nix {inherit username;})
+        {
+          nix = import ./shared/nix.nix;
+          nixpkgs.config.allowUnfree = true;
+          programs.zsh.enable = true;
+          services.nix-daemon.enable = true;
+          system.stateVersion = 4;
+          users.users.${username}.home = "/Users/${username}";
+        }
 
         inputs.home-manager.darwinModules.home-manager
         {
