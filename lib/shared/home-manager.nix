@@ -22,16 +22,18 @@ in {
   home.packages = with pkgs; [
     awscli2
     cachix
+    charm-freeze
     doppler
     fd
     gh
-    inputs.self.packages.${system}.charm-freeze
+    httpie
     jq
     k9s
     kubectl
     lazydocker
     ripgrep
     shell_gpt
+    slides
     z-lua
   ];
 

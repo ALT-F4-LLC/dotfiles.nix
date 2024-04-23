@@ -46,7 +46,6 @@
         formatter = alejandra;
 
         packages = {
-          charm-freeze = callPackage self.lib.charm-freeze {};
           geist-mono = callPackage self.lib.geist-mono {};
         };
       };

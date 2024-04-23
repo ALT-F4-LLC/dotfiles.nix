@@ -8,24 +8,6 @@
   homeManagerNixos = import ./nixos/home-manager.nix {inherit inputs;};
   homeManagerShared = import ./shared/home-manager.nix {inherit inputs;};
 in {
-  charm-freeze = {
-    buildGoModule,
-    fetchFromGitHub,
-  }:
-    buildGoModule rec {
-      ldflags = ["-s" "-w" "-X=main.Version=${version}"];
-      pname = "charm-freeze";
-      vendorHash = "sha256-AUFzxmQOb/h0UgcprY09IVI7Auitn3JTDU/ptKicIAU=";
-      version = "0.1.6";
-
-      src = fetchFromGitHub {
-        hash = "sha256-HLlMUOLDvNLVl4dvtyRwuLhp3pOlpm/naUXK2NiIAg8=";
-        owner = "charmbracelet";
-        repo = "freeze";
-        rev = "v${version}";
-      };
-    };
-
   geist-mono = {
     fetchzip,
     lib,
