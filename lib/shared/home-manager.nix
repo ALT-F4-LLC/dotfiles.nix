@@ -149,7 +149,7 @@ in {
     font = {
       name = "GeistMono";
       package = inputs.self.packages.${pkgs.system}.geist-mono;
-      size = 18;
+      size = 14;
     };
 
     settings = {
