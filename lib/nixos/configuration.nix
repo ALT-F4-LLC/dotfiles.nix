@@ -66,6 +66,10 @@
   };
 
   services = {
+    dbus = {
+      packages = [pkgs.gcr];
+    };
+
     logind.extraConfig = ''
       RuntimeDirectorySize=20G
     '';
