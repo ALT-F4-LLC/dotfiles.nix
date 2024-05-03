@@ -6,17 +6,21 @@ on:
     branches:
       - main
 
+env:
+  CACHIX_BINARY_CACHE: altf4llc-os
+
 jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - uses: DeterminateSystems/nix-installer-action@main
-      - uses: cachix/cachix-action@v12
+      - uses: cachix/install-nix-action@v26
+        with:
+          enable_kvm: true
+      - uses: cachix/cachix-action@v14
         with:
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
-          name: altf4llc-os
+          name: ${{ env.CACHIX_BINARY_CACHE }}
       - uses: actions/checkout@v3
-      - run: cachix use "altf4llc-os"
       - run: nix develop -c just check
 
   build:
@@ -28,13 +32,14 @@ jobs:
         profile:
           - geist-mono
     steps:
-      - uses: DeterminateSystems/nix-installer-action@main
-      - uses: cachix/cachix-action@v12
+      - uses: cachix/install-nix-action@v26
+        with:
+          enable_kvm: true
+      - uses: cachix/cachix-action@v14
         with:
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
-          name: altf4llc-os
+          name: ${{ env.CACHIX_BINARY_CACHE }}
       - uses: actions/checkout@v4
-      - run: cachix use "altf4llc-os"
       - run: nix develop -c just build "${{ matrix.profile }}"
 
   build-darwin:
@@ -42,13 +47,14 @@ jobs:
       - check
     runs-on: macos-latest
     steps:
-      - uses: DeterminateSystems/nix-installer-action@main
-      - uses: cachix/cachix-action@v12
+      - uses: cachix/install-nix-action@v26
+        with:
+          enable_kvm: true
+      - uses: cachix/cachix-action@v14
         with:
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
-          name: altf4llc-os
+          name: ${{ env.CACHIX_BINARY_CACHE }}
       - uses: actions/checkout@v4
-      - run: cachix use "altf4llc-os"
       - run: |
           nix develop -c just build \
             "darwinConfigurations.x86_64.config.system.build.toplevel"
@@ -58,13 +64,14 @@ jobs:
       - check
     runs-on: ubuntu-latest
     steps:
-      - uses: DeterminateSystems/nix-installer-action@main
-      - uses: cachix/cachix-action@v12
+      - uses: cachix/install-nix-action@v26
+        with:
+          enable_kvm: true
+      - uses: cachix/cachix-action@v14
         with:
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
-          name: altf4llc-os
+          name: ${{ env.CACHIX_BINARY_CACHE }}
       - uses: actions/checkout@v4
-      - run: cachix use "altf4llc-os"
       - run: |
           nix develop -c just build \
             "nixosConfigurations.x86_64.config.system.build.toplevel"
