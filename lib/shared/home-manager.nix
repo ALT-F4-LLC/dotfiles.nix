@@ -32,7 +32,7 @@ in {
     kubectl
     lazydocker
     ripgrep
-    shell_gpt
+    shell-gpt
     slides
     z-lua
   ];
