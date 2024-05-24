@@ -164,11 +164,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1716068823,
-        "narHash": "sha256-RmtBVOWt9BpUSdWiHqXJ2cC73Gh49H2NJ+1+9M6PDH0=",
+        "lastModified": 1716526842,
+        "narHash": "sha256-J02tzYTTowICRomrIchtcibKD8mQO09Cev8y8c4EyKQ=",
         "owner": "ALT-F4-LLC",
         "repo": "thealtf4stream.nvim",
-        "rev": "3c75d9d981f36179c52184a9dd38861c1f8b869c",
+        "rev": "d28e6a0c176821c4dfecc3b94a0a888d2a94faf6",
         "type": "github"
       },
       "original": {
