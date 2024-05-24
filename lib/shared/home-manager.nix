@@ -39,7 +39,7 @@ in {
 
   home.sessionVariables = {
     CHARM_HOST = "localhost";
-    DEFAULT_MODEL = "gpt-4-turbo-preview";
+    DEFAULT_MODEL = "gpt-4o";
     DOTNET_CLI_TELEMETRY_OPTOUT = "true";
     EDITOR = "nvim";
     LANG = "en_US.UTF-8";
