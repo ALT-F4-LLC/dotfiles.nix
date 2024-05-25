@@ -37,6 +37,14 @@ in {
   };
 
   services = {
+    displayManager = {
+      autoLogin = {
+        enable = true;
+        user = username;
+      };
+      defaultSession = "none+i3";
+    };
+
     picom.enable = true;
 
     twingate.enable = system == "x86_64-linux";
@@ -49,14 +57,7 @@ in {
         wallpaper.mode = "fill";
       };
 
-      displayManager = {
-        autoLogin = {
-          enable = true;
-          user = username;
-        };
-        defaultSession = "none+i3";
-        lightdm.enable = true;
-      };
+      displayManager.lightdm.enable = true;
 
       windowManager.i3 = {
         enable = true;
