@@ -1,28 +1,46 @@
-{username}: {pkgs, ...}: let
+{
+  hypervisor,
+  nix,
+  username,
+}: {
+  lib,
+  pkgs,
+  ...
+}: let
   system = pkgs.system;
 in {
-  fileSystems."/nix" = {
-    device = "/dev/disk/by-label/nix";
-    fsType = "ext4";
-    neededForBoot = true;
-    options = ["noatime"];
-  };
-
-  fileSystems."/mnt/hgfs" = {
-    device = ".host:/";
-    fsType = "fuse./run/current-system/sw/bin/vmhgfs-fuse";
-    options = [
-      "allow_other"
-      "auto_unmount"
-      "defaults"
-      "gid=1000"
-      "uid=1000"
-      "umask=22"
-    ];
-  };
+  fileSystems =
+    {}
+    // (
+      lib.mkIf nix.storeMount.enable
+      {
+        "/nix" = {
+          device = "/dev/disk/by-label/nix";
+          fsType = "ext4";
+          neededForBoot = true;
+          options = ["noatime"];
+        };
+      }
+    )
+    // (
+      lib.mkIf hypervisor.sharedFolders.enable {
+        "/mnt/hgfs" = {
+          device = ".host:/";
+          fsType = "fuse./run/current-system/sw/bin/vmhgfs-fuse";
+          options = [
+            "allow_other"
+            "auto_unmount"
+            "defaults"
+            "gid=1000"
+            "uid=1000"
+            "umask=22"
+          ];
+        };
+      }
+    );
 
   hardware = {
-    opengl.enable = true;
+    graphics.enable = true;
 
     pulseaudio = {
       enable = true;

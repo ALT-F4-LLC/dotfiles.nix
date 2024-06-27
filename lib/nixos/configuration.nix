@@ -1,5 +1,6 @@
 {
   desktop,
+  hypervisor,
   inputs,
   username,
 }: {pkgs, ...}: {
@@ -127,8 +128,8 @@
     };
 
     vmware.guest.enable =
-      if pkgs.system == "aarch64-linux"
-      then false
-      else true;
+      if hypervisor.type == "vmware"
+      then true
+      else false;
   };
 }

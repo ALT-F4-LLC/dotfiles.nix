@@ -14,22 +14,25 @@
     flake-parts,
     self,
     ...
-  }: let
-    mkDarwin = self.lib.mkDarwin {};
-    mkNixos = self.lib.mkNixos {};
-  in
+  }:
     flake-parts.lib.mkFlake {inherit inputs;} {
       flake = {
         darwinConfigurations = {
-          aarch64 = mkDarwin {system = "aarch64-darwin";};
-          x86_64 = mkDarwin {system = "x86_64-darwin";};
+          aarch64 = self.lib.mkDarwin {system = "aarch64-darwin";};
+          x86_64 = self.lib.mkDarwin {system = "x86_64-darwin";};
         };
 
         lib = import ./lib {inherit inputs;};
 
         nixosConfigurations = {
-          aarch64 = mkNixos {system = "aarch64-linux";};
-          x86_64 = mkNixos {system = "x86_64-linux";};
+          aarch64 = self.lib.mkNixos {
+            desktop = false;
+            hypervisor.sharedFolders.enable = false;
+            hypervisor.type = "vmware";
+            nix.storeMount.enable = false;
+            system = "aarch64-linux";
+          };
+          x86_64 = self.lib.mkNixos {system = "x86_64-linux";};
         };
       };
 

@@ -4,7 +4,18 @@
     userEmail = "4638629+erikreinert@users.noreply.github.com";
     userName = "Erik Reinert";
   };
+
+  defaultNix = {
+    storeMount.enable = true;
+  };
+
+  defaultHypervisor = {
+    sharedFolders.enable = true;
+    type = "vmware";
+  };
+
   defaultUsername = "erikreinert";
+
   homeManagerNixos = import ./nixos/home-manager.nix {inherit inputs;};
   homeManagerShared = import ./shared/home-manager.nix {inherit inputs;};
 in {
@@ -31,7 +42,8 @@ in {
   mkDarwin = {
     git ? defaultGit,
     username ? defaultUsername,
-  }: {system}:
+    system,
+  }:
     inputs.nix-darwin.lib.darwinSystem {
       inherit system;
       modules = [
@@ -61,27 +73,36 @@ in {
   mkNixos = {
     desktop ? true,
     git ? defaultGit,
-    hypervisor ? "vmware",
+    hypervisor ? defaultHypervisor,
+    nix ? defaultNix,
+    system,
     username ? defaultUsername,
-  }: {system}:
+  }:
     inputs.nixpkgs.lib.nixosSystem {
       inherit system;
-      modules = [
-        (import ./nixos/hardware/${hypervisor}/${system}.nix)
-        (import ./nixos/configuration.nix {inherit inputs desktop username;})
-        (import ./nixos/configuration-desktop.nix {inherit username;})
+      modules =
+        [
+          (import ./nixos/hardware/${hypervisor.type}/${system}.nix)
+          (import ./nixos/configuration.nix {inherit hypervisor inputs desktop username;})
 
-        inputs.home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users."${username}" = {pkgs, ...}: {
-            imports = [
-              (homeManagerNixos {inherit desktop;})
-              (homeManagerShared {inherit git;})
-            ];
-          };
-        }
-      ];
+          inputs.home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users."${username}" = {pkgs, ...}: {
+              imports = [
+                (homeManagerNixos {inherit desktop;})
+                (homeManagerShared {inherit git;})
+              ];
+            };
+          }
+        ]
+        ++ inputs.nixpkgs.lib.optionals desktop [
+          (import
+            ./nixos/configuration-desktop.nix
+            {
+              inherit hypervisor nix username;
+            })
+        ];
     };
 }
