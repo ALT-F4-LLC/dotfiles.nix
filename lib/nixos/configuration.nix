@@ -26,7 +26,6 @@
     systemPackages = with pkgs;
       [
         curl
-        k3s
         vim
         wget
         xclip
@@ -105,27 +104,7 @@
   };
 
   virtualisation = {
-    containerd = {
-      enable = true;
-      settings = let
-        fullCNIPlugins = pkgs.buildEnv {
-          name = "full-cni";
-          paths = with pkgs; [cni-plugin-flannel cni-plugins];
-        };
-      in {
-        plugins."io.containerd.grpc.v1.cri".cni = {
-          bin_dir = "${fullCNIPlugins}/bin";
-          conf_dir = "/var/lib/rancher/k3s/agent/etc/cni/net.d/";
-        };
-      };
-    };
-
-    podman = {
-      defaultNetwork.settings.dns_enabled = true;
-      dockerCompat = true;
-      enable = true;
-      extraPackages = with pkgs; [zfs];
-    };
+    docker.enable = true;
 
     vmware.guest.enable =
       if hypervisor.type == "vmware"

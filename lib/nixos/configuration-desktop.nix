@@ -9,35 +9,27 @@
 }: let
   system = pkgs.system;
 in {
-  fileSystems =
-    {}
-    // (
-      lib.mkIf nix.storeMount.enable
-      {
-        "/nix" = {
-          device = "/dev/disk/by-label/nix";
-          fsType = "ext4";
-          neededForBoot = true;
-          options = ["noatime"];
-        };
-      }
-    )
-    // (
-      lib.mkIf hypervisor.sharedFolders.enable {
-        "/mnt/hgfs" = {
-          device = ".host:/";
-          fsType = "fuse./run/current-system/sw/bin/vmhgfs-fuse";
-          options = [
-            "allow_other"
-            "auto_unmount"
-            "defaults"
-            "gid=1000"
-            "uid=1000"
-            "umask=22"
-          ];
-        };
-      }
-    );
+  fileSystems = {
+    "/nix" = {
+      device = "/dev/disk/by-label/nix";
+      fsType = "ext4";
+      neededForBoot = true;
+      options = ["noatime"];
+    };
+
+    "/mnt/hgfs" = {
+      device = ".host:/";
+      fsType = "fuse./run/current-system/sw/bin/vmhgfs-fuse";
+      options = [
+        "allow_other"
+        "auto_unmount"
+        "defaults"
+        "gid=1000"
+        "uid=1000"
+        "umask=22"
+      ];
+    };
+  };
 
   hardware = {
     graphics.enable = true;
