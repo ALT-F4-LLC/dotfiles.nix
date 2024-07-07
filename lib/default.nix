@@ -5,12 +5,12 @@
     userName = "Erik Reinert";
   };
 
-  defaultNix = {
-    storeMount.enable = true;
+  defaultStore = {
+    mount.enable = false;
   };
 
   defaultHypervisor = {
-    sharedFolders.enable = true;
+    sharing.enable = false;
     type = "vmware";
   };
 
@@ -74,7 +74,7 @@ in {
     desktop ? true,
     git ? defaultGit,
     hypervisor ? defaultHypervisor,
-    nix ? defaultNix,
+    store ? defaultStore,
     system,
     username ? defaultUsername,
   }:
@@ -101,7 +101,7 @@ in {
           (import
             ./nixos/configuration-desktop.nix
             {
-              inherit hypervisor nix username;
+              inherit hypervisor store username;
             })
         ];
     };

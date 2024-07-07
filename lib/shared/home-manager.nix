@@ -14,7 +14,7 @@ in {
     # settings
     background-opacity = 0.9
     font-family = GeistMono NFM
-    font-size = 20
+    font-size = 18
     macos-option-as-alt = true
     theme = TokyoNight
   '';

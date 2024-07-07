@@ -25,14 +25,12 @@
         lib = import ./lib {inherit inputs;};
 
         nixosConfigurations = {
-          aarch64 = self.lib.mkNixos {
-            desktop = false;
-            hypervisor.sharedFolders.enable = false;
-            hypervisor.type = "vmware";
-            nix.storeMount.enable = false;
-            system = "aarch64-linux";
+          aarch64 = self.lib.mkNixos {system = "aarch64-linux";};
+          x86_64 = self.lib.mkNixos {
+            hypervisor.sharing.enable = true;
+            store.mount.enable = true;
+            system = "x86_64-linux";
           };
-          x86_64 = self.lib.mkNixos {system = "x86_64-linux";};
         };
       };
 

@@ -1,35 +1,36 @@
 {
   hypervisor,
-  nix,
+  store,
   username,
 }: {
   lib,
   pkgs,
   ...
-}: let
-  system = pkgs.system;
-in {
-  fileSystems = {
-    "/nix" = {
-      device = "/dev/disk/by-label/nix";
-      fsType = "ext4";
-      neededForBoot = true;
-      options = ["noatime"];
+}: {
+  fileSystems =
+    {}
+    // lib.optionalAttrs hypervisor.sharing.enable {
+      "/mnt/hgfs" = {
+        device = ".host:/";
+        fsType = "fuse./run/current-system/sw/bin/vmhgfs-fuse";
+        options = [
+          "allow_other"
+          "auto_unmount"
+          "defaults"
+          "gid=1000"
+          "uid=1000"
+          "umask=22"
+        ];
+      };
+    }
+    // lib.optionalAttrs store.mount.enable {
+      "/nix" = {
+        device = "/dev/disk/by-label/nix";
+        fsType = "ext4";
+        neededForBoot = true;
+        options = ["noatime"];
+      };
     };
-
-    "/mnt/hgfs" = {
-      device = ".host:/";
-      fsType = "fuse./run/current-system/sw/bin/vmhgfs-fuse";
-      options = [
-        "allow_other"
-        "auto_unmount"
-        "defaults"
-        "gid=1000"
-        "uid=1000"
-        "umask=22"
-      ];
-    };
-  };
 
   hardware = {
     graphics.enable = true;
@@ -57,7 +58,7 @@ in {
 
     picom.enable = true;
 
-    twingate.enable = system == "x86_64-linux";
+    twingate.enable = pkgs.system == "x86_64-linux";
 
     xserver = {
       enable = true;
