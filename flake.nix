@@ -25,7 +25,6 @@
         lib = import ./lib {inherit inputs;};
 
         nixosConfigurations = {
-          aarch64 = self.lib.mkNixos {system = "aarch64-linux";};
           x86_64 = self.lib.mkNixos {
             hypervisor.sharing.enable = true;
             store.mount.enable = true;
