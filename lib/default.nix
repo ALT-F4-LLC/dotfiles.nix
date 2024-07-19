@@ -76,7 +76,9 @@ in {
     store ? defaultStore,
     system,
     username ? defaultUsername,
-  }:
+  }: let
+    geist-mono = inputs.self.packages.${system}.geist-mono;
+  in
     inputs.nixpkgs.lib.nixosSystem {
       inherit system;
       modules =
@@ -97,9 +99,7 @@ in {
                 ++ (
                   if desktop
                   then [
-                    (import ./nixos/home-manager-desktop.nix {
-                      geist-mono = inputs.self.packages.${system}.geist-mono;
-                    })
+                    (import ./nixos/home-manager-desktop.nix {inherit geist-mono;})
                   ]
                   else []
                 );
@@ -110,7 +110,7 @@ in {
           (import
             ./nixos/configuration-desktop.nix
             {
-              inherit hypervisor username;
+              inherit geist-mono hypervisor username;
             })
         ];
     };

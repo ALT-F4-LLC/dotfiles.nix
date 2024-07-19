@@ -38,15 +38,6 @@
       };
     };
 
-  fonts = {
-    fontconfig = {
-      defaultFonts.monospace = ["GeistMono"];
-      enable = true;
-    };
-
-    packages = [inputs.self.packages.${pkgs.system}.geist-mono];
-  };
-
   environment = {
     pathsToLink = ["/libexec" "/share/zsh"];
     systemPackages = with pkgs;

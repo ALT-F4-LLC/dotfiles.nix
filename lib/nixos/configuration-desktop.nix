@@ -1,4 +1,5 @@
 {
+  geist-mono,
   hypervisor,
   username,
 }: {
@@ -6,6 +7,15 @@
   pkgs,
   ...
 }: {
+  fonts = {
+    fontconfig = {
+      defaultFonts.monospace = ["GeistMono"];
+      enable = true;
+    };
+
+    packages = [geist-mono];
+  };
+
   hardware = {
     graphics.enable = true;
 
