@@ -14,7 +14,7 @@ in {
     # settings
     background-opacity = 0.9
     font-family = GeistMono NFM
-    font-size = 18
+    font-size = 20
     macos-option-as-alt = true
     theme = TokyoNight
   '';
@@ -141,31 +141,6 @@ in {
   programs.go = {
     enable = true;
     goPath = "Development/language/go";
-  };
-
-  programs.kitty = {
-    enable = true;
-
-    font = {
-      name = "GeistMono";
-      package = inputs.self.packages.${pkgs.system}.geist-mono;
-      size = 14;
-    };
-
-    settings = {
-      allow_remote_control = "yes";
-      background_opacity = "0.9";
-      enabled_layouts = "splits";
-      hide_window_decorations = "titlebar-and-corners";
-      listen_on = "unix:/tmp/kitty";
-      macos_option_as_alt = "yes";
-      macos_quit_when_last_window_closed = "yes";
-      macos_titlebar_color = "system";
-      url_style = "single";
-      wayland_titlebar_color = "system";
-    };
-
-    theme = "Tokyo Night";
   };
 
   programs.lazygit = {

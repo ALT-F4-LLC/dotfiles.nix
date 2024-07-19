@@ -1,11 +1,4 @@
-{inputs}: {desktop}: {pkgs, ...}: let
-  home-manager-desktop = import ./home-manager-desktop.nix {inherit pkgs;};
-in {
-  imports =
-    if desktop
-    then [home-manager-desktop]
-    else [];
-
+{pkgs, ...}: {
   #---------------------------------------------------------------------
   # home
   #---------------------------------------------------------------------
