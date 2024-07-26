@@ -121,7 +121,17 @@
   };
 
   virtualisation = {
-    docker.enable = true;
+    docker = {
+      daemon = {
+        settings = {
+          "experimental" = true;
+          "features" = {
+            "containerd-snapshotter" = true;
+          };
+        };
+      };
+      enable = true;
+    };
 
     vmware.guest.enable =
       if hypervisor.type == "vmware"
