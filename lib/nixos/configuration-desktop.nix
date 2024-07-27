@@ -63,6 +63,4 @@
       xkb.layout = "us";
     };
   };
-
-  sound.enable = true;
 }
