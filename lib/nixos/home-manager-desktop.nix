@@ -26,7 +26,7 @@ in {
           "Virtual-1" = {
             enable = true;
             dpi = 96;
-            mode = "1920x1080";
+            mode = "3440x1440";
             primary = true;
             rate = "60";
           };
