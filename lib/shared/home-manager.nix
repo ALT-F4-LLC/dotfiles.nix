@@ -1,4 +1,6 @@
 {inputs}: {git}: {pkgs, ...}: let
+  awscli2 = inputs.nixpkgs-stable.legacyPackages.${system}.awscli2;
+  delta = inputs.nixpkgs-stable.legacyPackages.${system}.delta;
   isDarwin = system == "aarch64-darwin" || system == "x86_64-darwin";
   system = pkgs.system;
 in {
@@ -87,6 +89,7 @@ in {
     {
       delta = {
         enable = true;
+        package = delta;
         options = {
           chameleon = {
             blame-code-style = "syntax";
