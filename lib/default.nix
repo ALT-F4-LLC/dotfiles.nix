@@ -60,10 +60,13 @@ in {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.${username} = {pkgs, ...}: {
-            imports = [
-              (homeManagerShared {inherit git;})
-            ];
+            imports = [(homeManagerShared {inherit git;})];
+
             home.file."Library/Application Support/k9s/skin.yml".source = ../config/k9s/skin.yml;
+
+            home.sessionVariables = {
+              PATH = "/Applications/VMware Fusion.app/Contents/Library:$GOPATH/bin:$PATH";
+            };
           };
         }
       ];
