@@ -59,11 +59,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1728041527,
-        "narHash": "sha256-03liqiJtk9UP7YQHW4r8MduKCK242FQzud8iWvvlK+o=",
+        "lastModified": 1728306985,
+        "narHash": "sha256-l/KpcWTv2SjxCnqFs5GYhvjeVYd40WQV4/F2+w9btd4=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "509dbf8d45606b618e9ec3bbe4e936b7c5bc6c1e",
+        "rev": "3ac39b2a8b7cbfc0f96628d8a84867c885bc988b",
         "type": "github"
       },
       "original": {
@@ -134,11 +134,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1728067476,
-        "narHash": "sha256-/uJcVXuBt+VFCPQIX+4YnYrHaubJSx4HoNsJVNRgANM=",
+        "lastModified": 1728193676,
+        "narHash": "sha256-PbDWAIjKJdlVg+qQRhzdSor04bAPApDqIv2DofTyynk=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "6e6b3dd395c3b1eb9be9f2d096383a8d05add030",
+        "rev": "ecbc1ca8ffd6aea8372ad16be9ebbb39889e55b6",
         "type": "github"
       },
       "original": {
@@ -181,11 +181,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1728167243,
-        "narHash": "sha256-GjSAM9DpGJc9Ve+2lm00FjsQORPSl0kcd1w1G1t3sAY=",
+        "lastModified": 1728327473,
+        "narHash": "sha256-eeAW44MGe/YSqn1nlTfDNm7kQq+9zExXbksMtFXd0c0=",
         "owner": "ALT-F4-LLC",
         "repo": "thealtf4stream.nvim",
-        "rev": "cb7074faa06b971df6792aa478e94f05e5478884",
+        "rev": "63d5726ee1a5b4fef34e4ea5e57b7a6c4e7092a4",
         "type": "github"
       },
       "original": {
