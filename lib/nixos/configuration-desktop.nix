@@ -18,12 +18,6 @@
 
   hardware = {
     graphics.enable = true;
-
-    pulseaudio = {
-      enable = true;
-      extraConfig = "unload-module module-suspend-on-idle";
-      support32Bit = true;
-    };
   };
 
   programs = {
