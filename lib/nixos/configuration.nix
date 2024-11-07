@@ -68,10 +68,6 @@
   nixpkgs = {
     config = {
       allowUnfree = true;
-      pulseaudio =
-        if desktop
-        then true
-        else false;
     };
   };
 

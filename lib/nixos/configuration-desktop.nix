@@ -36,7 +36,7 @@
 
     picom.enable = true;
 
-    twingate.enable = pkgs.system == "x86_64-linux";
+    # twingate.enable = pkgs.system == "x86_64-linux";
 
     xserver = {
       enable = true;
