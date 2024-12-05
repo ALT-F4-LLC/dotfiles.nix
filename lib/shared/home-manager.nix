@@ -14,9 +14,9 @@ in {
 
   home.file.".config/ghostty/config".text = ''
     # settings
-    background-opacity = 0.9
+    background-opacity = 0.95
     font-family = GeistMono NFM
-    font-size = 20
+    font-size = 18
     macos-option-as-alt = true
     theme = TokyoNight
   '';
