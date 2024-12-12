@@ -23,7 +23,6 @@ in {
 
   home.packages = with pkgs; [
     awscli2
-    devcontainer
     doppler
     fd
     gh
@@ -31,21 +30,15 @@ in {
     jq
     k9s
     kubectl
+    nixVersions.latest
     ripgrep
     shell-gpt
     z-lua
   ];
 
   home.sessionVariables = {
-    CHARM_HOST = "localhost";
     DEFAULT_MODEL = "gpt-4o";
-    DOTNET_CLI_TELEMETRY_OPTOUT = "true";
     EDITOR = "nvim";
-    LANG = "en_US.UTF-8";
-    LC_ALL = "en_US.UTF-8";
-    LC_CTYPE = "en_US.UTF-8";
-    PULUMI_K8S_SUPPRESS_HELM_HOOK_WARNINGS = "true";
-    PULUMI_SKIP_UPDATE_CHECK = "true";
   };
 
   home.stateVersion = "23.11";
@@ -64,8 +57,8 @@ in {
           {
             owner = "folke";
             repo = "tokyonight.nvim";
-            rev = "9bf9ec53d5e87b025e2404069b71e7ebdc3a13e5";
-            sha256 = "sha256-ItCmSUMMTe8iQeneIJLuWedVXsNgm+FXNtdrrdJ/1oE=";
+            rev = "b262293ef481b0d1f7a14c708ea7ca649672e200";
+            sha256 = "sha256-pMzk1gRQFA76BCnIEGBRjJ0bQ4YOf3qecaU6Fl/nqLE=";
           };
         file = "extras/sublime/tokyonight_night.tmTheme";
       };
@@ -174,40 +167,6 @@ in {
     settings = {
       add_newline = false;
     };
-  };
-
-  programs.tmux = {
-    enable = true;
-    extraConfig = ''
-      set-option -a terminal-overrides ",*256col*:RGB"
-
-      # Palette
-      set -g status-style bg=colour8,fg=colour7
-      setw -g window-status-style bg=default,fg=colour8
-      setw -g window-status-current-style bg=colour8,fg=colour7
-      setw -g pane-border-style fg=colour8
-      setw -g pane-active-border-style fg=colour7
-
-      # Basic colors
-      set -g status-bg colour8
-      set -g status-fg colour7
-
-      # Set the default background and foreground colors
-      set -g default-terminal "screen-256color"
-
-      # More specific window status formatting
-      setw -g window-status-format "#[fg=colour3,bg=default]#I #W"
-      setw -g window-status-current-format "#[fg=colour2,bg=colour8]#I #W"
-
-      # Message styling
-      set -g message-style bg=colour0,fg=colour7
-      set -g message-command-style bg=colour0,fg=colour7
-    '';
-    shell = "${pkgs.zsh}/bin/zsh";
-    terminal =
-      if isDarwin
-      then "screen-256color"
-      else "xterm-256color";
   };
 
   programs.zsh = {

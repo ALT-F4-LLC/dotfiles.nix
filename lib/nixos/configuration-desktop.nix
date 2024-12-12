@@ -9,7 +9,7 @@
 }: {
   fonts = {
     fontconfig = {
-      defaultFonts.monospace = ["GeistMono"];
+      defaultFonts.monospace = ["GeistMono NFM"];
       enable = true;
     };
 

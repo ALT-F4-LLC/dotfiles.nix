@@ -61,7 +61,7 @@ in {
     enable = true;
 
     font = {
-      name = "GeistMono";
+      name = "GeistMono NFM";
       package = geist-mono;
       size = 14;
     };

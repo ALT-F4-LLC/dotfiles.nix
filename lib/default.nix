@@ -25,10 +25,10 @@ in {
   }:
     stdenvNoCC.mkDerivation rec {
       pname = "geist-mono";
-      version = "3.2.1";
+      version = "3.3.0";
 
       src = fetchzip {
-        hash = "sha256-hiFc7y/gRvzCdZKTL85ctWyXVmR0nZnzaFSHpj8PoeE=";
+        hash = "sha256-4El6oqFDs3jYLbyQfFgDvGz9oP2s3hZ/hZO13Afah0g=";
         stripRoot = false;
         url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v${version}/GeistMono.zip";
       };
