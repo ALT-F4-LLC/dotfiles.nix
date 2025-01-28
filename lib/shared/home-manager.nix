@@ -67,8 +67,14 @@ in {
 
   programs.bottom.enable = true;
 
+  programs.carapace = {
+    enable = true;
+    enableNushellIntegration = true;
+  };
+
   programs.direnv = {
     enable = true;
+    enableNushellIntegration = true;
     enableZshIntegration = true;
     nix-direnv.enable = true;
   };
@@ -130,11 +136,6 @@ in {
       };
     };
 
-  programs.go = {
-    enable = true;
-    goPath = "Development/language/go";
-  };
-
   programs.lazygit = {
     enable = true;
     settings = {
@@ -161,17 +162,34 @@ in {
     };
   };
 
+  programs.nushell = {
+    enable = true;
+  };
+
   programs.starship = {
     enable = true;
+    enableNushellIntegration = true;
     enableZshIntegration = true;
+
     settings = {
       add_newline = false;
+
+      character = {
+        error_symbol = "[➜](bold red)";
+        success_symbol = "[➜](bold green)";
+      };
     };
   };
 
-  programs.zsh = {
+  programs.zoxide = {
     enable = true;
+    enableNushellIntegration = true;
+    enableZshIntegration = true;
+  };
+
+  programs.zsh = {
     autosuggestion.enable = true;
+    enable = true;
     enableCompletion = true;
 
     initExtra = ''
@@ -215,7 +233,7 @@ in {
 
     oh-my-zsh = {
       enable = true;
-      plugins = ["git" "z"];
+      plugins = ["git"];
       theme = "robbyrussell";
     };
 

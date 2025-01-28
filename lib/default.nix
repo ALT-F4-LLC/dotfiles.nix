@@ -65,7 +65,7 @@ in {
             home.file."Library/Application Support/k9s/skin.yml".source = ../config/k9s/skin.yml;
 
             home.sessionVariables = {
-              PATH = "/Applications/VMware Fusion.app/Contents/Library:$GOPATH/bin:$PATH";
+              PATH = "/Applications/VMware Fusion.app/Contents/Library:$GOPATH/bin:$HOME/.vorpal/bin:$PATH";
             };
           };
         }
