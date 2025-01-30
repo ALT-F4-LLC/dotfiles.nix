@@ -67,14 +67,8 @@ in {
 
   programs.bottom.enable = true;
 
-  programs.carapace = {
-    enable = true;
-    enableNushellIntegration = true;
-  };
-
   programs.direnv = {
     enable = true;
-    enableNushellIntegration = true;
     enableZshIntegration = true;
     nix-direnv.enable = true;
   };
@@ -155,20 +149,13 @@ in {
     enable = true;
     package = pkgs.nnn.override {withNerdIcons = true;};
     plugins = {
-      mappings = {
-        K = "preview-tui";
-      };
+      mappings.K = "preview-tui";
       src = pkgs.nnn + "/plugins";
     };
   };
 
-  programs.nushell = {
-    enable = true;
-  };
-
   programs.starship = {
     enable = true;
-    enableNushellIntegration = true;
     enableZshIntegration = true;
 
     settings = {
@@ -179,12 +166,6 @@ in {
         success_symbol = "[➜](bold green)";
       };
     };
-  };
-
-  programs.zoxide = {
-    enable = true;
-    enableNushellIntegration = true;
-    enableZshIntegration = true;
   };
 
   programs.zsh = {
@@ -214,6 +195,7 @@ in {
           protocol: TCP
       EOF
       }
+
       n () {
         if [ -n $NNNLVL ] && [ "$NNNLVL" -ge 1 ]; then
           echo "nnn is already running"
@@ -233,7 +215,7 @@ in {
 
     oh-my-zsh = {
       enable = true;
-      plugins = ["git"];
+      plugins = ["git" "z"];
       theme = "robbyrussell";
     };
 
