@@ -128,6 +128,8 @@ in {
         push.autoSetupRemote = true;
         rebase.autoStash = true;
       };
+
+      lfs.enable = true;
     };
 
   programs.lazygit = {
