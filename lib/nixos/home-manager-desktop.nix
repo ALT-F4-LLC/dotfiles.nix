@@ -18,26 +18,6 @@ in {
   # programs
   #---------------------------------------------------------------------
 
-  programs.autorandr = {
-    enable = true;
-    profiles = {
-      default = {
-        config = {
-          "Virtual-1" = {
-            enable = true;
-            dpi = 96;
-            mode = "3440x1440";
-            primary = true;
-            rate = "60";
-          };
-        };
-        fingerprint = {
-          "Virtual-1" = "--CONNECTED-BUT-EDID-UNAVAILABLE--Virtual-1";
-        };
-      };
-    };
-  };
-
   programs.firefox.enable = true;
 
   programs.i3status = {
@@ -63,7 +43,7 @@ in {
     font = {
       name = "GeistMono NFM";
       package = geist-mono;
-      size = 14;
+      size = 16;
     };
 
     settings = {
@@ -103,12 +83,6 @@ in {
   };
 
   programs.vscode.enable = true;
-
-  #---------------------------------------------------------------------
-  # services
-  #---------------------------------------------------------------------
-
-  services.autorandr.enable = true;
 
   #---------------------------------------------------------------------
   # xsession
