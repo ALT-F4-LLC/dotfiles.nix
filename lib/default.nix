@@ -120,6 +120,10 @@ in {
     system,
     username ? defaultUsername,
   }: let
+    homeDirectory =
+      if system == "aarch64-darwin" || system == "x86_64-darwin"
+      then "/Users/${username}"
+      else "${defaultHomePath}/${username}";
     geist-mono = inputs.self.packages.${system}.geist-mono;
   in
     inputs.nixpkgs.lib.nixosSystem {
@@ -135,7 +139,7 @@ in {
             home-manager.useUserPackages = true;
             home-manager.users."${username}" = {pkgs, ...}: {
               imports =
-                [(homeManagerShared {inherit git username;})]
+                [(homeManagerShared {inherit git homeDirectory username;})]
                 ++ (
                   if desktop
                   then [
