@@ -21,11 +21,14 @@ jobs:
       - uses: cachix/install-nix-action@v27
         with:
           nix_path: nixpkgs=channel:nixos-unstable
+
       - uses: cachix/cachix-action@v15
         with:
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
           name: ${{ env.CACHIX_BINARY_CACHE }}
+
       - uses: actions/checkout@v4
+
       - run: nix develop -c just check
 
   build:
@@ -40,11 +43,14 @@ jobs:
       - uses: cachix/install-nix-action@v27
         with:
           nix_path: nixpkgs=channel:nixos-unstable
+
       - uses: cachix/cachix-action@v15
         with:
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
           name: ${{ env.CACHIX_BINARY_CACHE }}
+
       - uses: actions/checkout@v4
+
       - run: nix develop -c just build "${{ matrix.profile }}"
 
   build-darwin:
@@ -55,14 +61,33 @@ jobs:
       - uses: cachix/install-nix-action@v27
         with:
           nix_path: nixpkgs=channel:nixos-unstable
+
       - uses: cachix/cachix-action@v15
         with:
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
           name: ${{ env.CACHIX_BINARY_CACHE }}
+
       - uses: actions/checkout@v4
-      - run: |
-          nix develop -c just build \
-            "darwinConfigurations.x86_64.config.system.build.toplevel"
+
+      - run: nix develop -c just darwin-build "x86_64"
+
+  build-home-manager:
+    needs:
+      - check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: cachix/install-nix-action@v27
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+
+      - uses: cachix/cachix-action@v15
+        with:
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+          name: ${{ env.CACHIX_BINARY_CACHE }}
+
+      - uses: actions/checkout@v4
+
+      - run: nix develop -c just home-manager-build "x86_64-linux"
 
   build-nixos:
     needs:
@@ -72,11 +97,12 @@ jobs:
       - uses: cachix/install-nix-action@v27
         with:
           nix_path: nixpkgs=channel:nixos-unstable
+
       - uses: cachix/cachix-action@v15
         with:
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
           name: ${{ env.CACHIX_BINARY_CACHE }}
+
       - uses: actions/checkout@v4
-      - run: |
-          nix develop -c just build \
-            "nixosConfigurations.x86_64.config.system.build.toplevel"
+
+      - run: nix develop -c just nixos-build "x86_64"

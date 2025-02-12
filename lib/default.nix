@@ -5,6 +5,8 @@
     userName = "Erik Reinert";
   };
 
+  defaultHomePath = "/home";
+
   defaultStore = {
     mount.enable = false;
   };
@@ -40,9 +42,15 @@ in {
 
   mkDarwin = {
     git ? defaultGit,
+    homePath ? defaultHomePath,
     username ? defaultUsername,
     system,
-  }:
+  }: let
+    homeDirectory =
+      if system == "aarch64-darwin" || system == "x86_64-darwin"
+      then "/Users/${username}"
+      else "${defaultHomePath}/${username}";
+  in
     inputs.nix-darwin.lib.darwinSystem {
       inherit system;
       modules = [
@@ -60,7 +68,7 @@ in {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.${username} = {pkgs, ...}: {
-            imports = [(homeManagerShared {inherit git;})];
+            imports = [(homeManagerShared {inherit git homeDirectory username;})];
 
             home.file."Library/Application Support/k9s/skin.yml".source = ../config/k9s/skin.yml;
 
@@ -70,6 +78,38 @@ in {
           };
         }
       ];
+    };
+
+  mkHomeManager = {
+    desktop ? true,
+    git ? defaultGit,
+    homePath ? defaultHomePath,
+    system,
+    username ? defaultUsername,
+  }: let
+    homeDirectory =
+      if system == "aarch64-darwin" || system == "x86_64-darwin"
+      then "/Users/${username}"
+      else "${defaultHomePath}/${username}";
+    geist-mono = inputs.self.packages.${system}.geist-mono;
+  in
+    inputs.home-manager.lib.homeManagerConfiguration {
+      modules =
+        [(homeManagerShared {inherit git homeDirectory username;})]
+        ++ (
+          if (system == "x86_64-linux" || system == "aarch64-linux")
+          then [
+            (import ./nixos/home-manager.nix)
+            (
+              if desktop
+              then [(import ./nixos/home-manager-desktop.nix {inherit geist-mono;})]
+              else []
+            )
+          ]
+          else []
+        );
+
+      pkgs = inputs.nixpkgs.legacyPackages.${system};
     };
 
   mkNixos = {
@@ -95,10 +135,7 @@ in {
             home-manager.useUserPackages = true;
             home-manager.users."${username}" = {pkgs, ...}: {
               imports =
-                [
-                  (import ./nixos/home-manager.nix)
-                  (homeManagerShared {inherit git;})
-                ]
+                [(homeManagerShared {inherit git username;})]
                 ++ (
                   if desktop
                   then [
@@ -106,6 +143,21 @@ in {
                   ]
                   else []
                 );
+
+              home.file.".config/k9s/skin.yml".source = ../../config/k9s/skin.yml;
+
+              home.sessionVariables = {
+                PATH = "$GOPATH/bin:$PATH";
+              };
+
+              programs.gpg.enable = true;
+
+              services.gpg-agent = {
+                defaultCacheTtl = 31536000; # cache keys forever don't get asked for password
+                enable = true;
+                maxCacheTtl = 31536000;
+                pinentryPackage = pkgs.pinentry-gnome3;
+              };
             };
           }
         ]
