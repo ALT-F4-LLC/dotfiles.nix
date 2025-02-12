@@ -148,7 +148,7 @@ in {
                   else []
                 );
 
-              home.file.".config/k9s/skin.yml".source = ../../config/k9s/skin.yml;
+              home.file.".config/k9s/skin.yml".source = ../config/k9s/skin.yml;
 
               home.sessionVariables = {
                 PATH = "$GOPATH/bin:$PATH";
