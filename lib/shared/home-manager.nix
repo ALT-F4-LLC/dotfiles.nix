@@ -41,7 +41,7 @@ in {
     EDITOR = "nvim";
   };
 
-  home.stateVersion = "23.11";
+  home.stateVersion = "24.11";
 
   #---------------------------------------------------------------------
   # programs

@@ -96,7 +96,7 @@
     };
   };
 
-  system.stateVersion = "23.05";
+  system.stateVersion = "24.11";
 
   time.timeZone = "America/Los_Angeles";
 

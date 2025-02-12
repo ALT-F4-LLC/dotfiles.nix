@@ -47,11 +47,11 @@ in {
       inherit system;
       modules = [
         {
+          ids.gids.nixbld = 30000; # note: added for stateVersion 6
           nix = import ./shared/nix.nix;
           nixpkgs.config.allowUnfree = true;
           programs.zsh.enable = true;
-          services.nix-daemon.enable = true;
-          system.stateVersion = 4;
+          system.stateVersion = 6;
           users.users.${username}.home = "/Users/${username}";
         }
 
