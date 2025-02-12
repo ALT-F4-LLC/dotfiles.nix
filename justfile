@@ -16,6 +16,12 @@ darwin-switch profile="aarch64":
 darwin-test profile="aarch64":
     darwin-rebuild check --flake ".#{{ profile }}"
 
+home-manager-build profile="aarch64-darwin":
+    just build "homeConfigurations.{{ profile }}.activationPackage"
+
+home-manager-switch profile="aarch64-darwin":
+    nix run nixpkgs#home-manager switch --flake ".#{{ profile }}"
+
 nixos-bootstrap destination username publickey:
     ssh \
     -o PubkeyAuthentication=no \

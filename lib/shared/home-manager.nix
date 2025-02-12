@@ -1,4 +1,8 @@
-{inputs}: {git}: {pkgs, ...}: let
+{inputs}: {
+  git,
+  homeDirectory,
+  username,
+}: {pkgs, ...}: let
   awscli2 = inputs.nixpkgs-stable.legacyPackages.${system}.awscli2;
   delta = inputs.nixpkgs-stable.legacyPackages.${system}.delta;
   isDarwin = system == "aarch64-darwin" || system == "x86_64-darwin";
@@ -21,6 +25,8 @@ in {
     theme = TokyoNight
   '';
 
+  home.homeDirectory = homeDirectory;
+
   home.packages = with pkgs; [
     awscli2
     doppler
@@ -42,6 +48,8 @@ in {
   };
 
   home.stateVersion = "24.11";
+
+  home.username = username;
 
   #---------------------------------------------------------------------
   # programs
