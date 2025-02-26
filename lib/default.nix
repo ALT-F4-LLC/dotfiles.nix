@@ -97,11 +97,6 @@ in {
       modules =
         [(homeManagerShared {inherit git homeDirectory username;})]
         ++ (
-          if (system == "x86_64-linux" || system == "aarch64-linux")
-          then [(import ./nixos/home-manager.nix)]
-          else []
-        )
-        ++ (
           if (system == "x86_64-linux" || system == "aarch64-linux") && desktop
           then [(import ./nixos/home-manager-desktop.nix {inherit geist-mono;})]
           else []
