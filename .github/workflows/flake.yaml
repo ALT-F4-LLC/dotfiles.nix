@@ -18,7 +18,7 @@ jobs:
           - ubuntu-latest
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: cachix/install-nix-action@v30
+      - uses: cachix/install-nix-action@v31
         with:
           nix_path: nixpkgs=channel:nixos-unstable
 
@@ -40,7 +40,7 @@ jobs:
         profile:
           - geist-mono
     steps:
-      - uses: cachix/install-nix-action@v30
+      - uses: cachix/install-nix-action@v31
         with:
           nix_path: nixpkgs=channel:nixos-unstable
 
@@ -58,7 +58,7 @@ jobs:
       - check
     runs-on: macos-latest
     steps:
-      - uses: cachix/install-nix-action@v30
+      - uses: cachix/install-nix-action@v31
         with:
           nix_path: nixpkgs=channel:nixos-unstable
 
@@ -76,7 +76,7 @@ jobs:
       - check
     runs-on: ubuntu-latest
     steps:
-      - uses: cachix/install-nix-action@v30
+      - uses: cachix/install-nix-action@v31
         with:
           nix_path: nixpkgs=channel:nixos-unstable
 
@@ -94,7 +94,7 @@ jobs:
       - check
     runs-on: ubuntu-latest
     steps:
-      - uses: cachix/install-nix-action@v30
+      - uses: cachix/install-nix-action@v31
         with:
           nix_path: nixpkgs=channel:nixos-unstable
 
