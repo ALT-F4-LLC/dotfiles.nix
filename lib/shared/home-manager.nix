@@ -183,7 +183,7 @@ in {
     enable = true;
     enableCompletion = true;
 
-    initExtra = ''
+    initContent = ''
       kindc () {
         cat <<EOF | kind create cluster --config=-
       kind: Cluster
