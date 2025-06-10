@@ -27,11 +27,12 @@ in {
 
   home.homeDirectory = homeDirectory;
 
+  # TODO: move all of these to vorpal
+
   home.packages = with pkgs; [
     awscli2
     doppler
     fd
-    gh
     httpie
     jq
     k9s
@@ -221,6 +222,10 @@ in {
           rm -f "$NNN_TMPFILE" > /dev/null
         fi
       }
+
+      export VORPAL_CONTEXT=$HOME/Development/repository/github.com/ALT-F4-LLC/dotfiles.vorpal.git/main
+      export VORPAL_REGISTRY=http://registry.vorpal.altf4.domains:23151
+      source $(vorpal artifact make --context $VORPAL_CONTEXT --path userenv)/bin/activate-shell
     '';
 
     oh-my-zsh = {
