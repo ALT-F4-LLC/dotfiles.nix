@@ -75,6 +75,15 @@ in {
             home.sessionVariables = {
               PATH = "/Applications/VMware Fusion.app/Contents/Library:$GOPATH/bin:$HOME/.vorpal/bin:$PATH";
             };
+
+            programs.gpg.enable = true;
+
+            services.gpg-agent = {
+              defaultCacheTtl = 31536000; # cache keys forever don't get asked for password
+              enable = true;
+              maxCacheTtl = 31536000;
+              pinentry.package = pkgs.pinentry-gtk2;
+            };
           };
         }
       ];
