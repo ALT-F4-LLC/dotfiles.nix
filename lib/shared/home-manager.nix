@@ -224,8 +224,7 @@ in {
       }
 
       export VORPAL_CONTEXT=$HOME/Development/repository/github.com/ALT-F4-LLC/dotfiles.vorpal.git/main
-      export VORPAL_REGISTRY=http://registry.vorpal.altf4.domains:23151
-      source $(vorpal artifact make --context $VORPAL_CONTEXT --path userenv)/bin/activate-shell
+      source $(vorpal artifact make "userenv" "$VORPAL_CONTEXT" --path)/bin/activate-shell
     '';
 
     oh-my-zsh = {
