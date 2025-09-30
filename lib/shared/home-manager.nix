@@ -12,22 +12,7 @@ in {
   # home
   #---------------------------------------------------------------------
 
-  home.file.".config/nvim/after/ftplugin/markdown.vim".text = ''
-    setlocal wrap
-  '';
-
-  home.file.".config/ghostty/config".text = ''
-    # settings
-    background-opacity = 0.95
-    font-family = GeistMono NFM
-    font-size = 18
-    macos-option-as-alt = true
-    theme = TokyoNight
-  '';
-
   home.homeDirectory = homeDirectory;
-
-  # TODO: move all of these to vorpal
 
   home.packages = with pkgs; [
     awscli2
@@ -42,11 +27,6 @@ in {
     shell-gpt
     z-lua
   ];
-
-  home.sessionVariables = {
-    DEFAULT_MODEL = "gpt-4o";
-    EDITOR = "nvim";
-  };
 
   home.stateVersion = "24.11";
 
@@ -223,8 +203,7 @@ in {
         fi
       }
 
-      export VORPAL_CONTEXT=$HOME/Development/repository/github.com/ALT-F4-LLC/dotfiles.vorpal.git/main
-      source $(vorpal artifact make "userenv" "$VORPAL_CONTEXT" --path)/bin/activate-shell
+      source $HOME/.vorpal/bin/vorpal-activate-shell
     '';
 
     oh-my-zsh = {

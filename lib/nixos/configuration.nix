@@ -15,7 +15,7 @@
 
   fileSystems =
     {}
-    // pkgs.lib.optionalAttrs hypervisor.sharing.enable {
+    // pkgs.lib.optionalAttrs hypervisor.vmware.sharing.enable {
       "/mnt/hgfs" = {
         device = ".host:/";
         fsType = "fuse./run/current-system/sw/bin/vmhgfs-fuse";

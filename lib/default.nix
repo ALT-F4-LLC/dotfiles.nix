@@ -5,15 +5,19 @@
     userName = "Erik Reinert";
   };
 
-  defaultHomePath = "/home";
-
-  defaultStore = {
-    mount.enable = false;
+  defaultHypervisor = {
+    vmware = {
+      sharing = {
+        enable = false;
+      };
+    };
+    type = "qemu";
   };
 
-  defaultHypervisor = {
-    sharing.enable = false;
-    type = "vmware";
+  defaultStore = {
+    mount = {
+      enable = false;
+    };
   };
 
   defaultUsername = "erikreinert";
@@ -42,14 +46,11 @@ in {
 
   mkDarwin = {
     git ? defaultGit,
-    homePath ? defaultHomePath,
+    homePath ? "/Users",
     username ? defaultUsername,
     system,
   }: let
-    homeDirectory =
-      if system == "aarch64-darwin" || system == "x86_64-darwin"
-      then "/Users/${username}"
-      else "${defaultHomePath}/${username}";
+    homeDirectory = "${homePath}/${username}";
   in
     inputs.nix-darwin.lib.darwinSystem {
       inherit system;
@@ -58,7 +59,7 @@ in {
           ids.gids.nixbld = 30000; # note: added for stateVersion 6
           nix = import ./shared/nix.nix;
           nixpkgs.config.allowUnfree = true;
-          programs.zsh.enable = true;
+          # programs.zsh.enable = true;
           system.stateVersion = 6;
           users.users.${username}.home = "/Users/${username}";
         }
@@ -69,13 +70,6 @@ in {
           home-manager.useUserPackages = true;
           home-manager.users.${username} = {pkgs, ...}: {
             imports = [(homeManagerShared {inherit git homeDirectory username;})];
-
-            home.file."Library/Application Support/k9s/skin.yml".source = ../config/k9s/skin.yml;
-
-            home.sessionVariables = {
-              GOPATH = "${homeDirectory}/Development/language/go";
-              PATH = "/Applications/VMware Fusion.app/Contents/Library:$GOPATH/bin:$HOME/.vorpal/bin:$PATH";
-            };
 
             programs.gpg.enable = true;
 
@@ -91,16 +85,13 @@ in {
     };
 
   mkHomeManager = {
-    desktop ? true,
+    desktop ? false,
     git ? defaultGit,
-    homePath ? defaultHomePath,
+    homePath ? "/home",
     system,
     username ? defaultUsername,
   }: let
-    homeDirectory =
-      if system == "aarch64-darwin" || system == "x86_64-darwin"
-      then "/Users/${username}"
-      else "${defaultHomePath}/${username}";
+    homeDirectory = "${homePath}/${username}";
     geist-mono = inputs.self.packages.${system}.geist-mono;
   in
     inputs.home-manager.lib.homeManagerConfiguration {
@@ -116,17 +107,14 @@ in {
     };
 
   mkNixos = {
-    desktop ? true,
+    desktop ? false,
     git ? defaultGit,
     hypervisor ? defaultHypervisor,
     store ? defaultStore,
     system,
     username ? defaultUsername,
   }: let
-    homeDirectory =
-      if system == "aarch64-darwin" || system == "x86_64-darwin"
-      then "/Users/${username}"
-      else "${defaultHomePath}/${username}";
+    homeDirectory = "/home/${username}";
     geist-mono = inputs.self.packages.${system}.geist-mono;
   in
     inputs.nixpkgs.lib.nixosSystem {
