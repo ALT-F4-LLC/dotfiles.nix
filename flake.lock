@@ -204,11 +204,11 @@
         "notion-nvim": "notion-nvim"
       },
       "locked": {
-        "lastModified": 1763341756,
-        "narHash": "sha256-nuhalNOATl0iDHGkYQfP8f6brGn66vC6Uj5d6HjnVr8=",
+        "lastModified": 1763347199,
+        "narHash": "sha256-zJbV1Uwx7qas/QGhlNM0rqsy8O4S4urv+OFrpE5FCpo=",
         "owner": "ALT-F4-LLC",
         "repo": "thealtf4stream.nvim",
-        "rev": "32ca3fde3e035bdecf04a02a1a334cb5198a8c6b",
+        "rev": "65d671e41567ffb9fe970be9e7715d0cd93371e1",
         "type": "github"
       },
       "original": {
