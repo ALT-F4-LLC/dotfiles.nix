@@ -1,8 +1,12 @@
 {inputs}: let
   defaultGit = {
-    extraConfig.github.user = defaultUsername;
-    userEmail = "4638629+erikreinert@users.noreply.github.com";
-    userName = "Erik Reinert";
+    settings = {
+      github.user = defaultUsername;
+      user = {
+        email = "4638629+erikreinert@users.noreply.github.com";
+        name = "Erik Reinert";
+      };
+    };
   };
 
   defaultHypervisor = {
@@ -151,7 +155,7 @@ in {
                 defaultCacheTtl = 31536000; # cache keys forever don't get asked for password
                 enable = true;
                 maxCacheTtl = 31536000;
-                pinentryPackage = pkgs.pinentry-gnome3;
+                pinentry.package = pkgs.pinentry-gnome3;
               };
             };
           }

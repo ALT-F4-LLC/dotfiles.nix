@@ -83,9 +83,9 @@
       packages = [pkgs.gcr];
     };
 
-    logind.extraConfig = ''
-      RuntimeDirectorySize=20G
-    '';
+    logind.settings.Login = {
+      RuntimeDirectorySize = "20G";
+    };
 
     openssh = {
       enable = true;
@@ -96,7 +96,7 @@
     };
   };
 
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.05";
 
   time.timeZone = "America/Los_Angeles";
 
