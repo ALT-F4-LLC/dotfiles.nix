@@ -27,7 +27,7 @@ jobs:
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
           name: ${{ env.CACHIX_BINARY_CACHE }}
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - run: nix develop -c just check
 
@@ -49,7 +49,7 @@ jobs:
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
           name: ${{ env.CACHIX_BINARY_CACHE }}
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - run: nix develop -c just build "${{ matrix.profile }}"
 
@@ -67,7 +67,7 @@ jobs:
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
           name: ${{ env.CACHIX_BINARY_CACHE }}
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - run: nix develop -c just darwin-build "x86_64"
 
@@ -85,7 +85,7 @@ jobs:
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
           name: ${{ env.CACHIX_BINARY_CACHE }}
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - run: nix develop -c just home-manager-build "x86_64-linux"
 
@@ -103,6 +103,6 @@ jobs:
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
           name: ${{ env.CACHIX_BINARY_CACHE }}
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - run: nix develop -c just nixos-build "x86_64"
