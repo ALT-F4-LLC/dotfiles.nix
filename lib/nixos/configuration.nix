@@ -1,7 +1,8 @@
 {
-  desktop,
+  geist-mono,
   hypervisor,
   inputs,
+  nixos,
   store,
   username,
 }: {pkgs, ...}: {
@@ -11,6 +12,23 @@
       efi.canTouchEfiVariables = true;
       systemd-boot.enable = true;
     };
+  };
+
+  environment = {
+    pathsToLink = ["/libexec" "/share/zsh"];
+    systemPackages = with pkgs;
+      [
+        curl
+        vim
+        wget
+        xclip
+      ]
+      ++ pkgs.lib.optionals nixos [
+        dunst
+        libnotify
+        lxappearance
+        pavucontrol
+      ];
   };
 
   fileSystems =
@@ -38,22 +56,16 @@
       };
     };
 
-  environment = {
-    pathsToLink = ["/libexec" "/share/zsh"];
-    systemPackages = with pkgs;
-      [
-        curl
-        vim
-        wget
-        xclip
-      ]
-      ++ pkgs.lib.optionals desktop [
-        dunst
-        libnotify
-        lxappearance
-        pavucontrol
-      ];
+  fonts = {
+    fontconfig = {
+      defaultFonts.monospace = ["GeistMono NFM"];
+      enable = true;
+    };
+
+    packages = [geist-mono];
   };
+
+  hardware.graphics.enable = true;
 
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -71,7 +83,11 @@
     };
   };
 
-  programs.zsh.enable = true;
+  programs = {
+    dconf.enable = true;
+    geary.enable = true;
+    zsh.enable = true;
+  };
 
   security.sudo = {
     enable = true;
@@ -81,6 +97,14 @@
   services = {
     dbus = {
       packages = [pkgs.gcr];
+    };
+
+    displayManager = {
+      autoLogin = {
+        enable = true;
+        user = username;
+      };
+      defaultSession = "none+i3";
     };
 
     logind.extraConfig = ''
@@ -94,6 +118,29 @@
         PermitRootLogin = "no";
       };
     };
+
+    picom.enable = true;
+
+    # twingate.enable = pkgs.system == "x86_64-linux";
+
+    xserver = {
+      enable = true;
+
+      desktopManager = {
+        xterm.enable = false;
+        wallpaper.mode = "fill";
+      };
+
+      displayManager.lightdm.enable = true;
+
+      windowManager.i3 = {
+        enable = true;
+        package = pkgs.i3-gaps;
+        extraPackages = with pkgs; [i3status i3lock i3blocks];
+      };
+
+      xkb.layout = "us";
+    };
   };
 
   system.stateVersion = "24.11";
@@ -103,7 +150,7 @@
   users = {
     mutableUsers = false;
     users."${username}" = {
-      extraGroups = ["docker" "wheel"] ++ pkgs.lib.optionals desktop ["audio"];
+      extraGroups = ["docker" "wheel"] ++ pkgs.lib.optionals nixos ["audio"];
       hashedPassword = "";
       home = "/home/${username}";
       isNormalUser = true;

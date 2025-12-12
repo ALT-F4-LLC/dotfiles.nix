@@ -20,7 +20,7 @@ home-manager-build profile="aarch64-darwin":
     just build "homeConfigurations.{{ profile }}.activationPackage"
 
 home-manager-switch profile="aarch64-darwin":
-    nix run nixpkgs#home-manager switch --flake ".#{{ profile }}"
+    nix run nixpkgs#home-manager -- switch --flake ".#{{ profile }}"
 
 nixos-bootstrap destination username publickey:
     ssh \

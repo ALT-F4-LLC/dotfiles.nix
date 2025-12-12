@@ -24,17 +24,16 @@
         };
 
         homeConfigurations = {
-          aarch64-darwin = self.lib.mkHomeManager {system = "aarch64-darwin";};
-          aarch64-linux = self.lib.mkHomeManager {system = "aarch64-linux";};
-          x86_64-darwin = self.lib.mkHomeManager {system = "x86_64-darwin";};
-          x86_64-linux = self.lib.mkHomeManager {system = "x86_64-linux";};
+          x86_64-linux = self.lib.mkHomeManager {
+            desktop = true;
+            system = "x86_64-linux";
+          };
         };
 
         lib = import ./lib {inherit inputs;};
 
         nixosConfigurations = {
           aarch64 = self.lib.mkNixos {
-            desktop = false;
             system = "aarch64-linux";
           };
 

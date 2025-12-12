@@ -5,8 +5,6 @@
     userName = "Erik Reinert";
   };
 
-  defaultHomePath = "/home";
-
   defaultStore = {
     mount.enable = false;
   };
@@ -18,6 +16,8 @@
 
   defaultUsername = "erikreinert";
 
+  homeManagerDesktop = import ./desktop/home-manager.nix {inherit inputs;};
+  homeManagerNixos = import ./nixos/home-manager.nix {inherit inputs;};
   homeManagerShared = import ./shared/home-manager.nix {inherit inputs;};
 in {
   geist-mono = {
@@ -42,14 +42,10 @@ in {
 
   mkDarwin = {
     git ? defaultGit,
-    homePath ? defaultHomePath,
-    username ? defaultUsername,
     system,
+    username ? defaultUsername,
   }: let
-    homeDirectory =
-      if system == "aarch64-darwin" || system == "x86_64-darwin"
-      then "/Users/${username}"
-      else "${defaultHomePath}/${username}";
+    homeDirectory = "/Users/${username}";
   in
     inputs.nix-darwin.lib.darwinSystem {
       inherit system;
@@ -81,29 +77,26 @@ in {
     };
 
   mkHomeManager = {
-    desktop ? true,
+    desktop ? false,
     git ? defaultGit,
-    homePath ? defaultHomePath,
+    nixos ? false,
     system,
     username ? defaultUsername,
   }: let
-    homeDirectory =
-      if system == "aarch64-darwin" || system == "x86_64-darwin"
-      then "/Users/${username}"
-      else "${defaultHomePath}/${username}";
+    homeDirectory = "/home/${username}";
     geist-mono = inputs.self.packages.${system}.geist-mono;
   in
     inputs.home-manager.lib.homeManagerConfiguration {
       modules =
         [(homeManagerShared {inherit git homeDirectory username;})]
         ++ (
-          if (system == "x86_64-linux" || system == "aarch64-linux")
-          then [(import ./nixos/home-manager.nix)]
+          if desktop
+          then [homeManagerDesktop]
           else []
         )
         ++ (
-          if (system == "x86_64-linux" || system == "aarch64-linux") && desktop
-          then [(import ./nixos/home-manager-desktop.nix {inherit geist-mono;})]
+          if nixos
+          then [(import ./nixos/home-manager.nix {inherit geist-mono;})]
           else []
         );
 
@@ -111,64 +104,49 @@ in {
     };
 
   mkNixos = {
-    desktop ? true,
     git ? defaultGit,
+    desktop ? false,
     hypervisor ? defaultHypervisor,
     store ? defaultStore,
     system,
     username ? defaultUsername,
   }: let
-    homeDirectory =
-      if system == "aarch64-darwin" || system == "x86_64-darwin"
-      then "/Users/${username}"
-      else "${defaultHomePath}/${username}";
+    homeDirectory = "/home/${username}";
     geist-mono = inputs.self.packages.${system}.geist-mono;
+    nixos = true;
   in
     inputs.nixpkgs.lib.nixosSystem {
       inherit system;
-      modules =
-        [
-          (import ./nixos/hardware/${hypervisor.type}/${system}.nix)
-          (import ./nixos/configuration.nix {inherit hypervisor inputs desktop store username;})
+      modules = [
+        (import ./nixos/hardware/${hypervisor.type}/${system}.nix)
+        (import ./nixos/configuration.nix {inherit geist-mono hypervisor inputs nixos store username;})
 
-          inputs.home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users."${username}" = {pkgs, ...}: {
-              imports =
-                [(homeManagerShared {inherit git homeDirectory username;})]
-                ++ (
-                  if desktop
-                  then [
-                    (import ./nixos/home-manager-desktop.nix {inherit geist-mono;})
-                  ]
-                  else []
-                );
+        inputs.home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users."${username}" = {pkgs, ...}: {
+            imports = [
+              (homeManagerShared {inherit git homeDirectory username;})
+              homeManagerNixos
+            ];
 
-              home.file.".config/k9s/skin.yml".source = ../config/k9s/skin.yml;
+            home.file.".config/k9s/skin.yml".source = ../config/k9s/skin.yml;
 
-              home.sessionVariables = {
-                PATH = "$GOPATH/bin:$PATH";
-              };
-
-              programs.gpg.enable = true;
-
-              services.gpg-agent = {
-                defaultCacheTtl = 31536000; # cache keys forever don't get asked for password
-                enable = true;
-                maxCacheTtl = 31536000;
-                pinentryPackage = pkgs.pinentry-gnome3;
-              };
+            home.sessionVariables = {
+              PATH = "$GOPATH/bin:$PATH";
             };
-          }
-        ]
-        ++ inputs.nixpkgs.lib.optionals desktop [
-          (import
-            ./nixos/configuration-desktop.nix
-            {
-              inherit geist-mono hypervisor username;
-            })
-        ];
+
+            programs.gpg.enable = true;
+
+            services.gpg-agent = {
+              defaultCacheTtl = 31536000; # cache keys forever don't get asked for password
+              enable = true;
+              maxCacheTtl = 31536000;
+              pinentryPackage = pkgs.pinentry-gnome3;
+            };
+          };
+        }
+      ];
     };
 }
