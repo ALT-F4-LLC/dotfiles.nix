@@ -42,11 +42,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1768068402,
-        "narHash": "sha256-bAXnnJZKJiF7Xr6eNW6+PhBf1lg2P1aFUO9+xgWkXfA=",
+        "lastModified": 1768271922,
+        "narHash": "sha256-zmFw7AtcmfMxW3vR7AiGeQQeHhdrd2x7a3hxzd6vJYI=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "8bc5473b6bc2b6e1529a9c4040411e1199c43b4c",
+        "rev": "fbd566923adcfa67be512a14a79467e2ab8a5777",
         "type": "github"
       },
       "original": {
@@ -204,11 +204,11 @@
         "notion-nvim": "notion-nvim"
       },
       "locked": {
-        "lastModified": 1768237424,
-        "narHash": "sha256-tYVU6yTd2ixv0JwcyLJ42e4qoim+Vxd138doecrN6OE=",
+        "lastModified": 1768278767,
+        "narHash": "sha256-pga0os9p6RyA280+VhX8vN67UqT1j/99L2A8X5j4dUk=",
         "owner": "ALT-F4-LLC",
         "repo": "thealtf4stream.nvim",
-        "rev": "e791803f00700af97e5046d2d4928cb2146dda9a",
+        "rev": "bf7af39be9ac3cda565e5378aaf5cab3b1a87781",
         "type": "github"
       },
       "original": {
