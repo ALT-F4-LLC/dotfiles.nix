@@ -3,7 +3,6 @@
   homeDirectory,
   username,
 }: {pkgs, ...}: let
-  awscli2 = inputs.nixpkgs-stable.legacyPackages.${system}.awscli2;
   delta = inputs.nixpkgs-stable.legacyPackages.${system}.delta;
   direnv = inputs.nixpkgs-stable.legacyPackages.${system}.direnv;
   isDarwin = system == "aarch64-darwin" || system == "x86_64-darwin";
@@ -16,15 +15,8 @@ in {
   home.homeDirectory = homeDirectory;
 
   home.packages = with pkgs; [
-    awscli2
-    doppler
-    fd
     httpie
-    jq
-    k9s
-    kubectl
     nixVersions.latest
-    ripgrep
     z-lua
   ];
 
@@ -35,26 +27,6 @@ in {
   #---------------------------------------------------------------------
   # programs
   #---------------------------------------------------------------------
-
-  programs.bat = {
-    enable = true;
-    config = {theme = "tokyonight";};
-    themes = {
-      tokyonight = {
-        src =
-          pkgs.fetchFromGitHub
-          {
-            owner = "folke";
-            repo = "tokyonight.nvim";
-            rev = "b262293ef481b0d1f7a14c708ea7ca649672e200";
-            sha256 = "sha256-pMzk1gRQFA76BCnIEGBRjJ0bQ4YOf3qecaU6Fl/nqLE=";
-          };
-        file = "extras/sublime/tokyonight_night.tmTheme";
-      };
-    };
-  };
-
-  programs.bottom.enable = true;
 
   programs.delta = {
     enable = true;
