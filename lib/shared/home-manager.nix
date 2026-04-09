@@ -17,7 +17,6 @@ in {
   home.packages = with pkgs; [
     httpie
     nixVersions.latest
-    z-lua
   ];
 
   home.stateVersion = "25.05";
@@ -184,11 +183,12 @@ in {
       }
 
       source $HOME/.vorpal/bin/vorpal-activate-shell
+      eval "$(zoxide init zsh)"
     '';
 
     oh-my-zsh = {
       enable = true;
-      plugins = ["git" "z"];
+      plugins = ["git"];
       theme = "robbyrussell";
     };
 
