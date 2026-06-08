@@ -144,6 +144,41 @@ in {
     enableCompletion = true;
 
     initContent = ''
+      c () {
+        emulate -L zsh
+
+        # Scope = <repo>/<worktree> if inside a .git worktree path, else the current dir
+        local dir="$PWD" scope
+        if [[ "$dir" == *.git/* ]]; then
+          local repo="''${dir%%.git/*}"; repo="''${repo:t}"
+          local worktree="''${dir#*.git/}"
+          scope="$repo/$worktree"
+        else
+          scope="''${dir:t}"
+        fi
+
+        # Name (required)
+        local name
+        while true; do
+          name=$(gum input --prompt "session name: " --placeholder "e.g. workshop-docs") || return 1
+          [[ -n "$name" ]] && break
+          gum style --foreground 1 "A name is required."
+        done
+
+        # Task prompt (optional)
+        local task
+        task=$(gum write --placeholder "Optional task for Claude - Ctrl+D to dispatch, Esc to skip") || task=""
+
+        local session="$scope#$name"
+        local -a args=(--bg --name "$session" --remote-control "$session")
+
+        if [[ -n "$task" ]]; then
+          claude "''${args[@]}" "$task"
+        else
+          claude "''${args[@]}"
+        fi
+      }
+
       kindc () {
         cat <<EOF | kind create cluster --config=-
       kind: Cluster
@@ -163,6 +198,8 @@ in {
         - containerPort: 443
           hostPort: 8443
           protocol: TCP
+      - role: worker
+      - role: worker
       EOF
       }
 
@@ -194,17 +231,13 @@ in {
 
     shellAliases = {
       cat = "bat";
-      cpm = ''git diff --staged | s -- sgpt --code --no-cache "Generate a git commit message describing the changes using the conventional commit specifiction (DO NOT GENERATE A COMMAND)" | git commit -F -'';
-      cpr = ''git diff $(git merge-base $(git remote show origin | grep 'HEAD branch' | cut -d' ' -f5) $(git branch --show-current))..HEAD | s -- sgpt --code --no-cache "Generate a 30 character max GitHub Pull Request title and description that includes only categorized lists (added, removed, etc) using symver specification in markdown. Do not include git diff output."'';
-      dr = "docker container run --interactive --rm --tty";
+      dk = "docket";
       lg = "lazygit";
       ll =
         if isDarwin
         then "n"
         else "n -P K";
-      nb = "nix build --json --no-link --print-build-logs";
       s = ''doppler run --config "nixos" --project "$(whoami)"'';
-      sgpt = "s -- sgpt --no-cache";
       wt = "git worktree";
     };
 
