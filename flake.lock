@@ -22,11 +22,11 @@
         "nixpkgs-lib": "nixpkgs-lib_2"
       },
       "locked": {
-        "lastModified": 1769996383,
-        "narHash": "sha256-AnYjnFWgS49RlqX7LrC4uA+sCCDBj0Ry/WOJ5XWAsa0=",
+        "lastModified": 1778716662,
+        "narHash": "sha256-m1Yf0wZ8j1OHjTc2UwHwyQRSnNeSgLJOd7q5Y45hzi4=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "57928607ea566b5db3ad13af0e57e921e6b12381",
+        "rev": "f7c1a2d347e4c52d5fb8d10cb4d94b5884e546fb",
         "type": "github"
       },
       "original": {
@@ -108,11 +108,11 @@
     },
     "nixpkgs-lib_2": {
       "locked": {
-        "lastModified": 1769909678,
-        "narHash": "sha256-cBEymOf4/o3FD5AZnzC3J9hLbiZ+QDT/KDuyHXVJOpM=",
+        "lastModified": 1777168982,
+        "narHash": "sha256-GOkGPcboWE9BmGCRMLX3worL4EMnsnG8MyKmXNeYuhQ=",
         "owner": "nix-community",
         "repo": "nixpkgs.lib",
-        "rev": "72716169fe93074c333e8d0173151350670b824c",
+        "rev": "f5901329dade4a6ea039af1433fb087bd9c1fe14",
         "type": "github"
       },
       "original": {
@@ -155,11 +155,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1771369470,
-        "narHash": "sha256-0NBlEBKkN3lufyvFegY4TYv5mCNHbi5OmBDrzihbBMQ=",
+        "lastModified": 1780749050,
+        "narHash": "sha256-3av0pIjlOWQ6rDbNOmpUSvbNnJkGORQKKjb4LtCZsIY=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "0182a361324364ae3f436a63005877674cf45efb",
+        "rev": "a799d3e3886da994fa307f817a6bc705ae538eeb",
         "type": "github"
       },
       "original": {
@@ -175,11 +175,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1771867414,
-        "narHash": "sha256-cwvmc9fvoCt2g0aVIwKXgeRtetDO0iB0/NpyJouplj0=",
+        "lastModified": 1780936964,
+        "narHash": "sha256-/5UoaYq6Eq0sMpalWiI1rJJ4KUMQ/rfe46cozs4Q1LU=",
         "owner": "ALT-F4-LLC",
         "repo": "notion.nvim",
-        "rev": "26e5d14e5c9ac90a8848ec023f707ea0b77f8d4b",
+        "rev": "3d2a45d4ea3a98008275b93053117a875825d38c",
         "type": "github"
       },
       "original": {
@@ -204,11 +204,11 @@
         "notion-nvim": "notion-nvim"
       },
       "locked": {
-        "lastModified": 1780936251,
-        "narHash": "sha256-WnuTzFcnJv4iOJaQjigNLuVw4OQZDFx3+1sEK3yIyeo=",
+        "lastModified": 1780938011,
+        "narHash": "sha256-6/1GJ1l2M09HQ/JrFQf9Ns25GxHQCBdKkaNggnWAFNU=",
         "owner": "ALT-F4-LLC",
         "repo": "thealtf4stream.nvim",
-        "rev": "0e138793a9d779b5ad2418049d268597581f2955",
+        "rev": "42dccfe7912f8265b8ab387a3d1885f99e751cf5",
         "type": "github"
       },
       "original": {
