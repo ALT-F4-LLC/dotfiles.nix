@@ -170,7 +170,7 @@ in {
         task=$(gum write --placeholder "Optional task for Claude - Ctrl+D to dispatch, Esc to skip") || task=""
 
         local session="$scope#$name"
-        local -a args=(--bg --name "$session" --remote-control "$session")
+        local -a args=(--bg --name "$session")
 
         if [[ -n "$task" ]]; then
           claude "''${args[@]}" "$task"
